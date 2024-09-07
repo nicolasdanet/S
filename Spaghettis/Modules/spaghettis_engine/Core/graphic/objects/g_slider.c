@@ -207,7 +207,7 @@ void slider_setup (void)
     
     class_setHelpName (c, sym_slider);
     class_setSaveFunction (c, slider_functionSave);
-    class_setDataFunction (c, gui_functionDataRestore);
+    class_setDataFunction (c, gui_functionData);
     class_requirePending (c);
     
     slider_class = c;

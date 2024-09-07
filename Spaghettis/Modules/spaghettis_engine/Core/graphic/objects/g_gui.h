@@ -265,7 +265,6 @@ bool gui_setParameters (t_object *, const data::Group&, int);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_buffer *gui_functionDataRestore (t_object *, int);
 t_buffer *gui_functionData (t_object *, int);
 
 void gui_restore (t_gui *, int);

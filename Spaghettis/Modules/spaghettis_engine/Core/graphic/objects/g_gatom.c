@@ -176,7 +176,7 @@ void gatom_setup (void)
     #endif
     
     class_setSaveFunction (c, gatom_functionSave);
-    class_setDataFunction (c, gui_functionDataRestore);
+    class_setDataFunction (c, gui_functionData);
     class_requirePending (c);
     
     gatom_class = c;

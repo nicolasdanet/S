@@ -175,7 +175,7 @@ void toggle_setup (void)
     #endif
     
     class_setSaveFunction (c, toggle_functionSave);
-    class_setDataFunction (c, gui_functionDataRestore);
+    class_setDataFunction (c, gui_functionData);
     class_requirePending (c);
     
     toggle_class = c;

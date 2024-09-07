@@ -191,7 +191,7 @@ void bng_setup (void)
     #endif
     
     class_setSaveFunction (c, bng_functionSave);
-    class_setDataFunction (c, gui_functionDataRestore);
+    class_setDataFunction (c, gui_functionData);
     class_requirePending (c);
     
     bng_class = c;

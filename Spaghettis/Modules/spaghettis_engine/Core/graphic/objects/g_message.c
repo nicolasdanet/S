@@ -316,15 +316,6 @@ static void message_functionSetParameters (t_object *o, const data::Group& group
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void message_include (t_message *x, t_symbol *s, int argc, t_atom *argv)
-{
-    PD_DBG ("?");
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void message_setup (void)
 {
     t_class *c = NULL;
@@ -351,15 +342,11 @@ void message_setup (void)
     class_addMethod (c, (t_method)message_addDollar,        sym_adddollar,          A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)message_addDollarSymbol,  sym_adddollarsymbol,    A_SYMBOL, A_NULL);
 
-    class_addMethod (c, (t_method)message_include,          sym__include,           A_GIMME, A_NULL);
-
     #if defined ( PD_BUILDING_APPLICATION )
     
     class_setParametersFunctions (c, message_functionGetParameters, message_functionSetParameters);
     
     #endif
-    
-    class_setDataFunction (c, gui_functionData);
     
     message_class = c;
     
