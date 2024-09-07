@@ -79,7 +79,8 @@ static int radio_flags()
             | GUI_MULTIPLE
             | GUI_BUTTONS
             | GUI_WIDTH
-            | GUI_ORIENTATION;
+            | GUI_ORIENTATION
+            | GUI_INCLUDED;
 }
 
 #if defined ( PD_BUILDING_APPLICATION )

@@ -81,7 +81,8 @@ static int vu_flags()
             | GUI_VALUE
             | GUI_PEAK
             | GUI_WIDTH
-            | GUI_HEIGHT;
+            | GUI_HEIGHT
+            | GUI_INCLUDED;
 }
 
 #if defined ( PD_BUILDING_APPLICATION )

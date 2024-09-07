@@ -590,7 +590,7 @@ static t_symbol *garray_getUnusedBindName (t_symbol *prefix)
 
 static constexpr int garray_flags()
 {
-    return GUI_NONE | GUI_EMBEDDED | GUI_WIDTH | GUI_HEIGHT;
+    return GUI_NONE | GUI_EMBEDDED | GUI_WIDTH | GUI_HEIGHT | GUI_INCLUDED;
 }
 
 static void garray_getParameters (t_object *o, data::Group& group, const Tags& t)

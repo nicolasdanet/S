@@ -90,7 +90,8 @@ static int bng_flags()
     return GUI_NONE
             | GUI_FLASHED
             | GUI_TIME
-            | GUI_WIDTH;
+            | GUI_WIDTH
+            | GUI_INCLUDED;
 }
 
 #if defined ( PD_BUILDING_APPLICATION )

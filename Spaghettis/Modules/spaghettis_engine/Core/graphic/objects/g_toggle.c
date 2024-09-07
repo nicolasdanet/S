@@ -75,7 +75,8 @@ static int toggle_flags()
     return GUI_NONE
             | GUI_STATE
             | GUI_NONZERO
-            | GUI_WIDTH;
+            | GUI_WIDTH
+            | GUI_INCLUDED;
 }
 
 #if defined ( PD_BUILDING_APPLICATION )

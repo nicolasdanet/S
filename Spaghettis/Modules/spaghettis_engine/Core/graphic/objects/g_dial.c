@@ -104,7 +104,8 @@ static int dial_flags()
             | GUI_INTERVAL
             | GUI_LOGARITHMIC
             | GUI_DIGITS
-            | GUI_WIDTH;
+            | GUI_WIDTH
+            | GUI_INCLUDED;
 }
 
 #if defined ( PD_BUILDING_APPLICATION )

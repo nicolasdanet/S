@@ -90,7 +90,8 @@ static int slider_flags()
             | GUI_WIDTH
             | GUI_HEIGHT
             | GUI_ORIENTATION
-            | GUI_SWAP;
+            | GUI_SWAP
+            | GUI_INCLUDED;
 }
 
 #if defined ( PD_BUILDING_APPLICATION )

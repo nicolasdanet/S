@@ -61,7 +61,8 @@ static int gatom_flags()
             | GUI_VALUE
             | GUI_RANGE
             | GUI_INTERVAL
-            | GUI_DIGITS;
+            | GUI_DIGITS
+            | GUI_INCLUDED;
 }
 
 #if defined ( PD_BUILDING_APPLICATION )

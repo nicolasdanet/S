@@ -534,7 +534,7 @@ void gui_getParameters (t_object *o, data::Group& group, const Tags& t, int flag
             delegate).setRange (juce::Range<int> (GUI_SIZE_MINIMUM, GUI_SIZE_MAXIMUM));
     }
     
-    if (t.contains (Tag::Included)) {
+    if ((flags & GUI_INCLUDED) && t.contains (Tag::Included)) {
         group.addParameter (Tag::Included,
             NEEDS_TRANS ("Included"),
             NEEDS_TRANS ("Is widget included in run view"),
@@ -542,7 +542,7 @@ void gui_getParameters (t_object *o, data::Group& group, const Tags& t, int flag
             delegate);
     }
     
-    if (t.contains (Tag::Label)) {
+    if ((flags & GUI_INCLUDED) && t.contains (Tag::Label)) {
         group.addParameter (Tag::Label,
             NEEDS_TRANS ("Label"),
             NEEDS_TRANS ("Widget label in run view"),
@@ -555,13 +555,13 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
 {
     t_gui *x = (t_gui *)o;
     
-    {
+    if (flags & GUI_INCLUDED) {
         jassert (group.hasParameter (Tag::Included));
         const int n = group.getParameter (Tag::Included).getValueTyped<bool>();
         gui_updateIncluded (x, n, GUI_UPDATE_NOTIFY);
     }
     
-    {
+    if (flags & GUI_INCLUDED) {
         jassert (group.hasParameter (Tag::Label));
         t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
         gui_updateLabel (x, s, GUI_UPDATE_NOTIFY);
