@@ -50,8 +50,6 @@ void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
     object_setType (x, TYPE_COMMENT);
     
     glist_objectAdd (glist, x);
-    
-    instance_setBoundA (cast_pd (x));
     //
     } else { PD_BUG; }
 }

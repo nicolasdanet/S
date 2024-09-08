@@ -240,23 +240,6 @@ void gui_updateEmbedded (t_gui *x, int n, int flag)
     }
 }
 
-void gui_updateIncluded (t_gui *x, int n, int flag)
-{
-    int t = (n != 0);
-    
-    if (x->x_isIncluded != t) {
-    //
-    x->x_isIncluded = t;
-    
-    if (flag) {
-        #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Included));
-        #endif
-    }
-    //
-    }
-}
-
 void gui_updateTime (t_gui *x, int n, int flag)
 {
     int t = PD_CLAMP (n, GUI_TIME_MINIMUM, GUI_TIME_MAXIMUM);
@@ -360,8 +343,22 @@ void gui_updateHeight (t_gui *x, int height, int flag)
     }
 }
 
-void gui_updateLabel (t_gui *x, t_symbol *s, int flag)
+void gui_updateIncluded (t_gui *x, int n, t_symbol *s, int flag)
 {
+    int t = (n != 0);
+    
+    if (x->x_isIncluded != t) {
+    //
+    x->x_isIncluded = t;
+    
+    if (flag) {
+        #if defined ( PD_BUILDING_APPLICATION )
+        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Included));
+        #endif
+    }
+    //
+    }
+    
     if (x->x_label != s) {
     //
     x->x_label = s;
@@ -557,14 +554,10 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
     
     if (flags & GUI_INCLUDED) {
         jassert (group.hasParameter (Tag::Included));
-        const int n = group.getParameter (Tag::Included).getValueTyped<bool>();
-        gui_updateIncluded (x, n, GUI_UPDATE_NOTIFY);
-    }
-    
-    if (flags & GUI_INCLUDED) {
         jassert (group.hasParameter (Tag::Label));
+        const int n = group.getParameter (Tag::Included).getValueTyped<bool>();
         t_symbol *s = gensym (group.getParameter (Tag::Label).getValueTyped<juce::String>().toRawUTF8());
-        gui_updateLabel (x, s, GUI_UPDATE_NOTIFY);
+        gui_updateIncluded (x, n, s, GUI_UPDATE_NOTIFY);
     }
     
     if (flags & GUI_RANGE) {
@@ -737,21 +730,22 @@ void gui_restore (t_gui *x, int flags)
     //
     int n = GUI_UPDATE_NOTIFY;
     
-    if (flags & GUI_RANGE)          { gui_updateRange (x, gui_getLow (y), gui_getHigh (y), n);  }
-    if (flags & GUI_INTERVAL)       { gui_updateInterval (x, gui_getInterval (y), n);           }
-    if (flags & GUI_NONZERO)        { gui_updateNonZero (x, gui_getNonZero (y), n);             }
-    if (flags & GUI_LOGARITHMIC)    { gui_updateLogarithmic (x, gui_isLogarithmic (y), n);      }
-    if (flags & GUI_MULTIPLE)       { gui_updateMultiple (x, gui_isMultiple (y), n);            }
-    if (flags & GUI_EMBEDDED)       { gui_updateEmbedded (x, gui_isEmbedded (y), n);            }
-    if (flags & GUI_TIME)           { gui_updateTime (x, gui_getTime (y), n);                   }
-    if (flags & GUI_DIGITS)         { gui_updateDigits (x, gui_getDigits (y), n);               }
-    if (flags & GUI_BUTTONS)        { gui_updateButtons (x, gui_getButtons (y), n);             }
-    if (flags & GUI_WIDTH)          { gui_updateWidth (x, gui_getWidth (y), n);                 }
-    if (flags & GUI_HEIGHT)         { gui_updateHeight (x, gui_getHeight (y), n);               }
-    if (flags & GUI_ORIENTATION)    { gui_updateOrientation (x, gui_isVertical (y), n);         }
-    if (flags & GUI_VALUE)          { gui_updateValue (x, gui_getValue (y), n);                 }
-    if (flags & GUI_PEAK)           { gui_updatePeak (x, gui_getPeak (y), n);                   }
-    if (flags & GUI_STATE)          { gui_updateState (x, gui_getState (y), n);                 }
+    if (flags & GUI_RANGE)          { gui_updateRange (x, gui_getLow (y), gui_getHigh (y), n);          }
+    if (flags & GUI_INTERVAL)       { gui_updateInterval (x, gui_getInterval (y), n);                   }
+    if (flags & GUI_NONZERO)        { gui_updateNonZero (x, gui_getNonZero (y), n);                     }
+    if (flags & GUI_LOGARITHMIC)    { gui_updateLogarithmic (x, gui_isLogarithmic (y), n);              }
+    if (flags & GUI_MULTIPLE)       { gui_updateMultiple (x, gui_isMultiple (y), n);                    }
+    if (flags & GUI_EMBEDDED)       { gui_updateEmbedded (x, gui_isEmbedded (y), n);                    }
+    if (flags & GUI_TIME)           { gui_updateTime (x, gui_getTime (y), n);                           }
+    if (flags & GUI_DIGITS)         { gui_updateDigits (x, gui_getDigits (y), n);                       }
+    if (flags & GUI_BUTTONS)        { gui_updateButtons (x, gui_getButtons (y), n);                     }
+    if (flags & GUI_WIDTH)          { gui_updateWidth (x, gui_getWidth (y), n);                         }
+    if (flags & GUI_HEIGHT)         { gui_updateHeight (x, gui_getHeight (y), n);                       }
+    if (flags & GUI_ORIENTATION)    { gui_updateOrientation (x, gui_isVertical (y), n);                 }
+    if (flags & GUI_VALUE)          { gui_updateValue (x, gui_getValue (y), n);                         }
+    if (flags & GUI_PEAK)           { gui_updatePeak (x, gui_getPeak (y), n);                           }
+    if (flags & GUI_STATE)          { gui_updateState (x, gui_getState (y), n);                         }
+    if (flags & GUI_INCLUDED)       { gui_updateIncluded (x, gui_isIncluded (y), gui_getLabel (y), n);  }
     //
     }
 }

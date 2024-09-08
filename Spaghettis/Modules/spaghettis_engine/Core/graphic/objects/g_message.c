@@ -285,8 +285,6 @@ void message_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
     message_makeObjectProceed (glist, cast_object (x), argc, argv);
     
     message_dirty (x, 0);
-    
-    instance_setBoundA (cast_pd (x));
 }
 
 static void message_free (t_message *x)

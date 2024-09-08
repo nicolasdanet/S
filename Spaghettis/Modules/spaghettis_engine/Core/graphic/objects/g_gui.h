@@ -216,13 +216,12 @@ void gui_updateOrientation          (t_gui *x, int isVertical, int flag);
 void gui_updateOrientationSwap      (t_gui *x, int isVertical, int flag);
 void gui_updateFlashed              (t_gui *x, int n, int flag);
 void gui_updateEmbedded             (t_gui *x, int n, int flag);
-void gui_updateIncluded             (t_gui *x, int n, int flag);
 void gui_updateTime                 (t_gui *x, int n, int flag);
 void gui_updateDigits               (t_gui *x, int digits, int flag);
 void gui_updateButtons              (t_gui *x, int buttons, int flag);
 void gui_updateWidth                (t_gui *x, int width, int flag);
 void gui_updateHeight               (t_gui *x, int height, int flag);
-void gui_updateLabel                (t_gui *x, t_symbol *s, int flag);
+void gui_updateIncluded             (t_gui *x, int n, t_symbol *s, int flag);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
