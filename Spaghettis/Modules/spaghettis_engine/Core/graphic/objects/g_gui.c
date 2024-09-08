@@ -353,7 +353,7 @@ void gui_updateIncluded (t_gui *x, int n, t_symbol *s, int flag)
     
     if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Included));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Included));
         #endif
     }
     //
@@ -365,7 +365,7 @@ void gui_updateIncluded (t_gui *x, int n, t_symbol *s, int flag)
         
     if (flag) {
         #if defined ( PD_BUILDING_APPLICATION )
-        outputs_objectChanged (cast_object (x), Tags::parameters (Tag::Label));
+        outputs_objectUpdated (cast_object (x), Tags::parameters (Tag::Label));
         #endif
     }
     //
