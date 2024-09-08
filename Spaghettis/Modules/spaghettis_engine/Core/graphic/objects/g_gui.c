@@ -697,8 +697,7 @@ bool object_setTextParameter (t_object *o, const data::Group& group)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/*
-t_buffer *gui_functionData (t_object *z, int flags)
+static t_buffer *gui_functionDataInclude (t_object *z)
 {
     t_gui *x = cast_gui (z);
     
@@ -708,7 +707,8 @@ t_buffer *gui_functionData (t_object *z, int flags)
     
     buffer_appendSymbol (b, sym__include);
     buffer_appendFloat (b, gui_isIncluded (x));
-    buffer_appendSymbol (b, gui_getLabel (x));
+    
+    if (gui_hasLabel (x)) { buffer_appendSymbol (b, gui_getLabel (x)); }
     
     return b;
     //
@@ -716,21 +716,23 @@ t_buffer *gui_functionData (t_object *z, int flags)
     
     return NULL;
 }
-*/
 
 t_buffer *gui_functionData (t_object *z, int flags)
 {
+    t_buffer *b = gui_functionDataInclude (z);
+    
     if (SAVED_DEEP (flags)) {
     //
-    t_buffer *b = buffer_new();
+    if (b) { buffer_appendComma (b); }
+    else {
+        b = buffer_new();
+    }
 
     buffer_appendSymbol (b, sym__restore);
-    
-    return b;
     //
     }
     
-    return NULL;
+    return b;
 }
 
 // -----------------------------------------------------------------------------------------------------------
