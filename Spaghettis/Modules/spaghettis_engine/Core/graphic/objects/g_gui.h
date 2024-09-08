@@ -244,7 +244,6 @@ enum {
     GUI_TIME                = (1 << 14),
     GUI_DIGITS              = (1 << 15),
     GUI_BUTTONS             = (1 << 16),
-    GUI_TEXT                = (1 << 17),
     GUI_WIDTH               = (1 << 18),
     GUI_HEIGHT              = (1 << 19),
     GUI_INCLUDED            = (1 << 20)
@@ -258,6 +257,9 @@ enum {
 
 void gui_getParameters (t_object *, data::Group&, const Tags&, int);
 bool gui_setParameters (t_object *, const data::Group&, int);
+
+void object_getTextParameter (t_object *, data::Group&, const Tags&);
+bool object_setTextParameter (t_object *, const data::Group&);
 
 #endif
 

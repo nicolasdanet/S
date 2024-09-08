@@ -28,7 +28,7 @@ typedef struct _messageresponder {
 // MARK: -
 
 typedef struct _message {
-    t_gui               m_obj;                  /* MUST be the first. */
+    t_object            m_obj;                  /* MUST be the first. */
     t_messageresponder  m_responder;
     int                 m_dirty;
     t_buffer            *m_eval;
@@ -300,12 +300,12 @@ static void message_free (t_message *x)
 
 static void message_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
-    gui_getParameters (o, group, t, GUI_TEXT);
+    object_getTextParameter (o, group, t);
 }
 
 static void message_functionSetParameters (t_object *o, const data::Group& group)
 {
-    if (gui_setParameters (o, group, GUI_TEXT)) { message_dirty ((t_message *)o, 0); }
+    if (object_setTextParameter (o, group)) { message_dirty ((t_message *)o, 0); }
 }
 
 #endif

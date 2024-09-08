@@ -17,7 +17,7 @@ t_class *comment_class;     /* Shared. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-typedef struct _comment { t_gui m_obj; } t_comment;
+typedef struct _comment { t_object m_obj; } t_comment;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -62,12 +62,12 @@ void comment_makeObject (t_glist *glist, t_symbol *s, int argc, t_atom *argv)
 
 static void comment_functionGetParameters (t_object *o, data::Group& group, const Tags& t)
 {
-    gui_getParameters (o, group, t, GUI_TEXT);
+    object_getTextParameter (o, group, t);
 }
 
 static void comment_functionSetParameters (t_object *o, const data::Group& group)
 {
-    gui_setParameters (o, group, GUI_TEXT);
+    object_setTextParameter (o, group);
 }
 
 #endif
