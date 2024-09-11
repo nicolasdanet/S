@@ -147,14 +147,14 @@ static void dial_functionSave (t_object *z, t_buffer *b, int flags)
     object_saveIdentifiers (z, b, flags);
 }
 
-static void dial_restore (t_dial *x)
-{
-    gui_restore (cast_gui (x), dial_flags());
-}
-
 static void dial_include (t_dial *x, t_symbol *s, int argc, t_atom *argv)
 {
     gui_include (cast_gui (x), argc, argv);
+}
+
+static void dial_restore (t_dial *x)
+{
+    gui_restore (cast_gui (x), dial_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

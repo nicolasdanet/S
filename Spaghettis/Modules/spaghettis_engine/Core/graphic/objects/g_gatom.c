@@ -101,14 +101,14 @@ static void gatom_functionSave (t_object *z, t_buffer *b, int flags)
     object_saveIdentifiers (z, b, flags);
 }
 
-static void gatom_restore (t_gatom *x)
-{
-    gui_restore (cast_gui (x), gatom_flags());
-}
-
 static void gatom_include (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
 {
     gui_include (cast_gui (x), argc, argv);
+}
+
+static void gatom_restore (t_gatom *x)
+{
+    gui_restore (cast_gui (x), gatom_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

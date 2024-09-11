@@ -697,7 +697,7 @@ bool object_setTextParameter (t_object *o, const data::Group& group)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_buffer *gui_functionDataInclude (t_object *z)
+t_buffer *gui_functionDataInclude (t_object *z)
 {
     t_gui *x = cast_gui (z);
     

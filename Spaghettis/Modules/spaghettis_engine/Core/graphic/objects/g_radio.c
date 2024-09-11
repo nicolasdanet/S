@@ -119,14 +119,14 @@ static void radio_functionSave (t_object *z, t_buffer *b, int flags)
     object_saveIdentifiers (z, b, flags);
 }
 
-static void radio_restore (t_radio *x)
-{
-    gui_restore (cast_gui (x), radio_flags());
-}
-
 static void radio_include (t_radio *x, t_symbol *s, int argc, t_atom *argv)
 {
     gui_include (cast_gui (x), argc, argv);
+}
+
+static void radio_restore (t_radio *x)
+{
+    gui_restore (cast_gui (x), radio_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

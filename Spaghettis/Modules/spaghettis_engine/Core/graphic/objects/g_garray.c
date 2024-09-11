@@ -482,22 +482,26 @@ static t_buffer *garray_functionData (t_object *z, int flags)
 {
     t_garray *x = (t_garray *)z;
 
+    t_buffer *b = gui_functionDataInclude (z);
+    
     if (SAVED_DEEP (flags) || gui_isEmbedded (cast_gui (x))) {
     //
-    t_buffer *b = buffer_new();
     int i, n = x->x_size;
+    
+    if (b) { buffer_appendComma (b); }
+    else {
+        b = buffer_new();
+    }
     
     buffer_appendFloat (b, 0); for (i = 0; i < n; i++) { buffer_appendFloat (b, GARRAY_GET (i)); }
     
     if (SAVED_DEEP (flags)) {
         buffer_appendComma (b); buffer_appendSymbol (b, sym__restore);
     }
-    
-    return b;
     //
     }
     
-    return NULL;
+    return b;
 }
 
 static void garray_functionDismiss (t_object *z)
@@ -522,6 +526,11 @@ static void garray_size (t_garray *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+static void garray_include (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
 
 static void garray_copy (t_word *dest, t_word *src, int n)
 {
@@ -759,6 +768,7 @@ void garray_setup (void)
     class_addMethod (c, (t_method)garray_resize,    sym_resize,     A_FLOAT,  A_NULL);
     class_addMethod (c, (t_method)garray_embed,     sym_embed,      A_FLOAT,  A_NULL);
     class_addMethod (c, (t_method)garray_size,      sym__resize,    A_GIMME,  A_NULL);
+    class_addMethod (c, (t_method)garray_include,   sym__include,   A_GIMME, A_NULL);
     class_addMethod (c, (t_method)garray_restore,   sym__restore,   A_NULL);
     
     #if defined ( PD_BUILDING_APPLICATION )

@@ -133,14 +133,14 @@ static void slider_functionSave (t_object *z, t_buffer *b, int flags)
     object_saveIdentifiers (z, b, flags);
 }
 
-static void slider_restore (t_slider *x)
-{
-    gui_restore (cast_gui (x), slider_flags());
-}
-
 static void slider_include (t_slider *x, t_symbol *s, int argc, t_atom *argv)
 {
     gui_include (cast_gui (x), argc, argv);
+}
+
+static void slider_restore (t_slider *x)
+{
+    gui_restore (cast_gui (x), slider_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

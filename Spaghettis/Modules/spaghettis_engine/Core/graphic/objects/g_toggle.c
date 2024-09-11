@@ -114,14 +114,14 @@ static void toggle_functionSave (t_object *z, t_buffer *b, int flags)
     object_saveIdentifiers (z, b, flags);
 }
 
-static void toggle_restore (t_toggle *x)
-{
-    gui_restore (cast_gui (x), toggle_flags());
-}
-
 static void toggle_include (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
 {
     gui_include (cast_gui (x), argc, argv);
+}
+
+static void toggle_restore (t_toggle *x)
+{
+    gui_restore (cast_gui (x), toggle_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -119,14 +119,14 @@ static void vu_functionSave (t_object *z, t_buffer *b, int flags)
     object_saveIdentifiers (z, b, flags);
 }
 
-static void vu_restore (t_vu *x)
-{
-    gui_restore (cast_gui (x), vu_flags());
-}
-
 static void vu_include (t_vu *x, t_symbol *s, int argc, t_atom *argv)
 {
     gui_include (cast_gui (x), argc, argv);
+}
+
+static void vu_restore (t_vu *x)
+{
+    gui_restore (cast_gui (x), vu_flags());
 }
 
 // -----------------------------------------------------------------------------------------------------------
