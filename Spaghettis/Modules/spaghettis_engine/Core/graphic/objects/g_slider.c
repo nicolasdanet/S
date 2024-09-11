@@ -138,6 +138,11 @@ static void slider_restore (t_slider *x)
     gui_restore (cast_gui (x), slider_flags());
 }
 
+static void slider_include (t_slider *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -198,6 +203,7 @@ void slider_setup (void)
     class_addMethod (c, (t_method)slider_linear,        sym_linear,         A_NULL);
     class_addMethod (c, (t_method)slider_orientation,   sym_orientation,    A_DEFSYMBOL, A_NULL);
     class_addMethod (c, (t_method)slider_size,          sym__resize,        A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)slider_include,       sym__include,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)slider_restore,       sym__restore,       A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

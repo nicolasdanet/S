@@ -152,6 +152,11 @@ static void dial_restore (t_dial *x)
     gui_restore (cast_gui (x), dial_flags());
 }
 
+static void dial_include (t_dial *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -207,6 +212,7 @@ void dial_setup (void)
     class_addMethod (c, (t_method)dial_logarithmic, sym_logarithmic,    A_NULL);
     class_addMethod (c, (t_method)dial_linear,      sym_linear,         A_NULL);
     class_addMethod (c, (t_method)dial_resize,      sym__resize,        A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)dial_include,     sym__include,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)dial_restore,     sym__restore,       A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

@@ -106,6 +106,11 @@ static void gatom_restore (t_gatom *x)
     gui_restore (cast_gui (x), gatom_flags());
 }
 
+static void gatom_include (t_gatom *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -168,6 +173,7 @@ void gatom_setup (void)
         
     class_addMethod (c, (t_method)gatom_set,        sym_set,        A_GIMME, A_NULL);
     class_addMethod (c, (t_method)gatom_range,      sym_range,      A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)gatom_include,    sym__include,   A_GIMME, A_NULL);
     class_addMethod (c, (t_method)gatom_restore,    sym__restore,   A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

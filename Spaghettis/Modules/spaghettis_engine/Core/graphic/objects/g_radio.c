@@ -124,6 +124,11 @@ static void radio_restore (t_radio *x)
     gui_restore (cast_gui (x), radio_flags());
 }
 
+static void radio_include (t_radio *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -176,6 +181,7 @@ void radio_setup (void)
     class_addMethod (c, (t_method)radio_orientation,    sym_orientation,    A_DEFSYMBOL, A_NULL);
     class_addMethod (c, (t_method)radio_size,           sym_size,           A_GIMME, A_NULL);
     class_addMethod (c, (t_method)radio_size,           sym__resize,        A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)radio_include,        sym__include,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)radio_restore,        sym__restore,       A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

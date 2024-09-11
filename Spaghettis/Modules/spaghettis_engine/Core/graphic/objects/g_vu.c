@@ -124,6 +124,11 @@ static void vu_restore (t_vu *x)
     gui_restore (cast_gui (x), vu_flags());
 }
 
+static void vu_include (t_vu *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -174,6 +179,7 @@ void vu_setup (void)
     class_addMethod (c, (t_method)vu_peak,      sym__inlet2,    A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)vu_size,      sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)vu_size,      sym__resize,    A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)vu_include,   sym__include,   A_GIMME, A_NULL);
     class_addMethod (c, (t_method)vu_restore,   sym__restore,   A_NULL);
 
     #if defined ( PD_BUILDING_APPLICATION )

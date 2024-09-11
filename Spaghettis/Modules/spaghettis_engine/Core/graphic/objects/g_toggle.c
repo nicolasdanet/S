@@ -119,6 +119,11 @@ static void toggle_restore (t_toggle *x)
     gui_restore (cast_gui (x), toggle_flags());
 }
 
+static void toggle_include (t_toggle *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -142,6 +147,7 @@ static void *toggle_new (t_symbol *s, int argc, t_atom *argv)
 
 static void toggle_free (t_toggle *x)
 {
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -167,6 +173,7 @@ void toggle_setup (void)
     class_addMethod (c, (t_method)toggle_nonZero,   sym_nonzero,    A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)toggle_size,      sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)toggle_size,      sym__resize,    A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)toggle_include,   sym__include,   A_GIMME, A_NULL);
     class_addMethod (c, (t_method)toggle_restore,   sym__restore,   A_NULL);
     
     #if defined ( PD_BUILDING_APPLICATION )

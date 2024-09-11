@@ -133,6 +133,11 @@ static void bng_restore (t_bng *x)
     gui_restore (cast_gui (x), bng_flags());
 }
 
+static void bng_include (t_bng *x, t_symbol *s, int argc, t_atom *argv)
+{
+    gui_include (cast_gui (x), argc, argv);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -183,6 +188,7 @@ void bng_setup (void)
     class_addMethod (c, (t_method)bng_flashtime,    sym_flashtime,  A_FLOAT, A_NULL);
     class_addMethod (c, (t_method)bng_size,         sym_size,       A_GIMME, A_NULL);
     class_addMethod (c, (t_method)bng_size,         sym__resize,    A_GIMME, A_NULL);
+    class_addMethod (c, (t_method)bng_include,      sym__include,   A_GIMME, A_NULL);
     class_addMethod (c, (t_method)bng_restore,      sym__restore,   A_NULL);
     
     #if defined ( PD_BUILDING_APPLICATION )
