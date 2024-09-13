@@ -488,7 +488,7 @@ static t_buffer *garray_functionData (t_object *z, int flags)
     //
     int i, n = x->x_size;
     
-    if (b) { buffer_appendComma (b); }
+    if (b) { buffer_appendSemicolon (b); buffer_appendSymbol (b, sym___hash__A); }
     else {
         b = buffer_new();
     }
