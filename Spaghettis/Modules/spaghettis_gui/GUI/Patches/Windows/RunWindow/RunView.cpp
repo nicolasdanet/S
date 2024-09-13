@@ -148,7 +148,7 @@ void addComponent (RunView* view, Table<ObjectComponent>& objects, const juce::V
     //
     const core::Object object (child);
     
-    if (object.isGraphic()) { objects.add (view, object); }
+    if (object.isGraphic() && !object.isLocked()) { objects.add (view, object); }
     //
     }
 }
@@ -159,7 +159,7 @@ void removeComponent (RunView* view, Table<ObjectComponent>& objects, const juce
     //
     const core::Object object (child);
     
-    if (object.isGraphic()) { objects.remove (object.getIdentifier()); }
+    if (object.isGraphic() && !object.isLocked()) { objects.remove (object.getIdentifier()); }
     //
     }
 }

@@ -114,7 +114,7 @@ public:
 public:
     bool isLocked() const
     {
-        return tree_.getProperty (Id::locked);
+        return tree_.getProperty (Id::locked);      /* Is inside abstraction. */
     }
     
     UniqueId getIdentifier() const

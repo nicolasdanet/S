@@ -17,10 +17,11 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void addIfIncluded (const juce::ValueTree& child, juce::StringPairArray& paths, bool absoluteAsKey)
+bool addIfIncluded (const juce::ValueTree& child, juce::StringPairArray& paths, bool absoluteAsKey)
 {
     if (Tree::isObject (child)) {
         const core::Object object (child);
+        if (object.isAbstraction()) { return false; }
         if (object.isGraphic() && object.hasParameter (Tag::Parameters, Tag::Included)) {
             if (object.get<bool> (Tag::Parameters, Tag::Included)) {
                 juce::String item (data::Cast::toVar<core::UniqueId> (object.getIdentifier()).toString());
@@ -32,13 +33,16 @@ void addIfIncluded (const juce::ValueTree& child, juce::StringPairArray& paths, 
             }
         }
     }
+    
+    return Tree::isPatch (child);
 }
     
 void fetchPathsRecursive (const juce::ValueTree& tree, juce::StringPairArray& paths, bool absoluteAsKey)
 {
     for (const auto& child : tree) {
-        addIfIncluded (child, paths, absoluteAsKey);
-        fetchPathsRecursive (child, paths, absoluteAsKey);
+        if (addIfIncluded (child, paths, absoluteAsKey)) {
+            fetchPathsRecursive (child, paths, absoluteAsKey);
+        }
     }
 }
 
