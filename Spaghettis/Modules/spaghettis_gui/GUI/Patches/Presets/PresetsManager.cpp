@@ -60,7 +60,7 @@ bool PresetsManager::isValid() const
     return presetsFile_.isValidFile();
 }
 
-bool PresetsManager::isValid (juce::StringRef keyName) const
+bool PresetsManager::isValidKey (juce::StringRef keyName) const
 {
     return isValid() && presetsFile_.containsKey (keyName);
 }
@@ -85,7 +85,7 @@ namespace PresetsConstants
 
 std::optional<juce::Rectangle<int>> PresetsManager::getRunWindow() const
 {
-    if (isValid (PresetsConstants::PositionTag)) {
+    if (isValidKey (PresetsConstants::PositionTag)) {
     //
     const std::unique_ptr<juce::XmlElement> e (presetsFile_.getXmlValue (PresetsConstants::PositionTag));
     
@@ -103,7 +103,7 @@ std::optional<juce::Rectangle<int>> PresetsManager::getRunWindow() const
 
 std::optional<bool> PresetsManager::getTabState() const
 {
-    if (isValid (PresetsConstants::StateTag)) {
+    if (isValidKey (PresetsConstants::StateTag)) {
         return presetsFile_.getBoolValue (PresetsConstants::StateTag);
     }
     
@@ -112,7 +112,7 @@ std::optional<bool> PresetsManager::getTabState() const
 
 std::optional<int> PresetsManager::getTabWidth() const
 {
-    if (isValid (PresetsConstants::WidthTag)) {
+    if (isValidKey (PresetsConstants::WidthTag)) {
         return presetsFile_.getIntValue (PresetsConstants::WidthTag);
     }
     
@@ -121,7 +121,7 @@ std::optional<int> PresetsManager::getTabWidth() const
 
 bool PresetsManager::hasAutoload() const
 {
-    if (isValid (PresetsConstants::AutoloadTag)) {
+    if (isValidKey (PresetsConstants::AutoloadTag)) {
         return presetsFile_.getBoolValue (PresetsConstants::AutoloadTag);
     }
     
