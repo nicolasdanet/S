@@ -169,24 +169,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-bool containsElement (core::UniqueId u, const std::vector<PresetElement>* elements)
-{
-    if (elements == nullptr) { return true; }
-    else {
-        for (const auto& p : *elements) {
-            if (u == data::Cast::fromVar<core::UniqueId> (p.getTag())) {
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void storeSlot (juce::PropertiesFile& file,
     juce::String name,
     const std::vector<PresetElement>* elements)
@@ -205,6 +187,24 @@ void storeSlot (juce::PropertiesFile& file,
     }
     
     file.setValue (PresetsConstants::PresetTag + name, root.get());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+bool containsElement (core::UniqueId u, const std::vector<PresetElement>* elements)
+{
+    if (elements == nullptr) { return true; }
+    else {
+        for (const auto& p : *elements) {
+            if (u == data::Cast::fromVar<core::UniqueId> (p.getTag())) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
 }
 
 void loadSlot (juce::PropertiesFile& file,
