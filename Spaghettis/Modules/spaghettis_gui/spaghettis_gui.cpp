@@ -49,6 +49,7 @@
 #include "GUI/Patches/Presets/PresetsAddresses.cpp"
 #include "GUI/Patches/Presets/AbsoluteToLocal.cpp"
 #include "GUI/Patches/Presets/LocalToAbsolute.cpp"
+#include "GUI/Patches/Presets/PresetsResolver.cpp"
 #include "GUI/Patches/Presets/PresetsManager.cpp"
 
 // -----------------------------------------------------------------------------------------------------------

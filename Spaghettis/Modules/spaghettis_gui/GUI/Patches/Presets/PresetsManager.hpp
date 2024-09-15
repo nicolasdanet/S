@@ -10,6 +10,20 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace PresetsConstants
+{
+    constexpr static const char* const PositionTag = "RunWindowPosition";
+    constexpr static const char* const StateTag    = "PresetsTabState";
+    constexpr static const char* const WidthTag    = "PresetsTabWidth";
+    constexpr static const char* const AutoloadTag = "AutoloadState";
+    constexpr static const char* const DefaultTag  = "Default";
+    constexpr static const char* const PresetTag   = "#";
+    constexpr static const char* const FloatType   = "float";
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 class PresetsManager {
