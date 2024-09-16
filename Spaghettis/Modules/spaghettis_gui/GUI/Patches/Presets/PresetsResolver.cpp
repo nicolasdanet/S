@@ -104,14 +104,30 @@ void resolveToLocal (juce::PropertiesFile& file, const AbsoluteToLocal& paths)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void PresetsResolver::resolve (juce::PropertiesFile& file, const juce::ValueTree& root)
+{
+    resolveToLocal (file, AbsoluteToLocal (root));
+}
+
 void PresetsResolver::convert (juce::PropertiesFile& file, const juce::ValueTree& root)
 {
     convertToAbsolute (file, LocalToAbsolute (root));
 }
 
-void PresetsResolver::resolve (juce::PropertiesFile& file, const juce::ValueTree& root)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void PresetsResolver::write (juce::PropertiesFile& file, const juce::ValueTree& root)
 {
-    resolveToLocal (file, AbsoluteToLocal (root));
+    if (file.needsToBeSaved()) {
+    //
+    convert (file, root);
+    file.save();
+    resolve (file, root);
+    file.setNeedsToBeSaved (false);
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

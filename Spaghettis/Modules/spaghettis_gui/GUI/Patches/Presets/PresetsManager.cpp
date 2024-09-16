@@ -204,6 +204,7 @@ void loadSlot (juce::PropertiesFile& file,
     if (root && root->hasTagName (Id::PRESETS)) {
     //
     for (auto* e : root->getChildWithTagNameIterator (Id::PRESET)) {
+        jassert (e->hasAttribute (Id::item));
         const core::UniqueId u = data::Cast::fromVar<core::UniqueId> (e->getStringAttribute (Id::item));
         if (containsElement (u, elements)) {
             Broadcast::sendFloat (u, e->getDoubleAttribute (Id::value));
@@ -242,7 +243,7 @@ bool PresetsManager::store (const std::vector<PresetElement>& elements, const ju
 
 void PresetsManager::loadbangBegin()
 {
-    resolve();
+    if (isValid()) { PresetsResolver::resolve (presetsFile_, rootTree_); }
 }
 
 void PresetsManager::loadbangEnd()
@@ -256,18 +257,7 @@ void PresetsManager::loadbangEnd()
 
 void PresetsManager::write()
 {
-    if (isValid() && presetsFile_.needsToBeSaved()) {
-    //
-    PresetsResolver::convert (presetsFile_, rootTree_);
-    presetsFile_.save();
-    presetsFile_.setNeedsToBeSaved (false);
-    //
-    }
-}
-
-void PresetsManager::resolve()
-{
-    if (isValid()) { PresetsResolver::resolve (presetsFile_, rootTree_); }
+    if (isValid()) { PresetsResolver::write (presetsFile_, rootTree_); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
