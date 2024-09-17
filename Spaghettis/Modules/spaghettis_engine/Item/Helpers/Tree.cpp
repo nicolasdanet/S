@@ -27,14 +27,7 @@ namespace {
 
 juce::String getRepresentation (const core::Object& object)
 {
-    juce::String s (object.get<juce::String> (Tag::Attributes, Tag::Class));
-    
-    s += PresetsConstants::AddressSeparator;
-    s += object.get<int> (Tag::Attributes, Tag::X);
-    s += PresetsConstants::AddressSeparator;
-    s += object.get<int> (Tag::Attributes, Tag::Y);
-
-    return s;
+    return object.get<juce::String> (Tag::Attributes, Tag::Class);
 }
 
 // -----------------------------------------------------------------------------------------------------------
