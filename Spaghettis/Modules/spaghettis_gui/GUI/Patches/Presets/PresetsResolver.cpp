@@ -19,7 +19,7 @@ namespace {
 
 void convertSlot (juce::PropertiesFile& file, const juce::String& name, const LocalToAbsolute& paths)
 {
-    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
+    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (name));
         
     if (root && root->hasTagName (Id::PRESETS)) {
     //
@@ -30,7 +30,8 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name, const Lo
         const juce::String path (paths.getPathWithItem (item));
         if (path.isEmpty()) { pruned.push_back (e); }
         else {
-            e->setAttribute (Id::path, path);
+            e->setAttribute    (Id::path, path);
+            e->removeAttribute (Id::item);
         }
     }
     
@@ -38,12 +39,12 @@ void convertSlot (juce::PropertiesFile& file, const juce::String& name, const Lo
     //
     }
     
-    file.setValue (PresetsConstants::PresetTag + name, root.get());
+    file.setValue (name, root.get());
 }
 
 void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const AbsoluteToLocal& paths)
 {
-    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (PresetsConstants::PresetTag + name));
+    const std::unique_ptr<juce::XmlElement> root (file.getXmlValue (name));
         
     if (root && root->hasTagName (Id::PRESETS)) {
     //
@@ -54,7 +55,8 @@ void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const Ab
         const juce::String item (paths.getItemWithPath (path));
         if (item.isEmpty()) { pruned.push_back (e); }
         else {
-            e->setAttribute (Id::item, item);
+            e->setAttribute    (Id::item, item);
+            e->removeAttribute (Id::path);
         }
     }
     
@@ -62,7 +64,7 @@ void resolveSlot (juce::PropertiesFile& file, const juce::String& name, const Ab
     //
     }
     
-    file.setValue (PresetsConstants::PresetTag + name, root.get());
+    file.setValue (name, root.get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -74,11 +76,9 @@ void convertToAbsolute (juce::PropertiesFile& file, const LocalToAbsolute& paths
     juce::StringArray keys (file.getAllProperties().getAllKeys());
     
     for (const auto& k : keys) {
-    //
-    if (k.startsWith (PresetsConstants::PresetTag)) {
-        convertSlot (file, k.trimCharactersAtStart (PresetsConstants::PresetTag), paths);
-    }
-    //
+        if (k.startsWith (PresetsConstants::PresetTag)) {
+            convertSlot (file, k, paths);
+        }
     }
 }
 
@@ -87,11 +87,9 @@ void resolveToLocal (juce::PropertiesFile& file, const AbsoluteToLocal& paths)
     juce::StringArray keys (file.getAllProperties().getAllKeys());
     
     for (const auto& k : keys) {
-    //
-    if (k.startsWith (PresetsConstants::PresetTag)) {
-        resolveSlot (file, k.trimCharactersAtStart (PresetsConstants::PresetTag), paths);
-    }
-    //
+        if (k.startsWith (PresetsConstants::PresetTag)) {
+            resolveSlot (file, k, paths);
+        }
     }
 }
 
