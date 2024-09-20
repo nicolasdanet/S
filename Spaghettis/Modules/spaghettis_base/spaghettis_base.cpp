@@ -30,7 +30,7 @@
 #include "LookAndFeel/LookAndFeelComboBox.cpp"
 #include "LookAndFeel/LookAndFeelMenubar.cpp"
 #include "LookAndFeel/LookAndFeelPopup.cpp"
-#include "LookAndFeel/LookAndFeelPreferences.cpp"
+#include "LookAndFeel/LookAndFeelParameters.cpp"
 #include "LookAndFeel/LookAndFeelResizer.cpp"
 #include "LookAndFeel/LookAndFeelToolbar.cpp"
 #include "LookAndFeel/LookAndFeelTooltip.cpp"
