@@ -50,7 +50,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Update/Update.hpp"
+#include "Data/Getters/Update/Update.hpp"
 #include "Data/Getters/Cast.hpp"
 #include "Data/Getters/Iterator.hpp"
 #include "Data/Getters/Filter.hpp"
@@ -64,8 +64,8 @@
 #include "Data/Getters/Observer.hpp"
 #include "Data/Data.hpp"
 #include "Data/Getters/Cached.hpp"
-#include "Data/Update/Painted.hpp"
-#include "Data/Update/Resized.hpp"
+#include "Data/Getters/Update/Painted.hpp"
+#include "Data/Getters/Update/Resized.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
