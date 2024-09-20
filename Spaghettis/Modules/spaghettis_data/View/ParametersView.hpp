@@ -24,7 +24,7 @@ friend struct ViewCommon;
 // MARK: -
 
 public:
-    explicit ParametersView (const data::Data&, const ParametersBase&);
+    explicit ParametersView (const data::Data&, const PropertyLookAndFeel&);
     
     virtual ~ParametersView() = default;
 
@@ -62,7 +62,7 @@ private:
 private:
     juce::ConcertinaPanel panel_;
     data::Data data_;
-    ParametersBase base_;
+    PropertyLookAndFeel base_;
     int expanded_;
     int expandedLast_;
         

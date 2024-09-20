@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> class ParameterNumber :  public ParametersBase,
+template <class T> class ParameterNumber :  public PropertyLookAndFeel,
                                             public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -21,10 +21,10 @@ template <class T> class ParameterNumber :  public ParametersBase,
 
 public:
     explicit ParameterNumber (const data::Parameter& p,
-        const ParametersBase& base,
+        const PropertyLookAndFeel& base,
         const juce::String& s,
         bool isEditable) :
-            ParametersBase (base),
+            PropertyLookAndFeel (base),
             juce::TextPropertyComponent (p.getValueAsValue (false), s, 32, false),
             v_(),
             range_ (p)

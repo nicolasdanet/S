@@ -60,7 +60,7 @@
 
 #include "Helpers/Colour.hpp"
 #include "Helpers/Normalized.hpp"
-#include "Helpers/ParametersBase.hpp"
+#include "Helpers/PropertyLookAndFeel.hpp"
 #include "Helpers/Strings.hpp"
 #include "Helpers/WeakPointer.hpp"
 #include "Helpers/SafeRegister.hpp"

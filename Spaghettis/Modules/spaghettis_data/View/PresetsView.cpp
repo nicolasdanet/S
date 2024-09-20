@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PresetsView::PresetsView (const std::vector<PresetElement>& v, const ParametersBase& base) :
+PresetsView::PresetsView (const std::vector<PresetElement>& v, const PropertyLookAndFeel& base) :
     base_ (base)
 {
     ViewCommon::buildPanel (v, base_, *this);

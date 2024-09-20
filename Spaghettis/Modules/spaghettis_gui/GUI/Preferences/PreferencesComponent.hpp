@@ -26,7 +26,7 @@ public:
         const juce::String& keyName) :
             PreferencesFactoryHelper (this),
             ParametersView (Spaghettis()->getPreferences().getData(),
-                ParametersBase (Fonts::getFont(), Fonts::getMonospacedFont(), 250)),
+                PropertyLookAndFeel (Fonts::getFont(), Fonts::getMonospacedFont(), 250)),
             BaseComponent (getIconsFactory(), Spaghettis()->getMenu(), command, propertiesFile, keyName)
     {
         CommandsHandler::addCloseWindowCommand (this);

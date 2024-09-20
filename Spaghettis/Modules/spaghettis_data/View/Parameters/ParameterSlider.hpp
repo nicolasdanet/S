@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterSlider : public ParametersBase,
+class ParameterSlider : public PropertyLookAndFeel,
                         public juce::SliderPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -21,10 +21,10 @@ class ParameterSlider : public ParametersBase,
 
 public:
     explicit ParameterSlider (const data::Parameter& p,
-        const ParametersBase& base,
+        const PropertyLookAndFeel& base,
         const juce::String& s,
         bool isEditable) :
-            ParametersBase (base),
+            PropertyLookAndFeel (base),
             SliderPropertyComponent (p.getValueAsValue (false),
                 s,
                 p.getMinimumAsDouble(),

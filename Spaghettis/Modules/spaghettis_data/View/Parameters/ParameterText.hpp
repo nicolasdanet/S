@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterText :   public ParametersBase,
+class ParameterText :   public PropertyLookAndFeel,
                         public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -20,10 +20,10 @@ class ParameterText :   public ParametersBase,
 
 public:
     explicit ParameterText (const data::Parameter& p,
-        const ParametersBase& base,
+        const PropertyLookAndFeel& base,
         const juce::String& s,
         bool isEditable) :
-            ParametersBase (base),
+            PropertyLookAndFeel (base),
             juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
     {
         setEnabled (isEditable);

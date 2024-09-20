@@ -126,7 +126,7 @@ void RunPresets::show()
 {
     if (presetsView_ == nullptr) {
     //
-    const auto t = ParametersBase (Fonts::getFont(), Fonts::getMonospacedFont(), resizer_.getMinimumWidth());
+    const auto t = PropertyLookAndFeel (Fonts::getFont(), Fonts::getMonospacedFont(), resizer_.getMinimumWidth());
     
     presetsElements_ = view_.getAllPresetElements();
     presetsView_     = std::make_unique<PresetsView> (presetsElements_, t);

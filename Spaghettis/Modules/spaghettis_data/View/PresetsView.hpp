@@ -24,7 +24,7 @@ friend struct ViewCommon;
 // MARK: -
 
 public:
-    explicit PresetsView (const std::vector<PresetElement>&, const ParametersBase&);
+    explicit PresetsView (const std::vector<PresetElement>&, const PropertyLookAndFeel&);
     
     ~PresetsView() = default;
 
@@ -55,7 +55,7 @@ private:
 
 private:
     juce::ConcertinaPanel panel_;
-    ParametersBase base_;
+    PropertyLookAndFeel base_;
         
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetsView)

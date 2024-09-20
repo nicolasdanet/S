@@ -18,7 +18,7 @@ juce::Rectangle<int> LNF::getPropertyComponentContentPosition (juce::PropertyCom
 {
     juce::Rectangle<int> r (c.getWidth(), c.getHeight() - 1);
         
-    ParametersBase* w = dynamic_cast<ParametersBase*> (&c);
+    PropertyLookAndFeel* w = dynamic_cast<PropertyLookAndFeel*> (&c);
     const int requiredWidth = w ? w->getRequiredWidth() : 250;
     const int labelWidth    = juce::jmin (requiredWidth, r.getWidth());
         

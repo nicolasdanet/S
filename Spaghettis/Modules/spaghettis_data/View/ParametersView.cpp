@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ParametersView::ParametersView (const data::Data& data, const ParametersBase& base) :
+ParametersView::ParametersView (const data::Data& data, const PropertyLookAndFeel& base) :
     data_ (data),
     base_ (base),
     expanded_ (0),

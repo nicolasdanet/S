@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterColour : public ParametersBase,
+class ParameterColour : public PropertyLookAndFeel,
                         public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -21,10 +21,10 @@ class ParameterColour : public ParametersBase,
 
 public:
     explicit ParameterColour (const data::Parameter& p,
-        const ParametersBase& base,
+        const PropertyLookAndFeel& base,
         const juce::String& s,
         bool isEditable) :
-            ParametersBase (base),
+            PropertyLookAndFeel (base),
             juce::PropertyComponent (s),
             editor_ (p.getValueAsValue (false), base.getMonospacedFont())
     {

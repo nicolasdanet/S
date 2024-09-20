@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterBoolean :    public ParametersBase,
+class ParameterBoolean :    public PropertyLookAndFeel,
                             public juce::BooleanPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -21,10 +21,10 @@ class ParameterBoolean :    public ParametersBase,
 
 public:
     explicit ParameterBoolean (const data::Parameter& p,
-        const ParametersBase& base,
+        const PropertyLookAndFeel& base,
         const juce::String& s,
         bool isEditable) :
-            ParametersBase (base),
+            PropertyLookAndFeel (base),
             juce::BooleanPropertyComponent (p.getValueAsValue (false), s, "")
     {
         setEnabled (isEditable);

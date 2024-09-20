@@ -12,14 +12,14 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParametersBase {
+class PropertyLookAndFeel {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParametersBase (const juce::Font& font, const juce::Font& fontMonospaced, int w) :
+    explicit PropertyLookAndFeel (const juce::Font& font, const juce::Font& fontMonospaced, int w) :
         font_ (font),
         fontMonospaced_ (fontMonospaced),
         width_ (w)
@@ -27,13 +27,13 @@ public:
         jassert (w > 0);
     }
 
-    ~ParametersBase() = default;
+    ~PropertyLookAndFeel() = default;
     
 public:
-    ParametersBase (const ParametersBase&) = default;
-    ParametersBase (ParametersBase&&) = default;
-    ParametersBase& operator = (const ParametersBase&) = default;
-    ParametersBase& operator = (ParametersBase&&) = default;
+    PropertyLookAndFeel (const PropertyLookAndFeel&) = default;
+    PropertyLookAndFeel (PropertyLookAndFeel&&) = default;
+    PropertyLookAndFeel& operator = (const PropertyLookAndFeel&) = default;
+    PropertyLookAndFeel& operator = (PropertyLookAndFeel&&) = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

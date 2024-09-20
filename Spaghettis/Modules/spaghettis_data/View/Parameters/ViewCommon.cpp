@@ -67,7 +67,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 
 std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Parameter& p,
-    const ParametersBase& base,
+    const PropertyLookAndFeel& base,
     const juce::String& label,
     bool isEditable)
 {
@@ -83,7 +83,7 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Pa
 }
 
 void addPropertyComponent (const data::Parameter& p,
-    const ParametersBase& base,
+    const PropertyLookAndFeel& base,
     const juce::String& label,
     const juce::String& info,
     bool isEditable,
@@ -107,7 +107,7 @@ void addPropertyComponent (const data::Parameter& p,
 // MARK: -
 
 void ViewCommon::buildPanel (const data::Data& data,
-    const ParametersBase& base,
+    const PropertyLookAndFeel& base,
     ParametersView& v)
 {
     for (const auto& group : data) {
@@ -134,7 +134,7 @@ void ViewCommon::buildPanel (const data::Data& data,
 }
 
 void ViewCommon::buildPanel (const std::vector<PresetElement>& elements,
-    const ParametersBase& base,
+    const PropertyLookAndFeel& base,
     PresetsView& v)
 {
     auto panel = std::make_unique<juce::PropertyPanel> (v.getName());

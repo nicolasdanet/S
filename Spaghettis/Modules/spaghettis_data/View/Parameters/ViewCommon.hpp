@@ -30,8 +30,8 @@ static void paintHeader (juce::Graphics& g,
                 int numberOfPanels,
                 bool expanded);
 
-static void buildPanel (const data::Data&, const ParametersBase&, ParametersView&);
-static void buildPanel (const std::vector<PresetElement>&, const ParametersBase&, PresetsView&);
+static void buildPanel (const data::Data&, const PropertyLookAndFeel&, ParametersView&);
+static void buildPanel (const std::vector<PresetElement>&, const PropertyLookAndFeel&, PresetsView&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
