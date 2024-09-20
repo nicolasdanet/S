@@ -67,31 +67,31 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 
 std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Parameter& p,
-    const PropertyLookAndFeel& base,
+    const PropertyLookAndFeel& lnf,
     const juce::String& label,
     bool isEditable)
 {
     // return std::make_unique<ParameterSlider> (p, base, label, isEditable);
     
-    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, base, label, isEditable); }
-    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, base, label, isEditable);  }
-    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, base, label, isEditable); }
-    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, base, label, isEditable);   }
+    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, lnf, label, isEditable); }
+    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, lnf, label, isEditable);  }
+    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, lnf, label, isEditable); }
+    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, lnf, label, isEditable);   }
     else {
-        return std::make_unique<ParameterText> (p, base, label, isEditable);
+        return std::make_unique<ParameterText> (p, lnf, label, isEditable);
     }
 }
 
 void addPropertyComponent (const data::Parameter& p,
-    const PropertyLookAndFeel& base,
+    const PropertyLookAndFeel& lnf,
     const juce::String& label,
     const juce::String& info,
     bool isEditable,
     juce::Array<juce::PropertyComponent*>& c)
 {
-    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, base, label, isEditable));
+    std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, lnf, label, isEditable));
     
-    t->setPreferredHeight (base.getRequiredHeight());
+    t->setPreferredHeight (lnf.getRequiredHeight());
     t->setTooltip (info);
     
     c.add (t.release());

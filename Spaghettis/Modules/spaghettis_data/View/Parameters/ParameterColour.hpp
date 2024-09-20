@@ -21,12 +21,12 @@ class ParameterColour : public PropertyLookAndFeel,
 
 public:
     explicit ParameterColour (const data::Parameter& p,
-        const PropertyLookAndFeel& base,
+        const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
-            PropertyLookAndFeel (base),
+            PropertyLookAndFeel (lnf),
             juce::PropertyComponent (s),
-            editor_ (p.getValueAsValue (false), base.getMonospacedFont())
+            editor_ (p.getValueAsValue (false), lnf.getMonospacedFont())
     {
         addAndMakeVisible (editor_);
         setEnabled (isEditable);

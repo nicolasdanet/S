@@ -55,7 +55,9 @@ private:
 
 private:
     juce::ConcertinaPanel panel_;
-    PropertyLookAndFeel base_;
+
+private:
+    PropertyLookAndFeel look_;
         
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetsView)

@@ -12,10 +12,10 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-PresetsView::PresetsView (const std::vector<PresetElement>& v, const PropertyLookAndFeel& base) :
-    base_ (base)
+PresetsView::PresetsView (const std::vector<PresetElement>& v, const PropertyLookAndFeel& lnf) :
+    look_ (lnf)
 {
-    ViewCommon::buildPanel (v, base_, *this);
+    ViewCommon::buildPanel (v, look_, *this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ PresetsView::PresetsView (const std::vector<PresetElement>& v, const PropertyLoo
 
 juce::Font PresetsView::getFont() const
 {
-    return base_.getFont();
+    return look_.getFont();
 }
 
 juce::String PresetsView::getName() const
@@ -56,7 +56,7 @@ void PresetsView::addPanel (juce::PropertyPanel* p)
     
     panel_.addPanel (-1, p, true);
     panel_.setCustomPanelHeader (p, h.release(), true);
-    panel_.setPanelHeaderSize (p, base_.getRequiredHeight() + 6);
+    panel_.setPanelHeaderSize (p, look_.getRequiredHeight() + 6);
 }
 
 // -----------------------------------------------------------------------------------------------------------

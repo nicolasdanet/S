@@ -62,7 +62,7 @@ private:
 private:
     juce::ConcertinaPanel panel_;
     data::Data data_;
-    PropertyLookAndFeel base_;
+    PropertyLookAndFeel look_;
     int expanded_;
     int expandedLast_;
         

@@ -51,8 +51,8 @@ void MakerDocumentation::showDocumentation (const juce::String& s)
     removeChildComponent (shown_);
     
     if (Documentation::has (s)) {
-        const PropertyLookAndFeel base (Fonts::getFont(), Fonts::getMonospacedFont(), 150);
-        fetched_ = std::make_unique<ParametersView> (Documentation::get (s), base);
+        const PropertyLookAndFeel lnf (Fonts::getFont(), Fonts::getMonospacedFont(), 150);
+        fetched_ = std::make_unique<ParametersView> (Documentation::get (s), lnf);
         shown_   = &fetched_->getConcertinaPanel();
     } else {
         fetched_ = nullptr;

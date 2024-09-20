@@ -12,13 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ParametersView::ParametersView (const data::Data& data, const PropertyLookAndFeel& base) :
+ParametersView::ParametersView (const data::Data& data, const PropertyLookAndFeel& lnf) :
     data_ (data),
-    base_ (base),
+    look_ (lnf),
     expanded_ (0),
     expandedLast_ (0)
 {
-    ViewCommon::buildPanel (data_, base_, *this);
+    ViewCommon::buildPanel (data_, look_, *this);
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ ParametersView::ParametersView (const data::Data& data, const PropertyLookAndFee
 
 juce::Font ParametersView::getFont() const
 {
-    return base_.getFont();
+    return look_.getFont();
 }
 
 int ParametersView::getNumberOfPanels() const
@@ -86,7 +86,7 @@ void ParametersView::addPanel (juce::PropertyPanel* p)
     
     panel_.addPanel (-1, p, true);
     panel_.setCustomPanelHeader (p, h.release(), true);
-    panel_.setPanelHeaderSize (p, base_.getRequiredHeight() + 6);
+    panel_.setPanelHeaderSize (p, look_.getRequiredHeight() + 6);
     
     expanded_ = i;
 }

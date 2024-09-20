@@ -20,10 +20,10 @@ class ParameterText :   public PropertyLookAndFeel,
 
 public:
     explicit ParameterText (const data::Parameter& p,
-        const PropertyLookAndFeel& base,
+        const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
-            PropertyLookAndFeel (base),
+            PropertyLookAndFeel (lnf),
             juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
     {
         setEnabled (isEditable);

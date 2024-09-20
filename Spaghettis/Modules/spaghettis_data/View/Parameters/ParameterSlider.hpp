@@ -21,10 +21,10 @@ class ParameterSlider : public PropertyLookAndFeel,
 
 public:
     explicit ParameterSlider (const data::Parameter& p,
-        const PropertyLookAndFeel& base,
+        const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
-            PropertyLookAndFeel (base),
+            PropertyLookAndFeel (lnf),
             SliderPropertyComponent (p.getValueAsValue (false),
                 s,
                 p.getMinimumAsDouble(),

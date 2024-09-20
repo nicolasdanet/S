@@ -21,10 +21,10 @@ template <class T> class ParameterNumber :  public PropertyLookAndFeel,
 
 public:
     explicit ParameterNumber (const data::Parameter& p,
-        const PropertyLookAndFeel& base,
+        const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
-            PropertyLookAndFeel (base),
+            PropertyLookAndFeel (lnf),
             juce::TextPropertyComponent (p.getValueAsValue (false), s, 32, false),
             v_(),
             range_ (p)

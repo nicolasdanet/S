@@ -21,10 +21,10 @@ class ParameterBoolean :    public PropertyLookAndFeel,
 
 public:
     explicit ParameterBoolean (const data::Parameter& p,
-        const PropertyLookAndFeel& base,
+        const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
-            PropertyLookAndFeel (base),
+            PropertyLookAndFeel (lnf),
             juce::BooleanPropertyComponent (p.getValueAsValue (false), s, "")
     {
         setEnabled (isEditable);
