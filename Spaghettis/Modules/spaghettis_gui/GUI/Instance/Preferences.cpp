@@ -350,7 +350,7 @@ void Preferences::read()
     {
         juce::ScopedValueSetter<bool> scoped (isReading_, true, false);
 
-        if (data_.readValuesFromFile (file_)) { return; }
+        if (data_.readValues (file_)) { return; }
     }
     
     write();
@@ -358,7 +358,7 @@ void Preferences::read()
 
 void Preferences::write()
 {
-    data_.writeValuesToFile (file_);
+    data_.writeValues (file_);
 }
 
 // -----------------------------------------------------------------------------------------------------------

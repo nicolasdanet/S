@@ -16,6 +16,7 @@
 #include "Data/Parameter.cpp"
 #include "Data/Group.cpp"
 #include "Data/Data.cpp"
+#include "Data/DataSerialize.cpp"
 #include "Data/Getters/Observer.cpp"
 
 // -----------------------------------------------------------------------------------------------------------

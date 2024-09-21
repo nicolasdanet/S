@@ -14,7 +14,7 @@ namespace spaghettis::core {
 
 void Item::apply (const Item& item)
 {
-    data_.apply (item.asValueTree());
+    data_.changeValues (item.asValueTree());
 }
 
 // -----------------------------------------------------------------------------------------------------------

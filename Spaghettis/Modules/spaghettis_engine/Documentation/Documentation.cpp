@@ -44,7 +44,7 @@ void findDocumentationForClass (data::Data& data, const juce::String& c)
     
     if (n && p) {
     //
-    data.addParametersFromXmlDocumentation (juce::String::createStringFromData (p, n));
+    data.setValuesFromXmlDocumentation (juce::String::createStringFromData (p, n));
     //
     }
     //
