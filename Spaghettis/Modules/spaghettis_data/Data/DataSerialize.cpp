@@ -76,9 +76,9 @@ void changeValuesFrom (Data& data, const juce::ValueTree& other)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Data::changeValues (const juce::ValueTree& tree)
+void Data::changeValues (const Data& data)
 {
-    changeValuesFrom (*this, getCopyPruned (tree));
+    changeValuesFrom (*this, getCopyPruned (data.tree_));
 }
 
 // -----------------------------------------------------------------------------------------------------------

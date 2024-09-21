@@ -94,7 +94,7 @@ public:
 
 public:
     void changeValue  (const juce::String&, const juce::String&, const juce::var&);
-    void changeValues (const juce::ValueTree&);
+    void changeValues (const Data&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
