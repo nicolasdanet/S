@@ -534,7 +534,7 @@ t_error unique_patchCreateObject (t_id u, Point::Real pt, const juce::String& s)
 {
     t_glist *g = unique_getPatch (u);
     
-    if (g) { Maker (pt, s).execute (g); return PD_ERROR_NONE; }
+    if (g) { Creator (pt, s).execute (g); return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }

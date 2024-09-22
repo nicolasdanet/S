@@ -18,22 +18,22 @@ struct _glist;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Maker {
+class Creator {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Maker (Point::Real, const juce::String&);
+    explicit Creator (Point::Real, const juce::String&);
     
-    ~Maker();
+    ~Creator();
 
 public:
-    Maker (const Maker&) = delete;
-    Maker (Maker&&) = delete;
-    Maker& operator = (const Maker&) = delete;
-    Maker& operator = (Maker&&) = delete;
+    Creator (const Creator&) = delete;
+    Creator (Creator&&) = delete;
+    Creator& operator = (const Creator&) = delete;
+    Creator& operator = (Creator&&) = delete;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -78,7 +78,7 @@ void fillBuffer (t_buffer *b,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Maker::Maker (Point::Real pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
+Creator::Creator (Point::Real pt, const juce::String& s) : b_ (buffer_new()), t_ (buffer_new())
 {
     if (s.containsNonWhitespaceChars()) {
     //
@@ -102,7 +102,7 @@ Maker::Maker (Point::Real pt, const juce::String& s) : b_ (buffer_new()), t_ (bu
     }
 }
     
-Maker::~Maker()
+Creator::~Creator()
 {
     buffer_free (t_);
     buffer_free (b_);
@@ -112,7 +112,7 @@ Maker::~Maker()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void Maker::execute (t_glist *glist)
+void Creator::execute (t_glist *glist)
 {
     if (buffer_getSize (b_)) { instance_loadSnippet (glist, b_); glist_setDirty (glist, 1); }
 }
