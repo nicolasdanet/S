@@ -12,11 +12,11 @@
 
  BEGIN_JUCE_MODULE_DECLARATION
 
-  ID:                 spaghettis_engine
+  ID:                 spaghettis_core
   vendor:             Spaghettis
   version:            0.9
-  name:               Engine
-  description:        Engine
+  name:               Core
+  description:        Core
   website:            https://github.com/Spaghettis
   license:            AGPLv3
 
