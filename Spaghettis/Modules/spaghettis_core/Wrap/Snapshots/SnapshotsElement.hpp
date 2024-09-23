@@ -19,9 +19,9 @@ class SnapshotsElement {
 // MARK: -
 
 public:
-    explicit SnapshotsElement (core::UniqueId u, void* data, int size) :
+    explicit SnapshotsElement (core::UniqueId u, void* p, int size) :
         u_ (u),
-        data_ (data),
+        ptr_ (p),
         size_ (size)
     {
         static_assert (std::is_trivially_copyable_v<SnapshotsElement> == true);
@@ -39,9 +39,9 @@ public:
         return u_;
     }
     
-    void* getData() const
+    void* getPointer() const
     {
-        return data_;
+        return ptr_;
     }
     
     int getSize() const
@@ -51,7 +51,7 @@ public:
     
 private:
     core::UniqueId u_;
-    void* data_;
+    void* ptr_;
     int size_;
 };
 

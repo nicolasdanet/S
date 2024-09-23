@@ -59,7 +59,7 @@ void Snapshots::fetch (core::UniqueId u, Snapshot& s)
     auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (u));
     
     if (r != v_.cend()) {
-        void* p = r->getData();
+        void* p = r->getPointer();
         int n   = r->getSize();
         s.fetch (p, n);
     }
