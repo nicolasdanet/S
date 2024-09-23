@@ -59,7 +59,7 @@ void PatchRoot::add (const core::UniquePath& u, const core::Report& v)
     
     jassert (Tree::getChild (parent, u.getIdentifier()).isValid() == false);
     
-    parent.appendChild (v.asValueTree(), nullptr);
+    parent.appendChild (v.getTree(), nullptr);
 }
 
 void PatchRoot::change (const core::UniquePath& u, const core::Report& v)

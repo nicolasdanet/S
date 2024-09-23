@@ -42,7 +42,7 @@ void releaseAllWindows (std::vector<std::unique_ptr<PatchWindow>>& v)
 // MARK: -
 
 PatchRoot::PatchRoot (const core::Report& v) :
-    rootTree_ (v.asValueTree()),
+    rootTree_ (v.getTree()),
     dirty_ (core::Patch (rootTree_).getCached<bool> (Tag::Attributes, Tag::Dirty)),
     path_ (core::Patch (rootTree_).getCached<juce::String> (Tag::Attributes, Tag::Path)),
     presets_ (rootTree_, getFile())

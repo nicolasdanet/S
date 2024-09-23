@@ -63,7 +63,7 @@ std::vector<core::UniqueId> Patch::getObjects() const
 
 int Patch::getIndexOfObject (const Object& object) const
 {
-    return tree_.indexOf (object.asValueTree()) - 1;
+    return tree_.indexOf (object.getTree()) - 1;
 }
 
 // -----------------------------------------------------------------------------------------------------------
