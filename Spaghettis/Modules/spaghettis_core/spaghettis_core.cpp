@@ -34,7 +34,6 @@
 
 #include "Item/Helpers/Unique.cpp"
 #include "Item/Helpers/Tree.cpp"
-#include "Item/Item.cpp"
 #include "Item/Object.cpp"
 #include "Item/Patch.cpp"
 #include "Item/Builder/Report.cpp"

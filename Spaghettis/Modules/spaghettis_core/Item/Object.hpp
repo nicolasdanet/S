@@ -47,7 +47,7 @@ public:
 public:
     bool isGraphic() const
     {
-        return data_.hasGroup (Tag::Parameters);
+        return getData().hasGroup (Tag::Parameters);
     }
 
     bool isAbstraction() const

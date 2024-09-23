@@ -35,7 +35,7 @@ data::Group Object::getCopyOfParameters() const
 {
     jassert (isGraphic());
     
-    return data::Group::makeCopy (data_.getGroup (Tag::Parameters));
+    return data::Group::makeCopy (getData().getGroup (Tag::Parameters));
 }
 
 // -----------------------------------------------------------------------------------------------------------
