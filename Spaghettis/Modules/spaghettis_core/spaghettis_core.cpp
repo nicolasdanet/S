@@ -32,7 +32,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Item/Helpers/Unique.cpp"
+#include "Item/Helpers/UniquePath.cpp"
 #include "Item/Helpers/Tree.cpp"
 #include "Item/Object.cpp"
 #include "Item/Patch.cpp"

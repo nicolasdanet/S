@@ -58,7 +58,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Item/Helpers/Unique.hpp"
+#include "Item/Helpers/UniquePath.hpp"
 #include "Item/Helpers/Tags.hpp"
 #include "Item/Helpers/Tree.hpp"
 #include "Item/Item.hpp"
