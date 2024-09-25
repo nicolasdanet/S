@@ -1,65 +1,58 @@
 
-/* Copyright (c) 2023 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-class Snapshot {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-friend class SnapshotsManager;
+class SnapshotsManagerElement {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Snapshot (juce::Range<int>, juce::Range<double>, juce::Rectangle<int>);
-    
-    ~Snapshot() = default;
-
-public:
-    Snapshot (const Snapshot&) = default;
-    Snapshot (Snapshot&&) = default;
-    Snapshot& operator = (const Snapshot&) = default;
-    Snapshot& operator = (Snapshot&&) = default;
+    explicit SnapshotsManagerElement (core::UniqueId u, void* p, int size) :
+        u_ (u),
+        ptr_ (p),
+        size_ (size)
+    {
+        static_assert (std::is_trivially_copyable_v<SnapshotsManagerElement> == true);
+        static_assert (std::is_nothrow_move_constructible_v<SnapshotsManagerElement> == true);
+        static_assert (std::is_nothrow_move_assignable_v<SnapshotsManagerElement> == true);
+    }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-private:
-    void paintCompute();
-    void paintCollapse();
-    void paintProceed (juce::Graphics&);
-    
 public:
-    void paint (juce::Graphics&);
+    core::UniqueId getUnique() const
+    {
+        return u_;
+    }
+    
+    void* getPointer() const
+    {
+        return ptr_;
+    }
+    
+    int getSize() const
+    {
+        return size_;
+    }
     
 private:
-    void fetch (void*, int);
-    
-private:
-    juce::Range<int> domain_;
-    juce::Range<double> range_;
-    juce::Rectangle<int> painted_;
-    std::vector<SnapshotElement> v_;
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-private:
-    JUCE_LEAK_DETECTOR (Snapshot)
+    core::UniqueId u_;
+    void* ptr_;
+    int size_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -69,3 +62,4 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

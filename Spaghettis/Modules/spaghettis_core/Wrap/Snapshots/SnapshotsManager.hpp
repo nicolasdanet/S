@@ -1,58 +1,50 @@
 
-/* Copyright (c) 2024 Spaghettis and others. */
+/* Copyright (c) 2023 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
-class SnapshotsElement {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    explicit SnapshotsElement (core::UniqueId u, void* p, int size) :
-        u_ (u),
-        ptr_ (p),
-        size_ (size)
-    {
-        static_assert (std::is_trivially_copyable_v<SnapshotsElement> == true);
-        static_assert (std::is_nothrow_move_constructible_v<SnapshotsElement> == true);
-        static_assert (std::is_nothrow_move_assignable_v<SnapshotsElement> == true);
-    }
+class SnapshotsManager {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    core::UniqueId getUnique() const
-    {
-        return u_;
-    }
-    
-    void* getPointer() const
-    {
-        return ptr_;
-    }
-    
-    int getSize() const
-    {
-        return size_;
-    }
+    SnapshotsManager()  = default;
+    ~SnapshotsManager() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+public:
+    void publish (core::UniqueId, void*, int);
+    void discard (core::UniqueId);
+
+private:
+    void fetch (core::UniqueId, Snapshot&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Snapshot get (core::UniqueId, juce::Range<int>, juce::Range<double>, juce::Rectangle<int>);
     
 private:
-    core::UniqueId u_;
-    void* ptr_;
-    int size_;
+    std::vector<SnapshotsManagerElement> v_;
+    std::mutex lock_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SnapshotsManager)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -62,4 +54,3 @@ private:
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-

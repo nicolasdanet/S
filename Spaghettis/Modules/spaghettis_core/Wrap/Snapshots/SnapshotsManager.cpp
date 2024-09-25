@@ -12,40 +12,70 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class Snapshots {
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+auto hasSameIdentifier (core::UniqueId u)
+{
+    return [u](const SnapshotsManagerElement& e)
+    {
+        return (e.getUnique() == u);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
-    Snapshots()  = default;
-    ~Snapshots() = default;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-public:
-    void publish (core::UniqueId, void*, int);
-    void discard (core::UniqueId);
-
-private:
-    void fetch (core::UniqueId, Snapshot&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    Snapshot get (core::UniqueId, juce::Range<int>, juce::Range<double>, juce::Rectangle<int>);
+void SnapshotsManager::publish (core::UniqueId u, void* p, int size)
+{
+    const std::lock_guard<std::mutex> l (lock_);
     
-private:
-    std::vector<SnapshotsElement> v_;
-    std::mutex lock_;
+    v_.emplace_back (u, p, size);
+}
+    
+void SnapshotsManager::discard (core::UniqueId u)
+{
+    const std::lock_guard<std::mutex> l (lock_);
+    
+    v_.erase (std::remove_if (v_.begin(), v_.end(), hasSameIdentifier (u)), v_.end());
+}
 
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Snapshots)
-};
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void SnapshotsManager::fetch (core::UniqueId u, Snapshot& s)
+{
+    const std::lock_guard<std::mutex> l (lock_);
+    
+    auto r = std::find_if (v_.cbegin(), v_.cend(), hasSameIdentifier (u));
+    
+    if (r != v_.cend()) {
+        void* p = r->getPointer();
+        int n   = r->getSize();
+        s.fetch (p, n);
+    }
+}
+
+Snapshot SnapshotsManager::get (core::UniqueId u,
+    juce::Range<int> domain,
+    juce::Range<double> range,
+    juce::Rectangle<int> painted)
+{
+    Snapshot s (domain, range, painted);
+    
+    fetch (u, s);
+    
+    return s;
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

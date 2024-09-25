@@ -285,7 +285,7 @@ public:
         return *autocomplete_;
     }
     
-    Snapshots& getSnapshots()
+    SnapshotsManager& getSnapshots()
     {
         return core_->getSnapshots();
     }

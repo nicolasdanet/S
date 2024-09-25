@@ -126,7 +126,7 @@ private:
 // MARK: -
 
 public:
-    Snapshots& getSnapshots()
+    SnapshotsManager& getSnapshots()
     {
         return snapshots_;
     }
@@ -139,7 +139,7 @@ private:
     Post post_;
     juce::StringArray commandLine_;
     Queues queues_;
-    Snapshots snapshots_;
+    SnapshotsManager snapshots_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Wrapper)

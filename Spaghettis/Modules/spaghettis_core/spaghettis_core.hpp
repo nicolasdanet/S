@@ -84,8 +84,8 @@
 #include "Wrap/Commands/Outputs.hpp"
 #include "Wrap/Snapshots/SnapshotElement.hpp"
 #include "Wrap/Snapshots/Snapshot.hpp"
-#include "Wrap/Snapshots/SnapshotsElement.hpp"
-#include "Wrap/Snapshots/Snapshots.hpp"
+#include "Wrap/Snapshots/SnapshotsManagerElement.hpp"
+#include "Wrap/Snapshots/SnapshotsManager.hpp"
 #include "Wrap/Wrapper.hpp"
 
 // -----------------------------------------------------------------------------------------------------------

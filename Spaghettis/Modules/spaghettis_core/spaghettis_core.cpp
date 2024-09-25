@@ -49,7 +49,7 @@
 #include "Wrap/Devices/Devices.cpp"
 #include "Wrap/Commands/Inputs.cpp"
 #include "Wrap/Snapshots/Snapshot.cpp"
-#include "Wrap/Snapshots/Snapshots.cpp"
+#include "Wrap/Snapshots/SnapshotsManager.cpp"
 #include "Wrap/Wrapper.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
