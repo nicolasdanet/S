@@ -49,7 +49,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Instance/Preferences.hpp"
+#include "GUI/Preferences/Preferences.hpp"
 #include "GUI/Instance/Instance.hpp"
 #include "GUI/Instance/Spaghettis.hpp"
 
