@@ -49,7 +49,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/Preferences/Preferences.hpp"
+#include "GUI/Tools/Preferences/Preferences.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -60,31 +60,31 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/Console/ConsoleFactory.hpp"
-#include "GUI/Windows/Console/ConsoleComponent.hpp"
-#include "GUI/Windows/Console/ConsoleWindow.hpp"
-#include "GUI/Windows/Console/ConsoleConverter.hpp"
+#include "GUI/Tools/Console/ConsoleFactory.hpp"
+#include "GUI/Tools/Console/ConsoleComponent.hpp"
+#include "GUI/Tools/Console/ConsoleWindow.hpp"
+#include "GUI/Tools/Console/ConsoleConverter.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/Devices/DevicesFactory.hpp"
-#include "GUI/Windows/Devices/DevicesComponent.hpp"
-#include "GUI/Windows/Devices/DevicesWindow.hpp"
+#include "GUI/Tools/Devices/DevicesFactory.hpp"
+#include "GUI/Tools/Devices/DevicesComponent.hpp"
+#include "GUI/Tools/Devices/DevicesWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/Preferences/PreferencesFactory.hpp"
-#include "GUI/Windows/Preferences/PreferencesComponent.hpp"
-#include "GUI/Windows/Preferences/PreferencesWindow.hpp"
+#include "GUI/Tools/Preferences/PreferencesFactory.hpp"
+#include "GUI/Tools/Preferences/PreferencesComponent.hpp"
+#include "GUI/Tools/Preferences/PreferencesWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/SearchPaths/SearchPathsFactory.hpp"
-#include "GUI/Windows/SearchPaths/SearchPathsComponent.hpp"
-#include "GUI/Windows/SearchPaths/SearchPathsWindow.hpp"
+#include "GUI/Tools/SearchPaths/SearchPathsFactory.hpp"
+#include "GUI/Tools/SearchPaths/SearchPathsComponent.hpp"
+#include "GUI/Tools/SearchPaths/SearchPathsWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

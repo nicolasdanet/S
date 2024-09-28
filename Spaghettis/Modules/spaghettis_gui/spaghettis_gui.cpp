@@ -22,20 +22,20 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/Preferences/Preferences.cpp"
+#include "GUI/Tools/Preferences/Preferences.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/Console/ConsoleFactory.cpp"
-#include "GUI/Windows/Console/ConsoleComponent.cpp"
-#include "GUI/Windows/Console/ConsoleConverter.cpp"
+#include "GUI/Tools/Console/ConsoleFactory.cpp"
+#include "GUI/Tools/Console/ConsoleComponent.cpp"
+#include "GUI/Tools/Console/ConsoleConverter.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Windows/SearchPaths/SearchPathsFactory.cpp"
-#include "GUI/Windows/SearchPaths/SearchPathsComponent.cpp"
+#include "GUI/Tools/SearchPaths/SearchPathsFactory.cpp"
+#include "GUI/Tools/SearchPaths/SearchPathsComponent.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
