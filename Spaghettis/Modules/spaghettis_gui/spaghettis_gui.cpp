@@ -22,14 +22,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Tools/Preferences/Preferences.cpp"
+#include "GUI/Instance/Preferences/Preferences.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Tools/Console/ConsoleFactory.cpp"
-#include "GUI/Tools/Console/ConsoleComponent.cpp"
-#include "GUI/Tools/Console/ConsoleConverter.cpp"
+#include "GUI/Instance/Console/ConsoleFactory.cpp"
+#include "GUI/Instance/Console/ConsoleComponent.cpp"
+#include "GUI/Instance/Console/ConsoleConverter.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

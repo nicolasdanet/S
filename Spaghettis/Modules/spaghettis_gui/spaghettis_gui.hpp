@@ -49,7 +49,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Tools/Preferences/Preferences.hpp"
+#include "GUI/Instance/Preferences/Preferences.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -60,10 +60,10 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Tools/Console/ConsoleFactory.hpp"
-#include "GUI/Tools/Console/ConsoleComponent.hpp"
-#include "GUI/Tools/Console/ConsoleWindow.hpp"
-#include "GUI/Tools/Console/ConsoleConverter.hpp"
+#include "GUI/Instance/Console/ConsoleFactory.hpp"
+#include "GUI/Instance/Console/ConsoleComponent.hpp"
+#include "GUI/Instance/Console/ConsoleWindow.hpp"
+#include "GUI/Instance/Console/ConsoleConverter.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -75,9 +75,9 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Tools/Preferences/PreferencesFactory.hpp"
-#include "GUI/Tools/Preferences/PreferencesComponent.hpp"
-#include "GUI/Tools/Preferences/PreferencesWindow.hpp"
+#include "GUI/Instance/Preferences/PreferencesFactory.hpp"
+#include "GUI/Instance/Preferences/PreferencesComponent.hpp"
+#include "GUI/Instance/Preferences/PreferencesWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
