@@ -93,37 +93,37 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Synchronizer.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Locator.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/ContextMenu.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Synchronizer.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Locator.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/InspectorView.cpp"
 
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectPinTracker.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectComponent.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnect.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionLassoComponent.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionLasso.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionHand.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionMove.cpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionResize.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionConnectPinTracker.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionConnectComponent.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionConnect.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionLassoComponent.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionLasso.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionHand.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionMove.cpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionResize.cpp"
 
-#include "GUI/Patches/Windows/EditWindow/EditFactory.cpp"
-#include "GUI/Patches/Windows/EditWindow/EditView.cpp"
-#include "GUI/Patches/Windows/EditWindow/EditPort.cpp"
-#include "GUI/Patches/Windows/EditWindow/EditInspector.cpp"
-#include "GUI/Patches/Windows/EditWindow/EditZoom.cpp"
-#include "GUI/Patches/Windows/EditWindow/EditComponent.cpp"
-#include "GUI/Patches/Windows/EditWindow/EditWindow.cpp"
+#include "GUI/Patches/Views/EditWindow/EditFactory.cpp"
+#include "GUI/Patches/Views/EditWindow/EditView.cpp"
+#include "GUI/Patches/Views/EditWindow/EditPort.cpp"
+#include "GUI/Patches/Views/EditWindow/EditInspector.cpp"
+#include "GUI/Patches/Views/EditWindow/EditZoom.cpp"
+#include "GUI/Patches/Views/EditWindow/EditComponent.cpp"
+#include "GUI/Patches/Views/EditWindow/EditWindow.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Windows/RunWindow/RunFactory.cpp"
-#include "GUI/Patches/Windows/RunWindow/RunLayout.cpp"
-#include "GUI/Patches/Windows/RunWindow/RunView.cpp"
-#include "GUI/Patches/Windows/RunWindow/RunPresets.cpp"
-#include "GUI/Patches/Windows/RunWindow/RunComponent.cpp"
-#include "GUI/Patches/Windows/RunWindow/RunWindow.cpp"
+#include "GUI/Patches/Views/RunWindow/RunFactory.cpp"
+#include "GUI/Patches/Views/RunWindow/RunLayout.cpp"
+#include "GUI/Patches/Views/RunWindow/RunView.cpp"
+#include "GUI/Patches/Views/RunWindow/RunPresets.cpp"
+#include "GUI/Patches/Views/RunWindow/RunComponent.cpp"
+#include "GUI/Patches/Views/RunWindow/RunWindow.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

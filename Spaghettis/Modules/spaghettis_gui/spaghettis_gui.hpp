@@ -143,45 +143,45 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Windows/Table.hpp"
+#include "GUI/Patches/Views/Table.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Windows/EditWindow/Helpers/ContextMenu.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Synchronizer.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Locator.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/InspectorView.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/ZoomSteps.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/ContextMenu.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Synchronizer.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Locator.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/InspectorView.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/ZoomSteps.hpp"
 
-#include "GUI/Patches/Windows/EditWindow/Helpers/DragStrategy.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectPinTracker.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnectComponent.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionConnect.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionLassoComponent.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionLasso.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionHand.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionMove.hpp"
-#include "GUI/Patches/Windows/EditWindow/Helpers/Actions/ActionResize.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/DragStrategy.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionConnectPinTracker.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionConnectComponent.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionConnect.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionLassoComponent.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionLasso.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionHand.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionMove.hpp"
+#include "GUI/Patches/Views/EditWindow/Helpers/Actions/ActionResize.hpp"
 
-#include "GUI/Patches/Windows/EditWindow/EditFactory.hpp"
-#include "GUI/Patches/Windows/EditWindow/EditView.hpp"
-#include "GUI/Patches/Windows/EditWindow/EditPort.hpp"
-#include "GUI/Patches/Windows/EditWindow/EditInspector.hpp"
-#include "GUI/Patches/Windows/EditWindow/EditZoom.hpp"
-#include "GUI/Patches/Windows/EditWindow/EditComponent.hpp"
-#include "GUI/Patches/Windows/EditWindow/EditWindow.hpp"
+#include "GUI/Patches/Views/EditWindow/EditFactory.hpp"
+#include "GUI/Patches/Views/EditWindow/EditView.hpp"
+#include "GUI/Patches/Views/EditWindow/EditPort.hpp"
+#include "GUI/Patches/Views/EditWindow/EditInspector.hpp"
+#include "GUI/Patches/Views/EditWindow/EditZoom.hpp"
+#include "GUI/Patches/Views/EditWindow/EditComponent.hpp"
+#include "GUI/Patches/Views/EditWindow/EditWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Windows/RunWindow/RunFactory.hpp"
-#include "GUI/Patches/Windows/RunWindow/RunLayoutElement.hpp"
-#include "GUI/Patches/Windows/RunWindow/RunLayout.hpp"
-#include "GUI/Patches/Windows/RunWindow/RunView.hpp"
-#include "GUI/Patches/Windows/RunWindow/RunPresets.hpp"
-#include "GUI/Patches/Windows/RunWindow/RunComponent.hpp"
-#include "GUI/Patches/Windows/RunWindow/RunWindow.hpp"
+#include "GUI/Patches/Views/RunWindow/RunFactory.hpp"
+#include "GUI/Patches/Views/RunWindow/RunLayoutElement.hpp"
+#include "GUI/Patches/Views/RunWindow/RunLayout.hpp"
+#include "GUI/Patches/Views/RunWindow/RunView.hpp"
+#include "GUI/Patches/Views/RunWindow/RunPresets.hpp"
+#include "GUI/Patches/Views/RunWindow/RunComponent.hpp"
+#include "GUI/Patches/Views/RunWindow/RunWindow.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
