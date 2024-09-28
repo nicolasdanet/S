@@ -89,12 +89,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Maker/Maker.hpp"
-#include "GUI/Maker/MakerEntry.hpp"
-#include "GUI/Maker/MakerList.hpp"
-#include "GUI/Maker/MakerEmpty.hpp"
-#include "GUI/Maker/MakerDocumentation.hpp"
-#include "GUI/Maker/MakerComponent.hpp"
+#include "GUI/Patches/Views/EditWindow/Maker/Maker.hpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerEntry.hpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerList.hpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerEmpty.hpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerDocumentation.hpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerComponent.hpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

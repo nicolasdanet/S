@@ -40,12 +40,12 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Maker/Maker.cpp"
-#include "GUI/Maker/MakerEntry.cpp"
-#include "GUI/Maker/MakerList.cpp"
-#include "GUI/Maker/MakerEmpty.cpp"
-#include "GUI/Maker/MakerDocumentation.cpp"
-#include "GUI/Maker/MakerComponent.cpp"
+#include "GUI/Patches/Views/EditWindow/Maker/Maker.cpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerEntry.cpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerList.cpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerEmpty.cpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerDocumentation.cpp"
+#include "GUI/Patches/Views/EditWindow/Maker/MakerComponent.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
