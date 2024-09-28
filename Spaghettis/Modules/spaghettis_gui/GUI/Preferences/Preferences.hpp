@@ -33,7 +33,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     data::Data getData()
     {
         return data_;
@@ -58,7 +58,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void timerCallback() override
     {
         stopTimer(); write();
@@ -76,7 +76,7 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-public:
+private:
     void parameterHasChanged (const data::Group&, const data::Parameter&) override;
 
 private:
