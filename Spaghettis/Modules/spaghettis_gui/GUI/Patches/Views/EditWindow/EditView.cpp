@@ -788,7 +788,13 @@ void EditView::valueTreeChildAdded (juce::ValueTree& t, juce::ValueTree& child)
 
 void EditView::valueTreeChildRemoved (juce::ValueTree& t, juce::ValueTree& child, int)
 {
-    if (isSameAsPatch (t)) { removeComponent (this, objects_, lines_, child); }
+    if (isSameAsPatch (t)) {
+    //
+    removeComponent (this, objects_, lines_, child);
+    
+    jassert (inspector_); inspector_->updateIfPublished (Tree::getIdentifier (child));
+    //
+    }
 }
 
 void EditView::valueTreeChildOrderChanged (juce::ValueTree& t, int oldIndex, int newIndex)
@@ -800,9 +806,7 @@ void EditView::valueTreePropertyChanged (juce::ValueTree& t, const juce::Identif
 {
     juce::ValueTree i (Tree::getItemIfChangedPropertyEquals (t, Tag::Selected));
     
-    jassert (inspector_);
-    
-    if (i.isValid() && isSameAsPatch (i.getParent())) { inspector_->update(); }
+    if (i.isValid() && isSameAsPatch (i.getParent())) { jassert (inspector_); inspector_->update(); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

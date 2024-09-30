@@ -29,6 +29,15 @@ InspectorView::~InspectorView()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+core::UniqueId InspectorView::getIdentifier() const
+{
+    return sync_.getIdentifier();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 /* Called when object is modified by user in parameter view entries. */
 
 void InspectorView::parameterHasChanged (const data::Group& group, const data::Parameter& parameter)

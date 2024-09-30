@@ -67,6 +67,11 @@ void EditInspector::update()
     triggerAsyncUpdate();
 }
 
+void EditInspector::updateIfPublished (core::UniqueId u)
+{
+    if (parameters_ != nullptr && parameters_->getIdentifier() == u) { triggerAsyncUpdate(); }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
