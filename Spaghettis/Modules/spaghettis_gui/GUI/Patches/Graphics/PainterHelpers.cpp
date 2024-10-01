@@ -40,8 +40,10 @@ juce::Rectangle<int> PainterHelpers::getRequiredBoundsFromText (PainterStrategy&
     const juce::Font& font,
     int extra)
 {
+    const juce::String s ("***");
+    
     const float f = p.getScale();
-    const int w   = font.getStringWidth (text);
+    const int w   = font.getStringWidth (text.isEmpty() ? s : text);
     const int h   = font.getHeight();
     const int k   = getTextMargins (f) * 2;
     
