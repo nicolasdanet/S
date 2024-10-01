@@ -134,6 +134,9 @@ EditComponent::EditComponent (const PatchBase& base) :
     addMenuCommand (MenuCommand (Commands::newEditView)
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
     
+    addMenuCommand (MenuCommand (Commands::openHelp)
+        .setInvoke ([this] (const auto&) { editView_.openHelp(); }));
+            
     setButtonState (Icons::inspector, editInspector_.isActive());
     
     setOpaque (true); setSize (600, 300);
