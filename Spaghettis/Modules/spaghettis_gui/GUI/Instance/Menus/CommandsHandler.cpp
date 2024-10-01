@@ -50,6 +50,7 @@ juce::String getCommandText (juce::CommandID command)
     case Commands::inspector            : return NEEDS_TRANS ("Show Inspector");
     case Commands::newRunView           : return NEEDS_TRANS ("Open Run");
     case Commands::newEditView          : return NEEDS_TRANS ("Open Edit");
+    case Commands::openHelp             : return NEEDS_TRANS ("Open Help");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear Console");
     case Commands::devices              : return NEEDS_TRANS ("Devices...");
     case Commands::dspSwitch            : return NEEDS_TRANS ("Run DSP");
@@ -93,6 +94,7 @@ juce::String getCommandDescription (juce::CommandID command)
     case Commands::inspector            : return NEEDS_TRANS ("Show/Hide inspector side panel");
     case Commands::newRunView           : return NEEDS_TRANS ("Open new run view");
     case Commands::newEditView          : return NEEDS_TRANS ("Open new edit view");
+    case Commands::openHelp             : return NEEDS_TRANS ("Open help patch");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear the console");
     case Commands::devices              : return NEEDS_TRANS ("Audio/MIDI devices");
     case Commands::dspSwitch            : return NEEDS_TRANS ("DSP On/Off");
@@ -258,6 +260,10 @@ void CommandsHandler::getInfo (juce::CommandID command, juce::ApplicationCommand
         r.setInfo (text, description, view, 0);
         r.setActive (has (command));
         break;
+    case Commands::openHelp :
+        r.setInfo (text, description, view, 0);
+        r.setActive (has (command));
+        break;
     case Commands::clearConsole :
         r.setInfo (text, description, view, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
@@ -311,6 +317,7 @@ void CommandsHandler::getCommands (juce::Array<juce::CommandID>& c, bool applica
             Commands::inspector,
             Commands::newRunView,
             Commands::newEditView,
+            Commands::openHelp,
             Commands::clearConsole,
             Commands::devices,
             Commands::dspSwitch

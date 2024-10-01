@@ -74,6 +74,7 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::newRunView);
     menu.addCommandItem (commandManager_, Commands::newEditView);
+    menu.addCommandItem (commandManager_, Commands::openHelp);
     menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::inspector);
     menu.addSeparator();
