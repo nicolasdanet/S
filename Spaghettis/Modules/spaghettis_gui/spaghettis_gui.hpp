@@ -148,7 +148,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Views/EditWindow/Helpers/ContextMenu.hpp"
 #include "GUI/Patches/Views/EditWindow/Helpers/Synchronizer.hpp"
 #include "GUI/Patches/Views/EditWindow/Helpers/Locator.hpp"
 #include "GUI/Patches/Views/EditWindow/Helpers/InspectorView.hpp"

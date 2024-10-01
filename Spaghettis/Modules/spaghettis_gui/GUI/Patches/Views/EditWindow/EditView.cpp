@@ -341,8 +341,6 @@ void EditView::mouseDown (const juce::MouseEvent& e)
             deselectAll();
         }
     }
-    
-    if (Mouse::isRightClick (e)) { ContextMenu (this).open (e); }
 }
 
 void EditView::mouseDrag (const juce::MouseEvent& e)

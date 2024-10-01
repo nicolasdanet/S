@@ -93,7 +93,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Patches/Views/EditWindow/Helpers/ContextMenu.cpp"
 #include "GUI/Patches/Views/EditWindow/Helpers/Synchronizer.cpp"
 #include "GUI/Patches/Views/EditWindow/Helpers/Locator.cpp"
 #include "GUI/Patches/Views/EditWindow/Helpers/InspectorView.cpp"

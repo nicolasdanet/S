@@ -265,7 +265,7 @@ void ObjectComponent::mouseDown (const juce::MouseEvent& e)
     view->hideLocator (e);
     
     if (forwardMouseDown (e, painter_.get()))   { }
-    else if (Mouse::isRightClick (e))           { ContextMenu (view).open (e, this); }
+    else if (Mouse::isRightClick (e))           { }
     else if (Mouse::isAltClick (e))             { }
     else if (Mouse::isDoubleClick (e))          { openPatch (object_, view); }
     else if (Mouse::isShiftClick (e))           { setSelected (!isSelected());  }
