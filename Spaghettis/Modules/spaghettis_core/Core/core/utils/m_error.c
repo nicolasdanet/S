@@ -215,6 +215,15 @@ void error_invalidArguments (t_object *x, t_symbol *s, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void warning_canNotFindHelp (t_object *x, t_symbol *s)
+{
+    post_warning (x, PD_TRANSLATE ("file: can't find %s help"), symbol_getName (s));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void warning_containsDuplicates (t_object *x)
 {
     post_warning (x, PD_TRANSLATE ("rescan: contains duplicates"));

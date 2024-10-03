@@ -267,7 +267,7 @@ t_error object_disconnect (t_object *src, int m, t_object *dest, int n, t_glist 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void object_openHelp (const char *directory, const char *name)
+static void object_openHelp (t_object *y, const char *directory, const char *name)
 {
     t_fileproperties p; fileproperties_init (&p);
     int f = -1;
@@ -278,7 +278,7 @@ static void object_openHelp (const char *directory, const char *name)
         f = file_openReadConsideringSearchPath (symbol_getName (main_directoryHelp), name, PD_HELP, &p);
     }
     
-    if (f < 0) { error_canNotFind (NULL, gensym (name), sym_help); }
+    if (f < 0) { warning_canNotFindHelp (y, gensym (name)); }
     else {
         t_symbol *s1 = gensym (fileproperties_getName (&p));
         t_symbol *s2 = gensym (fileproperties_getDirectory (&p));
@@ -309,7 +309,7 @@ void object_help (t_object *y)
         directory = class_getHelpDirectoryAsString (pd_class (y));
     }
     
-    if (!err) { object_openHelp (directory, name); }
+    if (!err) { object_openHelp (y, directory, name); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
