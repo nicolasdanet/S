@@ -668,7 +668,14 @@ juce::String EditView::getOpenHelpName() const
     
     jassert (t);
     
-    return t->getHelpName();
+    juce::String s = NEEDS_TRANS ("Open");
+    
+    s += " ";
+    s += t->getHelpName();
+    s += " ";
+    s += NEEDS_TRANS ("Help");
+    
+    return s;
     //
     }
     

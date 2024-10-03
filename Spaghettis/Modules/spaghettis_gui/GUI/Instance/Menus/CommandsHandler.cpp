@@ -46,7 +46,7 @@ juce::String getCommandText (juce::CommandID command)
     case Commands::snap                 : return NEEDS_TRANS ("Snap");
     case Commands::zoomIn               : return NEEDS_TRANS ("Zoom In");
     case Commands::zoomOut              : return NEEDS_TRANS ("Zoom Out");
-    case Commands::zoomReset            : return NEEDS_TRANS ("Actual size");
+    case Commands::zoomReset            : return NEEDS_TRANS ("Actual Size");
     case Commands::inspector            : return NEEDS_TRANS ("Show Inspector");
     case Commands::newRunView           : return NEEDS_TRANS ("Open Run");
     case Commands::newEditView          : return NEEDS_TRANS ("Open Edit");
