@@ -294,7 +294,6 @@ extern t_symbol *sym_gatom;
 extern t_symbol *sym_get;
 extern t_symbol *sym_graph;
 extern t_symbol *sym_group;
-extern t_symbol *sym_help;
 extern t_symbol *sym_hip__tilde__;
 extern t_symbol *sym_hold;
 extern t_symbol *sym_horizontal;
