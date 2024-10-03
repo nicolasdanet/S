@@ -655,6 +655,26 @@ void EditView::deencapsulate()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool EditView::hasOpenHelp() const
+{
+    return (getNumberOfSelectedObjects() == 1);
+}
+
+juce::String EditView::getOpenHelpName() const
+{
+    if (hasOpenHelp()) {
+    //
+    ObjectComponent* t = getSelectedObject();
+    
+    jassert (t);
+    
+    return t->getHelpName();
+    //
+    }
+    
+    return juce::String();
+}
+
 void EditView::openHelp()
 {
     DBG ("HELP");

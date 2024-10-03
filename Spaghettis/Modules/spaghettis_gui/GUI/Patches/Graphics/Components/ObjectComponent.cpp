@@ -145,6 +145,21 @@ int ObjectComponent::getNumberOfOutlets() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::String ObjectComponent::getHelpName() const
+{
+    juce::String s (object_.get<juce::String> (Tag::Attributes, Tag::Class));
+    
+    if (isAbstraction()) {
+        s = Strings::withoutFileExtension (object_.get<juce::String> (Tag::Attributes, Tag::Title));
+    }
+    
+    return Strings::firstLetterCapitalized (s);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 namespace {
 
 // -----------------------------------------------------------------------------------------------------------

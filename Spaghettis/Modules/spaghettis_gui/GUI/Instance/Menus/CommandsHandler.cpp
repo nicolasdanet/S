@@ -261,7 +261,7 @@ void CommandsHandler::getInfo (juce::CommandID command, juce::ApplicationCommand
         r.setActive (has (command));
         break;
     case Commands::openHelp :
-        r.setInfo (text, description, view, 0);
+        r.setInfo (name (Commands::openHelp, text), description, view, 0);
         r.setActive (has (command));
         break;
     case Commands::clearConsole :

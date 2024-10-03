@@ -135,7 +135,9 @@ EditComponent::EditComponent (const PatchBase& base) :
         .setInvoke ([this] (const auto&) { editView_.getPatchRoot().openMainEditWindow(); }));
     
     addMenuCommand (MenuCommand (Commands::openHelp)
-        .setInvoke ([this] (const auto&) { editView_.openHelp(); }));
+        .setInvoke ([this] (const auto&) { editView_.openHelp(); })
+        .setCheck  ([this]() { return editView_.hasOpenHelp(); })
+        .setName   ([this]() { return editView_.getOpenHelpName(); }));
             
     setButtonState (Icons::inspector, editInspector_.isActive());
     
