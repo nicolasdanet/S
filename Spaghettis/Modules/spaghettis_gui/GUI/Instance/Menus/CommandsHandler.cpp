@@ -50,7 +50,7 @@ juce::String getCommandText (juce::CommandID command)
     case Commands::inspector            : return NEEDS_TRANS ("Show Inspector");
     case Commands::newRunView           : return NEEDS_TRANS ("Open Run");
     case Commands::newEditView          : return NEEDS_TRANS ("Open Edit");
-    case Commands::openHelp             : return NEEDS_TRANS ("Open Help");
+    case Commands::openHelp             : return NEEDS_TRANS ("Help");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear Console");
     case Commands::devices              : return NEEDS_TRANS ("Devices...");
     case Commands::dspSwitch            : return NEEDS_TRANS ("Run DSP");
