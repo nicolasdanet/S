@@ -682,7 +682,7 @@ juce::String EditView::getOpenHelpName() const
 
 void EditView::openHelp()
 {
-    DBG ("HELP");
+    if (hasOpenHelp()) { Broadcast::openHelp (getSelectedObject()->getIdentifier()); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
