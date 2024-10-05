@@ -151,54 +151,64 @@ inline int gui_hasLabel (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_TIME_MINIMUM            10
-#define GUI_TIME_MAXIMUM            1000
+#define GUI_TIME_MINIMUM                10
+#define GUI_TIME_MAXIMUM                1000
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_DIGITS_MINIMUM          0
-#define GUI_DIGITS_MAXIMUM          64
+#define GUI_DIGITS_MINIMUM              0
+#define GUI_DIGITS_MAXIMUM              64
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_BUTTONS_MINIMUM         1
-#define GUI_BUTTONS_MAXIMUM         32
+#define GUI_BUTTONS_MINIMUM             1
+#define GUI_BUTTONS_MAXIMUM             32
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_SIZE_MINIMUM            8
-#define GUI_SIZE_MAXIMUM            1024
+#define GUI_SIZE_MINIMUM                8
+#define GUI_SIZE_MAXIMUM                1024
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_STATE_DEFAULT           0
-#define GUI_MINIMUM_DEFAULT         0
-#define GUI_MAXIMUM_DEFAULT         127
-#define GUI_INTERVAL_DEFAULT        1
-#define GUI_NONZERO_DEFAULT         1
-#define GUI_LOGARITHMIC_DEFAULT     0
-#define GUI_MULTIPLE_DEFAULT        0
-#define GUI_EMBEDDED_DEFAULT        0
-#define GUI_TIME_DEFAULT            250
-#define GUI_DIGITS_DEFAULT          5
-#define GUI_BUTTONS_DEFAULT         8
-#define GUI_SIZE_DEFAULT            18
+#define GUI_STATE_DEFAULT               0
+#define GUI_MINIMUM_DEFAULT             0
+#define GUI_MAXIMUM_DEFAULT             127
+#define GUI_INTERVAL_DEFAULT            1
+#define GUI_NONZERO_DEFAULT             1
+#define GUI_LOGARITHMIC_DEFAULT         0
+#define GUI_MULTIPLE_DEFAULT            0
+#define GUI_EMBEDDED_DEFAULT            0
+#define GUI_TIME_DEFAULT                250
+#define GUI_DIGITS_DEFAULT              5
+#define GUI_BUTTONS_DEFAULT             8
+#define GUI_SIZE_DEFAULT                18
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#define GUI_UPDATE_NONE             0
-#define GUI_UPDATE_NOTIFY           1
-#define GUI_UPDATE_NOTIFY_UNDO      2
+#define GUI_FLAG_NONE                   0
+#define GUI_FLAG_NOTIFY                 1
+#define GUI_FLAG_DIRTY                  2
+#define GUI_FLAG_UNDO                   4
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#define GUI_UPDATE_NONE                 (GUI_FLAG_NONE)
+#define GUI_UPDATE_NOTIFY               (GUI_FLAG_NOTIFY)
+#define GUI_UPDATE_NOTIFY_DIRTY         (GUI_FLAG_NOTIFY | GUI_FLAG_DIRTY)
+#define GUI_UPDATE_NOTIFY_DIRTY_UNDO    (GUI_FLAG_NOTIFY | GUI_FLAG_DIRTY | GUI_FLAG_UNDO)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

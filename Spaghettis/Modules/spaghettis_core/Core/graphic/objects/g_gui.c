@@ -167,7 +167,7 @@ void gui_updateOrientation (t_gui *x, int isVertical, int flag)
         #endif
     }
     
-    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+    if (flag & GUI_FLAG_UNDO) {
         t_glist *glist = object_getOwner (cast_object (x));
         if (glist_undoIsOk (glist)) {
             glist_undoAppend (glist, undoorientation_new (cast_object (x), isVertical));
@@ -196,7 +196,7 @@ void gui_updateOrientationSwap (t_gui *x, int isVertical, int flag)
     //
     }
     
-    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+    if (flag & GUI_FLAG_UNDO) {
         t_glist *glist = object_getOwner (cast_object (x));
         if (glist_undoIsOk (glist)) {
             glist_undoAppend (glist, undoorientation_new (cast_object (x), isVertical));
@@ -306,7 +306,7 @@ void gui_updateWidth (t_gui *x, int width, int flag)
         #endif
     }
     
-    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+    if (flag & GUI_FLAG_UNDO) {
         t_glist *glist = object_getOwner (cast_object (x));
         if (glist_undoIsOk (glist)) {
             glist_undoAppend (glist,
@@ -332,7 +332,7 @@ void gui_updateHeight (t_gui *x, int height, int flag)
         #endif
     }
     
-    if (flag == GUI_UPDATE_NOTIFY_UNDO) {
+    if (flag & GUI_FLAG_UNDO) {
         t_glist *glist = object_getOwner (cast_object (x));
         if (glist_undoIsOk (glist)) {
             glist_undoAppend (glist,
@@ -611,13 +611,13 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
     if (flags & GUI_WIDTH) {
         jassert (group.hasParameter (Tag::Width));
         const int width = group.getParameter (Tag::Width).getValueTyped<int>();
-        gui_updateWidth (x, width, GUI_UPDATE_NOTIFY_UNDO);
+        gui_updateWidth (x, width, GUI_UPDATE_NOTIFY_DIRTY_UNDO);
     }
     
     if (flags & GUI_HEIGHT) {
         jassert (group.hasParameter (Tag::Height));
         const int height = group.getParameter (Tag::Height).getValueTyped<int>();
-        gui_updateHeight (x, height, GUI_UPDATE_NOTIFY_UNDO);
+        gui_updateHeight (x, height, GUI_UPDATE_NOTIFY_DIRTY_UNDO);
     }
     
     /* Must be after width and height. */
@@ -625,9 +625,9 @@ bool gui_setParameters (t_object *o, const data::Group& group, int flags)
     if (flags & GUI_ORIENTATION) {
         jassert (group.hasParameter (Tag::Vertical));
         const bool vertical = group.getParameter (Tag::Vertical).getValueTyped<bool>();
-        if (flags & GUI_SWAP) { gui_updateOrientationSwap (x, vertical, GUI_UPDATE_NOTIFY_UNDO); }
+        if (flags & GUI_SWAP) { gui_updateOrientationSwap (x, vertical, GUI_UPDATE_NOTIFY_DIRTY_UNDO); }
         else {
-            gui_updateOrientation (x, vertical, GUI_UPDATE_NOTIFY_UNDO);
+            gui_updateOrientation (x, vertical, GUI_UPDATE_NOTIFY_DIRTY_UNDO);
         }
     }
     
