@@ -214,24 +214,24 @@ inline int gui_hasLabel (t_gui *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int  gui_updateValue                (t_gui *x, t_float f, int flag);
-int  gui_updateState                (t_gui *x, int n, int flag);
-void gui_updateRange                (t_gui *x, t_float minimum, t_float maximum, int flag);
-void gui_updateInterval             (t_gui *x, t_float interval, int flag);
-void gui_updateNonZero              (t_gui *x, t_float f, int flag);
-int  gui_updatePeak                 (t_gui *x, t_float f, int flag);
-void gui_updateLogarithmic          (t_gui *x, int isLogarithmic, int flag);
-void gui_updateMultiple             (t_gui *x, int isMultiple, int flag);
-void gui_updateOrientation          (t_gui *x, int isVertical, int flag);
-void gui_updateOrientationSwap      (t_gui *x, int isVertical, int flag);
-void gui_updateFlashed              (t_gui *x, int n, int flag);
-void gui_updateEmbedded             (t_gui *x, int n, int flag);
-void gui_updateTime                 (t_gui *x, int n, int flag);
-void gui_updateDigits               (t_gui *x, int digits, int flag);
-void gui_updateButtons              (t_gui *x, int buttons, int flag);
-void gui_updateWidth                (t_gui *x, int width, int flag);
-void gui_updateHeight               (t_gui *x, int height, int flag);
-void gui_updateIncluded             (t_gui *x, int n, t_symbol *s, int flag);
+int  gui_updateValue                    (t_gui *x, t_float f, int flag);
+int  gui_updateState                    (t_gui *x, int n, int flag);
+void gui_updateRange                    (t_gui *x, t_float minimum, t_float maximum, int flag);
+void gui_updateInterval                 (t_gui *x, t_float interval, int flag);
+void gui_updateNonZero                  (t_gui *x, t_float f, int flag);
+int  gui_updatePeak                     (t_gui *x, t_float f, int flag);
+void gui_updateLogarithmic              (t_gui *x, int isLogarithmic, int flag);
+void gui_updateMultiple                 (t_gui *x, int isMultiple, int flag);
+void gui_updateOrientation              (t_gui *x, int isVertical, int flag);
+void gui_updateOrientationSwap          (t_gui *x, int isVertical, int flag);
+void gui_updateFlashed                  (t_gui *x, int n, int flag);
+void gui_updateEmbedded                 (t_gui *x, int n, int flag);
+void gui_updateTime                     (t_gui *x, int n, int flag);
+void gui_updateDigits                   (t_gui *x, int digits, int flag);
+void gui_updateButtons                  (t_gui *x, int buttons, int flag);
+void gui_updateWidth                    (t_gui *x, int width, int flag);
+void gui_updateHeight                   (t_gui *x, int height, int flag);
+void gui_updateIncluded                 (t_gui *x, int n, t_symbol *s, int flag);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
