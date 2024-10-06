@@ -14,7 +14,6 @@ namespace spaghettis {
 class ConsoleWindow;
 class DevicesWindow;
 class PreferencesWindow;
-class SearchPathsWindow;
 class PatchesHolder;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -79,7 +78,6 @@ public:
         jassert (consoleWindow_      == nullptr);
         jassert (devicesWindow_      == nullptr);
         jassert (preferencesWindow_  == nullptr);
-        jassert (searchPathsWindow_  == nullptr);
     
         clearSingletonInstance();
     }
@@ -174,14 +172,10 @@ public:
 // MARK: -
 
 public:
-    void openSearchPathsWindow();
-    void closeSearchPathsWindow();
-    juce::StringArray getSearchPaths();
-    void setSearchPaths (const juce::StringArray&);
-
-private:
-    void updateSearchPaths (const juce::StringArray&, Inputs::Logged type);
+    void setSearchPaths (const juce::StringArray&, Inputs::Logged type = Inputs::Logged::base);
     
+    juce::StringArray getSearchPaths();
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -323,7 +317,6 @@ private:
     std::unique_ptr<ConsoleWindow> consoleWindow_;
     std::unique_ptr<DevicesWindow> devicesWindow_;
     std::unique_ptr<PreferencesWindow> preferencesWindow_;
-    std::unique_ptr<SearchPathsWindow> searchPathsWindow_;
     std::unique_ptr<juce::PropertiesFile> properties_;
     std::unique_ptr<Preferences> preferences_;
     std::unique_ptr<juce::FileChooser> fileChooser_;

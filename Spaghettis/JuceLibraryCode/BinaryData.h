@@ -14,14 +14,8 @@ namespace BinaryData
     extern const char*   icon_construction_svg;
     const int            icon_construction_svgSize = 441;
 
-    extern const char*   icon_create_new_folder_svg;
-    const int            icon_create_new_folder_svgSize = 333;
-
     extern const char*   icon_delete_svg;
     const int            icon_delete_svgSize = 489;
-
-    extern const char*   icon_directory_sync_svg;
-    const int            icon_directory_sync_svgSize = 366;
 
     extern const char*   icon_error_svg;
     const int            icon_error_svgSize = 518;
@@ -37,9 +31,6 @@ namespace BinaryData
 
     extern const char*   icon_lock_svg;
     const int            icon_lock_svgSize = 480;
-
-    extern const char*   icon_sort_svg;
-    const int            icon_sort_svgSize = 174;
 
     extern const char*   icon_mail_svg;
     const int            icon_mail_svgSize = 309;
@@ -57,7 +48,7 @@ namespace BinaryData
     const int            icon_visibility_svgSize = 535;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 16;
+    const int namedResourceListSize = 13;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

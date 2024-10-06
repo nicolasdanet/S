@@ -25,8 +25,7 @@ class Icons : private juce::DeletedAtShutdown {
 
 public:
     enum IconsIds : int {
-        add             = 1,
-        autoload,
+        autoload        = 1,
         autoscroll,
         clear,
         edit,
@@ -36,9 +35,7 @@ public:
         message,
         presets,
         restore,
-        run,
-        sort,
-        synchronize
+        run
     };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,7 +49,6 @@ public:
     {
         /* Must be in same order as enum above. */
         
-        addIconAction       ("Add",         "icon_create_new_folder_svg");
         addIconToggleOff    ("Autoload",    "icon_upload_svg");
         addIconToggleOn     ("Autoscroll",  "icon_vertical_align_bottom_svg");
         addIconAction       ("Clear",       "icon_delete_svg");
@@ -64,8 +60,6 @@ public:
         addIconToggleOff    ("Presets",     "icon_tune_svg");
         addIconAction       ("Restore",     "icon_history_svg");
         addIconAction       ("Run",         "icon_visibility_svg");
-        addIconAction       ("Sort",        "icon_sort_svg");
-        addIconAction       ("Synchronize", "icon_directory_sync_svg");
     }
 
     ~Icons()

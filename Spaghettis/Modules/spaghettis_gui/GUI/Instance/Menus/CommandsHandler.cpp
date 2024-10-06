@@ -27,9 +27,8 @@ juce::String getCommandText (juce::CommandID command)
     case Commands::clearRecentFiles     : return NEEDS_TRANS ("Clear Menu");
     case Commands::save                 : return NEEDS_TRANS ("Save");
     case Commands::closeWindow          : return NEEDS_TRANS ("Close Window");
-    case Commands::paths                : return NEEDS_TRANS ("Paths...");
-    case Commands::rescan               : return NEEDS_TRANS ("Rescan");
-    case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan Logged");
+    case Commands::rescan               : return NEEDS_TRANS ("Rescan Paths");
+    case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan Paths Logged");
     case Commands::selectAll            : return NEEDS_TRANS ("Select All");
     case Commands::undo                 : return NEEDS_TRANS ("Undo");
     case Commands::redo                 : return NEEDS_TRANS ("Redo");
@@ -71,7 +70,6 @@ juce::String getCommandDescription (juce::CommandID command)
     case Commands::clearRecentFiles     : return NEEDS_TRANS ("Clears all recent files");
     case Commands::save                 : return NEEDS_TRANS ("Save file");
     case Commands::closeWindow          : return NEEDS_TRANS ("Close active window");
-    case Commands::paths                : return NEEDS_TRANS ("Set search paths");
     case Commands::rescan               : return NEEDS_TRANS ("Rescan search paths");
     case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan search paths");
     case Commands::selectAll            : return NEEDS_TRANS ("Select all");
@@ -156,9 +154,6 @@ void CommandsHandler::getInfo (juce::CommandID command, juce::ApplicationCommand
         r.setInfo (text, description, file, 0);
         r.addDefaultKeypress ('w', juce::ModifierKeys::commandModifier);
         r.setActive (has (command));
-        break;
-    case Commands::paths :
-        r.setInfo (text, description, file, 0);
         break;
     case Commands::rescan :
         r.setInfo (text, description, file, 0);
@@ -294,7 +289,6 @@ void CommandsHandler::getCommands (juce::Array<juce::CommandID>& c, bool applica
             Commands::clearRecentFiles,
             Commands::save,
             Commands::closeWindow,
-            Commands::paths,
             Commands::rescan,
             Commands::rescanLogged,
             Commands::selectAll,
@@ -339,8 +333,6 @@ bool CommandsHandler::performCommand (const juce::ApplicationCommandTarget::Invo
     case Commands::openPatch        : Spaghettis()->openPatch();
                                       return true;
     case Commands::clearRecentFiles : Spaghettis()->clearRecentFiles();
-                                      return true;
-    case Commands::paths            : Spaghettis()->openSearchPathsWindow();
                                       return true;
     case Commands::rescan           : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::base));
                                       return true;

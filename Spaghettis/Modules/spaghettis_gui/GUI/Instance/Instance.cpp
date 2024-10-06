@@ -28,7 +28,7 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     
     core_->start (commandLine);
     
-    updateSearchPaths (getSearchPaths(), Inputs::Logged::none);
+    // setSearchPaths (getSearchPaths(), Inputs::Logged::none);  /* ??? */
     
     preferences_->read();
 }
@@ -36,8 +36,6 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
 void SpaghettisInstance::shutdown()
 {
     core_->shutdown();
-    
-    closeSearchPathsWindow();
     
     #if ! ( SPAGHETTIS_MENUBAR )
         
@@ -48,7 +46,6 @@ void SpaghettisInstance::shutdown()
     consoleWindow_     = nullptr;
     devicesWindow_     = nullptr;
     preferencesWindow_ = nullptr;
-    searchPathsWindow_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -153,21 +150,11 @@ void SpaghettisInstance::closeDevicesWindow()
     devicesWindow_ = nullptr;
 }
 
-void SpaghettisInstance::openSearchPathsWindow()
-{
-    createOrOpenWindow (searchPathsWindow_, *commandManager_, properties_.get());
-}
-
-void SpaghettisInstance::closeSearchPathsWindow()
-{
-    searchPathsWindow_ = nullptr;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void SpaghettisInstance::updateSearchPaths (const juce::StringArray& searchpaths, Inputs::Logged type)
+void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths, Inputs::Logged type)
 {
     handle (Inputs::setSearchPaths (searchpaths));
     handle (Inputs::rescanSearchPaths (type));
@@ -177,33 +164,7 @@ juce::StringArray SpaghettisInstance::getSearchPaths()
 {
     juce::StringArray searchPaths;
     
-    const std::unique_ptr<juce::XmlElement> root (properties_->getXmlValue ("SearchPaths"));
-        
-    if (root && root->hasTagName (Id::SEARCHPATHS)) {
-    //
-    for (auto* e : root->getChildWithTagNameIterator (Id::SEARCHPATH)) {
-        if (e->hasAttribute (Id::path)) {
-            searchPaths.addIfNotAlreadyThere (e->getStringAttribute (Id::path));
-        }
-    }
-    //
-    }
-    
     return searchPaths;
-}
-
-void SpaghettisInstance::setSearchPaths (const juce::StringArray& searchpaths)
-{
-    auto root = std::make_unique<juce::XmlElement> (Id::SEARCHPATHS);
-        
-    for (const auto& p : searchpaths) {
-        juce::XmlElement* e = root->createNewChildElement (Id::SEARCHPATH);
-        e->setAttribute (Id::path, p);
-    }
-        
-    properties_->setValue ("SearchPaths", root.get());
-    
-    updateSearchPaths (searchpaths, Inputs::Logged::base);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -31,7 +31,6 @@ enum CommandIds : juce::CommandID {
     clearRecentFiles,
     save,
     closeWindow,
-    paths,
     rescan,
     rescanLogged,
     selectAll,

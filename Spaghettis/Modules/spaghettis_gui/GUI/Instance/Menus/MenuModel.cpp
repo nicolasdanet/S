@@ -32,8 +32,6 @@ juce::PopupMenu MenuModel::getMenuForIndex (int n, const juce::String&)
     #if SPAGHETTIS_MENUBAR
     menu.addCommandItem (commandManager_, Commands::preferences);
     #endif
-    menu.addCommandItem (commandManager_, Commands::paths);
-    menu.addSeparator();
     menu.addCommandItem (commandManager_, Commands::rescan);
     menu.addCommandItem (commandManager_, Commands::rescanLogged);
     

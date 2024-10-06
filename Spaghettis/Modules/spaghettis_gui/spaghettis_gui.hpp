@@ -82,13 +82,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Tools/SearchPaths/SearchPathsFactory.hpp"
-#include "GUI/Tools/SearchPaths/SearchPathsComponent.hpp"
-#include "GUI/Tools/SearchPaths/SearchPathsWindow.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 #include "GUI/Patches/Maker/Maker.hpp"
 #include "GUI/Patches/Maker/MakerEntry.hpp"
 #include "GUI/Patches/Maker/MakerList.hpp"

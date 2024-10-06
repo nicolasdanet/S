@@ -52,8 +52,6 @@ namespace spaghettis::Identifiers {
     DECLARE_ID (PRESETS);
     DECLARE_ID (RECENTFILE);
     DECLARE_ID (RECENTFILES);
-    DECLARE_ID (SEARCHPATH);
-    DECLARE_ID (SEARCHPATHS);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
