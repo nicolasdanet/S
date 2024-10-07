@@ -1,56 +1,41 @@
 
-/* Copyright (c) 2024 Spaghettis and others. */
+/* Copyright (c) 2021 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::data {
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+class ParameterFile :   public PropertyLookAndFeel,
+                        public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> struct ParameterType { };
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-template<> struct ParameterType<bool>
-{
-    static const char* get() { return "boolean"; }
-};
-
-template<> struct ParameterType<juce::Colour>
-{
-    static const char* get() { return "color"; }
-};
-
-template<> struct ParameterType<juce::Rectangle<int>>
-{
-    static const char* get() { return "rectangle"; }
-};
-
-template<> struct ParameterType<int>
-{
-    static const char* get() { return "integer"; }
-};
-
-template<> struct ParameterType<double>
-{
-    static const char* get() { return "float"; }
-};
-
-template<> struct ParameterType<juce::String>
-{
-    static const char* get() { return "text"; }
-};
-
-template<> struct ParameterType<juce::File>
-{
-    static const char* get() { return "file"; }
+public:
+    explicit ParameterFile (const data::Parameter& p,
+        const PropertyLookAndFeel& lnf,
+        const juce::String& s,
+        bool isEditable) :
+            PropertyLookAndFeel (lnf),
+            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
+    {
+        DBG ("!!!");
+        
+        setEnabled (isEditable);
+        setInterestedInFileDrag (false);
+    }
+    
+    ~ParameterFile() = default;
+    
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterFile)
 };
 
 // -----------------------------------------------------------------------------------------------------------
@@ -60,3 +45,4 @@ template<> struct ParameterType<juce::File>
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+

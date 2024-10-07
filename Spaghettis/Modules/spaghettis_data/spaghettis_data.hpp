@@ -80,6 +80,7 @@
 #include "View/Parameters/ParameterNumber.hpp"
 #include "View/Parameters/ParameterSlider.hpp"
 #include "View/Parameters/ParameterText.hpp"
+#include "View/Parameters/ParameterFile.hpp"
 #include "View/Parameters/PresetElement.hpp"
 #include "View/Parameters/ViewCommon.hpp"
 

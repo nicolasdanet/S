@@ -101,6 +101,7 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (PatchLasso);
     DECLARE_STRING (PatchLocator);
     DECLARE_STRING (Path);
+    DECLARE_STRING (Paths);
     DECLARE_STRING (Peak);
     DECLARE_STRING (PinAnything);
     DECLARE_STRING (PinBang);

@@ -24,6 +24,7 @@ data::Data getDefaultPreferences()
     data::Group general (data.addGroup (Tag::General));
     data::Group editing (data.addGroup (Tag::Editing));
     data::Group colors  (data.addGroup (Tag::Colors));
+    data::Group paths   (data.addGroup (Tag::Paths));
     
     const Palette* p = Palette::getInstance();
     
@@ -296,6 +297,13 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Vu Bar Hot"),
         NEEDS_TRANS ("Set foreground color of top VU bars"),
         p->vuHot);
+    
+    /* */
+        
+    paths.addParameter (Tag::Path,
+        NEEDS_TRANS ("Path"),
+        NEEDS_TRANS ("Search path"),
+        juce::File());
         
     return data;
 }
