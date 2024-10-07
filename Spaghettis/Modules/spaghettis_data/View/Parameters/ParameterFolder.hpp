@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterFile :   public PropertyLookAndFeel,
+class ParameterFolder :   public PropertyLookAndFeel,
                         public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ class ParameterFile :   public PropertyLookAndFeel,
 // MARK: -
 
 public:
-    explicit ParameterFile (const data::Parameter& p,
+    explicit ParameterFolder (const data::Parameter& p,
         const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
@@ -32,10 +32,10 @@ public:
         setInterestedInFileDrag (false);
     }
     
-    ~ParameterFile() = default;
+    ~ParameterFolder() = default;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterFile)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterFolder)
 };
 
 // -----------------------------------------------------------------------------------------------------------
