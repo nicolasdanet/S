@@ -300,7 +300,7 @@ data::Data getDefaultPreferences()
     
     /* */
         
-    paths.addParameter (Tag::Path,
+    paths.addParameter (Tag::Path0,
         NEEDS_TRANS ("Path"),
         NEEDS_TRANS ("Search path"),
         juce::File());
