@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterFolder :   public PropertyLookAndFeel,
+class ParameterFolder : public PropertyLookAndFeel,
                         public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -26,8 +26,6 @@ public:
             PropertyLookAndFeel (lnf),
             juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
     {
-        DBG ("!!!");
-        
         setEnabled (isEditable);
         setInterestedInFileDrag (false);
     }
