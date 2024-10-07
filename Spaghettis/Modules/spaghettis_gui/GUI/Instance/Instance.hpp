@@ -172,9 +172,7 @@ public:
 // MARK: -
 
 public:
-    void setSearchPaths (const juce::StringArray&, Inputs::Logged type = Inputs::Logged::base);
-    
-    juce::StringArray getSearchPaths();
+    void updateSearchPaths (Inputs::Logged type = Inputs::Logged::base);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
