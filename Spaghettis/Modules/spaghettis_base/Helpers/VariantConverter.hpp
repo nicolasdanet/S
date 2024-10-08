@@ -68,16 +68,16 @@ template<> struct VariantConverter<Rectangle<int>> {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template<> struct VariantConverter<File> {
+template<> struct VariantConverter<spaghettis::Folder> {
 
-    static File fromVar (const var& v)
+    static spaghettis::Folder fromVar (const var& v)
     {
-        return juce::File (v.toString());
+        return spaghettis::Folder (v.toString());
     }
         
-    static var toVar (const File& f)
+    static var toVar (const spaghettis::Folder& f)
     {
-        return var (f.getFullPathName());
+        return var (f.toString());
     }
 
 };

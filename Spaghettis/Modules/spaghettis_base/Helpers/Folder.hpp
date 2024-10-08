@@ -6,53 +6,44 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::data {
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> struct ParameterType { };
+class Folder {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template<> struct ParameterType<bool>
-{
-    static const char* get() { return "boolean"; }
-};
+public:
+    explicit Folder (juce::String file = juce::String()) : file_ (file)
+    {
+    }
+    
+    ~Folder() = default;
 
-template<> struct ParameterType<juce::Colour>
-{
-    static const char* get() { return "color"; }
-};
+    Folder (const Folder&) = default;
+    Folder (Folder&&) = default;
+    Folder& operator = (const Folder&) = default;
+    Folder& operator = (Folder&&) = default;
 
-template<> struct ParameterType<juce::Rectangle<int>>
-{
-    static const char* get() { return "rectangle"; }
-};
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-template<> struct ParameterType<int>
-{
-    static const char* get() { return "integer"; }
+public:
+    juce::String toString() const
+    {
+        return file_.getFullPathName();
+    }
+    
+private:
+    juce::File file_;
 };
-
-template<> struct ParameterType<double>
-{
-    static const char* get() { return "float"; }
-};
-
-template<> struct ParameterType<juce::String>
-{
-    static const char* get() { return "text"; }
-};
-
-template<> struct ParameterType<Folder>
-{
-    static const char* get() { return "folder"; }
-};
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -60,3 +51,4 @@ template<> struct ParameterType<Folder>
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
