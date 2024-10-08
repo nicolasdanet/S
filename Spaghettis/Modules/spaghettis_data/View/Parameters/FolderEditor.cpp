@@ -19,9 +19,9 @@ namespace {
 
 juce::Colour getColourFromFileStatus (const Folder& f)
 {
-    // parametersFolderTextWrong
-    
-    return Colours::fetchColour (Colours::parametersFolderText);
+    if (f.isValid()) { return Colours::fetchColour (Colours::parametersFolderText); }
+
+    return Colours::fetchColour (Colours::parametersFolderTextWrong);
 }
 
 // -----------------------------------------------------------------------------------------------------------
