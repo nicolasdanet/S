@@ -32,27 +32,14 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics& g) override;
+    void paint (juce::Graphics&) override;
 
-    void mouseDown (const juce::MouseEvent&) override
-    {
-        if (isEnabled()) {
-        //
-        DBG ("!!!");
-        //
-        }
-    }
+    void mouseDown (const juce::MouseEvent&) override;
 
 private:
     void valueChanged (juce::Value&) override
     {
         repaint();
-    }
-    
-private:
-    juce::Rectangle<int> getTextBounds() const
-    {
-        return getLocalBounds().reduced (4, 2);
     }
 
 private:

@@ -12,25 +12,50 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void FolderEditor::paint (juce::Graphics& g)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+juce::Colour getColourFromFileStatus (const Folder& f)
 {
-    // const juce::File f (v.toString());
-    
-    g.fillAll (juce::Colours::orange);
-    
-    // g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
-    
-    // parametersFolderText
     // parametersFolderTextWrong
     
-    /*
+    return Colours::fetchColour (Colours::parametersFolderText);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void FolderEditor::paint (juce::Graphics& g)
+{
+    const Folder f (value_.toString());
+    const juce::Rectangle<int> r (getLocalBounds().reduced (4, 2));
+    const juce::String text (f.toString());
+    
+    g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
     g.setFont (font_);
-    g.setColour (Colours::fetchColour (Colours::parametersColourText));
-    g.drawText (Colour::getDisplayStringFromColour (c),
-        getTextBounds(),
-        juce::Justification::centredLeft,
-        true);
-    */
+    g.setColour (getColourFromFileStatus (f));
+    g.drawText (text, r, juce::Justification::centredLeft, true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void FolderEditor::mouseDown (const juce::MouseEvent&)
+{
+    if (isEnabled()) {
+    //
+    DBG ("!!!");
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------
