@@ -49,6 +49,13 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Snap To Grid"),
         NEEDS_TRANS ("Enable magnetic grid"),
         true);
+    
+    /* */
+        
+    paths.addParameter (Tag::Path0,
+        NEEDS_TRANS ("Path"),
+        NEEDS_TRANS ("Search path"),
+        Folder());
         
     /* */
     
@@ -298,13 +305,6 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Set foreground color of top VU bars"),
         p->vuHot);
     
-    /* */
-        
-    paths.addParameter (Tag::Path0,
-        NEEDS_TRANS ("Path"),
-        NEEDS_TRANS ("Search path"),
-        Folder());
-        
     return data;
 }
 

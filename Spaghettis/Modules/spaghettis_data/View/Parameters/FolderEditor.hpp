@@ -1,41 +1,73 @@
 
-/* Copyright (c) 2023 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_data.hpp"
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class FolderEditor :    public  juce::Component,
+                        private juce::Value::Listener {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit FolderEditor (const juce::Value& v, const juce::Font& font) : value_ (v), font_ (font)
+    {
+        value_.addListener (this);
+    }
+
+    ~FolderEditor() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics& g) override;
+
+    void mouseDown (const juce::MouseEvent&) override
+    {
+        if (isEnabled()) {
+        //
+        DBG ("!!!");
+        //
+        }
+    }
+
+private:
+    void valueChanged (juce::Value&) override
+    {
+        repaint();
+    }
+    
+private:
+    juce::Rectangle<int> getTextBounds() const
+    {
+        return getLocalBounds().reduced (4, 2);
+    }
+
+private:
+    juce::Value value_;
+    juce::Font font_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FolderEditor)
+};
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/Delegate.cpp"
-#include "Data/Delegate/DelegateManager.cpp"
-#include "Data/Parameter.cpp"
-#include "Data/Group.cpp"
-#include "Data/Data.cpp"
-#include "Data/DataSerialize.cpp"
-#include "Data/Getters/Observer.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/Parameters/ColourSpace.cpp"
-#include "View/Parameters/HueSelector.cpp"
-#include "View/Parameters/ColourSelector.cpp"
-#include "View/Parameters/ColourEditor.cpp"
-#include "View/Parameters/FolderEditor.cpp"
-#include "View/Parameters/ViewCommon.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/ParametersViewHeader.cpp"
-#include "View/ParametersView.cpp"
-#include "View/PresetsViewHeader.cpp"
-#include "View/PresetsView.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------

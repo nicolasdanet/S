@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
@@ -10,9 +10,10 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 class ParameterFolder : public PropertyLookAndFeel,
-                        public juce::TextPropertyComponent {
+                        public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -24,14 +25,33 @@ public:
         const juce::String& s,
         bool isEditable) :
             PropertyLookAndFeel (lnf),
-            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
+            juce::PropertyComponent (s),
+            editor_ (p.getValueAsValue (false), lnf.getFont())
     {
+        addAndMakeVisible (editor_);
         setEnabled (isEditable);
-        setInterestedInFileDrag (false);
+        editor_.setEnabled (isEditable);
     }
-    
+
     ~ParameterFolder() = default;
-    
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void resized() override
+    {
+        editor_.setBounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
+    }
+
+    void refresh() override
+    {
+    }
+
+private:
+    FolderEditor editor_;
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterFolder)
 };
