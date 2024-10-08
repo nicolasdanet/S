@@ -1,54 +1,61 @@
 
-/* Copyright (c) 2023 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-#include "spaghettis_base.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Helpers/AlertWindowRegister.cpp"
-#include "Helpers/CallOutBoxRegister.cpp"
-#include "Helpers/CallOutBoxTracker.cpp"
-#include "Helpers/Autocomplete.cpp"
-#include "Helpers/WindowsProperties.cpp"
-#include "Helpers/ToolbarComponent.cpp"
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "LookAndFeel/Folders.cpp"
-#include "LookAndFeel/Palette.cpp"
-#include "LookAndFeel/Fonts.cpp"
-#include "LookAndFeel/LookAndFeel.cpp"
-#include "LookAndFeel/LookAndFeelAlertWindow.cpp"
-#include "LookAndFeel/LookAndFeelButton.cpp"
-#include "LookAndFeel/LookAndFeelCallOutBox.cpp"
-#include "LookAndFeel/LookAndFeelComboBox.cpp"
-#include "LookAndFeel/LookAndFeelMenubar.cpp"
-#include "LookAndFeel/LookAndFeelPopup.cpp"
-#include "LookAndFeel/LookAndFeelParameters.cpp"
-#include "LookAndFeel/LookAndFeelResizer.cpp"
-#include "LookAndFeel/LookAndFeelToolbar.cpp"
-#include "LookAndFeel/LookAndFeelTooltip.cpp"
+class Folders : private juce::DeletedAtShutdown {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    Folders()
+    {
+    }
+
+    ~Folders()
+    {
+        clearSingletonInstance();
+    }
+
+    JUCE_DECLARE_SINGLETON_SINGLETHREADED (Folders, true);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setDefaultOpen (const juce::File& file)
+    {
+        if (file.isDirectory()) { open_ = file; }
+    }
+
+    juce::File getDefaultOpen() const
+    {
+        return open_;
+    }
+
+private:
+    juce::File open_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Folders)
+};
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Icons/Icons.cpp"
-#include "Icons/IconsButton.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "Base/BaseWindow.cpp"
-#include "Base/BaseComponentFocus.cpp"
-#include "Base/BaseComponentToolbar.cpp"
-#include "Base/BaseCommands.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

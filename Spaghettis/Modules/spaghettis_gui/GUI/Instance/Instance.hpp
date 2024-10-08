@@ -42,12 +42,13 @@ public:
         midiDevices_ (std::make_unique<MidiDevices>()),
         patches_ (std::make_unique<PatchesHolder>()),
         autocomplete_ (std::make_unique<Autocomplete>()),
-        currentOpenDirectory_ (juce::File::getSpecialLocation (juce::File::userHomeDirectory)),
         dspIsRunning_ (false),
         quit_ (QuitStatus::quit)
     {
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
+        Folders::getInstance()->setDefaultOpen (home);
+        
         #if JUCE_MAC
         const juce::File file = home.getChildFile ("Library/Application Support/Spaghettis");
         #endif
@@ -121,7 +122,8 @@ public:
     {
         const juce::String name (core::getUntitled());
         const juce::String suffix (core::getPatchExtension());
-        const juce::File file (getCurrentOpenDirectory().getNonexistentChildFile (name, suffix, false));
+        const juce::File open (Folders::getInstance()->getDefaultOpen());
+        const juce::File file (open.getNonexistentChildFile (name, suffix, false));
         
         handle (Inputs::newPatch (file));
     }
@@ -130,7 +132,7 @@ public:
     {
         JUCE_ASSERT_MESSAGE_THREAD
                 
-        setCurrentOpenDirectory (file.getParentDirectory());
+        Folders::getInstance()->setDefaultOpen (file.getParentDirectory());
         
         handle (Inputs::openPatch (file));
     }
@@ -227,21 +229,6 @@ public:
 // MARK: -
 
 public:
-    void setCurrentOpenDirectory (const juce::File& file)
-    {
-        if (file.isDirectory()) { currentOpenDirectory_ = file; }
-    }
-    
-    juce::File getCurrentOpenDirectory() const
-    {
-        return currentOpenDirectory_;
-    }
-    
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     juce::ApplicationCommandManager& getCommandManager()
     {
         return *commandManager_;
@@ -306,7 +293,6 @@ private:
     const std::unique_ptr<Autocomplete> autocomplete_;
 
 private:
-    juce::File currentOpenDirectory_;
     bool dspIsRunning_;
     QuitStatus quit_;
     juce::StringArray recentFiles_;

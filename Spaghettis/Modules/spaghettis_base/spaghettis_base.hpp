@@ -82,6 +82,7 @@
 #include "LookAndFeel/Fonts.hpp"
 #include "LookAndFeel/Palette.hpp"
 #include "LookAndFeel/Colours.hpp"
+#include "LookAndFeel/Folders.hpp"
 #include "LookAndFeel/LookAndFeel.hpp"
 #include "LookAndFeel/SliderLabel.hpp"
 

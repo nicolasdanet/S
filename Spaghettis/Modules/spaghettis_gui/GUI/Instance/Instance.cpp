@@ -169,7 +169,7 @@ void SpaghettisInstance::updateSearchPaths (Inputs::Logged type)
 void SpaghettisInstance::openPatch()
 {
     fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a Patch..."),
-                        getCurrentOpenDirectory(),
+                        Folders::getInstance()->getDefaultOpen(),
                         spaghettis::core::getFileExtensions());
     
     const int t = juce::FileBrowserComponent::canSelectMultipleItems
