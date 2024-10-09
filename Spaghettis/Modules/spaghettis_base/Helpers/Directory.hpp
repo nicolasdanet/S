@@ -12,23 +12,23 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Folder {
+class Directory {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit Folder (juce::String file = juce::String()) : file_ (file)
+    explicit Directory (juce::String file = juce::String()) : file_ (file)
     {
     }
     
-    ~Folder() = default;
+    ~Directory() = default;
 
-    Folder (const Folder&) = default;
-    Folder (Folder&&) = default;
-    Folder& operator = (const Folder&) = default;
-    Folder& operator = (Folder&&) = default;
+    Directory (const Directory&) = default;
+    Directory (Directory&&) = default;
+    Directory& operator = (const Directory&) = default;
+    Directory& operator = (Directory&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

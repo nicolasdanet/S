@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Colour getColourFromFileStatus (const Folder& f)
+juce::Colour getColourFromFileStatus (const Directory& f)
 {
     if (f.isValid()) { return Colours::fetchColour (Colours::parametersFolderText); }
 
@@ -35,7 +35,7 @@ juce::Colour getColourFromFileStatus (const Folder& f)
 
 void DirectoryEditor::paint (juce::Graphics& g)
 {
-    const Folder f (value_.toString());
+    const Directory f (value_.toString());
     const juce::Rectangle<int> r (getLocalBounds().reduced (4, 2));
     const juce::String text (f.toString());
     

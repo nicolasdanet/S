@@ -68,7 +68,7 @@
 #include "Helpers/CallOutBoxRegister.hpp"
 #include "Helpers/CallOutBoxTracker.hpp"
 #include "Helpers/EditDistance.hpp"
-#include "Helpers/Folder.hpp"
+#include "Helpers/Directory.hpp"
 #include "Helpers/Autocomplete.hpp"
 #include "Helpers/WindowsProperties.hpp"
 #include "Helpers/Mouse.hpp"

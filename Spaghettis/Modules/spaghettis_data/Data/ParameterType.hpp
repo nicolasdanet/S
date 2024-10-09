@@ -48,7 +48,7 @@ template<> struct ParameterType<juce::String>
     static const char* get() { return "text"; }
 };
 
-template<> struct ParameterType<Folder>
+template<> struct ParameterType<Directory>
 {
     static const char* get() { return "folder"; }
 };

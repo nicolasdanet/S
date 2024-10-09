@@ -68,14 +68,14 @@ template<> struct VariantConverter<Rectangle<int>> {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template<> struct VariantConverter<spaghettis::Folder> {
+template<> struct VariantConverter<spaghettis::Directory> {
 
-    static spaghettis::Folder fromVar (const var& v)
+    static spaghettis::Directory fromVar (const var& v)
     {
-        return spaghettis::Folder (v.toString());
+        return spaghettis::Directory (v.toString());
     }
         
-    static var toVar (const spaghettis::Folder& f)
+    static var toVar (const spaghettis::Directory& f)
     {
         return var (f.toString());
     }

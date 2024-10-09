@@ -44,7 +44,7 @@ bool Parameter::isText() const
 
 bool Parameter::isFolder() const
 {
-    return (getType() == ParameterType<Folder>::get());
+    return (getType() == ParameterType<Directory>::get());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -249,7 +249,7 @@ juce::var Parameter::forceType (const juce::var& v) const
     else if (isFloat())     { return Cast::force<double> (v); }
     else if (isColour())    { return Cast::force<juce::Colour> (v); }
     else if (isRectangle()) { return Cast::force<juce::Rectangle<int>> (v); }
-    else if (isFolder())    { return Cast::force<Folder> (v); }
+    else if (isFolder())    { return Cast::force<Directory> (v); }
     else {
         return Cast::force<juce::String> (v);
     }
@@ -275,7 +275,7 @@ juce::Value Parameter::filtered (const juce::Value& v) const
     else if (isInteger())   { return data::Filter<int>::make (v);    }
     else if (isFloat())     { return data::Filter<double>::make (v); }
     else if (isRectangle()) { return data::Filter<juce::Rectangle<int>>::make (v); }
-    else if (isFolder())    { return data::Filter<Folder>::make (v); }
+    else if (isFolder())    { return data::Filter<Directory>::make (v); }
     else {
         return data::Filter<juce::String>::make (v);
     }
