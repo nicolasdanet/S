@@ -75,7 +75,7 @@
 #include "View/Parameters/HueSelector.hpp"
 #include "View/Parameters/ColourSelector.hpp"
 #include "View/Parameters/ColourEditor.hpp"
-#include "View/Parameters/FolderEditor.hpp"
+#include "View/Parameters/DirectoryEditor.hpp"
 #include "View/Parameters/ParameterBoolean.hpp"
 #include "View/Parameters/ParameterColour.hpp"
 #include "View/Parameters/ParameterNumber.hpp"

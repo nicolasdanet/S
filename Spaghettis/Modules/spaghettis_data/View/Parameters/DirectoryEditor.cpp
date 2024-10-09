@@ -33,7 +33,7 @@ juce::Colour getColourFromFileStatus (const Folder& f)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void FolderEditor::paint (juce::Graphics& g)
+void DirectoryEditor::paint (juce::Graphics& g)
 {
     const Folder f (value_.toString());
     const juce::Rectangle<int> r (getLocalBounds().reduced (4, 2));
@@ -49,7 +49,7 @@ void FolderEditor::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void FolderEditor::setDirectory (const juce::File& file)
+void DirectoryEditor::setDirectory (const juce::File& file)
 {
     if (file.isDirectory()) {
     //
@@ -60,7 +60,7 @@ void FolderEditor::setDirectory (const juce::File& file)
     }
 }
 
-void FolderEditor::chooseDirectory()
+void DirectoryEditor::chooseDirectory()
 {
     /*
     fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder..."),
@@ -83,7 +83,7 @@ void FolderEditor::chooseDirectory()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void FolderEditor::mouseDown (const juce::MouseEvent&)
+void DirectoryEditor::mouseDown (const juce::MouseEvent&)
 {
     if (isEnabled()) {
     //

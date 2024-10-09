@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class FolderEditor :    public  juce::Component,
+class DirectoryEditor : public  juce::Component,
                         private juce::Value::Listener {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -20,12 +20,12 @@ class FolderEditor :    public  juce::Component,
 // MARK: -
 
 public:
-    explicit FolderEditor (const juce::Value& v, const juce::Font& font) : value_ (v), font_ (font)
+    explicit DirectoryEditor (const juce::Value& v, const juce::Font& font) : value_ (v), font_ (font)
     {
         value_.addListener (this);
     }
 
-    ~FolderEditor() = default;
+    ~DirectoryEditor() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ private:
     std::unique_ptr<juce::FileChooser> fileChooser_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FolderEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryEditor)
 };
     
 // -----------------------------------------------------------------------------------------------------------
