@@ -40,11 +40,6 @@ public:
         return file_.getFullPathName();
     }
     
-    bool isValid() const
-    {
-        return file_.isDirectory();
-    }
-    
 private:
     juce::File file_;
 };

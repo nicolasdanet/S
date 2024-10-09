@@ -17,9 +17,9 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::Colour getColourFromFileStatus (const Directory& f)
+juce::Colour getColourFromFileStatus (const juce::File& f)
 {
-    if (f.isValid()) { return Colours::fetchColour (Colours::parametersDirectoryText); }
+    if (f.isDirectory()) { return Colours::fetchColour (Colours::parametersDirectoryText); }
 
     return Colours::fetchColour (Colours::parametersDirectoryTextWrong);
 }
@@ -35,9 +35,9 @@ juce::Colour getColourFromFileStatus (const Directory& f)
 
 void DirectoryEditor::paint (juce::Graphics& g)
 {
-    const Directory f (value_.toString());
+    const juce::File f (value_.toString());
     const juce::Rectangle<int> r (getLocalBounds().reduced (4, 2));
-    const juce::String text (f.toString());
+    const juce::String text (f.getFullPathName());
     
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
     g.setFont (font_);
@@ -53,7 +53,7 @@ void DirectoryEditor::setDirectory (const juce::File& file)
 {
     if (file.isDirectory()) {
     //
-    DBG (file.getFullPathName());
+    value_.setValue (file.getFullPathName());
     
     Directories::getInstance()->setDefaultOpen (file.getParentDirectory());
     //
