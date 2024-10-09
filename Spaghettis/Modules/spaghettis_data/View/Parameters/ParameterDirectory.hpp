@@ -12,15 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterFolder : public PropertyLookAndFeel,
-                        public juce::PropertyComponent {
+class ParameterDirectory :  public PropertyLookAndFeel,
+                            public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterFolder (const data::Parameter& p,
+    explicit ParameterDirectory (const data::Parameter& p,
         const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
@@ -33,7 +33,7 @@ public:
         editor_.setEnabled (isEditable);
     }
 
-    ~ParameterFolder() = default;
+    ~ParameterDirectory() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ private:
     FolderEditor editor_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterFolder)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterDirectory)
 };
 
 // -----------------------------------------------------------------------------------------------------------
