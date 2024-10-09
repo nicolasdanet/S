@@ -28,9 +28,9 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     
     core_->start (commandLine);
     
-    updateSearchPaths (Inputs::Logged::none);
-    
     preferences_->read();
+    
+    updateSearchPaths (Inputs::Logged::none);
 }
     
 void SpaghettisInstance::shutdown()
@@ -156,7 +156,7 @@ void SpaghettisInstance::closeDevicesWindow()
 
 void SpaghettisInstance::updateSearchPaths (Inputs::Logged type)
 {
-    /* ??? */
+    DBG ("???");
     
     // handle (Inputs::setSearchPaths (searchpaths));
     // handle (Inputs::rescanSearchPaths (type));

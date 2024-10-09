@@ -56,6 +56,21 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Path"),
         NEEDS_TRANS ("Search path"),
         Directory());
+    
+    paths.addParameter (Tag::Path1,
+        NEEDS_TRANS ("Path"),
+        NEEDS_TRANS ("Search path"),
+        Directory());
+    
+    paths.addParameter (Tag::Path2,
+        NEEDS_TRANS ("Path"),
+        NEEDS_TRANS ("Search path"),
+        Directory());
+    
+    paths.addParameter (Tag::Path3,
+        NEEDS_TRANS ("Path"),
+        NEEDS_TRANS ("Search path"),
+        Directory());
         
     /* */
     
@@ -329,6 +344,16 @@ Preferences::Preferences (const juce::File& file) :
     addParameterHandler (Tag::GridSize,   [] (const data::Parameter& p) {
             Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
         });
+    
+    auto f = [] (const data::Parameter& p)
+    {
+        Spaghettis()->updateSearchPaths();
+    };
+        
+    addParameterHandler (Tag::Path0, f);
+    addParameterHandler (Tag::Path1, f);
+    addParameterHandler (Tag::Path2, f);
+    addParameterHandler (Tag::Path3, f);
     
     data_.addObserver (this);
 }
