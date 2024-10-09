@@ -37,6 +37,10 @@ public:
     void mouseDown (const juce::MouseEvent&) override;
 
 private:
+    void setDirectory (const juce::File&);
+    void chooseDirectory();
+    
+private:
     void valueChanged (juce::Value&) override
     {
         repaint();
@@ -46,6 +50,9 @@ private:
     juce::Value value_;
     juce::Font font_;
 
+private:
+    std::unique_ptr<juce::FileChooser> fileChooser_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FolderEditor)
 };

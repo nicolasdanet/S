@@ -49,6 +49,40 @@ void FolderEditor::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void FolderEditor::setDirectory (const juce::File& file)
+{
+    if (file.isDirectory()) {
+    //
+    // file.getFullPathName();
+    
+    Folders::getInstance()->setDefaultOpen (file.getParentDirectory());
+    //
+    }
+}
+
+void FolderEditor::chooseDirectory()
+{
+    /*
+    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder..."),
+                        Folders::getInstance()->getDefaultOpen());
+
+    const int t = juce::FileBrowserComponent::canSelectMultipleItems
+                        | juce::FileBrowserComponent::openMode
+                        | juce::FileBrowserComponent::canSelectDirectories;
+    
+    auto callback = [this] (const juce::FileChooser& fileChooser)
+    {
+        auto files = fileChooser.getResults(); for (const auto& f : files) { appendFile (f); }
+    };
+                    
+    fileChooser_->launchAsync (t, callback);
+    */
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void FolderEditor::mouseDown (const juce::MouseEvent&)
 {
     if (isEnabled()) {
