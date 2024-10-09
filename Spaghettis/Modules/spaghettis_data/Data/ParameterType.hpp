@@ -50,7 +50,7 @@ template<> struct ParameterType<juce::String>
 
 template<> struct ParameterType<Directory>
 {
-    static const char* get() { return "folder"; }
+    static const char* get() { return "directory"; }
 };
 
 // -----------------------------------------------------------------------------------------------------------

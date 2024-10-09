@@ -73,11 +73,11 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Pa
 {
     // return std::make_unique<ParameterSlider> (p, base, label, isEditable);
     
-    if (p.isBoolean())      { return std::make_unique<ParameterBoolean> (p, lnf, label, isEditable);    }
-    else if (p.isColour())  { return std::make_unique<ParameterColour> (p, lnf, label, isEditable);     }
-    else if (p.isInteger()) { return std::make_unique<ParameterInteger> (p, lnf, label, isEditable);    }
-    else if (p.isFloat())   { return std::make_unique<ParameterFloat> (p, lnf, label, isEditable);      }
-    else if (p.isFolder())  { return std::make_unique<ParameterDirectory> (p, lnf, label, isEditable);  }
+    if (p.isBoolean())          { return std::make_unique<ParameterBoolean> (p, lnf, label, isEditable);    }
+    else if (p.isColour())      { return std::make_unique<ParameterColour> (p, lnf, label, isEditable);     }
+    else if (p.isInteger())     { return std::make_unique<ParameterInteger> (p, lnf, label, isEditable);    }
+    else if (p.isFloat())       { return std::make_unique<ParameterFloat> (p, lnf, label, isEditable);      }
+    else if (p.isDirectory())   { return std::make_unique<ParameterDirectory> (p, lnf, label, isEditable);  }
     else {
         return std::make_unique<ParameterText> (p, lnf, label, isEditable);
     }
