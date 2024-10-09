@@ -53,7 +53,7 @@ void DirectoryEditor::setDirectory (const juce::File& file)
 {
     if (file.isDirectory()) {
     //
-    // file.getFullPathName();
+    DBG (file.getFullPathName());
     
     Directories::getInstance()->setDefaultOpen (file.getParentDirectory());
     //
@@ -62,21 +62,18 @@ void DirectoryEditor::setDirectory (const juce::File& file)
 
 void DirectoryEditor::chooseDirectory()
 {
-    /*
-    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a directory..."),
-                        Directories::getInstance()->getDefaultOpen());
-
-    const int t = juce::FileBrowserComponent::canSelectMultipleItems
-                        | juce::FileBrowserComponent::openMode
-                        | juce::FileBrowserComponent::canSelectDirectories;
+    const juce::File initial (Directories::getInstance()->getDefaultOpen());
+                        
+    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a directory..."), initial);
     
     auto callback = [this] (const juce::FileChooser& fileChooser)
     {
-        auto files = fileChooser.getResults(); for (const auto& f : files) { appendFile (f); }
+        auto files = fileChooser.getResults(); for (const auto& f : files) { setDirectory (f); }
     };
-                    
+    
+    const int t = juce::FileBrowserComponent::openMode | juce::FileBrowserComponent::canSelectDirectories;
+    
     fileChooser_->launchAsync (t, callback);
-    */
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -85,11 +82,7 @@ void DirectoryEditor::chooseDirectory()
 
 void DirectoryEditor::mouseDown (const juce::MouseEvent&)
 {
-    if (isEnabled()) {
-    //
-    DBG ("!!!");
-    //
-    }
+    if (isEnabled()) { chooseDirectory(); }
 }
     
 // -----------------------------------------------------------------------------------------------------------
