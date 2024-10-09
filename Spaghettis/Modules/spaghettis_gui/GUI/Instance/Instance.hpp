@@ -47,7 +47,7 @@ public:
     {
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
-        Folders::getInstance()->setDefaultOpen (home);
+        Directories::getInstance()->setDefaultOpen (home);
         
         #if JUCE_MAC
         const juce::File file = home.getChildFile ("Library/Application Support/Spaghettis");
@@ -122,7 +122,7 @@ public:
     {
         const juce::String name (core::getUntitled());
         const juce::String suffix (core::getPatchExtension());
-        const juce::File open (Folders::getInstance()->getDefaultOpen());
+        const juce::File open (Directories::getInstance()->getDefaultOpen());
         const juce::File file (open.getNonexistentChildFile (name, suffix, false));
         
         handle (Inputs::newPatch (file));
@@ -132,7 +132,7 @@ public:
     {
         JUCE_ASSERT_MESSAGE_THREAD
                 
-        Folders::getInstance()->setDefaultOpen (file.getParentDirectory());
+        Directories::getInstance()->setDefaultOpen (file.getParentDirectory());
         
         handle (Inputs::openPatch (file));
     }

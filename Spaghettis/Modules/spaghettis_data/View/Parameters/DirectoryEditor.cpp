@@ -55,7 +55,7 @@ void DirectoryEditor::setDirectory (const juce::File& file)
     //
     // file.getFullPathName();
     
-    Folders::getInstance()->setDefaultOpen (file.getParentDirectory());
+    Directories::getInstance()->setDefaultOpen (file.getParentDirectory());
     //
     }
 }
@@ -64,7 +64,7 @@ void DirectoryEditor::chooseDirectory()
 {
     /*
     fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder..."),
-                        Folders::getInstance()->getDefaultOpen());
+                        Directories::getInstance()->getDefaultOpen());
 
     const int t = juce::FileBrowserComponent::canSelectMultipleItems
                         | juce::FileBrowserComponent::openMode

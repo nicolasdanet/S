@@ -21,7 +21,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "LookAndFeel/Folders.cpp"
+#include "LookAndFeel/Directories.cpp"
 #include "LookAndFeel/Palette.cpp"
 #include "LookAndFeel/Fonts.cpp"
 #include "LookAndFeel/LookAndFeel.cpp"
