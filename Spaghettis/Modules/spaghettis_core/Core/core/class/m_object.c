@@ -289,7 +289,7 @@ static void object_openHelp (t_object *y, const char *directory, const char *nam
 
 /* First consider the sibling files of an abstraction. */
 /* For an external search in its help directory if provided. */
-/* Then look for in the application "help" folder. */
+/* Then look for in the application "help" directory. */
 /* And last in the user search path. */
 
 void object_help (t_object *y)

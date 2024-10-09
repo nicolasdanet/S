@@ -280,7 +280,7 @@ void searchpath_directoryMatchedAtIndex (int n)
 {
     PD_ASSERT (searchpath_directories);
     
-    /* Matching folders are moved to front. */
+    /* Matching directories are moved to front. */
     
     if (n > 0) { searchpath_directories = pathlist_moveFront (searchpath_directories, n); }
 }

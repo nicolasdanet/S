@@ -19,9 +19,9 @@ namespace {
 
 juce::Colour getColourFromFileStatus (const Directory& f)
 {
-    if (f.isValid()) { return Colours::fetchColour (Colours::parametersFolderText); }
+    if (f.isValid()) { return Colours::fetchColour (Colours::parametersDirectoryText); }
 
-    return Colours::fetchColour (Colours::parametersFolderTextWrong);
+    return Colours::fetchColour (Colours::parametersDirectoryTextWrong);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ void DirectoryEditor::setDirectory (const juce::File& file)
 void DirectoryEditor::chooseDirectory()
 {
     /*
-    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a folder..."),
+    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a directory..."),
                         Directories::getInstance()->getDefaultOpen());
 
     const int t = juce::FileBrowserComponent::canSelectMultipleItems
