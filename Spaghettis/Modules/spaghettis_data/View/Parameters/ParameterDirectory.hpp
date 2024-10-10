@@ -47,7 +47,7 @@ public:
     {
         juce::Rectangle<int> bounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
         
-        selector_.setBounds (bounds.removeFromRight (bounds.getHeight()));
+        selector_.setBounds (bounds.removeFromLeft (bounds.getHeight()));
         editor_.setBounds (bounds);
     }
 
