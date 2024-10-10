@@ -70,13 +70,14 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/Parameters/ColourSlider.hpp"
-#include "View/Parameters/ColourSpace.hpp"
-#include "View/Parameters/HueSelector.hpp"
-#include "View/Parameters/ColourSelector.hpp"
-#include "View/Parameters/ColourEditor.hpp"
-#include "View/Parameters/DirectoryEditor.hpp"
-#include "View/Parameters/DirectoryRemove.hpp"
+#include "View/Parameters/Editors/ColourSlider.hpp"
+#include "View/Parameters/Editors/ColourSpace.hpp"
+#include "View/Parameters/Editors/HueSelector.hpp"
+#include "View/Parameters/Editors/ColourSelector.hpp"
+#include "View/Parameters/Editors/ColourEditor.hpp"
+#include "View/Parameters/Editors/DirectoryEditor.hpp"
+#include "View/Parameters/Editors/DirectoryRemove.hpp"
+
 #include "View/Parameters/ParameterBoolean.hpp"
 #include "View/Parameters/ParameterColour.hpp"
 #include "View/Parameters/ParameterNumber.hpp"

@@ -22,12 +22,13 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "View/Parameters/ColourSpace.cpp"
-#include "View/Parameters/HueSelector.cpp"
-#include "View/Parameters/ColourSelector.cpp"
-#include "View/Parameters/ColourEditor.cpp"
-#include "View/Parameters/DirectoryEditor.cpp"
-#include "View/Parameters/DirectoryRemove.cpp"
+#include "View/Parameters/Editors/ColourSpace.cpp"
+#include "View/Parameters/Editors/HueSelector.cpp"
+#include "View/Parameters/Editors/ColourSelector.cpp"
+#include "View/Parameters/Editors/ColourEditor.cpp"
+#include "View/Parameters/Editors/DirectoryEditor.cpp"
+#include "View/Parameters/Editors/DirectoryRemove.cpp"
+
 #include "View/Parameters/ViewCommon.cpp"
 
 // -----------------------------------------------------------------------------------------------------------
