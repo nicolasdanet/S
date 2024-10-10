@@ -72,7 +72,6 @@ enum ColourIds : int {
     parametersColourBackground,
     parametersColourText,
     parametersDirectoryText,
-    parametersDirectoryTextWrong,
     parametersBoolean,
     parametersBooleanTick,
     makerBackground,
@@ -143,7 +142,6 @@ static juce::Colour fetchColour (ColourIds i)
         case parametersColourBackground :                           return p->backgroundAlternate;
         case parametersColourText :                                 return p->textSystem;
         case parametersDirectoryText :                              return p->textSystem;
-        case parametersDirectoryTextWrong :                         return p->textError;
         case parametersBoolean :                                    return p->textSystem;
         case parametersBooleanTick :                                return p->textMenu;
         case makerBackground :                                      return p->background;

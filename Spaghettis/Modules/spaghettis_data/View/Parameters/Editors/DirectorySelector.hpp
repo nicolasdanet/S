@@ -21,6 +21,7 @@ class DirectorySelector : public juce::Component {
 public:
     explicit DirectorySelector (const juce::Value& v) : value_ (v)
     {
+        // Icons::getInstance()->getIconOn (item)
     }
 
     ~DirectorySelector() = default;

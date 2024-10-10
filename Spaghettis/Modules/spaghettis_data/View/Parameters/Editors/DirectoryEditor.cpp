@@ -12,27 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-juce::Colour getColourFromFileStatus (const juce::File& f)
-{
-    if (f.isDirectory()) { return Colours::fetchColour (Colours::parametersDirectoryText); }
-
-    return Colours::fetchColour (Colours::parametersDirectoryTextWrong);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void DirectoryEditor::paint (juce::Graphics& g)
 {
     const juce::File f (value_.toString());
@@ -41,7 +20,7 @@ void DirectoryEditor::paint (juce::Graphics& g)
     
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
     g.setFont (font_);
-    g.setColour (getColourFromFileStatus (f));
+    g.setColour (Colours::fetchColour (Colours::parametersDirectoryText));
     g.drawText (text, r, juce::Justification::centredLeft, true);
 }
 
