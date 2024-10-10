@@ -371,7 +371,7 @@ Preferences::~Preferences()
 
 void Preferences::parameterHasChanged (const data::Group&, const data::Parameter&)
 {
-    if (!isReading_) { const int primeInterval = 293; startTimer (primeInterval); }
+    if (!isReading()) { const int primeInterval = 293; startTimer (primeInterval); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
