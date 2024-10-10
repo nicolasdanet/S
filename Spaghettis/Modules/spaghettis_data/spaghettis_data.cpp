@@ -27,7 +27,7 @@
 #include "View/Parameters/Editors/ColourSelector.cpp"
 #include "View/Parameters/Editors/ColourEditor.cpp"
 #include "View/Parameters/Editors/DirectoryEditor.cpp"
-#include "View/Parameters/Editors/DirectoryRemove.cpp"
+#include "View/Parameters/Editors/DirectorySelector.cpp"
 
 #include "View/Parameters/ViewCommon.cpp"
 

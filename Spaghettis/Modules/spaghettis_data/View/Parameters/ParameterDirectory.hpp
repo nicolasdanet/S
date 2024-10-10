@@ -27,13 +27,13 @@ public:
             PropertyLookAndFeel (lnf),
             juce::PropertyComponent (s),
             editor_ (p.getValueAsValue (false), lnf.getFont()),
-            remove_ (p.getValueAsValue (false))
+            selector_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (editor_);
-        addAndMakeVisible (remove_);
+        addAndMakeVisible (selector_);
         setEnabled (isEditable);
         editor_.setEnabled (isEditable);
-        remove_.setEnabled (isEditable);
+        selector_.setEnabled (isEditable);
     }
 
     ~ParameterDirectory() = default;
@@ -47,7 +47,7 @@ public:
     {
         juce::Rectangle<int> bounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
         
-        remove_.setBounds (bounds.removeFromRight (bounds.getHeight()));
+        selector_.setBounds (bounds.removeFromRight (bounds.getHeight()));
         editor_.setBounds (bounds);
     }
 
@@ -57,7 +57,7 @@ public:
 
 private:
     DirectoryEditor editor_;
-    DirectoryRemove remove_;
+    DirectorySelector selector_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterDirectory)

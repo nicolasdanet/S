@@ -12,12 +12,12 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DirectoryRemove::paint (juce::Graphics& g)
+void DirectorySelector::paint (juce::Graphics& g)
 {
     g.fillAll (juce::Colours::grey);
 }
 
-void DirectoryRemove::mouseDown (const juce::MouseEvent&)
+void DirectorySelector::mouseDown (const juce::MouseEvent&)
 {
     if (isEnabled()) { }
 }

@@ -12,18 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DirectoryRemove : public juce::Component {
+class DirectorySelector : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit DirectoryRemove (const juce::Value& v) : value_ (v)
+    explicit DirectorySelector (const juce::Value& v) : value_ (v)
     {
     }
 
-    ~DirectoryRemove() = default;
+    ~DirectorySelector() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ private:
     juce::Value value_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryRemove)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectorySelector)
 };
     
 // -----------------------------------------------------------------------------------------------------------
