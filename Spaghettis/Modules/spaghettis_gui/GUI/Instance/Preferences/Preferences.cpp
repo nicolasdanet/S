@@ -53,23 +53,23 @@ data::Data getDefaultPreferences()
     /* */
         
     paths.addParameter (Tag::Path0,
-        NEEDS_TRANS ("Path"),
-        NEEDS_TRANS ("Search path"),
+        NEEDS_TRANS ("Search Path"),
+        NEEDS_TRANS ("Set directory to find patches"),
         Directory());
     
     paths.addParameter (Tag::Path1,
-        NEEDS_TRANS ("Path"),
-        NEEDS_TRANS ("Search path"),
+        NEEDS_TRANS ("Search Path"),
+        NEEDS_TRANS ("Set directory to find patches"),
         Directory());
     
     paths.addParameter (Tag::Path2,
-        NEEDS_TRANS ("Path"),
-        NEEDS_TRANS ("Search path"),
+        NEEDS_TRANS ("Search Path"),
+        NEEDS_TRANS ("Set directory to find patches"),
         Directory());
     
     paths.addParameter (Tag::Path3,
-        NEEDS_TRANS ("Path"),
-        NEEDS_TRANS ("Search path"),
+        NEEDS_TRANS ("Search Path"),
+        NEEDS_TRANS ("Set directory to find patches"),
         Directory());
         
     /* */
@@ -363,6 +363,24 @@ Preferences::~Preferences()
     data_.removeObserver (this);
     
     write();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+juce::StringArray Preferences::getSearchPaths() const
+{
+    juce::StringArray paths;
+    
+    paths.addIfNotAlreadyThere (get<Directory> (Tag::Paths, Tag::Path0).toString());
+    paths.addIfNotAlreadyThere (get<Directory> (Tag::Paths, Tag::Path1).toString());
+    paths.addIfNotAlreadyThere (get<Directory> (Tag::Paths, Tag::Path2).toString());
+    paths.addIfNotAlreadyThere (get<Directory> (Tag::Paths, Tag::Path3).toString());
+    
+    paths.removeEmptyStrings();
+    
+    return paths;
 }
 
 // -----------------------------------------------------------------------------------------------------------
