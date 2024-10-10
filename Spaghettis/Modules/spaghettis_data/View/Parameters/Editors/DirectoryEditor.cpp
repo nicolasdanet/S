@@ -49,40 +49,9 @@ void DirectoryEditor::paint (juce::Graphics& g)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DirectoryEditor::setDirectory (const juce::File& file)
-{
-    if (file.isDirectory()) {
-    //
-    value_.setValue (file.getFullPathName());
-    
-    Directories::getInstance()->setDefaultOpen (file.getParentDirectory());
-    //
-    }
-}
-
-void DirectoryEditor::chooseDirectory()
-{
-    const juce::File initial (Directories::getInstance()->getDefaultOpen());
-                        
-    fileChooser_ = std::make_unique<juce::FileChooser> (NEEDS_TRANS ("Choose a directory..."), initial);
-    
-    auto callback = [this] (const juce::FileChooser& fileChooser)
-    {
-        auto files = fileChooser.getResults(); for (const auto& f : files) { setDirectory (f); }
-    };
-    
-    const int t = juce::FileBrowserComponent::openMode | juce::FileBrowserComponent::canSelectDirectories;
-    
-    fileChooser_->launchAsync (t, callback);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void DirectoryEditor::mouseDown (const juce::MouseEvent&)
 {
-    if (isEnabled()) { chooseDirectory(); }
+    if (isEnabled()) { }
 }
     
 // -----------------------------------------------------------------------------------------------------------
