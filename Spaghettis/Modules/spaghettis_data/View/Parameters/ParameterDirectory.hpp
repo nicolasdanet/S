@@ -26,11 +26,14 @@ public:
         bool isEditable) :
             PropertyLookAndFeel (lnf),
             juce::PropertyComponent (s),
-            editor_ (p.getValueAsValue (false), lnf.getFont())
+            editor_ (p.getValueAsValue (false), lnf.getFont()),
+            remove_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (editor_);
+        addAndMakeVisible (remove_);
         setEnabled (isEditable);
         editor_.setEnabled (isEditable);
+        remove_.setEnabled (isEditable);
     }
 
     ~ParameterDirectory() = default;
@@ -42,7 +45,10 @@ public:
 public:
     void resized() override
     {
-        editor_.setBounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
+        juce::Rectangle<int> bounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
+        
+        remove_.setBounds (bounds.removeFromRight (bounds.getHeight()));
+        editor_.setBounds (bounds);
     }
 
     void refresh() override
@@ -51,6 +57,7 @@ public:
 
 private:
     DirectoryEditor editor_;
+    DirectoryRemove remove_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterDirectory)
