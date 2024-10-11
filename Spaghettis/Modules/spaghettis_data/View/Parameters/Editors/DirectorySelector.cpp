@@ -12,6 +12,18 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+DirectorySelector::DirectorySelector (const juce::Value& v) :
+    value_ (v),
+    image_ (Icons::getInstance()->getIconOff (Icons::directory))
+{
+    image_->setInterceptsMouseClicks (false, false);
+    addAndMakeVisible (image_.get());
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void DirectorySelector::paint (juce::Graphics& g)
 {
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));

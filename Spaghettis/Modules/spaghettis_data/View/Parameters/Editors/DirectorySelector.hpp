@@ -19,13 +19,7 @@ class DirectorySelector : public juce::Component {
 // MARK: -
 
 public:
-    explicit DirectorySelector (const juce::Value& v) :
-        value_ (v),
-        image_ (Icons::getInstance()->getIconOff (Icons::directory))
-    {
-        image_->setInterceptsMouseClicks (false, false);
-        addAndMakeVisible (image_.get());
-    }
+    explicit DirectorySelector (const juce::Value&);
 
     ~DirectorySelector() = default;
 

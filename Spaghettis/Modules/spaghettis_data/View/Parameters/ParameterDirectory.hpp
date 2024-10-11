@@ -26,7 +26,7 @@ public:
         bool isEditable) :
             PropertyLookAndFeel (lnf),
             juce::PropertyComponent (s),
-            editor_ (p.getValueAsValue (false), lnf.getFont()),
+            editor_ (p.getValueAsValue (false)),
             selector_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (editor_);

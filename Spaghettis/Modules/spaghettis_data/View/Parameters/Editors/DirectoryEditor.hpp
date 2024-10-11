@@ -20,7 +20,7 @@ class DirectoryEditor : public  juce::Component,
 // MARK: -
 
 public:
-    explicit DirectoryEditor (const juce::Value&, const juce::Font&);
+    explicit DirectoryEditor (const juce::Value&);
 
     ~DirectoryEditor() = default;
 
@@ -29,10 +29,7 @@ public:
 // MARK: -
 
 public:
-    void resized() override
-    {
-        label_.setBounds (getLocalBounds());
-    }
+    void resized() override;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -42,15 +39,10 @@ private:
     void updateContent();
     
 private:
-    void valueChanged (juce::Value&) override
-    {
-        if (!label_.isBeingEdited()) { updateContent(); }
-    }
+    void valueChanged (juce::Value&) override;
 
 private:
     juce::Value value_;
-
-private:
     juce::Label label_;
     
 private:

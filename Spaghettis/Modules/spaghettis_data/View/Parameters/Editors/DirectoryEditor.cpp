@@ -12,12 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-DirectoryEditor::DirectoryEditor (const juce::Value& v, const juce::Font& font) : value_ (v)
+DirectoryEditor::DirectoryEditor (const juce::Value& v) : value_ (v)
 {
     addAndMakeVisible (label_);
     label_.setEditable  (isEnabled());
     updateContent();
     value_.addListener (this);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void DirectoryEditor::resized()
+{
+    label_.setBounds (getLocalBounds());
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -29,6 +38,15 @@ void DirectoryEditor::updateContent()
     label_.setText (value_.toString(), juce::NotificationType::dontSendNotification);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void DirectoryEditor::valueChanged (juce::Value&)
+{
+    if (!label_.isBeingEdited()) { updateContent(); }
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
