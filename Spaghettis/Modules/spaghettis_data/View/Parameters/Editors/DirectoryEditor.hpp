@@ -20,10 +20,7 @@ class DirectoryEditor : public  juce::Component,
 // MARK: -
 
 public:
-    explicit DirectoryEditor (const juce::Value& v, const juce::Font& font) : value_ (v), font_ (font)
-    {
-        value_.addListener (this);
-    }
+    explicit DirectoryEditor (const juce::Value&, const juce::Font&);
 
     ~DirectoryEditor() = default;
 
@@ -32,19 +29,29 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
+    void resized() override
+    {
+        label_.setBounds (getLocalBounds());
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-    void mouseDown (const juce::MouseEvent&) override;
-
+private:
+    void updateContent();
+    
 private:
     void valueChanged (juce::Value&) override
     {
-        repaint();
+        if (!label_.isBeingEdited()) { updateContent(); }
     }
 
 private:
     juce::Value value_;
-    juce::Font font_;
+
+private:
+    juce::Label label_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryEditor)

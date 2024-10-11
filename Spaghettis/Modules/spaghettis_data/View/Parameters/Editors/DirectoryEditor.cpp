@@ -12,27 +12,23 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DirectoryEditor::paint (juce::Graphics& g)
+DirectoryEditor::DirectoryEditor (const juce::Value& v, const juce::Font& font) : value_ (v)
 {
-    const juce::File f (value_.toString());
-    const juce::Rectangle<int> r (getLocalBounds().reduced (4, 2));
-    const juce::String text (f.getFullPathName());
-    
-    g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
-    g.setFont (font_);
-    g.setColour (Colours::fetchColour (Colours::parametersParameterText));
-    g.drawText (text, r, juce::Justification::centredLeft, true);
+    addAndMakeVisible (label_);
+    label_.setEditable  (isEnabled());
+    updateContent();
+    value_.addListener (this);
 }
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DirectoryEditor::mouseDown (const juce::MouseEvent&)
+void DirectoryEditor::updateContent()
 {
-    if (isEnabled()) { }
+    label_.setText (value_.toString(), juce::NotificationType::dontSendNotification);
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
