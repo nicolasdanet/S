@@ -20,7 +20,7 @@ void DirectoryEditor::paint (juce::Graphics& g)
     
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
     g.setFont (font_);
-    g.setColour (Colours::fetchColour (Colours::parametersDirectoryText));
+    g.setColour (Colours::fetchColour (Colours::parametersParameterText));
     g.drawText (text, r, juce::Justification::centredLeft, true);
 }
 
