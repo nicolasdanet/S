@@ -21,9 +21,10 @@ class DirectorySelector : public juce::Component {
 public:
     explicit DirectorySelector (const juce::Value& v) :
         value_ (v),
-        iconOff_ (Icons::getInstance()->getIconOff (Icons::directory)),
-        iconOn_ (Icons::getInstance()->getIconOn (Icons::directory))
+        image_ (Icons::getInstance()->getIconOff (Icons::directory))
     {
+        image_->setInterceptsMouseClicks (false, false);
+        addAndMakeVisible (image_.get());
     }
 
     ~DirectorySelector() = default;
@@ -34,6 +35,7 @@ public:
 
 public:
     void paint (juce::Graphics&) override;
+    void resized() override;
 
     void mouseDown (const juce::MouseEvent&) override;
 
@@ -43,8 +45,7 @@ private:
     
 private:
     juce::Value value_;
-    std::unique_ptr<juce::Drawable> iconOff_;
-    std::unique_ptr<juce::Drawable> iconOn_;
+    std::unique_ptr<juce::Drawable> image_;
     
 private:
     std::unique_ptr<juce::FileChooser> fileChooser_;

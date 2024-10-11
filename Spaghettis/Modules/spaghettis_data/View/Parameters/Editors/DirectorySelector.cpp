@@ -14,10 +14,12 @@ namespace spaghettis {
 
 void DirectorySelector::paint (juce::Graphics& g)
 {
-    // std::unique_ptr<juce::Drawable> iconOn_;
-    // std::unique_ptr<juce::Drawable> iconOff_;
-    
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
+}
+
+void DirectorySelector::resized()
+{
+    image_->setTransformToFit (getLocalBounds().reduced (3).toFloat(), juce::RectanglePlacement::centred);
 }
 
 // -----------------------------------------------------------------------------------------------------------
