@@ -36,7 +36,8 @@ public:
 // MARK: -
 
 private:
-    void updateContent();
+    void updateValue();
+    void updateLabel();
     
 private:
     void valueChanged (juce::Value&) override;

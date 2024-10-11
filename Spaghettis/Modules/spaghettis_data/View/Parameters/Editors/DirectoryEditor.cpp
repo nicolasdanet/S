@@ -15,8 +15,9 @@ namespace spaghettis {
 DirectoryEditor::DirectoryEditor (const juce::Value& v) : value_ (v)
 {
     addAndMakeVisible (label_);
-    label_.setEditable  (isEnabled());
-    updateContent();
+    label_.setEditable (isEnabled());
+    label_.onTextChange = [this] { updateValue(); };
+    updateLabel();
     value_.addListener (this);
 }
 
@@ -33,9 +34,14 @@ void DirectoryEditor::resized()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DirectoryEditor::updateContent()
+void DirectoryEditor::updateLabel()
 {
     label_.setText (value_.toString(), juce::NotificationType::dontSendNotification);
+}
+
+void DirectoryEditor::updateValue()
+{
+    DBG (label_.getText());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -44,7 +50,7 @@ void DirectoryEditor::updateContent()
 
 void DirectoryEditor::valueChanged (juce::Value&)
 {
-    if (!label_.isBeingEdited()) { updateContent(); }
+    if (!label_.isBeingEdited()) { updateLabel(); }
 }
     
 // -----------------------------------------------------------------------------------------------------------
