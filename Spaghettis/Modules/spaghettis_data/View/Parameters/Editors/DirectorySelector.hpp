@@ -19,9 +19,11 @@ class DirectorySelector : public juce::Component {
 // MARK: -
 
 public:
-    explicit DirectorySelector (const juce::Value& v) : value_ (v)
+    explicit DirectorySelector (const juce::Value& v) :
+        value_ (v),
+        iconOff_ (Icons::getInstance()->getIconOff (Icons::directory)),
+        iconOn_ (Icons::getInstance()->getIconOn (Icons::directory))
     {
-        // Icons::getInstance()->getIconOn (item)
     }
 
     ~DirectorySelector() = default;
@@ -41,7 +43,9 @@ private:
     
 private:
     juce::Value value_;
-
+    std::unique_ptr<juce::Drawable> iconOff_;
+    std::unique_ptr<juce::Drawable> iconOn_;
+    
 private:
     std::unique_ptr<juce::FileChooser> fileChooser_;
     

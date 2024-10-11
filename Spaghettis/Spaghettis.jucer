@@ -14,10 +14,9 @@
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
         <FILE id="W4KSZp" name="icon_construction.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_construction.svg"/>
-        <FILE id="uXITQO" name="icon_create_new_folder.svg" compile="0" resource="1"
-              file="Resources/Icons/SVG/icon_create_new_folder.svg"/>
         <FILE id="EtbCqA" name="icon_delete.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_delete.svg"/>
         <FILE id="QZZRiu" name="icon_error.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_error.svg"/>
+        <FILE id="gieCxX" name="icon_folder.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_folder.svg"/>
         <FILE id="OumGwc" name="icon_history.svg" compile="0" resource="1"
               file="Resources/Icons/SVG/icon_history.svg"/>
         <FILE id="MftGP7" name="icon_info.svg" compile="0" resource="1" file="Resources/Icons/SVG/icon_info.svg"/>

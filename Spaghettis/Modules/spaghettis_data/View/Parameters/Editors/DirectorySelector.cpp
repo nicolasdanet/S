@@ -14,7 +14,10 @@ namespace spaghettis {
 
 void DirectorySelector::paint (juce::Graphics& g)
 {
-    g.fillAll (juce::Colours::grey);
+    // std::unique_ptr<juce::Drawable> iconOn_;
+    // std::unique_ptr<juce::Drawable> iconOff_;
+    
+    g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
 }
 
 // -----------------------------------------------------------------------------------------------------------

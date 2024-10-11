@@ -53,7 +53,7 @@ public:
         addIconToggleOff    ("Autoload",    "icon_upload_svg");
         addIconToggleOn     ("Autoscroll",  "icon_vertical_align_bottom_svg");
         addIconAction       ("Clear",       "icon_delete_svg");
-        addIconAction       ("Directory",   "icon_create_new_folder_svg");
+        addIconAction       ("Directory",   "icon_folder_svg");
         addIconAction       ("Edit",        "icon_construction_svg");
         addIconToggleOn     ("Error",       "icon_error_svg");
         addIconAction       ("Find",        "icon_location_on_svg");
