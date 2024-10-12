@@ -55,7 +55,6 @@ enum CommandIds : juce::CommandID {
     newEditView,
     openHelp,
     clearConsole,
-    devices,
     dspSwitch
 };
 

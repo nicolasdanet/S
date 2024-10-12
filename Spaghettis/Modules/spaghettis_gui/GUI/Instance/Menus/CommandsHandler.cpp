@@ -51,7 +51,6 @@ juce::String getCommandText (juce::CommandID command)
     case Commands::newEditView          : return NEEDS_TRANS ("Open Edit");
     case Commands::openHelp             : return NEEDS_TRANS ("Help");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear Console");
-    case Commands::devices              : return NEEDS_TRANS ("Devices...");
     case Commands::dspSwitch            : return NEEDS_TRANS ("Run DSP");
     default : break;
     //
@@ -94,7 +93,6 @@ juce::String getCommandDescription (juce::CommandID command)
     case Commands::newEditView          : return NEEDS_TRANS ("Open new edit view");
     case Commands::openHelp             : return NEEDS_TRANS ("Open help patch");
     case Commands::clearConsole         : return NEEDS_TRANS ("Clear the console");
-    case Commands::devices              : return NEEDS_TRANS ("Audio/MIDI devices");
     case Commands::dspSwitch            : return NEEDS_TRANS ("DSP On/Off");
     default : break;
     //
@@ -263,9 +261,6 @@ void CommandsHandler::getInfo (juce::CommandID command, juce::ApplicationCommand
         r.setInfo (text, description, view, 0);
         r.addDefaultKeypress ('l', juce::ModifierKeys::commandModifier);
         break;
-    case Commands::devices :
-        r.setInfo (text, description, media, 0);
-        break;
     case Commands::dspSwitch :
         r.setInfo (text, description, media, 0);
         r.addDefaultKeypress ('r', juce::ModifierKeys::shiftModifier | juce::ModifierKeys::commandModifier);
@@ -313,7 +308,6 @@ void CommandsHandler::getCommands (juce::Array<juce::CommandID>& c, bool applica
             Commands::newEditView,
             Commands::openHelp,
             Commands::clearConsole,
-            Commands::devices,
             Commands::dspSwitch
         };
         
@@ -339,8 +333,6 @@ bool CommandsHandler::performCommand (const juce::ApplicationCommandTarget::Invo
     case Commands::rescanLogged     : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::full));
                                       return true;
     case Commands::clearConsole     : Spaghettis()->clearConsole();
-                                      return true;
-    case Commands::devices          : Spaghettis()->openDevicesWindow();
                                       return true;
     case Commands::dspSwitch        : Spaghettis()->handle (Inputs::switchDsp());
                                       return true;
