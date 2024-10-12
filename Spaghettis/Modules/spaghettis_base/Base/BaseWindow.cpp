@@ -25,7 +25,6 @@ BaseWindow::BaseWindow (juce::ApplicationCommandManager& commandManager,
         name_ (name),
         keyName_ (key),
         timerCount_ (0),
-        mimimumHeight_ (0),
         initialized_ (false)
 {
     setUsingNativeTitleBar (true);
@@ -115,7 +114,6 @@ void BaseWindow::timerCallback()
     
     if (c->tryGrabFocus()) {
         stopTimer();
-        applyMinimumHeight();
         commandManager_.commandStatusChanged();
         initialized_ = true;
     }
@@ -187,38 +185,6 @@ void BaseWindow::makeVisible (juce::Rectangle<int> window, bool locked)
     setVisible (true); addToDesktop(); toFront (true);
     
     if (locked) { showAsLocked(); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void BaseWindow::applyMinimumHeight()
-{
-    if (mimimumHeight_) {
-    //
-    int n = mimimumHeight_;
-    
-    juce::ComponentBoundsConstrainer *c = getConstrainer();
-    
-    jassert (c);
-    
-    #if SPAGHETTIS_MENUBAR
-    
-    n += WindowsProperties::getMenuBarHeight();
-    
-    #endif
-    
-    n += WindowsProperties::getTitleHeight (this);
-    
-    c->setMinimumHeight (n);
-    //
-    }
-}
-
-void BaseWindow::requireMinimumHeight (int h)
-{
-    jassert (h > 0); mimimumHeight_ = h;
 }
 
 // -----------------------------------------------------------------------------------------------------------

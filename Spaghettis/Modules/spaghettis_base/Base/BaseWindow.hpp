@@ -35,9 +35,6 @@ public:
     juce::String getKeyName() const;
 
 public:
-    void requireMinimumHeight (int);
-    
-public:
     void setDirtyFlag (bool) const;
     void close();
     
@@ -77,7 +74,6 @@ private:
 // MARK: -
 
 private:
-    void applyMinimumHeight();
     void showAsLocked();
     
 // -----------------------------------------------------------------------------------------------------------
@@ -106,7 +102,6 @@ private:
     juce::String name_;
     juce::String keyName_;
     int timerCount_;
-    int mimimumHeight_;
     bool initialized_;
     
 private:
