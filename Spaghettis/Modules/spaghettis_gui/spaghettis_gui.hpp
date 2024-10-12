@@ -68,13 +68,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "GUI/Tools/Devices/DevicesFactory.hpp"
-#include "GUI/Tools/Devices/DevicesComponent.hpp"
-#include "GUI/Tools/Devices/DevicesWindow.hpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 #include "GUI/Instance/Preferences/PreferencesFactory.hpp"
 #include "GUI/Instance/Preferences/PreferencesComponent.hpp"
 #include "GUI/Instance/Preferences/PreferencesWindow.hpp"

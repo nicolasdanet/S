@@ -12,7 +12,6 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 
 class ConsoleWindow;
-class DevicesWindow;
 class PreferencesWindow;
 class PatchesHolder;
 
