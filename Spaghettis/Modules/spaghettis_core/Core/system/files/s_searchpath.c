@@ -86,11 +86,11 @@ t_error searchpath_scan (void)
     t_error err = PD_ERROR_NONE;
     t_pathlist *l = searchpath_roots;
     
-    pathlist_free (searchpath_directories); searchpath_directories   = NULL;
-    pathlist_free (searchpath_external);    searchpath_external   = NULL;
-    pathlist_free (searchpath_patch);       searchpath_patch      = NULL;
-    pathlist_free (searchpath_help);        searchpath_help       = NULL;
-    pathlist_free (searchpath_duplicates);  searchpath_duplicates = NULL;
+    pathlist_free (searchpath_directories); searchpath_directories  = NULL;
+    pathlist_free (searchpath_external);    searchpath_external     = NULL;
+    pathlist_free (searchpath_patch);       searchpath_patch        = NULL;
+    pathlist_free (searchpath_help);        searchpath_help         = NULL;
+    pathlist_free (searchpath_duplicates);  searchpath_duplicates   = NULL;
     searchpath_countDirectories = 0;
     
     while (!err && l) {

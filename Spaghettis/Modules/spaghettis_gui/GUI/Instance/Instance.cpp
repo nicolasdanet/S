@@ -157,9 +157,8 @@ void SpaghettisInstance::closeDevicesWindow()
 void SpaghettisInstance::updateSearchPaths (Inputs::Logged type)
 {
     if (!preferences_->isReading()) {
-        DBG (preferences_->getSearchPaths().joinIntoString (" "));
-        // handle (Inputs::setSearchPaths (searchpaths));
-        // handle (Inputs::rescanSearchPaths (type));
+        handle (Inputs::setSearchPaths (preferences_->getSearchPaths()));
+        handle (Inputs::rescanSearchPaths (type));
     }
 }
 
