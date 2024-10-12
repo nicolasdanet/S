@@ -44,7 +44,6 @@ void SpaghettisInstance::shutdown()
     #endif
         
     consoleWindow_     = nullptr;
-    devicesWindow_     = nullptr;
     preferencesWindow_ = nullptr;
 }
 
@@ -138,16 +137,6 @@ void SpaghettisInstance::openPreferencesWindow()
 void SpaghettisInstance::closePreferencesWindow()
 {
     preferencesWindow_ = nullptr;
-}
-
-void SpaghettisInstance::openDevicesWindow()
-{
-    createOrOpenWindow (devicesWindow_, *commandManager_, properties_.get());
-}
-
-void SpaghettisInstance::closeDevicesWindow()
-{
-    devicesWindow_ = nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------

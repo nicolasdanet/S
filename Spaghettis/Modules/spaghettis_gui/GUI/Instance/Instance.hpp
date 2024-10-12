@@ -77,7 +77,6 @@ public:
         #endif
         
         jassert (consoleWindow_      == nullptr);
-        jassert (devicesWindow_      == nullptr);
         jassert (preferencesWindow_  == nullptr);
     
         clearSingletonInstance();
@@ -161,14 +160,6 @@ public:
     void openPreferencesWindow();
     void closePreferencesWindow();
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    void openDevicesWindow();
-    void closeDevicesWindow();
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -299,7 +290,6 @@ private:
     
 private:
     std::unique_ptr<ConsoleWindow> consoleWindow_;
-    std::unique_ptr<DevicesWindow> devicesWindow_;
     std::unique_ptr<PreferencesWindow> preferencesWindow_;
     std::unique_ptr<juce::PropertiesFile> properties_;
     std::unique_ptr<Preferences> preferences_;

@@ -41,7 +41,7 @@ public:
 public:
     void closeButtonPressed() override
     {
-        Spaghettis()->closeDevicesWindow();
+        // Spaghettis()->closeDevicesWindow();
     }
 
 private:
