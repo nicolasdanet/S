@@ -37,8 +37,6 @@ public:
         commandManager_ (std::make_unique<juce::ApplicationCommandManager>()),
         menu_ (std::make_unique<MenuModel> (commandManager_.get())),
         core_ (std::make_unique<Wrapper>()),
-        audioDevices_ (std::make_unique<AudioDevices>()),
-        midiDevices_ (std::make_unique<MidiDevices>()),
         patches_ (std::make_unique<PatchesHolder>()),
         autocomplete_ (std::make_unique<Autocomplete>()),
         dspIsRunning_ (false),
@@ -234,16 +232,6 @@ public:
         return *preferences_;
     }
     
-    AudioDevices& getAudioDevices()
-    {
-        return *audioDevices_;
-    }
-    
-    MidiDevices& getMidiDevices()
-    {
-        return *midiDevices_;
-    }
-    
     PatchesHolder& getPatches()
     {
         return *patches_;
@@ -277,8 +265,6 @@ private:
     const std::unique_ptr<juce::ApplicationCommandManager> commandManager_;
     const std::unique_ptr<MenuModel> menu_;
     const std::unique_ptr<Wrapper> core_;
-    const std::unique_ptr<AudioDevices> audioDevices_;
-    const std::unique_ptr<MidiDevices> midiDevices_;
     const std::unique_ptr<PatchesHolder> patches_;
     const std::unique_ptr<Autocomplete> autocomplete_;
 

@@ -111,22 +111,18 @@ static std::vector<MidiDevice> outputs_getMidiOut (t_deviceslist *l)
 
 void outputs_reportAvailableAudioDevices (t_deviceslist *l)
 {
-    wrapper_send (Outputs::reportAvailableAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
 }
 
 void outputs_reportCurrentAudioDevices (t_deviceslist *l)
 {
-    wrapper_send (Outputs::reportCurrentAudioDevices (outputs_getAudioIn (l), outputs_getAudioOut (l)));
 }
 
 void outputs_reportAvailableMidiDevices (t_deviceslist *l)
 {
-    wrapper_send (Outputs::reportAvailableMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
 void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 {
-    wrapper_send (Outputs::reportCurrentMidiDevices (outputs_getMidiIn (l), outputs_getMidiOut (l)));
 }
 
 // -----------------------------------------------------------------------------------------------------------
