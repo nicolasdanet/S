@@ -29,7 +29,7 @@ void DirectoryEditor::resized()
 {
     label_.setBounds (getLocalBounds());
 }
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -41,7 +41,13 @@ void DirectoryEditor::updateLabel()
 
 void DirectoryEditor::updateValue()
 {
-    DBG (label_.getText());
+    juce::String text (label_.getText());
+    
+    if (text.isEmpty())                         { value_.setValue (text); }
+    else if (juce::File::isAbsolutePath (text)) { value_.setValue (juce::File (text).getFullPathName()); }
+    else {
+        updateLabel();
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
