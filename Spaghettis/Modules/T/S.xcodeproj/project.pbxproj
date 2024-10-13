@@ -433,7 +433,6 @@
 		1726300124879A3300803F0F /* s_scheduler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_scheduler.h; sourceTree = "<group>"; };
 		1726300224879A3A00803F0F /* s_monitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_monitor.h; sourceTree = "<group>"; };
 		1726300424879D7B00803F0F /* s_audio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_audio.h; sourceTree = "<group>"; };
-		172630092487DBFB00803F0F /* s_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_settings.h; sourceTree = "<group>"; };
 		1726300A2487DC0600803F0F /* s_memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_memory.h; sourceTree = "<group>"; };
 		1726300B2487E08C00803F0F /* d_vinlet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d_vinlet.h; sourceTree = "<group>"; };
 		1726300C2487E08C00803F0F /* d_voutlet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d_voutlet.h; sourceTree = "<group>"; };
@@ -1100,7 +1099,6 @@
 		172630082487DADB00803F0F /* settings */ = {
 			isa = PBXGroup;
 			children = (
-				172630092487DBFB00803F0F /* s_settings.h */,
 				37E224BE1E4B542B00314AA4 /* s_properties.c */,
 				378971F31C4F716700263434 /* s_settings.c */,
 			);

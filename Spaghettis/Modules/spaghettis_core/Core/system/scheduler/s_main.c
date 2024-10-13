@@ -333,7 +333,6 @@ int main_start (void)
     //
     midi_initialize();
     setup_initialize();     /* Instance initialized. */
-    settings_load();
         
     if (!(err |= main_create())) { err |= scheduler_main(); }
     
