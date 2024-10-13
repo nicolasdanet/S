@@ -300,7 +300,6 @@
 		378972441C4F716800263434 /* m_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971E61C4F716700263434 /* m_utils.c */; };
 		3789724C1C4F716800263434 /* s_audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F11C4F716700263434 /* s_audio.c */; };
 		3789724D1C4F716800263434 /* s_entry.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F21C4F716700263434 /* s_entry.c */; };
-		3789724E1C4F716800263434 /* s_settings.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F31C4F716700263434 /* s_settings.c */; };
 		378972501C4F716800263434 /* s_loader.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F51C4F716700263434 /* s_loader.c */; };
 		378972511C4F716800263434 /* s_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971F61C4F716700263434 /* s_main.c */; };
 		378972561C4F716800263434 /* s_midi.c in Sources */ = {isa = PBXBuildFile; fileRef = 378971FB1C4F716700263434 /* s_midi.c */; };
@@ -386,7 +385,6 @@
 		37DB52101D97D03100FEEBE0 /* x_clip.c in Sources */ = {isa = PBXBuildFile; fileRef = 37DB520F1D97D03100FEEBE0 /* x_clip.c */; };
 		37DB52961D97FA1700FEEBE0 /* x_atan2.c in Sources */ = {isa = PBXBuildFile; fileRef = 37DB52951D97FA1700FEEBE0 /* x_atan2.c */; };
 		37E0BC371C53E0B700114412 /* m_pathlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 37E0BC361C53E0B700114412 /* m_pathlist.c */; };
-		37E224BF1E4B542B00314AA4 /* s_properties.c in Sources */ = {isa = PBXBuildFile; fileRef = 37E224BE1E4B542B00314AA4 /* s_properties.c */; };
 		37E3E9661C5E1EDE00D9717B /* s_priority.c in Sources */ = {isa = PBXBuildFile; fileRef = 37E3E9651C5E1EDE00D9717B /* s_priority.c */; };
 		37E7F89F1DF9569800ED7493 /* x_tabread.c in Sources */ = {isa = PBXBuildFile; fileRef = 37E7F89E1DF9569800ED7493 /* x_tabread.c */; };
 		37ECBA031E488A3000F1CFD1 /* d_lrshift.c in Sources */ = {isa = PBXBuildFile; fileRef = 37ECBA021E488A3000F1CFD1 /* d_lrshift.c */; };
@@ -800,7 +798,6 @@
 		378971ED1C4F716700263434 /* s_audio_linux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_audio_linux.c; sourceTree = "<group>"; };
 		378971F11C4F716700263434 /* s_audio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_audio.c; sourceTree = "<group>"; };
 		378971F21C4F716700263434 /* s_entry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_entry.c; sourceTree = "<group>"; };
-		378971F31C4F716700263434 /* s_settings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_settings.c; sourceTree = "<group>"; };
 		378971F51C4F716700263434 /* s_loader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_loader.c; sourceTree = "<group>"; };
 		378971F61C4F716700263434 /* s_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_main.c; sourceTree = "<group>"; };
 		378971F71C4F716700263434 /* s_midi_linux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_midi_linux.c; sourceTree = "<group>"; };
@@ -900,7 +897,6 @@
 		37DB520F1D97D03100FEEBE0 /* x_clip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_clip.c; sourceTree = "<group>"; };
 		37DB52951D97FA1700FEEBE0 /* x_atan2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_atan2.c; sourceTree = "<group>"; };
 		37E0BC361C53E0B700114412 /* m_pathlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_pathlist.c; sourceTree = "<group>"; };
-		37E224BE1E4B542B00314AA4 /* s_properties.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_properties.c; sourceTree = "<group>"; };
 		37E3E9651C5E1EDE00D9717B /* s_priority.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_priority.c; sourceTree = "<group>"; };
 		37E7F89E1DF9569800ED7493 /* x_tabread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_tabread.c; sourceTree = "<group>"; };
 		37EC36CB1DE32CCC0081F054 /* d_global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = d_global.h; sourceTree = "<group>"; };
@@ -1094,15 +1090,6 @@
 				173C69DB2BFB127D00F22518 /* s_fifo32.c */,
 			);
 			path = memory;
-			sourceTree = "<group>";
-		};
-		172630082487DADB00803F0F /* settings */ = {
-			isa = PBXGroup;
-			children = (
-				37E224BE1E4B542B00314AA4 /* s_properties.c */,
-				378971F31C4F716700263434 /* s_settings.c */,
-			);
-			path = settings;
 			sourceTree = "<group>";
 		};
 		172BA9BA2486AA70002058E8 /* MIDI */ = {
@@ -1425,7 +1412,6 @@
 			children = (
 				172630072487DA9300803F0F /* memory */,
 				17263000248797FE00803F0F /* scheduler */,
-				172630082487DADB00803F0F /* settings */,
 				17262FFC24878B0200803F0F /* files */,
 				172630052487D20300803F0F /* log */,
 				172BA9BB2486ACB9002058E8 /* policy */,
@@ -2052,7 +2038,6 @@
 				378972441C4F716800263434 /* m_utils.c in Sources */,
 				3789724C1C4F716800263434 /* s_audio.c in Sources */,
 				3789724D1C4F716800263434 /* s_entry.c in Sources */,
-				3789724E1C4F716800263434 /* s_settings.c in Sources */,
 				378972501C4F716800263434 /* s_loader.c in Sources */,
 				378972511C4F716800263434 /* s_main.c in Sources */,
 				378972561C4F716800263434 /* s_midi.c in Sources */,
@@ -2360,7 +2345,6 @@
 				37ECBA031E488A3000F1CFD1 /* d_lrshift.c in Sources */,
 				371526B61E49D03E00712D43 /* x_expr.c in Sources */,
 				1786BAF320C4364E009CE75A /* d_soundinfo.c in Sources */,
-				37E224BF1E4B542B00314AA4 /* s_properties.c in Sources */,
 				37B911AB1E4C78FE001D9136 /* s_devices.c in Sources */,
 				376209A61E4F0FC300D97CF4 /* s_deviceslist.c in Sources */,
 				17A800BC228410B900AD0E4E /* x_oscstream.c in Sources */,

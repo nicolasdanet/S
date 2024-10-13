@@ -144,9 +144,6 @@ namespace spaghettis::core {
 #include "system/scheduler/s_main.c"
 #include "system/scheduler/s_entry.c"
 
-#include "system/settings/s_properties.c"
-#include "system/settings/s_settings.c"
-
 #include "system/files/s_file.c"
 #include "system/files/s_searchpath.c"
 
