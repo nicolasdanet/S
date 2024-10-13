@@ -75,7 +75,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Wrap/Devices/Devices.hpp"
 #include "Wrap/Logger/LoggerElement.hpp"
 #include "Wrap/Logger/Logger.hpp"
 #include "Wrap/Logger/Post.hpp"

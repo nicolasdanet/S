@@ -28,8 +28,6 @@ void inputs_setSearchPaths     (const juce::StringArray&);
 void inputs_setSnap            (bool);
 void inputs_setSnapSize        (int);
 void inputs_rescanDevices      (void);
-void inputs_setAudioDevices    (const std::vector<AudioDevice>&, const std::vector<AudioDevice>&);
-void inputs_setMidiDevices     (const std::vector<MidiDevice>&, const std::vector<MidiDevice>&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

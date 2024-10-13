@@ -59,26 +59,6 @@ Perform Inputs::rescanDevices (void)
     return []() { core::inputs_rescanDevices(); };
 }
 
-Perform Inputs::setAudioDevices (std::vector<AudioDevice>&& i, std::vector<AudioDevice>&& o)
-{
-    auto f = [devicesIn = std::move (i), devicesOut = std::move (o)]()
-    {
-        core::inputs_setAudioDevices (devicesIn, devicesOut);
-    };
-    
-    return f;
-}
-
-Perform Inputs::setMidiDevices (std::vector<MidiDevice>&& i, std::vector<MidiDevice>&& o)
-{
-    auto f = [devicesIn = std::move (i), devicesOut = std::move (o)]()
-    {
-        core::inputs_setMidiDevices (devicesIn, devicesOut);
-    };
-    
-    return f;
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

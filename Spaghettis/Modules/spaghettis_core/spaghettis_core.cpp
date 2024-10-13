@@ -46,7 +46,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Wrap/Devices/Devices.cpp"
 #include "Wrap/Commands/Inputs.cpp"
 #include "Wrap/Snapshots/Snapshot.cpp"
 #include "Wrap/Snapshots/SnapshotsManager.cpp"

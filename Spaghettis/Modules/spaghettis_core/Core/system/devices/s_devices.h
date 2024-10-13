@@ -103,17 +103,4 @@ t_error    devices_appendAudioOutWithString    (t_devices *p, char *device, int 
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-t_error    devices_appendAudioIn               (t_devices *p, const AudioDevice& d);
-t_error    devices_appendAudioOut              (t_devices *p, const AudioDevice& d);
-t_error    devices_appendMidiIn                (t_devices *p, const MidiDevice& d);
-t_error    devices_appendMidiOut               (t_devices *p, const MidiDevice& d);
-
-#endif
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 #endif // S_DEVICES_H_
