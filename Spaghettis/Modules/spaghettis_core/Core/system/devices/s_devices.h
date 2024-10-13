@@ -42,20 +42,6 @@ typedef struct _devices {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline int devices_getSampleRate (t_devices *p)
-{
-    return AUDIO_DEFAULT_SAMPLERATE;
-}
-
-static inline int devices_getVectorSize (t_devices *p)
-{
-    return INTERNAL_BLOCKSIZE;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void       devices_initAsAudio                 (t_devices *p);
 void       devices_initAsMidi                  (t_devices *p);
 void       devices_setDefaultsIfNone           (t_devices *p);

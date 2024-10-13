@@ -260,7 +260,7 @@ t_error audio_openNative (t_devices *p)
 {
     int numberOfChannelsIn  = devices_getInSize (p)  ? devices_getInChannelsAtIndex (p, 0)  : 0;
     int numberOfChannelsOut = devices_getOutSize (p) ? devices_getOutChannelsAtIndex (p, 0) : 0;
-    int sampleRate          = devices_getSampleRate (p);
+    int sampleRate          = AUDIO_DEFAULT_SAMPLERATE;
         
     static_assert (sizeof (t_sample) == sizeof (jack_default_audio_sample_t));
     

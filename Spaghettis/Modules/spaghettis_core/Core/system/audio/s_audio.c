@@ -52,40 +52,6 @@ int audio_isOpened (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void audio_report (t_error err, t_devices *p)
-{
-    t_symbol *i     = devices_getInSize (p)  ? devices_getInAtIndexAsSymbol (p, 0)  : &s_;
-    t_symbol *o     = devices_getOutSize (p) ? devices_getOutAtIndexAsSymbol (p, 0) : &s_;
-    int m           = devices_getInSize (p)  ? devices_getInChannelsAtIndex (p, 0)  : 0;
-    int n           = devices_getOutSize (p) ? devices_getOutChannelsAtIndex (p, 0) : 0;
-    int sampleRate  = devices_getSampleRate (p);
-    
-    #if PD_APPLE
-    
-    int vectorSize  = devices_getVectorSize (p);
-    
-    #endif
-    
-    void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
-    
-    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), symbol_getName (i), m);
-    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), symbol_getName (o), n);
-    
-    #if PD_APPLE
-    
-    (f) (NULL, PD_TRANSLATE ("dsp: %d Hz / %d frames"), sampleRate, vectorSize);
-    
-    #else 
-    
-    (f) (NULL, PD_TRANSLATE ("dsp: %d Hz"), sampleRate);
-    
-    #endif
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 /* Notice that for now only the first device is opened. */
 
 t_error audio_open (void)
@@ -103,7 +69,7 @@ t_error audio_open (void)
         if (devices_getInSize (&audio) || devices_getOutSize (&audio)) {
             int m = audio_getTotalOfChannelsIn();
             int n = audio_getTotalOfChannelsOut();
-            audio_vectorInitialize (devices_getSampleRate (&audio), m, n);
+            audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
             err = audio_openNative (&audio);
         }
 
@@ -113,7 +79,7 @@ t_error audio_open (void)
     //
     }
 
-    metadata_report (err); audio_report (err, &audio);
+    metadata_report (err);
     
     return err;
 }

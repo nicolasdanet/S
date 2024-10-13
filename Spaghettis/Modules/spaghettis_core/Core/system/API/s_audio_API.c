@@ -68,7 +68,7 @@ void audio_setDevices (t_devices *p, int setParameters)
     m = deviceslist_getTotalOfChannelsIn (&audio_devices);
     n = deviceslist_getTotalOfChannelsOut (&audio_devices);
     
-    audio_vectorInitialize (devices_getSampleRate (p), m, n);
+    audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
     
     // outputs_reportCurrentAudioDevices (&audio_devices);
 }
