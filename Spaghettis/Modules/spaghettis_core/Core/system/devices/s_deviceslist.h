@@ -20,8 +20,6 @@
 // MARK: -
 
 typedef struct _deviceslist {
-    int         d_sampleRate;
-    int         d_vectorSize;
     int         d_inSize;
     int         d_outSize;
     int         d_inChannels  [DEVICES_MAXIMUM_IO];
@@ -48,10 +46,6 @@ int        deviceslist_areEquals               (t_deviceslist *p, t_deviceslist 
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       deviceslist_setSampleRate           (t_deviceslist *p, int n);
-int        deviceslist_getSampleRate           (t_deviceslist *p);
-void       deviceslist_setVectorSize           (t_deviceslist *p, int n);
-int        deviceslist_getVectorSize           (t_deviceslist *p);
 int        deviceslist_getInSize               (t_deviceslist *p);
 int        deviceslist_getOutSize              (t_deviceslist *p);
 

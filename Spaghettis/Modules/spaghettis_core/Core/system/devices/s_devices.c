@@ -16,8 +16,6 @@ static void devices_init (t_devices *p)
 {
     int i;
     
-    p->d_sampleRate     = AUDIO_DEFAULT_SAMPLERATE;
-    p->d_vectorSize     = INTERNAL_BLOCKSIZE;
     p->d_inSize         = 0;
     p->d_outSize        = 0;
 
@@ -88,32 +86,6 @@ void devices_setDefaultsIfNone (t_devices *p)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-void devices_setSampleRate (t_devices *p, int n)
-{
-    PD_ASSERT (!p->d_isMidi);
-    
-    if (n < 1) { n = AUDIO_DEFAULT_SAMPLERATE; }
-    
-    p->d_sampleRate = n;
-}
-
-int devices_getSampleRate (t_devices *p)
-{
-    return p->d_sampleRate;
-}
-
-void devices_setVectorSize (t_devices *p, int n)
-{
-    PD_ASSERT (!p->d_isMidi);
-    
-    if (n > 0 && PD_IS_POWER_2 (n)) { p->d_vectorSize = n; }
-}
-
-int devices_getVectorSize (t_devices *p)
-{
-    return p->d_vectorSize;
-}
 
 int devices_getInSize (t_devices *p)
 {
