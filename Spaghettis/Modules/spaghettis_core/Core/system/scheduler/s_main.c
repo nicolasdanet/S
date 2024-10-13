@@ -15,7 +15,6 @@
 t_symbol    *main_directoryExecutable;          /* Static. */
 t_symbol    *main_directoryHelp;                /* Static. */
 t_symbol    *main_directorySupport;             /* Static. */
-t_symbol    *main_filePreferences;              /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -186,25 +185,6 @@ static t_error main_setPathSupport (void)
     return err;
 }
 
-static t_error main_setFileSettings (const char *settings)
-{
-    char filepath[PD_STRING] = { 0 };
-    
-    const char *name      = settings ? settings : "settings.txt";
-    const char *directory = settings
-                                ? symbol_getName (main_directoryExecutable)
-                                : symbol_getName (main_directorySupport);
-
-    if (!path_withDirectoryAndName (filepath, PD_STRING, directory, name)) {
-        if (!settings || path_isFileExistAsRegularFile (filepath)) {
-            main_filePreferences = gensym (filepath);
-            return PD_ERROR_NONE;
-        }
-    }
-
-    return PD_ERROR;
-}
-
 #if defined ( PD_BUILDING_APPLICATION )
 
 static t_error main_setPathHelp()
@@ -266,17 +246,12 @@ static t_error main_parseArguments (int argc, char **argv)
     }
     //
     }
-
-    char *settings = NULL;
     
     while (!err && (argc > 0)) {
         if (string_endWith (*argv, PD_PATCH))       { startup_appendPendedFiles (*argv); }
         else if (string_endWith (*argv, PD_LEGACY)) { startup_appendPendedFiles (*argv); }
-        else if (string_endWith (*argv, ".txt"))    { settings = *argv; }
         argc--; argv++;
     }
-
-    err |= main_setFileSettings (settings);
     
     if (err) {
     //
@@ -337,8 +312,6 @@ int main_start (void)
         
     err |= main_parseArguments (main_argc - 1, main_argv + 1);
 
-    PD_ASSERT (main_filePreferences != NULL);
-    
     if (!err) {
     //
     if (main_version) { err |= main_entryVersion (0); }
