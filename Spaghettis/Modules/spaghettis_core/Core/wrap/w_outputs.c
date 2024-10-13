@@ -55,26 +55,6 @@ void outputs_patchOpened (t_symbol *name, t_symbol *directory)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void outputs_reportAvailableAudioDevices (t_deviceslist *l)
-{
-}
-
-void outputs_reportCurrentAudioDevices (t_deviceslist *l)
-{
-}
-
-void outputs_reportAvailableMidiDevices (t_deviceslist *l)
-{
-}
-
-void outputs_reportCurrentMidiDevices (t_deviceslist *l)
-{
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void outputs_classNew (t_symbol *s)
 {
     wrapper_send (Outputs::classNew (makeString (symbol_getName (s))));
@@ -183,22 +163,6 @@ void outputs_patchLoadbangEnd (t_glist *g)
 }
 
 void outputs_patchOpened (t_symbol *name, t_symbol *directory)
-{
-}
-
-void outputs_reportAvailableAudioDevices (t_deviceslist *l)
-{
-}
-
-void outputs_reportCurrentAudioDevices (t_deviceslist *l)
-{
-}
-
-void outputs_reportAvailableMidiDevices (t_deviceslist *l)
-{
-}
-
-void outputs_reportCurrentMidiDevices (t_deviceslist *l)
 {
 }
 

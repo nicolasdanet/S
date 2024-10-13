@@ -20,10 +20,6 @@ void outputs_reportDsp                     (int);
 void outputs_patchLoadbangBegin            (t_glist *g);
 void outputs_patchLoadbangEnd              (t_glist *g);
 void outputs_patchOpened                   (t_symbol *, t_symbol *);
-void outputs_reportAvailableAudioDevices   (t_deviceslist *);
-void outputs_reportCurrentAudioDevices     (t_deviceslist *);
-void outputs_reportAvailableMidiDevices    (t_deviceslist *);
-void outputs_reportCurrentMidiDevices      (t_deviceslist *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

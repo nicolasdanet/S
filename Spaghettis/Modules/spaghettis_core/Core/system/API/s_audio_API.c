@@ -41,7 +41,7 @@ static t_error audio_getDevicesList (t_deviceslist *l, int reload)
     //
     deviceslist_init (&cache);
     err = audio_getListsNative (&cache);
-    if (!err) { cacheLoaded = 1; outputs_reportAvailableAudioDevices (&cache); }
+    if (!err) { cacheLoaded = 1; /* outputs_reportAvailableAudioDevices (&cache); */ }
     //
     }
     
@@ -70,7 +70,7 @@ void audio_setDevices (t_devices *p, int setParameters)
     
     audio_vectorInitialize (devices_getSampleRate (p), m, n);
     
-    outputs_reportCurrentAudioDevices (&audio_devices);
+    // outputs_reportCurrentAudioDevices (&audio_devices);
 }
 
 // -----------------------------------------------------------------------------------------------------------
