@@ -97,17 +97,6 @@ public:
 // MARK: -
 
 public:
-    juce::Font getComboBoxFont (juce::ComboBox&) override;
-
-    void drawComboBox (juce::Graphics&, int, int, bool, int, int, int, int, juce::ComboBox&) override;
-    void positionComboBoxText (juce::ComboBox&, juce::Label&) override;
-    void drawComboBoxTextWhenNothingSelected (juce::Graphics&, juce::ComboBox&, juce::Label&) override;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     int getDefaultMenuBarHeight() override;
     juce::Font getMenuBarFont (juce::MenuBarComponent&, int, const juce::String&) override;
     void drawMenuBarBackground (juce::Graphics&, int, int, bool, juce::MenuBarComponent&) override;

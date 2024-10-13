@@ -38,11 +38,6 @@ enum ColourIds : int {
     toolbarIconOn,
     toolbarIconOff,
     toolbarZoom,
-    devicesParameterBackground,
-    devicesParameterText,
-    devicesComboBoxBackground,
-    devicesComboBoxBackgroundActive,
-    devicesComboBoxArrow,
     tooltipBackground,
     tooltipText,
     resizerHighlighted,
@@ -107,11 +102,6 @@ static juce::Colour fetchColour (ColourIds i)
         case toolbarIconOn :                                        return p->textMenu;
         case toolbarIconOff :                                       return p->thumb;
         case toolbarZoom :                                          return p->textSystem;
-        case devicesParameterBackground :                           return p->background;
-        case devicesParameterText :                                 return p->textSystem;
-        case devicesComboBoxBackground :                            return p->backgroundAlternate;
-        case devicesComboBoxBackgroundActive :                      return p->backgroundBox;
-        case devicesComboBoxArrow :                                 return p->textSystem;
         case tooltipBackground :                                    return p->backgroundMenu;
         case tooltipText :                                          return p->textMenu;
         case resizerHighlighted :                                   return p->backgroundPopup;
@@ -191,10 +181,6 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::Slider::backgroundColourId,                    p->backgroundWidget);
     lf->setColour (juce::Slider::trackColourId,                         p->background);
     lf->setColour (juce::Slider::thumbColourId,                         p->thumb);
-    
-    /* Devices combo box. */
-    
-    lf->setColour (juce::ComboBox::textColourId,                        p->textSystem);
     
     /* Maker entry. */
     

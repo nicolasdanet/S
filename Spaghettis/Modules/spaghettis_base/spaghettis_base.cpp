@@ -28,7 +28,6 @@
 #include "LookAndFeel/LookAndFeelAlertWindow.cpp"
 #include "LookAndFeel/LookAndFeelButton.cpp"
 #include "LookAndFeel/LookAndFeelCallOutBox.cpp"
-#include "LookAndFeel/LookAndFeelComboBox.cpp"
 #include "LookAndFeel/LookAndFeelMenubar.cpp"
 #include "LookAndFeel/LookAndFeelPopup.cpp"
 #include "LookAndFeel/LookAndFeelParameters.cpp"
