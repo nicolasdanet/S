@@ -66,7 +66,6 @@
 #include <alsa/asoundlib.h>
 
 #include "jack/jack.h"
-#include "jack/metadata.h"
 #include "jack/uuid.h"
 
 #endif
