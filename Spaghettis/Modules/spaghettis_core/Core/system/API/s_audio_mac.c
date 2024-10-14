@@ -196,10 +196,12 @@ void audio_releaseNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* For now audio in is required to synchronize properly the callback. */
+
 t_error audio_openNative (t_devices *p)
 {
-    t_error err = PD_ERROR;
-    
+    t_error err = PD_ERROR; /* ??? */
+    /*
     t_symbol *deviceIn  = devices_getInSize (p)  ? devices_getInAtIndexAsSymbol (p, 0)  : NULL;
     t_symbol *deviceOut = devices_getOutSize (p) ? devices_getOutAtIndexAsSymbol (p, 0) : NULL;
     int channelsIn      = devices_getInSize (p)  ? devices_getInChannelsAtIndex (p, 0)  : 0;
@@ -208,8 +210,6 @@ t_error audio_openNative (t_devices *p)
     int vectorSize      = INTERNAL_BLOCKSIZE;
     
     static_assert (sizeof (t_sample) == sizeof (Float32), "");
-    
-    /* For now audio in is required to synchronize properly the callback. */
     
     if (deviceIn && channelsIn) {
     //
@@ -220,7 +220,7 @@ t_error audio_openNative (t_devices *p)
     if (err) { audiograph_close (&core_graph); }
     //
     }
-    
+    */
     return err;
 }
 

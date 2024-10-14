@@ -55,12 +55,15 @@ t_error audio_open (void)
 {
     t_error err = PD_ERROR;
     
-    t_devices audio; devices_initAsAudio (&audio);
+    t_devices audio;
     
     audio_getDevices (&audio);
     
+    /* ??? */
+    
     if (audio_check (&audio) == PD_ERROR_NONE) {
     //
+    /*
     pthread_mutex_lock (&audio_mutex);
     
         if (devices_getInSize (&audio) || devices_getOutSize (&audio)) {
@@ -73,6 +76,7 @@ t_error audio_open (void)
         audio_state = err ? 0 : 1;
     
     pthread_mutex_unlock (&audio_mutex);
+    */
     //
     }
     

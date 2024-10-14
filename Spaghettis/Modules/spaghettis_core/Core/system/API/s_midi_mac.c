@@ -65,6 +65,9 @@ static t_error midi_openNativeDestination (t_symbol *name)
 
 void midi_openNative (t_devices *p)
 {
+    /* ??? */
+    
+    /*
     int numberOfDevicesIn  = devices_getInSize (p);
     int numberOfDevicesOut = devices_getOutSize (p);
     
@@ -91,6 +94,7 @@ void midi_openNative (t_devices *p)
     }
     //
     }
+    */
 }
 
 void midi_closeNative (void)

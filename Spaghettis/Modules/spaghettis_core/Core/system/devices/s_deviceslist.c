@@ -238,3 +238,74 @@ t_error deviceslist_appendAudioOut (t_deviceslist *p, t_symbol *device, int chan
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void deviceslist_setDevices (t_deviceslist *l, t_devices *p, int setParameters)
+{
+    int i;
+    
+    if (setParameters) { deviceslist_init (l); } else { deviceslist_reset (l); }
+    
+    /* ??? */
+    /*
+    if (p->d_isMidi) {
+    
+        for (i = 0; i < devices_getInSize (p); i++) {
+            deviceslist_appendMidiInAsNumber (l, devices_getInAtIndex (p, i));
+        }
+        
+        for (i = 0; i < devices_getOutSize (p); i++) {
+            deviceslist_appendMidiOutAsNumber (l, devices_getOutAtIndex (p, i));
+        }
+    
+    } else {
+        
+        for (i = 0; i < devices_getInSize (p); i++) {
+            deviceslist_appendAudioInAsNumber (l,
+                devices_getInAtIndex (p, i),
+                devices_getInChannelsAtIndex (p, i));
+        }
+
+        for (i = 0; i < devices_getOutSize (p); i++) {
+            deviceslist_appendAudioOutAsNumber (l,
+                devices_getOutAtIndex (p, i),
+                devices_getOutChannelsAtIndex (p, i));
+        }
+    }
+    */
+}
+
+void deviceslist_getDevices (t_deviceslist *l, t_devices *p)
+{
+    int i;
+    /* ??? */
+    /*
+    if (p->d_isMidi) {
+        
+        for (i = 0; i < deviceslist_getInSize (l); i++) {
+            devices_appendMidiInWithSymbol (p, deviceslist_getInAtIndex (l, i));
+        }
+        
+        for (i = 0; i < deviceslist_getOutSize (l); i++) {
+            devices_appendMidiOutWithSymbol (p, deviceslist_getOutAtIndex (l, i));
+        }
+    
+    } else {
+    
+        for (i = 0; i < deviceslist_getInSize (l); i++) {
+            devices_appendAudioInWithSymbol (p,
+                deviceslist_getInAtIndex (l, i),
+                deviceslist_getInChannelsAtIndex (l, i));
+        }
+        
+        for (i = 0; i < deviceslist_getOutSize (l); i++) {
+            devices_appendAudioOutWithSymbol (p,
+                deviceslist_getOutAtIndex (l, i),
+                deviceslist_getOutChannelsAtIndex (l, i));
+        }
+    }
+    */
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

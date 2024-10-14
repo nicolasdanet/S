@@ -45,7 +45,9 @@ static t_error midi_getDevicesList (t_deviceslist *l, int reload)
 
 void midi_open (void)
 {
-    t_devices midi; devices_initAsMidi (&midi);
+    t_devices midi;
+    
+    /* ??? */
      
     midi_getDevices (&midi);
     midi_openNative (&midi);

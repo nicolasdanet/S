@@ -83,6 +83,9 @@ t_error audio_check (t_devices *p)
 {
     t_deviceslist l; t_error err = audio_getDevicesList (&l, 0);
     
+    /* ??? */
+    
+    /*
     devices_check (p);
 
     if (!err) {
@@ -116,6 +119,7 @@ t_error audio_check (t_devices *p)
     }
     //
     }
+    */
     
     if (err) { error_mismatch (NULL, sym_audio, sym_channels); }
     

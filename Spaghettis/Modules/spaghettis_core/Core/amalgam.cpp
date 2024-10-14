@@ -164,7 +164,6 @@ namespace spaghettis::core {
 
 #include "system/devices/s_devices.c"
 #include "system/devices/s_deviceslist.c"
-#include "system/devices/s_devicesfetch.c"
 
 #include "system/API/s_midi_API.c"
 #include "system/API/s_audio_API.c"
