@@ -51,8 +51,6 @@ int audio_isOpened (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Notice that for now only the first device is opened. */
-
 t_error audio_open (void)
 {
     t_error err = PD_ERROR;
