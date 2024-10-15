@@ -34,11 +34,6 @@ void deviceslist_init (t_deviceslist *p)
     deviceslist_initProceed (p, 1);
 }
 
-void deviceslist_reset (t_deviceslist *p)
-{
-    deviceslist_initProceed (p, 0);
-}
-
 void deviceslist_copy (t_deviceslist *dest, t_deviceslist *src)
 {
     int i;
@@ -54,32 +49,6 @@ void deviceslist_copy (t_deviceslist *dest, t_deviceslist *src)
     dest->d_outNames[i]     = src->d_outNames[i];
     //
     }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int deviceslist_areEquals (t_deviceslist *p, t_deviceslist *q)
-{
-    if (p->d_inSize                 != q->d_inSize)         { return 0; }
-    else if (p->d_outSize           != q->d_outSize)        { return 0; }
-    else {
-    //
-    int i;
-    
-    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
-    //
-    if (p->d_inChannels[i]          != q->d_inChannels[i])  { return 0; }
-    else if (p->d_outChannels[i]    != q->d_outChannels[i]) { return 0; }
-    else if (p->d_inNames[i]        != q->d_inNames[i])     { return 0; }
-    else if (p->d_outNames[i]       != q->d_outNames[i])    { return 0; }
-    //
-    }
-    //
-    }
-    
-    return 1;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -132,22 +101,6 @@ int deviceslist_getOutChannelsAtIndex (t_deviceslist *p, int i)
     PD_ASSERT (i < DEVICES_MAXIMUM_IO);
     
     return p->d_outChannels[i];
-}
-
-t_symbol *deviceslist_getInAtIndex (t_deviceslist *p, int i)
-{
-    PD_ASSERT (i >= 0);
-    PD_ASSERT (i < DEVICES_MAXIMUM_IO);
-    
-    return p->d_inNames[i];
-}
-
-t_symbol *deviceslist_getOutAtIndex (t_deviceslist *p, int i)
-{
-    PD_ASSERT (i >= 0);
-    PD_ASSERT (i < DEVICES_MAXIMUM_IO);
-    
-    return p->d_outNames[i];
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -234,77 +187,6 @@ t_error deviceslist_appendAudioOut (t_deviceslist *p, t_symbol *device, int chan
     }
     
     return PD_ERROR;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void deviceslist_setDevices (t_deviceslist *l, t_devices *p, int setParameters)
-{
-    int i;
-    
-    if (setParameters) { deviceslist_init (l); } else { deviceslist_reset (l); }
-    
-    /* ??? */
-    /*
-    if (p->d_isMidi) {
-    
-        for (i = 0; i < devices_getInSize (p); i++) {
-            deviceslist_appendMidiInAsNumber (l, devices_getInAtIndex (p, i));
-        }
-        
-        for (i = 0; i < devices_getOutSize (p); i++) {
-            deviceslist_appendMidiOutAsNumber (l, devices_getOutAtIndex (p, i));
-        }
-    
-    } else {
-        
-        for (i = 0; i < devices_getInSize (p); i++) {
-            deviceslist_appendAudioInAsNumber (l,
-                devices_getInAtIndex (p, i),
-                devices_getInChannelsAtIndex (p, i));
-        }
-
-        for (i = 0; i < devices_getOutSize (p); i++) {
-            deviceslist_appendAudioOutAsNumber (l,
-                devices_getOutAtIndex (p, i),
-                devices_getOutChannelsAtIndex (p, i));
-        }
-    }
-    */
-}
-
-void deviceslist_getDevices (t_deviceslist *l, t_devices *p)
-{
-    int i;
-    /* ??? */
-    /*
-    if (p->d_isMidi) {
-        
-        for (i = 0; i < deviceslist_getInSize (l); i++) {
-            devices_appendMidiInWithSymbol (p, deviceslist_getInAtIndex (l, i));
-        }
-        
-        for (i = 0; i < deviceslist_getOutSize (l); i++) {
-            devices_appendMidiOutWithSymbol (p, deviceslist_getOutAtIndex (l, i));
-        }
-    
-    } else {
-    
-        for (i = 0; i < deviceslist_getInSize (l); i++) {
-            devices_appendAudioInWithSymbol (p,
-                deviceslist_getInAtIndex (l, i),
-                deviceslist_getInChannelsAtIndex (l, i));
-        }
-        
-        for (i = 0; i < deviceslist_getOutSize (l); i++) {
-            devices_appendAudioOutWithSymbol (p,
-                deviceslist_getOutAtIndex (l, i),
-                deviceslist_getOutChannelsAtIndex (l, i));
-        }
-    }
-    */
 }
 
 // -----------------------------------------------------------------------------------------------------------

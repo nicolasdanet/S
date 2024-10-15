@@ -52,7 +52,7 @@ void       midi_open                   (void);
 void       midi_close                  (void);
 
 void       midi_getDevices             (t_devices *p);
-void       midi_setDevices             (t_devices *p, int setAlsoParameters);
+void       midi_setDevices             (t_devices *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -66,22 +66,6 @@ void       audio_getDevices            (t_devices *p);
 void       audio_setDevices            (t_devices *p, int setAlsoParameters);
 
 t_error    audio_check                 (t_devices *p);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int        midi_deviceAsNumber         (int isOutput, t_symbol *name);
-int        audio_deviceAsNumber        (int isOutput, t_symbol *name);
-
-t_symbol   *midi_deviceAsSymbol        (int isOutput, int k);
-t_symbol   *audio_deviceAsSymbol       (int isOutput, int k);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-t_error    midi_deviceAsString         (int isOutput, int k, char *dest, size_t size);
-t_error    audio_deviceAsString        (int isOutput, int k, char *dest, size_t size);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

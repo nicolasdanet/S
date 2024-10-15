@@ -12,11 +12,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-/* Audio/MIDI devices by full names. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 typedef struct _deviceslist {
@@ -33,41 +28,7 @@ typedef struct _deviceslist {
 // MARK: -
 
 void       deviceslist_init                    (t_deviceslist *p);
-void       deviceslist_reset                   (t_deviceslist *p);
 void       deviceslist_copy                    (t_deviceslist *dest, t_deviceslist *src);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int        deviceslist_areEquals               (t_deviceslist *p, t_deviceslist *q);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int        deviceslist_getInSize               (t_deviceslist *p);
-int        deviceslist_getOutSize              (t_deviceslist *p);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int        deviceslist_getInChannelsAtIndex    (t_deviceslist *p, int i);
-int        deviceslist_getOutChannelsAtIndex   (t_deviceslist *p, int i);
-
-int        deviceslist_getTotalOfChannelsIn    (t_deviceslist *p);
-int        deviceslist_getTotalOfChannelsOut   (t_deviceslist *p);
-
-t_symbol   *deviceslist_getInAtIndex           (t_deviceslist *p, int i);
-t_symbol   *deviceslist_getOutAtIndex          (t_deviceslist *p, int i);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int        deviceslist_containsIn              (t_deviceslist *p, t_symbol *device);
-int        deviceslist_containsOut             (t_deviceslist *p, t_symbol *device);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -77,13 +38,6 @@ t_error    deviceslist_appendMidiIn            (t_deviceslist *p, t_symbol *devi
 t_error    deviceslist_appendMidiOut           (t_deviceslist *p, t_symbol *device);
 t_error    deviceslist_appendAudioIn           (t_deviceslist *p, t_symbol *device, int channels);
 t_error    deviceslist_appendAudioOut          (t_deviceslist *p, t_symbol *device, int channels);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void       deviceslist_setDevices              (t_deviceslist *l, t_devices *p, int setParameters);
-void       deviceslist_getDevices              (t_deviceslist *l, t_devices *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

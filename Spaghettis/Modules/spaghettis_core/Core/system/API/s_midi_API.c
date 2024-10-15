@@ -64,11 +64,12 @@ void midi_close (void)
 
 void midi_getDevices (t_devices *p)
 {
-    deviceslist_getDevices (&midi_devices, p);
+    // deviceslist_getDevices (&midi_devices, p);
 }
 
-void midi_setDevices (t_devices *p, int setParameters)
+void midi_setDevices (t_devices *p)
 {
+    /*
     t_deviceslist old; deviceslist_copy (&old, &midi_devices);
     
     deviceslist_setDevices (&midi_devices, p, setParameters);
@@ -78,7 +79,7 @@ void midi_setDevices (t_devices *p, int setParameters)
     pd_message (symbol_getThing (sym__midiports), sym__midiports, 0, NULL);
     //
     }
-    
+    */
     // outputs_reportCurrentMidiDevices (&midi_devices);
 }
 
@@ -91,49 +92,6 @@ void midi_rescanDevices (void)
     t_deviceslist l; t_error err = midi_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int midi_deviceAsNumber (int isOutput, t_symbol *name)
-{
-    t_deviceslist l;
-    
-    if (!midi_getDevicesList (&l, 0)) {
-        if (isOutput) { return deviceslist_containsOut (&l, name); }
-        else { 
-            return deviceslist_containsIn (&l, name);
-        }
-    }
-    
-    return -1;
-}
-
-t_error midi_deviceAsString (int isOutput, int k, char *dest, size_t size)
-{
-    t_error err = PD_ERROR;
-    t_symbol *t = midi_deviceAsSymbol (isOutput, k);
-    
-    if (t) { err = string_copy (dest, size, symbol_getName (t)); }
-    
-    if (err) { *dest = 0; }
-    
-    return err;
-}
-
-t_symbol *midi_deviceAsSymbol (int isOutput, int k)
-{
-    t_deviceslist l;
-    
-    if (k >= 0 && !midi_getDevicesList (&l, 0)) {
-    //
-    return isOutput ? deviceslist_getOutAtIndex (&l, k) : deviceslist_getInAtIndex (&l, k);
-    //
-    }
-    
-    return NULL;
 }
 
 // -----------------------------------------------------------------------------------------------------------

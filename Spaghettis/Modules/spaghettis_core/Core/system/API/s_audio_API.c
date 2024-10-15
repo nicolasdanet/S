@@ -56,11 +56,12 @@ static t_error audio_getDevicesList (t_deviceslist *l, int reload)
 
 void audio_getDevices (t_devices *p)
 {
-    deviceslist_getDevices (&audio_devices, p);
+    // deviceslist_getDevices (&audio_devices, p);
 }
 
 void audio_setDevices (t_devices *p, int setParameters)
 {
+    /*
     int m, n;
     
     deviceslist_setDevices (&audio_devices, p, setParameters);
@@ -69,6 +70,7 @@ void audio_setDevices (t_devices *p, int setParameters)
     n = deviceslist_getTotalOfChannelsOut (&audio_devices);
     
     audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
+    */
     
     // outputs_reportCurrentAudioDevices (&audio_devices);
 }
@@ -131,48 +133,6 @@ void audio_rescanDevices (void)
     t_deviceslist l; t_error err = audio_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-int audio_deviceAsNumber (int isOutput, t_symbol *name)
-{
-    t_deviceslist l;
-    
-    if (!audio_getDevicesList (&l, 0)) {
-        if (isOutput) { return deviceslist_containsOut (&l, name); }
-        else { 
-            return deviceslist_containsIn (&l, name);
-        }
-    }
-    
-    return -1;
-}
-
-t_error audio_deviceAsString (int isOutput, int k, char *dest, size_t size)
-{
-    t_error err = PD_ERROR;
-    t_symbol *t = audio_deviceAsSymbol (isOutput, k);
-    
-    if (t) { err = string_copy (dest, size, symbol_getName (t)); }
-    if (err) { *dest = 0; }
-    
-    return err;
-}
-
-t_symbol *audio_deviceAsSymbol (int isOutput, int k)
-{
-    t_deviceslist l;
-    
-    if (k >= 0 && !audio_getDevicesList (&l, 0)) {
-    //
-    return isOutput ? deviceslist_getOutAtIndex (&l, k) : deviceslist_getInAtIndex (&l, k);
-    //
-    }
-    
-    return NULL;
 }
 
 // -----------------------------------------------------------------------------------------------------------
