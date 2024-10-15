@@ -77,7 +77,7 @@ void       coreclient_release                      (void);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error    mididevicelist_get                      (t_deviceslist *list);
+t_error    mididevicelist_get                      (t_mididevices *list);
 
 MIDIEndpointRef    mididevicelist_fetchSource      (t_symbol *name);
 MIDIEndpointRef    mididevicelist_fetchDestination (t_symbol *name);

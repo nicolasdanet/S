@@ -360,12 +360,12 @@ int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audio_getListsNative (t_deviceslist *p) 
+t_error audio_getListsNative (t_audiodevices *p) 
 {
     t_error err = PD_ERROR_NONE;
     
-    err |= deviceslist_appendAudioIn (p,  gensym ("JACK ports"), 2);
-    err |= deviceslist_appendAudioOut (p, gensym ("JACK ports"), 2);
+    err |= audiodevices_addAudioIn (p,  gensym ("JACK ports"), 2);
+    err |= audiodevices_addAudioOut (p, gensym ("JACK ports"), 2);
 
     return err;
 }

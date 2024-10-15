@@ -7,38 +7,34 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#ifndef S_DEVICESLIST_H_
-#define S_DEVICESLIST_H_
+#ifndef S_MIDIDEVICES_H_
+#define S_MIDIDEVICES_H_
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-typedef struct _deviceslist {
+typedef struct _mididevices {
     int         d_inSize;
     int         d_outSize;
-    int         d_inChannels  [DEVICES_MAXIMUM_IO];
-    int         d_outChannels [DEVICES_MAXIMUM_IO];
-    t_symbol    *d_inNames    [DEVICES_MAXIMUM_IO];
-    t_symbol    *d_outNames   [DEVICES_MAXIMUM_IO];
-    } t_deviceslist;
+    t_symbol    *d_inNames  [DEVICES_MAXIMUM_IO];
+    t_symbol    *d_outNames [DEVICES_MAXIMUM_IO];
+    } t_mididevices;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       deviceslist_init                    (t_deviceslist *p);
-void       deviceslist_copy                    (t_deviceslist *dest, t_deviceslist *src);
+void    mididevices_init        (t_mididevices *p);
+void    mididevices_copy        (t_mididevices *dest, t_mididevices *src);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error    deviceslist_appendMidiIn            (t_deviceslist *p, t_symbol *device);
-t_error    deviceslist_appendMidiOut           (t_deviceslist *p, t_symbol *device);
-t_error    deviceslist_appendAudioIn           (t_deviceslist *p, t_symbol *device, int channels);
-t_error    deviceslist_appendAudioOut          (t_deviceslist *p, t_symbol *device, int channels);
+t_error mididevices_addMidiIn   (t_mididevices *p, t_symbol *device);
+t_error mididevices_addMidiOut  (t_mididevices *p, t_symbol *device);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-#endif // S_DEVICESLIST_H_
+#endif // S_MIDIDEVICES_H_

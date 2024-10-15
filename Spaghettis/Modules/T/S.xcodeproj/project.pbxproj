@@ -74,6 +74,8 @@
 		1799A4451F3C2C2600D23070 /* x_liststore.c in Sources */ = {isa = PBXBuildFile; fileRef = 1799A4441F3C2C2600D23070 /* x_liststore.c */; };
 		1799FC262BEA06F5008CC680 /* m_MT_i.c in Sources */ = {isa = PBXBuildFile; fileRef = 1799FC252BEA06F5008CC680 /* m_MT_i.c */; };
 		179A31111F38ABA500988D23 /* x_textinsert.c in Sources */ = {isa = PBXBuildFile; fileRef = 179A31101F38ABA500988D23 /* x_textinsert.c */; };
+		179C1C892CBE3F460000A2FC /* s_audiodevices.c in Sources */ = {isa = PBXBuildFile; fileRef = 179C1C872CBE3F460000A2FC /* s_audiodevices.c */; };
+		179C1C8C2CBE3F4F0000A2FC /* s_mididevices.c in Sources */ = {isa = PBXBuildFile; fileRef = 179C1C8A2CBE3F4E0000A2FC /* s_mididevices.c */; };
 		179CF53521FB6E2900E77184 /* d_dspthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 179CF53421FB6E2900E77184 /* d_dspthread.c */; };
 		179E91131F0F6B11009A4FA6 /* x_freeze.c in Sources */ = {isa = PBXBuildFile; fileRef = 179E91121F0F6B11009A4FA6 /* x_freeze.c */; };
 		179FBA9A1F3ED1E7002D86A2 /* x_listiterate.c in Sources */ = {isa = PBXBuildFile; fileRef = 179FBA991F3ED1E7002D86A2 /* x_listiterate.c */; };
@@ -243,7 +245,6 @@
 		375D72E71D86A5F000D079B1 /* x_arrayclient.c in Sources */ = {isa = PBXBuildFile; fileRef = 375D72E61D86A5F000D079B1 /* x_arrayclient.c */; };
 		375D73211D86ACAC00D079B1 /* x_arraymin.c in Sources */ = {isa = PBXBuildFile; fileRef = 375D73201D86ACAC00D079B1 /* x_arraymin.c */; };
 		375E88DF1D901BA90052D22C /* x_listinlet.c in Sources */ = {isa = PBXBuildFile; fileRef = 375E88DE1D901BA90052D22C /* x_listinlet.c */; };
-		376209A61E4F0FC300D97CF4 /* s_deviceslist.c in Sources */ = {isa = PBXBuildFile; fileRef = 376209A51E4F0FC300D97CF4 /* s_deviceslist.c */; };
 		3762D2BD1E051E2700385DB9 /* d_writesf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3762D2BC1E051E2700385DB9 /* d_writesf.c */; };
 		3762D2FD1E05308C00385DB9 /* d_readsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3762D2FC1E05308C00385DB9 /* d_readsf.c */; };
 		3762D32E1E0531D900385DB9 /* d_soundfiler.c in Sources */ = {isa = PBXBuildFile; fileRef = 3762D32D1E0531D900385DB9 /* d_soundfiler.c */; };
@@ -465,7 +466,6 @@
 		174429B22635A35800AD6E16 /* w_outputs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w_outputs.h; sourceTree = "<group>"; };
 		174429B32635A35800AD6E16 /* w_outputs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = w_outputs.c; sourceTree = "<group>"; };
 		1749719B23FEC7B400627D27 /* m_legacy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_legacy.c; sourceTree = "<group>"; };
-		174A6B8E201B78060055EA4D /* s_deviceslist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_deviceslist.h; sourceTree = "<group>"; };
 		174AC8BA24824151004EE54C /* m_string.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_string.h; sourceTree = "<group>"; };
 		174AC8BB24824151004EE54C /* m_symbol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_symbol.h; sourceTree = "<group>"; };
 		174AC8BC24824151004EE54C /* m_math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = m_math.h; sourceTree = "<group>"; };
@@ -518,6 +518,10 @@
 		1799A4441F3C2C2600D23070 /* x_liststore.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_liststore.c; sourceTree = "<group>"; };
 		1799FC252BEA06F5008CC680 /* m_MT_i.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_MT_i.c; sourceTree = "<group>"; };
 		179A31101F38ABA500988D23 /* x_textinsert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_textinsert.c; sourceTree = "<group>"; };
+		179C1C872CBE3F460000A2FC /* s_audiodevices.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_audiodevices.c; sourceTree = "<group>"; };
+		179C1C882CBE3F460000A2FC /* s_audiodevices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_audiodevices.h; sourceTree = "<group>"; };
+		179C1C8A2CBE3F4E0000A2FC /* s_mididevices.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_mididevices.c; sourceTree = "<group>"; };
+		179C1C8B2CBE3F4E0000A2FC /* s_mididevices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_mididevices.h; sourceTree = "<group>"; };
 		179CF53321FB6E1D00E77184 /* d_dspthread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d_dspthread.h; sourceTree = "<group>"; };
 		179CF53421FB6E2900E77184 /* d_dspthread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_dspthread.c; sourceTree = "<group>"; };
 		179E8D9C1EF91B4700FD3865 /* m_environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_environment.h; sourceTree = "<group>"; };
@@ -732,7 +736,6 @@
 		375D73201D86ACAC00D079B1 /* x_arraymin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_arraymin.c; sourceTree = "<group>"; };
 		375E88DE1D901BA90052D22C /* x_listinlet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_listinlet.c; sourceTree = "<group>"; };
 		376192281E6EA50800E4B2DA /* m_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_class.h; sourceTree = "<group>"; };
-		376209A51E4F0FC300D97CF4 /* s_deviceslist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_deviceslist.c; sourceTree = "<group>"; };
 		3762D2BC1E051E2700385DB9 /* d_writesf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_writesf.c; sourceTree = "<group>"; };
 		3762D2FC1E05308C00385DB9 /* d_readsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_readsf.c; sourceTree = "<group>"; };
 		3762D32D1E0531D900385DB9 /* d_soundfiler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_soundfiler.c; sourceTree = "<group>"; };
@@ -981,9 +984,11 @@
 			isa = PBXGroup;
 			children = (
 				17D95A772CBCF2AD00A8F069 /* s_devices.h */,
+				179C1C882CBE3F460000A2FC /* s_audiodevices.h */,
+				179C1C8B2CBE3F4E0000A2FC /* s_mididevices.h */,
 				17D95A782CBCF2AD00A8F069 /* s_devices.c */,
-				174A6B8E201B78060055EA4D /* s_deviceslist.h */,
-				376209A51E4F0FC300D97CF4 /* s_deviceslist.c */,
+				179C1C872CBE3F460000A2FC /* s_audiodevices.c */,
+				179C1C8A2CBE3F4E0000A2FC /* s_mididevices.c */,
 			);
 			path = devices;
 			sourceTree = "<group>";
@@ -2246,6 +2251,7 @@
 				170260202476BCCE00A29222 /* g_outlet.c in Sources */,
 				179A31111F38ABA500988D23 /* x_textinsert.c in Sources */,
 				17BED6B5213127F60083E127 /* m_undocut.c in Sources */,
+				179C1C8C2CBE3F4F0000A2FC /* s_mididevices.c in Sources */,
 				37C000551DE2FE1B00F90584 /* d_throw.c in Sources */,
 				37C000831DE3053200F90584 /* d_catch.c in Sources */,
 				1723FBCD2302F20C00C0F975 /* s_audio_mac.c in Sources */,
@@ -2310,6 +2316,7 @@
 				374FA5391E2120FD00C119CA /* d_subchunk.c in Sources */,
 				1781A369200655AB00AFBD2F /* d_sfthread.c in Sources */,
 				1758169A275A11AC006441C3 /* m_clocks_safe.c in Sources */,
+				179C1C892CBE3F460000A2FC /* s_audiodevices.c in Sources */,
 				17B7F449232E2D96009601CB /* core_mididevicelist.c in Sources */,
 				17AE9227261C9791001B0FB6 /* m_deencapsulate.c in Sources */,
 				3752529D1E23C7FC00863F79 /* d_czeroreverse.c in Sources */,
@@ -2347,7 +2354,6 @@
 				37ECBA031E488A3000F1CFD1 /* d_lrshift.c in Sources */,
 				371526B61E49D03E00712D43 /* x_expr.c in Sources */,
 				1786BAF320C4364E009CE75A /* d_soundinfo.c in Sources */,
-				376209A61E4F0FC300D97CF4 /* s_deviceslist.c in Sources */,
 				17A800BC228410B900AD0E4E /* x_oscstream.c in Sources */,
 				17ACD8191FA46D3B00E4DB71 /* x_counter.c in Sources */,
 				17A800BA228410B900AD0E4E /* x_timestamp.c in Sources */,

@@ -163,7 +163,8 @@ namespace spaghettis::core {
 #include "system/MIDI/s_outmidi.c"
 
 #include "system/devices/s_devices.c"
-#include "system/devices/s_deviceslist.c"
+#include "system/devices/s_audiodevices.c"
+#include "system/devices/s_mididevices.c"
 
 #include "system/API/s_midi_API.c"
 #include "system/API/s_audio_API.c"

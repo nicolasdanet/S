@@ -16,7 +16,7 @@
 
 const char     *midi_nameNative        (void);
 
-t_error    midi_getListsNative         (t_deviceslist *);
+t_error    midi_getListsNative         (t_mididevices *);
 void       midi_initializeNative       (void);
 void       midi_releaseNative          (void);
 void       midi_openNative             (t_devices *);
@@ -32,7 +32,7 @@ void       midi_pollNative             (void);
 const char     *audio_nameNative       (void);
 
 int        audio_getVectorSizeNative   (void);
-t_error    audio_getListsNative        (t_deviceslist *);
+t_error    audio_getListsNative        (t_audiodevices *);
 t_error    audio_initializeNative      (void);
 void       audio_releaseNative         (void);
 void       audio_closeNative           (void);

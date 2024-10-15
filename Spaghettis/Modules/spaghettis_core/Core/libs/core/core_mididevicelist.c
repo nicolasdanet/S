@@ -27,7 +27,7 @@ static void core_pump (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_error mididevicelist_getSources (t_deviceslist *list)
+static t_error mididevicelist_getSources (t_mididevices *list)
 {
     core_pump();
     
@@ -40,7 +40,7 @@ static t_error mididevicelist_getSources (t_deviceslist *list)
         //
         t_symbol *name = midiname_get (MIDIGetSource (i));
         
-        if (name) { err |= deviceslist_appendMidiIn (list, name); }
+        if (name) { err |= mididevices_addMidiIn (list, name); }
         //
         }
 
@@ -48,7 +48,7 @@ static t_error mididevicelist_getSources (t_deviceslist *list)
     }
 }
 
-static t_error mididevicelist_getDestinations (t_deviceslist *list)
+static t_error mididevicelist_getDestinations (t_mididevices *list)
 {
     core_pump();
     
@@ -61,7 +61,7 @@ static t_error mididevicelist_getDestinations (t_deviceslist *list)
         //
         t_symbol *name = midiname_get (MIDIGetDestination (i));
         
-        if (name) { err |= deviceslist_appendMidiOut (list, name); }
+        if (name) { err |= mididevices_addMidiOut (list, name); }
         //
         }
 
@@ -73,7 +73,7 @@ static t_error mididevicelist_getDestinations (t_deviceslist *list)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error mididevicelist_get (t_deviceslist *list)
+t_error mididevicelist_get (t_mididevices *list)
 {
     t_error err = PD_ERROR_NONE;
     

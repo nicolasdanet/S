@@ -61,12 +61,12 @@ int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audio_getListsNative (t_deviceslist *p) 
+t_error audio_getListsNative (t_audiodevices *p) 
 {
     t_error err = PD_ERROR_NONE;
     
-    err |= deviceslist_appendAudioIn (p,  gensym ("Dummy Input"),  0);
-    err |= deviceslist_appendAudioOut (p, gensym ("Dummy Output"), 0);
+    err |= audiodevices_addAudioIn (p,  gensym ("Dummy Input"),  0);
+    err |= audiodevices_addAudioOut (p, gensym ("Dummy Output"), 0);
   
     return err;
 }

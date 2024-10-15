@@ -11,16 +11,16 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_deviceslist midi_devices;          /* Static. */
+static t_mididevices midi_devices;          /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_error midi_getDevicesList (t_deviceslist *l, int reload)
+static t_error midi_getDevicesList (t_mididevices *l, int reload)
 {
     static int cacheLoaded = 0;             /* Static. */
-    static t_deviceslist cache;             /* Static. */
+    static t_mididevices cache;             /* Static. */
     
     t_error err = PD_ERROR_NONE;
     
@@ -28,13 +28,13 @@ static t_error midi_getDevicesList (t_deviceslist *l, int reload)
     
     if (!cacheLoaded) {
     //
-    deviceslist_init (&cache);
+    mididevices_init (&cache);
     err = midi_getListsNative (&cache);
     if (!err) { cacheLoaded = 1; /* outputs_reportAvailableMidiDevices (&cache); */ }
     //
     }
     
-    deviceslist_copy (l, &cache);
+    mididevices_copy (l, &cache);
     
     return err;
 }
@@ -70,7 +70,7 @@ void midi_getDevices (t_devices *p)
 void midi_setDevices (t_devices *p)
 {
     /*
-    t_deviceslist old; deviceslist_copy (&old, &midi_devices);
+    t_mididevices old; mididevices_copy (&old, &midi_devices);
     
     deviceslist_setDevices (&midi_devices, p, setParameters);
     
@@ -89,7 +89,7 @@ void midi_setDevices (t_devices *p)
 
 void midi_rescanDevices (void)
 {
-    t_deviceslist l; t_error err = midi_getDevicesList (&l, 1);
+    t_mididevices l; t_error err = midi_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
 }

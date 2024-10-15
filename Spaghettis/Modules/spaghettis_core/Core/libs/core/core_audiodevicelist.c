@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audiodevicelist_get (t_deviceslist *list)
+t_error audiodevicelist_get (t_audiodevices *list)
 {
     AudioObjectPropertyAddress property;
     
@@ -56,8 +56,8 @@ t_error audiodevicelist_get (t_deviceslist *list)
     int m = audiodevice_getNumberOfChannelsIn (&device);
     int n = audiodevice_getNumberOfChannelsOut (&device);
     
-    if (m > 0) { err |= deviceslist_appendAudioIn (list, name, m);  }
-    if (n > 0) { err |= deviceslist_appendAudioOut (list, name, n); }
+    if (m > 0) { err |= audiodevices_addAudioIn (list, name, m);  }
+    if (n > 0) { err |= audiodevices_addAudioOut (list, name, n); }
     //
     }
     //

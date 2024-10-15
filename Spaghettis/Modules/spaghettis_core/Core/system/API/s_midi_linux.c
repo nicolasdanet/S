@@ -406,7 +406,7 @@ void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error midi_getListsNative (t_deviceslist *p)
+t_error midi_getListsNative (t_mididevices *p)
 {
     int i;
     int m = PD_MIN (4, DEVICES_MAXIMUM_IO);
@@ -414,8 +414,8 @@ t_error midi_getListsNative (t_deviceslist *p)
     
     t_error err = PD_ERROR_NONE;
     
-    for (i = 0; i < m; i++) { err |= deviceslist_appendMidiIn (p, gensym ("ALSA virtual device"));  }
-    for (i = 0; i < n; i++) { err |= deviceslist_appendMidiOut (p, gensym ("ALSA virtual device")); }
+    for (i = 0; i < m; i++) { err |= mididevices_addMidiIn (p, gensym ("ALSA virtual device"));  }
+    for (i = 0; i < n; i++) { err |= mididevices_addMidiOut (p, gensym ("ALSA virtual device")); }
   
     return err;
 }

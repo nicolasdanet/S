@@ -61,12 +61,12 @@ void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error midi_getListsNative (t_deviceslist *p)
+t_error midi_getListsNative (t_mididevices *p)
 {
     t_error err = PD_ERROR_NONE;
     
-    err |= deviceslist_appendMidiIn (p, gensym ("Dummy Input"));
-    err |= deviceslist_appendMidiOut (p, gensym ("Dummy Output"));
+    err |= mididevices_addMidiIn (p, gensym ("Dummy Input"));
+    err |= mididevices_addMidiOut (p, gensym ("Dummy Output"));
   
     return err;
 }

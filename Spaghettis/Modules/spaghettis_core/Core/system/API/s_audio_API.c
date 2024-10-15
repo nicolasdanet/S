@@ -16,7 +16,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_deviceslist audio_devices;        /* Static. */
+t_audiodevices audio_devices;        /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -28,10 +28,10 @@ void audio_vectorInitialize (t_float, int, int);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_error audio_getDevicesList (t_deviceslist *l, int reload)
+static t_error audio_getDevicesList (t_audiodevices *l, int reload)
 {
     static int cacheLoaded = 0;     /* Static. */
-    static t_deviceslist cache;     /* Static. */
+    static t_audiodevices cache;    /* Static. */
     
     t_error err = PD_ERROR_NONE;
     
@@ -39,13 +39,13 @@ static t_error audio_getDevicesList (t_deviceslist *l, int reload)
     
     if (!cacheLoaded) {
     //
-    deviceslist_init (&cache);
+    audiodevices_init (&cache);
     err = audio_getListsNative (&cache);
     if (!err) { cacheLoaded = 1; /* outputs_reportAvailableAudioDevices (&cache); */ }
     //
     }
     
-    deviceslist_copy (l, &cache);
+    audiodevices_copy (l, &cache);
     
     return err;
 }
@@ -83,7 +83,7 @@ void audio_setDevices (t_devices *p, int setParameters)
 
 t_error audio_check (t_devices *p)
 {
-    t_deviceslist l; t_error err = audio_getDevicesList (&l, 0);
+    t_audiodevices l; t_error err = audio_getDevicesList (&l, 0);
     
     /* ??? */
     
@@ -130,7 +130,7 @@ t_error audio_check (t_devices *p)
 
 void audio_rescanDevices (void)
 {
-    t_deviceslist l; t_error err = audio_getDevicesList (&l, 1);
+    t_audiodevices l; t_error err = audio_getDevicesList (&l, 1);
     
     PD_ASSERT (!err); PD_UNUSED (err);
 }

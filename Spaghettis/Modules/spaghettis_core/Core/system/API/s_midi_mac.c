@@ -135,7 +135,7 @@ void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error midi_getListsNative (t_deviceslist *p)
+t_error midi_getListsNative (t_mididevices *p)
 {
     return mididevicelist_get (p);
 }

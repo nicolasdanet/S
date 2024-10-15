@@ -7,46 +7,36 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#ifndef S_SYSTEM_H_
-#define S_SYSTEM_H_
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "system/memory/s_memory.h"
-#include "system/memory/s_atomic.h"
-#include "system/memory/s_trylock.h"
-#include "system/memory/s_fifo.h"
-#include "system/memory/s_fifo8.h"
-#include "system/memory/s_fifo32.h"
-#include "system/memory/s_ring.h"
-#include "system/scheduler/s_monitor.h"
-#include "system/scheduler/s_clock.h"
-#include "system/scheduler/s_time.h"
-#include "system/scheduler/s_scheduler.h"
-#include "system/log/s_debug.h"
-#include "system/log/s_logger.h"
-#include "system/files/s_file.h"
-#include "system/files/s_searchpath.h"
-#include "system/policy/s_denormal.h"
-#include "system/policy/s_privilege.h"
-#include "system/audio/s_audio.h"
-#include "system/MIDI/s_midi.h"
-#include "system/devices/s_devices.h"
-#include "system/devices/s_audiodevices.h"
-#include "system/devices/s_mididevices.h"
-#include "system/API/s_API.h"
+#ifndef S_AUDIODEVICES_H_
+#define S_AUDIODEVICES_H_
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if PD_WITH_DEBUG
-
-int sys_isControlThread (void);
-
-#endif
+typedef struct _audiodevices {
+    int         d_inSize;
+    int         d_outSize;
+    int         d_inChannels  [DEVICES_MAXIMUM_IO];
+    int         d_outChannels [DEVICES_MAXIMUM_IO];
+    t_symbol    *d_inNames    [DEVICES_MAXIMUM_IO];
+    t_symbol    *d_outNames   [DEVICES_MAXIMUM_IO];
+    } t_audiodevices;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-#endif // S_SYSTEM_H_
+// MARK: -
+
+void    audiodevices_init           (t_audiodevices *p);
+void    audiodevices_copy           (t_audiodevices *dest, t_audiodevices *src);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_error audiodevices_addAudioIn     (t_audiodevices *p, t_symbol *device, int channels);
+t_error audiodevices_addAudioOut    (t_audiodevices *p, t_symbol *device, int channels);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+#endif // S_AUDIODEVICES_H_

@@ -312,7 +312,7 @@ int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audio_getListsNative (t_deviceslist *p) 
+t_error audio_getListsNative (t_audiodevices *p) 
 {
     return audiodevicelist_get (p);
 }

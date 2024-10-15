@@ -74,7 +74,7 @@ static inline t_symbol *core_CFStringToSymbol (CFStringRef string)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error        audiodevicelist_get     (t_deviceslist *list);
+t_error        audiodevicelist_get     (t_audiodevices *list);
 
 AudioObjectID  audiodevicelist_fetch   (t_symbol *name);
 
