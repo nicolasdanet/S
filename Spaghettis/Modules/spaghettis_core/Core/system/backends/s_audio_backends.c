@@ -38,59 +38,6 @@ static t_error audio_getDevicesList (t_audiodevices *l, int reload)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Check maximum device channels (if defined) before to open stream. */
-
-t_error audio_check (t_devices *p)
-{
-    t_audiodevices l; t_error err = audio_getDevicesList (&l, 0);
-    
-    /* ??? */
-    
-    /*
-    devices_check (p);
-
-    if (!err) {
-    //
-    int i;
-    
-    for (i = 0; i < devices_getInSize (p); i++) {
-    //
-    int m = devices_getInChannelsAtIndex (p, i);
-    int n = deviceslist_getInChannelsAtIndex (&l, devices_getInAtIndex (p, i));
-    if (n > 0 && m > n) {
-        err = PD_ERROR; break;
-    }
-    //
-    }
-    //
-    }
-    
-    if (!err) {
-    //
-    int i;
-    
-    for (i = 0; i < devices_getOutSize (p); i++) {
-    //
-    int m = devices_getOutChannelsAtIndex (p, i);
-    int n = deviceslist_getOutChannelsAtIndex (&l, devices_getOutAtIndex (p, i));
-    if (n > 0 && m > n) {
-        err = PD_ERROR; break;
-    }
-    //
-    }
-    //
-    }
-    */
-    
-    if (err) { error_mismatch (NULL, sym_audio, sym_channels); }
-    
-    return err;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void audio_rescanDevices (void)
 {
     t_audiodevices l; t_error err = audio_getDevicesList (&l, 1);

@@ -31,7 +31,7 @@ pthread_mutex_t         audio_mutex;                /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void audio_vectorInitialize (t_float, int, int);
+static void audio_vectorInitialize (t_float, int, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -40,6 +40,61 @@ void audio_vectorInitialize (t_float, int, int);
 int audio_isOpened (void)
 {
     return (audio_state != 0);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+/* Check maximum device channels (if defined) before to open stream. */
+
+static t_error audio_check (t_devices *p)
+{
+    t_error err = PD_ERROR_NONE;
+    
+    // t_audiodevices l; t_error err = audio_getDevicesList (&l, 0);
+    
+    /* ??? */
+    
+    /*
+    devices_check (p);
+
+    if (!err) {
+    //
+    int i;
+    
+    for (i = 0; i < devices_getInSize (p); i++) {
+    //
+    int m = devices_getInChannelsAtIndex (p, i);
+    int n = deviceslist_getInChannelsAtIndex (&l, devices_getInAtIndex (p, i));
+    if (n > 0 && m > n) {
+        err = PD_ERROR; break;
+    }
+    //
+    }
+    //
+    }
+    
+    if (!err) {
+    //
+    int i;
+    
+    for (i = 0; i < devices_getOutSize (p); i++) {
+    //
+    int m = devices_getOutChannelsAtIndex (p, i);
+    int n = deviceslist_getOutChannelsAtIndex (&l, devices_getOutAtIndex (p, i));
+    if (n > 0 && m > n) {
+        err = PD_ERROR; break;
+    }
+    //
+    }
+    //
+    }
+    */
+    
+    if (err) { error_mismatch (NULL, sym_audio, sym_channels); }
+    
+    return err;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -155,7 +210,7 @@ int audio_getTotalOfChannelsOut (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void audio_vectorInitialize (t_float sampleRate, int totalOfChannelsIn, int totalOfChannelsOut)
+static void audio_vectorInitialize (t_float sampleRate, int totalOfChannelsIn, int totalOfChannelsOut)
 {
     int m = (int)((INTERNAL_BLOCKSIZE * sizeof (t_sample)) * (totalOfChannelsIn ? totalOfChannelsIn : 2));
     int n = (int)((INTERNAL_BLOCKSIZE * sizeof (t_sample)) * (totalOfChannelsOut ? totalOfChannelsOut : 2));
