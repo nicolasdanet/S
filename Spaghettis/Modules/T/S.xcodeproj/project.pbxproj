@@ -524,6 +524,7 @@
 		179C1C8B2CBE3F4E0000A2FC /* s_mididevices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_mididevices.h; sourceTree = "<group>"; };
 		179C1C8D2CBF7ECA0000A2FC /* s_audio_backends.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_audio_backends.h; sourceTree = "<group>"; };
 		179C1C8F2CBF7EDE0000A2FC /* s_midi_backends.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_midi_backends.h; sourceTree = "<group>"; };
+		179C1C902CBF817B0000A2FC /* s_audio_safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_audio_safe.h; sourceTree = "<group>"; };
 		179CF53321FB6E1D00E77184 /* d_dspthread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d_dspthread.h; sourceTree = "<group>"; };
 		179CF53421FB6E2900E77184 /* d_dspthread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_dspthread.c; sourceTree = "<group>"; };
 		179E8D9C1EF91B4700FD3865 /* m_environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_environment.h; sourceTree = "<group>"; };
@@ -1186,6 +1187,7 @@
 		174C753A24864889007548BF /* backends */ = {
 			isa = PBXGroup;
 			children = (
+				179C1C902CBF817B0000A2FC /* s_audio_safe.h */,
 				179C1C8D2CBF7ECA0000A2FC /* s_audio_backends.h */,
 				373F78241C7E097A0083D316 /* s_audio_backends.c */,
 				1723FBCC2302F20C00C0F975 /* s_audio_mac.c */,

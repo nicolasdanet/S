@@ -35,6 +35,7 @@
 #include "system/devices/s_devices.h"
 #include "system/devices/s_audiodevices.h"
 #include "system/devices/s_mididevices.h"
+#include "system/backends/s_audio_safe.h"
 #include "system/backends/s_audio_backends.h"
 #include "system/backends/s_midi_backends.h"
 
