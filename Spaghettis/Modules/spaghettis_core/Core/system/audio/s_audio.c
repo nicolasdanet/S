@@ -55,9 +55,7 @@ t_error audio_open (void)
 {
     t_error err = PD_ERROR;
     
-    t_devices audio;
-    
-    audio_getDevices (&audio);
+    t_devices audio; audio_getDevices (&audio);
     
     /* ??? */
     

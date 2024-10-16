@@ -1182,7 +1182,7 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
-		174C753A24864889007548BF /* API */ = {
+		174C753A24864889007548BF /* backends */ = {
 			isa = PBXGroup;
 			children = (
 				376CF0681E4CBB0400B17967 /* s_API.h */,
@@ -1195,7 +1195,7 @@
 				378971ED1C4F716700263434 /* s_audio_linux.c */,
 				378971EC1C4F716700263434 /* s_audio_dummy.c */,
 			);
-			path = API;
+			path = backends;
 			sourceTree = "<group>";
 		};
 		17A800AF228410B900AD0E4E /* network */ = {
@@ -1424,7 +1424,7 @@
 				1726300324879C2400803F0F /* audio */,
 				172BA9BA2486AA70002058E8 /* MIDI */,
 				17168A262486877C006DA0B4 /* devices */,
-				174C753A24864889007548BF /* API */,
+				174C753A24864889007548BF /* backends */,
 				17D95A742CBCED5900A8F069 /* plugins */,
 			);
 			path = system;

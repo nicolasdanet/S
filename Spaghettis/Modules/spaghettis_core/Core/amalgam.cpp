@@ -166,8 +166,8 @@ namespace spaghettis::core {
 #include "system/devices/s_audiodevices.c"
 #include "system/devices/s_mididevices.c"
 
-#include "system/API/s_midi_API.c"
-#include "system/API/s_audio_API.c"
+#include "system/backends/s_midi_API.c"
+#include "system/backends/s_audio_API.c"
 
 #include "system/plugins/s_loader.c"
 
@@ -460,15 +460,15 @@ namespace spaghettis::core {
 
 #if defined ( PD_BUILDING_TESTS )
 
-    #include "system/API/s_midi_dummy.c"
-    #include "system/API/s_audio_dummy.c"
+    #include "system/backends/s_midi_dummy.c"
+    #include "system/backends/s_audio_dummy.c"
 
 #else
 
 #if PD_APPLE
 
-    #include "system/API/s_midi_mac.c"
-    #include "system/API/s_audio_mac.c"
+    #include "system/backends/s_midi_mac.c"
+    #include "system/backends/s_audio_mac.c"
 
     #include "libs/core/core_audiodevice.c"
     #include "libs/core/core_audiodevicelist.c"
@@ -484,8 +484,8 @@ namespace spaghettis::core {
 #endif
 
 #if PD_LINUX
-    #include "system/API/s_midi_linux.c"
-    #include "system/API/s_audio_linux.c"
+    #include "system/backends/s_midi_linux.c"
+    #include "system/backends/s_audio_linux.c"
 #endif
 
 /* Exported for externals. */
