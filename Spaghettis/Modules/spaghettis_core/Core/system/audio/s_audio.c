@@ -52,7 +52,7 @@ static t_error audio_check (t_devices *p)
 {
     t_error err = PD_ERROR_NONE;
     
-    // t_audiodevices l; t_error err = audio_getDevicesList (&l, 0);
+    // t_audiodevices l; t_error err = audio_getListOfDevices (&l, 0);
     
     /* ??? */
     
