@@ -14,7 +14,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static inline void audio_safe (t_sample *sound, int size, int clamp)
+static inline void audio_safe (t_sample *sound, int size)
 {
     t_sample *s = sound; int n = size;
     
@@ -24,7 +24,7 @@ static inline void audio_safe (t_sample *sound, int size, int clamp)
     
     if (PD_FLOAT32_IS_INVALID_OR_ZERO (f)) { f = (t_sample)0.0; }
 
-    *s++ = clamp ? PD_CLAMP (f, (t_sample)-1.0, (t_sample)1.0) : f;
+    *s++ = PD_CLAMP (f, (t_sample)-1.0, (t_sample)1.0);
     //
     }
 }

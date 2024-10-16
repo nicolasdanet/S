@@ -290,7 +290,7 @@ int audio_pollNative()
     sound = audio_soundOut;
         
     for (i = 0; i < core_channelsOut; i++) {
-        audio_safe (sound, INTERNAL_BLOCKSIZE, 1);
+        audio_safe (sound, INTERNAL_BLOCKSIZE);
         fifo32_write (core_ringOut[i], (const void *)sound, INTERNAL_BLOCKSIZE);
         memset ((void *)sound, 0, INTERNAL_BLOCKSIZE * sizeof (t_sample));                  /* Zeroed. */
         sound += INTERNAL_BLOCKSIZE;
