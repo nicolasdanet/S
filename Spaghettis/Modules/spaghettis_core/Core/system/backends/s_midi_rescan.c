@@ -29,7 +29,7 @@ static t_error midi_getDevicesList (t_mididevices *l, int reload)
     if (!cacheLoaded) {
     //
     mididevices_init (&cache);
-    err = midi_getListsNative (&cache);
+    err = midi_getListOfDevicesNative (&cache);
     if (!err) { cacheLoaded = 1; /* outputs_reportAvailableMidiDevices (&cache); */ }
     //
     }

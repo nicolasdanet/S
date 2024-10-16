@@ -177,7 +177,7 @@ void core_setVectorSize (UInt32 n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const char *audio_nameNative (void)
+const char *audio_getBackendNameNative (void)
 {
     static const char *name = "Core Audio"; return name;    /* Static. */
 }
@@ -312,7 +312,7 @@ int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audio_getListsNative (t_audiodevices *p) 
+t_error audio_getListOfDevicesNative (t_audiodevices *p) 
 {
     return audiodevicelist_get (p);
 }

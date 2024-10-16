@@ -17,8 +17,8 @@ t_error utils_version (char *dest, size_t size)
     t_error err = string_sprintf (dest, size, "%s %s / %s / %s", 
                     PD_NAME, 
                     PD_VERSION, 
-                    midi_nameNative(), 
-                    audio_nameNative());
+                    midi_getBackendNameNative(), 
+                    audio_getBackendNameNative());
     
     #if PD_32BIT
         err |= string_add (dest, size, " / 32-bit");

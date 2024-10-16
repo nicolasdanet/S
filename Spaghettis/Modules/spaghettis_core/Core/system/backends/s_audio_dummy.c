@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const char *audio_nameNative (void)
+const char *audio_getBackendNameNative (void)
 {
     static const char *name = "Dummy"; return name;     /* Static. */
 }
@@ -61,7 +61,7 @@ int audio_getVectorSizeNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audio_getListsNative (t_audiodevices *p) 
+t_error audio_getListOfDevicesNative (t_audiodevices *p)
 {
     t_error err = PD_ERROR_NONE;
     

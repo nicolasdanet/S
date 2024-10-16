@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const char *midi_nameNative (void)
+const char *midi_getBackendNameNative (void)
 {
     static const char *name = "Dummy"; return name;     /* Static. */
 }
@@ -61,7 +61,7 @@ void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error midi_getListsNative (t_mididevices *p)
+t_error midi_getListOfDevicesNative (t_mididevices *p)
 {
     t_error err = PD_ERROR_NONE;
     

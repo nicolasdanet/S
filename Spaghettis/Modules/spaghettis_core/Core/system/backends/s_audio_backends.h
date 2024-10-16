@@ -14,21 +14,21 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    audio_rescanDevices         (void);
+void        audio_rescanDevices             (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const char  *audio_nameNative       (void);
+const char  *audio_getBackendNameNative     (void);
 
-int     audio_getVectorSizeNative   (void);
-t_error audio_getListsNative        (t_audiodevices *);
-t_error audio_initializeNative      (void);
-void    audio_releaseNative         (void);
-void    audio_closeNative           (void);
-t_error audio_openNative            (t_devices *);
-int     audio_pollNative            (void);
+int         audio_getVectorSizeNative       (void);
+t_error     audio_getListOfDevicesNative    (t_audiodevices *);
+t_error     audio_initializeNative          (void);
+void        audio_releaseNative             (void);
+void        audio_closeNative               (void);
+t_error     audio_openNative                (t_devices *);
+int         audio_pollNative                (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -26,7 +26,7 @@ static t_midiport core_portOut[DEVICES_MAXIMUM_IO];         /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-const char *midi_nameNative (void)
+const char *midi_getBackendNameNative (void)
 {
     static const char *name = "Core MIDI"; return name;     /* Static. */
 }
@@ -135,7 +135,7 @@ void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error midi_getListsNative (t_mididevices *p)
+t_error midi_getListOfDevicesNative (t_mididevices *p)
 {
     return mididevicelist_get (p);
 }

@@ -24,7 +24,7 @@ static t_error audio_getDevicesList (t_audiodevices *l, int reload)
     if (!cacheLoaded) {
     //
     audiodevices_init (&cache);
-    err = audio_getListsNative (&cache);
+    err = audio_getListOfDevicesNative (&cache);
     if (!err) { cacheLoaded = 1; /* outputs_reportAvailableAudioDevices (&cache); */ }
     //
     }

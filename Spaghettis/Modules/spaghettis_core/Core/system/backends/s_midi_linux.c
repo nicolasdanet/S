@@ -71,7 +71,7 @@ static int alsa_getIdentifierOut (int port)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-const char *midi_nameNative (void)
+const char *midi_getBackendNameNative (void)
 {
     static const char *name = "ALSA"; return name;      /* Static. */
 }
@@ -406,7 +406,7 @@ void midi_pollNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error midi_getListsNative (t_mididevices *p)
+t_error midi_getListOfDevicesNative (t_mididevices *p)
 {
     int i;
     int m = PD_MIN (4, DEVICES_MAXIMUM_IO);
