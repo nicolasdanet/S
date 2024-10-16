@@ -10,11 +10,6 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-static t_mididevices midi_devices;          /* Static. */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 static t_error midi_getDevicesList (t_mididevices *l, int reload)
@@ -37,50 +32,6 @@ static t_error midi_getDevicesList (t_mididevices *l, int reload)
     mididevices_copy (l, &cache);
     
     return err;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void midi_open (void)
-{
-    t_devices midi;
-    
-    /* ??? */
-     
-    midi_getDevices (&midi);
-    midi_openNative (&midi);
-}
-
-void midi_close (void)
-{
-    midi_closeNative();
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void midi_getDevices (t_devices *p)
-{
-    // deviceslist_getDevices (&midi_devices, p);
-}
-
-void midi_setDevices (t_devices *p)
-{
-    /*
-    t_mididevices old; mididevices_copy (&old, &midi_devices);
-    
-    deviceslist_setDevices (&midi_devices, p, setParameters);
-    
-    if (!deviceslist_areEquals (&old, &midi_devices) && symbol_hasThingQuiet (sym__midiports)) {
-    //
-    pd_message (symbol_getThing (sym__midiports), sym__midiports, 0, NULL);
-    //
-    }
-    */
-    // outputs_reportCurrentMidiDevices (&midi_devices);
 }
 
 // -----------------------------------------------------------------------------------------------------------

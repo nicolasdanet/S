@@ -55,40 +55,53 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void   midi_poll               (void);
-void   midi_receive            (int port, int status, int a, int b);
-void   midi_send               (int port, int status, int a, int b);
-
-void   midi_receiveSysex       (int port, uint8_t byte);
-void   midi_sendSysex          (int port, int argc, t_atom *argv);
+void midi_open                  (void);
+void midi_close                 (void);
+void midi_poll                  (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void   inmidi_noteOn           (int port, int channel, int pitch, int velocity);
-void   inmidi_polyPressure     (int port, int channel, int pitch, int value);
-void   inmidi_controlChange    (int port, int channel, int control, int value);
-void   inmidi_programChange    (int port, int channel, int value);
-void   inmidi_afterTouch       (int port, int channel, int value);
-void   inmidi_pitchBend        (int port, int channel, int value);
-
-void   inmidi_sysex            (int port, int argc, t_atom *argv);
-void   inmidi_system           (int port, int argc, t_atom *argv);
+void midi_setCurrentDevices     (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void   outmidi_noteOn          (int channel, int pitch, int velocity);
-void   outmidi_polyPressure    (int channel, int pitch, int value);
-void   outmidi_controlChange   (int channel, int control, int value);
-void   outmidi_programChange   (int channel, int value);
-void   outmidi_afterTouch      (int channel, int value);
-void   outmidi_pitchBend       (int channel, int value);
+void midi_receive               (int port, int status, int a, int b);
+void midi_send                  (int port, int status, int a, int b);
 
-void   outmidi_sysex           (int port, int argc, t_atom *argv);
-void   outmidi_system          (int port, int argc, t_atom *argv);
+void midi_receiveSysex          (int port, uint8_t byte);
+void midi_sendSysex             (int port, int argc, t_atom *argv);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void inmidi_noteOn              (int port, int channel, int pitch, int velocity);
+void inmidi_polyPressure        (int port, int channel, int pitch, int value);
+void inmidi_controlChange       (int port, int channel, int control, int value);
+void inmidi_programChange       (int port, int channel, int value);
+void inmidi_afterTouch          (int port, int channel, int value);
+void inmidi_pitchBend           (int port, int channel, int value);
+
+void inmidi_sysex               (int port, int argc, t_atom *argv);
+void inmidi_system              (int port, int argc, t_atom *argv);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void outmidi_noteOn             (int channel, int pitch, int velocity);
+void outmidi_polyPressure       (int channel, int pitch, int value);
+void outmidi_controlChange      (int channel, int control, int value);
+void outmidi_programChange      (int channel, int value);
+void outmidi_afterTouch         (int channel, int value);
+void outmidi_pitchBend          (int channel, int value);
+
+void outmidi_sysex              (int port, int argc, t_atom *argv);
+void outmidi_system             (int port, int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

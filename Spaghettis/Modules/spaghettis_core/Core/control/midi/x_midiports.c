@@ -47,9 +47,9 @@ static void midiports_output (t_midiports *x, int i, t_symbol *s)
 
 static void midiports_bang (t_midiports *x)
 {
-    t_devices midi;
+    // t_devices midi;
     
-    midi_getDevices (&midi);
+    // midi_getDevices (&midi);
     
     /* ??? */
     

@@ -141,6 +141,45 @@ void midi_sendSysex (int port, int argc, t_atom *argv)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void midi_open (void)
+{
+    t_devices midi;
+    
+    /* ??? */
+     
+    // midi_getDevices (&midi);
+    // midi_openNative (&midi);
+}
+
+void midi_close (void)
+{
+    midi_closeNative();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void midi_setDevices (t_devices *p)
+{
+    /*
+    t_mididevices old; mididevices_copy (&old, &midi_devices);
+    
+    deviceslist_setDevices (&midi_devices, p, setParameters);
+    
+    if (!deviceslist_areEquals (&old, &midi_devices) && symbol_hasThingQuiet (sym__midiports)) {
+    //
+    pd_message (symbol_getThing (sym__midiports), sym__midiports, 0, NULL);
+    //
+    }
+    */
+    // outputs_reportCurrentMidiDevices (&midi_devices);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void midi_poll (void)
 {
     midi_pollNative();
