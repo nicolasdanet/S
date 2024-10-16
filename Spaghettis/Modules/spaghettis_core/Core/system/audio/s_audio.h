@@ -36,17 +36,18 @@ enum {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int        audio_poll                      (void);
-t_error    audio_stop                      (void);
-t_error    audio_start                     (void);
+int     audio_poll                      (void);
+t_error audio_stop                      (void);
+t_error audio_start                     (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_float    audio_getSampleRate             (void);
-int        audio_getTotalOfChannelsIn      (void);
-int        audio_getTotalOfChannelsOut     (void);
+t_float audio_getSampleRate             (void);
+int     audio_getVectorSize             (void);
+int     audio_getTotalOfChannelsIn      (void);
+int     audio_getTotalOfChannelsOut     (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

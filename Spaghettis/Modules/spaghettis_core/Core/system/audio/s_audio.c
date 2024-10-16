@@ -139,6 +139,11 @@ t_float audio_getSampleRate (void)
     t_float f = atomic_float64Read (&audio_sampleRate); return (f <= 0.0 ? AUDIO_DEFAULT_SAMPLERATE : f);
 }
 
+int audio_getVectorSize (void)
+{
+    return audio_getVectorSizeNative();
+}
+
 int audio_getTotalOfChannelsIn (void) 
 {
     return audio_totalOfChannelsIn;
