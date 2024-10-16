@@ -522,6 +522,8 @@
 		179C1C882CBE3F460000A2FC /* s_audiodevices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_audiodevices.h; sourceTree = "<group>"; };
 		179C1C8A2CBE3F4E0000A2FC /* s_mididevices.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_mididevices.c; sourceTree = "<group>"; };
 		179C1C8B2CBE3F4E0000A2FC /* s_mididevices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_mididevices.h; sourceTree = "<group>"; };
+		179C1C8D2CBF7ECA0000A2FC /* s_audio_backends.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_audio_backends.h; sourceTree = "<group>"; };
+		179C1C8F2CBF7EDE0000A2FC /* s_midi_backends.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_midi_backends.h; sourceTree = "<group>"; };
 		179CF53321FB6E1D00E77184 /* d_dspthread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d_dspthread.h; sourceTree = "<group>"; };
 		179CF53421FB6E2900E77184 /* d_dspthread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_dspthread.c; sourceTree = "<group>"; };
 		179E8D9C1EF91B4700FD3865 /* m_environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_environment.h; sourceTree = "<group>"; };
@@ -741,7 +743,6 @@
 		3762D32D1E0531D900385DB9 /* d_soundfiler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_soundfiler.c; sourceTree = "<group>"; };
 		376962D01DBFAF50001B91B5 /* d_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = d_dsp.h; sourceTree = "<group>"; };
 		3769632F1DBFB4C4001B91B5 /* d_perform.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_perform.c; sourceTree = "<group>"; };
-		376CF0681E4CBB0400B17967 /* s_backends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_backends.h; sourceTree = "<group>"; };
 		3770AD891DC2338300ADAE26 /* d_block.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_block.c; sourceTree = "<group>"; };
 		3770ADFF1DC2396E00ADAE26 /* d_dsp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_dsp.c; sourceTree = "<group>"; };
 		3770AE3A1DC23D2000ADAE26 /* d_signal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_signal.c; sourceTree = "<group>"; };
@@ -1185,15 +1186,16 @@
 		174C753A24864889007548BF /* backends */ = {
 			isa = PBXGroup;
 			children = (
-				376CF0681E4CBB0400B17967 /* s_backends.h */,
-				37A402671C77524D00001FD3 /* s_midi_backends.c */,
-				17BB34C6232A9555004D97CA /* s_midi_mac.c */,
-				378971F71C4F716700263434 /* s_midi_linux.c */,
-				378971F81C4F716700263434 /* s_midi_dummy.c */,
+				179C1C8D2CBF7ECA0000A2FC /* s_audio_backends.h */,
 				373F78241C7E097A0083D316 /* s_audio_backends.c */,
 				1723FBCC2302F20C00C0F975 /* s_audio_mac.c */,
 				378971ED1C4F716700263434 /* s_audio_linux.c */,
 				378971EC1C4F716700263434 /* s_audio_dummy.c */,
+				179C1C8F2CBF7EDE0000A2FC /* s_midi_backends.h */,
+				37A402671C77524D00001FD3 /* s_midi_backends.c */,
+				17BB34C6232A9555004D97CA /* s_midi_mac.c */,
+				378971F71C4F716700263434 /* s_midi_linux.c */,
+				378971F81C4F716700263434 /* s_midi_dummy.c */,
 			);
 			path = backends;
 			sourceTree = "<group>";

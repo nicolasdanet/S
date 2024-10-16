@@ -7,47 +7,36 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#ifndef S_SYSTEM_H_
-#define S_SYSTEM_H_
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "system/memory/s_memory.h"
-#include "system/memory/s_atomic.h"
-#include "system/memory/s_trylock.h"
-#include "system/memory/s_fifo.h"
-#include "system/memory/s_fifo8.h"
-#include "system/memory/s_fifo32.h"
-#include "system/memory/s_ring.h"
-#include "system/scheduler/s_monitor.h"
-#include "system/scheduler/s_clock.h"
-#include "system/scheduler/s_time.h"
-#include "system/scheduler/s_scheduler.h"
-#include "system/log/s_debug.h"
-#include "system/log/s_logger.h"
-#include "system/files/s_file.h"
-#include "system/files/s_searchpath.h"
-#include "system/policy/s_denormal.h"
-#include "system/policy/s_privilege.h"
-#include "system/audio/s_audio.h"
-#include "system/MIDI/s_midi.h"
-#include "system/devices/s_devices.h"
-#include "system/devices/s_audiodevices.h"
-#include "system/devices/s_mididevices.h"
-#include "system/backends/s_audio_backends.h"
-#include "system/backends/s_midi_backends.h"
+#ifndef S_MIDI_BACKENDS_H_
+#define S_MIDI_BACKENDS_H_
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#if PD_WITH_DEBUG
+void midi_open          (void);
+void midi_close         (void);
 
-int sys_isControlThread (void);
+void midi_getDevices    (t_devices *p);
+void midi_setDevices    (t_devices *p);
 
-#endif
+void midi_rescanDevices (void);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-#endif // S_SYSTEM_H_
+// MARK: -
+
+const char  *midi_nameNative        (void);
+
+t_error midi_getListsNative         (t_mididevices *);
+void    midi_initializeNative       (void);
+void    midi_releaseNative          (void);
+void    midi_openNative             (t_devices *);
+void    midi_closeNative            (void);
+void    midi_pushNative             (int, int, int, int);
+void    midi_pushSysexNative        (int, int, t_atom *);
+void    midi_pollNative             (void);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+#endif // S_MIDI_BACKENDS_H_
