@@ -7,28 +7,23 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#ifndef S_MIDI_H_
-#define S_MIDI_H_
+#ifndef S_OUTMIDI_H_
+#define S_OUTMIDI_H_
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void midi_poll                  (void);
+void outmidi_noteOn             (int channel, int pitch, int velocity);
+void outmidi_polyPressure       (int channel, int pitch, int value);
+void outmidi_controlChange      (int channel, int control, int value);
+void outmidi_programChange      (int channel, int value);
+void outmidi_afterTouch         (int channel, int value);
+void outmidi_pitchBend          (int channel, int value);
+
+void outmidi_sysex              (int port, int argc, t_atom *argv);
+void outmidi_system             (int port, int argc, t_atom *argv);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void midi_open                  (void);
-void midi_close                 (void);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void midi_setCurrentDevices     (void);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-#endif // S_MIDI_H_
+#endif // S_OUTMIDI_H_

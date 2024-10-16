@@ -159,6 +159,7 @@ namespace spaghettis::core {
 #include "system/audio/s_audio.c"
 
 #include "system/MIDI/s_midi.c"
+#include "system/MIDI/s_midi_io.c"
 #include "system/MIDI/s_inmidi.c"
 #include "system/MIDI/s_outmidi.c"
 
