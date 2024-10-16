@@ -166,8 +166,8 @@ namespace spaghettis::core {
 #include "system/devices/s_audiodevices.c"
 #include "system/devices/s_mididevices.c"
 
-#include "system/backends/s_midi_backends.c"
-#include "system/backends/s_audio_backends.c"
+#include "system/backends/s_midi_rescan.c"
+#include "system/backends/s_audio_rescan.c"
 
 #include "system/plugins/s_loader.c"
 
