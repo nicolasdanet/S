@@ -18,9 +18,6 @@ t_error audio_open          (void);
 void    audio_close         (void);
 int     audio_isOpened      (void);
 
-void    audio_getDevices    (t_devices *p);
-void    audio_setDevices    (t_devices *p, int setAlsoParameters);
-
 void    audio_rescanDevices (void);
 
 t_error audio_check         (t_devices *p);

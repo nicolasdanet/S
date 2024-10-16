@@ -11,11 +11,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-extern t_audiodevices audio_devices;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
 t_sample *audio_soundIn;                            /* Static. */
 t_sample *audio_soundOut;                           /* Static. */
 
@@ -55,7 +50,9 @@ t_error audio_open (void)
 {
     t_error err = PD_ERROR;
     
-    t_devices audio; audio_getDevices (&audio);
+    t_devices audio;
+    
+    // audio_getDevices (&audio);
     
     /* ??? */
     
@@ -190,6 +187,26 @@ void audio_vectorShrinkOut (int totalOfChannelsOut)
     PD_ASSERT (totalOfChannelsOut <= audio_totalOfChannelsOut);
     
     audio_totalOfChannelsOut = totalOfChannelsOut;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void audio_setCurrentDevices (void)
+{
+    /*
+    int m, n;
+    
+    deviceslist_setDevices (&audio_devices, p, setParameters);
+    
+    m = deviceslist_getTotalOfChannelsIn (&audio_devices);
+    n = deviceslist_getTotalOfChannelsOut (&audio_devices);
+    
+    audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
+    */
+    
+    // outputs_reportCurrentAudioDevices (&audio_devices);
 }
 
 // -----------------------------------------------------------------------------------------------------------
