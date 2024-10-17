@@ -42,7 +42,9 @@ void audio_rescanDevices (int isLogged)
 {
     t_audiodevices l; t_error err = audio_getListOfDevices (&l, 1);
     
-    PD_ASSERT (!err); PD_UNUSED (err);
+    PD_ASSERT (!err);
+    
+    if (!err && isLogged) { audiodevices_report (&l); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

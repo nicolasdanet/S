@@ -82,3 +82,56 @@ t_error audiodevices_addAudioOut (t_audiodevices *p, t_symbol *device, int chann
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+void audiodevices_report (t_audiodevices *p)
+{
+
+}
+
+/*
+static void searchpath_report (void)
+{
+    t_pathlist *l = searchpath_directories;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system (NULL, PD_TRANSLATE ("rescan: %s"), path);
+    }
+    
+    l = searchpath_external;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system (NULL, PD_TRANSLATE ("rescan: external / %s"), path);
+    }
+    
+    l = searchpath_patch;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system (NULL, PD_TRANSLATE ("rescan: patch / %s"), path);
+    }
+    
+    l = searchpath_help;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system (NULL, PD_TRANSLATE ("rescan: help / %s"), path);
+    }
+    
+    l = searchpath_duplicates;
+    
+    while (l) {
+        const char *path = pathlist_getPath (l);
+        l = pathlist_getNext (l);
+        post_system (NULL, PD_TRANSLATE ("rescan: duplicates / %s"), path);
+    }
+}
+*/
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
