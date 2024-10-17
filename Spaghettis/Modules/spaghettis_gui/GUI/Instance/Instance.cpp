@@ -31,6 +31,8 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     preferences_->read();
     
     updateSearchPaths (Inputs::Logged::none);
+    
+    rescanDevices (Inputs::Logged::none);
 }
     
 void SpaghettisInstance::shutdown()
@@ -146,9 +148,21 @@ void SpaghettisInstance::closePreferencesWindow()
 void SpaghettisInstance::updateSearchPaths (Inputs::Logged type)
 {
     if (!preferences_->isReading()) {
-        handle (Inputs::setSearchPaths (preferences_->getSearchPaths()));
-        handle (Inputs::rescanSearchPaths (type));
+    //
+    handle (Inputs::setSearchPaths (preferences_->getSearchPaths()));
+    handle (Inputs::rescanSearchPaths (type));
+    //
     }
+}
+
+void SpaghettisInstance::rescanSearchPaths (Inputs::Logged type)
+{
+    Spaghettis()->handle (Inputs::rescanSearchPaths (type));
+}
+
+void SpaghettisInstance::rescanDevices (Inputs::Logged type)
+{
+    Spaghettis()->handle (Inputs::rescanDevices (type));
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -28,6 +28,15 @@ enum class Logged {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static int loggedAsInteger (Logged type)
+{
+    return (type == Logged::base) ? 0 : ((type == Logged::full) ? 1 : -1);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static Perform ping();
 static Perform newPatch (juce::File);
 static Perform openPatch (juce::File);
@@ -36,7 +45,7 @@ static Perform switchDsp();
 static Perform setSearchPaths (juce::StringArray);
 static Perform setSnapToGrid (bool);
 static Perform setSnapToGridSize (int);
-static Perform rescanDevices (void);
+static Perform rescanDevices (Logged type);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

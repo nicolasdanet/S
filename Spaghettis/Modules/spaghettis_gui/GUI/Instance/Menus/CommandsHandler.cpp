@@ -328,9 +328,11 @@ bool CommandsHandler::performCommand (const juce::ApplicationCommandTarget::Invo
                                       return true;
     case Commands::clearRecentFiles : Spaghettis()->clearRecentFiles();
                                       return true;
-    case Commands::rescan           : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::base));
+    case Commands::rescan           : Spaghettis()->rescanSearchPaths (Inputs::Logged::base);
+                                      Spaghettis()->rescanDevices (Inputs::Logged::base);
                                       return true;
-    case Commands::rescanLogged     : Spaghettis()->handle (Inputs::rescanSearchPaths (Inputs::Logged::full));
+    case Commands::rescanLogged     : Spaghettis()->rescanSearchPaths (Inputs::Logged::full);
+                                      Spaghettis()->rescanDevices (Inputs::Logged::full);
                                       return true;
     case Commands::clearConsole     : Spaghettis()->clearConsole();
                                       return true;

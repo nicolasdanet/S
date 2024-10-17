@@ -29,9 +29,7 @@ Perform Inputs::openPatch (juce::File file)
 
 Perform Inputs::rescanSearchPaths (Logged type)
 {
-    const int logged = (type == Logged::base) ? 0 : ((type == Logged::full) ? 1 : -1);
-    
-    return [logged]() { core::inputs_rescanSearchPaths (logged); };
+    return [logged = loggedAsInteger (type)]() { core::inputs_rescanSearchPaths (logged); };
 }
 
 Perform Inputs::switchDsp()
@@ -54,9 +52,9 @@ Perform Inputs::setSnapToGridSize (int size)
     return [size]() { core::inputs_setSnapSize (size); };
 }
 
-Perform Inputs::rescanDevices (void)
+Perform Inputs::rescanDevices (Logged type)
 {
-    return []() { core::inputs_rescanDevices(); };
+    return [logged = loggedAsInteger (type)]() { core::inputs_rescanDevices (logged); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

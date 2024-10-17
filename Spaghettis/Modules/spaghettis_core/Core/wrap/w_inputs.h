@@ -27,7 +27,7 @@ void inputs_rescanSearchPaths  (int logged);
 void inputs_setSearchPaths     (const juce::StringArray&);
 void inputs_setSnap            (bool);
 void inputs_setSnapSize        (int);
-void inputs_rescanDevices      (void);
+void inputs_rescanDevices      (int logged);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

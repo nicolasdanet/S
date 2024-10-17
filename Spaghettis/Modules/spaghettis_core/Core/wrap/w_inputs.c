@@ -67,10 +67,10 @@ void inputs_setSnapSize (int gridSize)
     instance_snapSetGrid (gridSize);
 }
 
-void inputs_rescanDevices (void)
+void inputs_rescanDevices (int logged)
 {
-    audio_rescanDevices();
-    midi_rescanDevices();
+    audio_rescanDevices (logged > 0);
+    // midi_rescanDevices();
 }
 
 // -----------------------------------------------------------------------------------------------------------

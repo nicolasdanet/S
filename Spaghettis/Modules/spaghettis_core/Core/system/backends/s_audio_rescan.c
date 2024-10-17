@@ -38,7 +38,7 @@ static t_error audio_getListOfDevices (t_audiodevices *l, int reload)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void audio_rescanDevices (void)
+void audio_rescanDevices (int isLogged)
 {
     t_audiodevices l; t_error err = audio_getListOfDevices (&l, 1);
     
