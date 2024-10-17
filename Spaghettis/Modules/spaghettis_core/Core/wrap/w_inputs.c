@@ -70,7 +70,7 @@ void inputs_setSnapSize (int gridSize)
 void inputs_rescanDevices (int logged)
 {
     audio_rescanDevices (logged > 0);
-    // midi_rescanDevices();
+    midi_rescanDevices (logged > 0);
 }
 
 // -----------------------------------------------------------------------------------------------------------

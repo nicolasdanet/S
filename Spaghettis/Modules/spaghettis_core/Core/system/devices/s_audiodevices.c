@@ -82,56 +82,24 @@ t_error audiodevices_addAudioOut (t_audiodevices *p, t_symbol *device, int chann
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void audiodevices_report (t_audiodevices *p)
 {
-
-}
-
-/*
-static void searchpath_report (void)
-{
-    t_pathlist *l = searchpath_directories;
+    int i;
     
-    while (l) {
-        const char *path = pathlist_getPath (l);
-        l = pathlist_getNext (l);
-        post_system (NULL, PD_TRANSLATE ("rescan: %s"), path);
+    for (i = 0; i < p->d_inSize; i++) {
+    //
+    post_system (NULL, PD_TRANSLATE ("rescan: audio in / %s / %d"), p->d_inNames[i], p->d_inChannels[i]);
+    //
     }
     
-    l = searchpath_external;
-    
-    while (l) {
-        const char *path = pathlist_getPath (l);
-        l = pathlist_getNext (l);
-        post_system (NULL, PD_TRANSLATE ("rescan: external / %s"), path);
-    }
-    
-    l = searchpath_patch;
-    
-    while (l) {
-        const char *path = pathlist_getPath (l);
-        l = pathlist_getNext (l);
-        post_system (NULL, PD_TRANSLATE ("rescan: patch / %s"), path);
-    }
-    
-    l = searchpath_help;
-    
-    while (l) {
-        const char *path = pathlist_getPath (l);
-        l = pathlist_getNext (l);
-        post_system (NULL, PD_TRANSLATE ("rescan: help / %s"), path);
-    }
-    
-    l = searchpath_duplicates;
-    
-    while (l) {
-        const char *path = pathlist_getPath (l);
-        l = pathlist_getNext (l);
-        post_system (NULL, PD_TRANSLATE ("rescan: duplicates / %s"), path);
+    for (i = 0; i < p->d_outSize; i++) {
+    //
+    post_system (NULL, PD_TRANSLATE ("rescan: audio in / %s / %d"), p->d_outNames[i], p->d_outChannels[i]);
+    //
     }
 }
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

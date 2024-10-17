@@ -38,11 +38,13 @@ static t_error midi_getListOfDevices (t_mididevices *l, int reload)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void midi_rescanDevices (void)
+void midi_rescanDevices (int isLogged)
 {
     t_mididevices l; t_error err = midi_getListOfDevices (&l, 1);
     
-    PD_ASSERT (!err); PD_UNUSED (err);
+    PD_ASSERT (!err);
+    
+    if (!err && isLogged) { mididevices_report (&l); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
