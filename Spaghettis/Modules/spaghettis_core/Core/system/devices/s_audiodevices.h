@@ -27,7 +27,7 @@ typedef struct _audiodevices {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    audiodevices_init           (t_audiodevices *p);
+void    audiodevices_initialize     (t_audiodevices *p);
 void    audiodevices_copy           (t_audiodevices *dest, t_audiodevices *src);
 
 // -----------------------------------------------------------------------------------------------------------

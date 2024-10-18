@@ -25,7 +25,7 @@ typedef struct _mididevices {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    mididevices_init        (t_mididevices *p);
+void    mididevices_initialize  (t_mididevices *p);
 void    mididevices_copy        (t_mididevices *dest, t_mididevices *src);
 
 // -----------------------------------------------------------------------------------------------------------

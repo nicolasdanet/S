@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void mididevices_init (t_mididevices *p)
+void mididevices_initialize (t_mididevices *p)
 {
     int i;
 

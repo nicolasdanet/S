@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void audiodevices_init (t_audiodevices *p)
+void audiodevices_initialize (t_audiodevices *p)
 {
     int i;
 
