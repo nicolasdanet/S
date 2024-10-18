@@ -353,7 +353,6 @@ t_symbol *sym_max__tilde__;
 t_symbol *sym_message;
 t_symbol *sym_messageresponder;
 t_symbol *sym_metro;
-t_symbol *sym_midiports;
 t_symbol *sym_midisystemin;
 t_symbol *sym_midisystemout;
 t_symbol *sym_millisecond;
@@ -927,7 +926,6 @@ void symbols_initialize (void)
     sym_message                                 = gensym ("message");
     sym_messageresponder                        = gensym ("messageresponder");
     sym_metro                                   = gensym ("metro");
-    sym_midiports                               = gensym ("midiports");
     sym_midisystemin                            = gensym ("midisystemin");
     sym_midisystemout                           = gensym ("midisystemout");
     sym_millisecond                             = gensym ("millisecond");

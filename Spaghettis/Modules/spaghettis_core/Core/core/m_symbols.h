@@ -354,7 +354,6 @@ extern t_symbol *sym_max__tilde__;
 extern t_symbol *sym_message;
 extern t_symbol *sym_messageresponder;
 extern t_symbol *sym_metro;
-extern t_symbol *sym_midiports;
 extern t_symbol *sym_midisystemin;
 extern t_symbol *sym_midisystemout;
 extern t_symbol *sym_millisecond;
