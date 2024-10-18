@@ -81,15 +81,11 @@ void mididevices_report (t_mididevices *p)
     int i;
     
     for (i = 0; i < p->d_inSize; i++) {
-    //
-    post_system (NULL, PD_TRANSLATE ("rescan: midi in / %s"), p->d_inNames[i]);
-    //
+        post_system (NULL, PD_TRANSLATE ("rescan: midi in / %s"), symbol_getName (p->d_inNames[i]));
     }
     
     for (i = 0; i < p->d_outSize; i++) {
-    //
-    post_system (NULL, PD_TRANSLATE ("rescan: midi in / %s"), p->d_outNames[i]);
-    //
+        post_system (NULL, PD_TRANSLATE ("rescan: midi out / %s"), symbol_getName (p->d_outNames[i]));
     }
 }
 

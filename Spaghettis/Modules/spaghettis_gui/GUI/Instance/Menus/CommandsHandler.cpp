@@ -27,8 +27,8 @@ juce::String getCommandText (juce::CommandID command)
     case Commands::clearRecentFiles     : return NEEDS_TRANS ("Clear Menu");
     case Commands::save                 : return NEEDS_TRANS ("Save");
     case Commands::closeWindow          : return NEEDS_TRANS ("Close Window");
-    case Commands::rescan               : return NEEDS_TRANS ("Rescan Paths");
-    case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan Paths Logged");
+    case Commands::rescan               : return NEEDS_TRANS ("Rescan");
+    case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan Logged");
     case Commands::selectAll            : return NEEDS_TRANS ("Select All");
     case Commands::undo                 : return NEEDS_TRANS ("Undo");
     case Commands::redo                 : return NEEDS_TRANS ("Redo");
@@ -69,8 +69,8 @@ juce::String getCommandDescription (juce::CommandID command)
     case Commands::clearRecentFiles     : return NEEDS_TRANS ("Clears all recent files");
     case Commands::save                 : return NEEDS_TRANS ("Save file");
     case Commands::closeWindow          : return NEEDS_TRANS ("Close active window");
-    case Commands::rescan               : return NEEDS_TRANS ("Rescan search paths");
-    case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan search paths");
+    case Commands::rescan               : return NEEDS_TRANS ("Rescan search paths and devices");
+    case Commands::rescanLogged         : return NEEDS_TRANS ("Rescan search paths and devices");
     case Commands::selectAll            : return NEEDS_TRANS ("Select all");
     case Commands::undo                 : return NEEDS_TRANS ("Undo action");
     case Commands::redo                 : return NEEDS_TRANS ("Redo action");

@@ -89,15 +89,15 @@ void audiodevices_report (t_audiodevices *p)
     int i;
     
     for (i = 0; i < p->d_inSize; i++) {
-    //
-    post_system (NULL, PD_TRANSLATE ("rescan: audio in / %s / %d"), p->d_inNames[i], p->d_inChannels[i]);
-    //
+        const char *s = symbol_getName (p->d_inNames[i]);
+        int n = p->d_inChannels[i];
+        post_system (NULL, PD_TRANSLATE ("rescan: audio in / %s / %d"), s, n);
     }
     
     for (i = 0; i < p->d_outSize; i++) {
-    //
-    post_system (NULL, PD_TRANSLATE ("rescan: audio in / %s / %d"), p->d_outNames[i], p->d_outChannels[i]);
-    //
+        const char *s = symbol_getName (p->d_outNames[i]);
+        int n = p->d_outChannels[i];
+        post_system (NULL, PD_TRANSLATE ("rescan: audio out / %s / %d"), s, n);
     }
 }
 
