@@ -14,11 +14,8 @@
 
 void midi_open (void)
 {
-    // t_devices midi;
-    
     /* ??? */
      
-    // midi_getDevices (&midi);
     // midi_openNative (&midi);
 }
 

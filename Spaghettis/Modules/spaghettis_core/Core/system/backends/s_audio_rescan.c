@@ -38,6 +38,17 @@ static t_error audio_getListOfDevicesCached (t_audiodevices *l, int reload)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void audio_getListOfDevices (t_audiodevices *l)
+{
+    t_error err = audio_getListOfDevicesCached (l, 0);
+    
+    PD_ASSERT (!err); PD_UNUSED (err);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void audio_rescanDevices (int isLogged)
 {
     t_audiodevices l; t_error err = audio_getListOfDevicesCached (&l, 1);

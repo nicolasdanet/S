@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_error midi_getListOfDevices (t_mididevices *l, int reload)
+static t_error midi_getListOfDevicesCached (t_mididevices *l, int reload)
 {
     static int cacheLoaded = 0;             /* Static. */
     static t_mididevices cache;             /* Static. */
@@ -38,9 +38,20 @@ static t_error midi_getListOfDevices (t_mididevices *l, int reload)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+void midi_getListOfDevices (t_mididevices *l)
+{
+    t_error err = midi_getListOfDevicesCached (l, 0);
+    
+    PD_ASSERT (!err); PD_UNUSED (err);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void midi_rescanDevices (int isLogged)
 {
-    t_mididevices l; t_error err = midi_getListOfDevices (&l, 1);
+    t_mididevices l; t_error err = midi_getListOfDevicesCached (&l, 1);
     
     PD_ASSERT (!err);
     

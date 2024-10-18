@@ -203,13 +203,9 @@ t_error audio_open (void)
 {
     t_error err = PD_ERROR;
     
-    t_devices audio;
-    
-    // audio_getDevices (&audio);
-    
     /* ??? */
     
-    if (audio_check (&audio) == PD_ERROR_NONE) {
+    // if (audio_check (&audio) == PD_ERROR_NONE) {
     //
     /*
     pthread_mutex_lock (&audio_mutex);
@@ -226,7 +222,7 @@ t_error audio_open (void)
     pthread_mutex_unlock (&audio_mutex);
     */
     //
-    }
+    //}
     
     return err;
 }
@@ -255,16 +251,16 @@ int audio_isOpened (void)
 
 void audio_setCurrentDevices (t_devices *p)
 {
-    /*
     int m, n;
     
-    deviceslist_setDevices (&audio_devices, p, setParameters);
+    devices_setAudio (&audio_devices, p);
     
-    m = deviceslist_getTotalOfChannelsIn (&audio_devices);
-    n = deviceslist_getTotalOfChannelsOut (&audio_devices);
+    /* ??? */
     
-    audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
-    */
+    // m = deviceslist_getTotalOfChannelsIn (&audio_devices);
+    // n = deviceslist_getTotalOfChannelsOut (&audio_devices);
+    
+    // audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
     
     // outputs_reportCurrentAudioDevices (&audio_devices);
 }
@@ -275,7 +271,11 @@ void audio_setCurrentDevices (t_devices *p)
 
 t_error audio_initialize (void)
 {
-    pthread_mutex_init (&audio_mutex, NULL); return audio_initializeNative();
+    pthread_mutex_init (&audio_mutex, NULL);
+    
+    devices_initialize (&audio_devices);
+    
+    return audio_initializeNative();
 }
 
 void audio_release (void)
