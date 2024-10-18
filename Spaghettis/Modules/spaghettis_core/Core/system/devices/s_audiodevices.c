@@ -84,6 +84,44 @@ t_error audiodevices_addAudioOut (t_audiodevices *p, t_symbol *device, int chann
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int audiodevices_hasAudioIn (t_audiodevices *p, t_symbol *device)
+{
+    if (device != NULL) {
+    //
+    int i;
+            
+    for (i = 0; i < p->d_inSize; i++) {
+        if (p->d_inNames[i] == device && p->d_inChannels[i] > 0) {
+            return 1;
+        }
+    }
+    //
+    }
+    
+    return 0;
+}
+
+int audiodevices_hasAudioOut (t_audiodevices *p, t_symbol *device)
+{
+    if (device != NULL) {
+    //
+    int i;
+    
+    for (i = 0; i < p->d_outSize; i++) {
+        if (p->d_outNames[i] == device && p->d_outChannels[i] > 0) {
+            return 1;
+        }
+    }
+    //
+    }
+    
+    return 0;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void audiodevices_report (t_audiodevices *p)
 {
     int i;
