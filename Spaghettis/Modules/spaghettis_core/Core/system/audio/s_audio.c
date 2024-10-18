@@ -248,7 +248,7 @@ int audio_isOpened (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void audio_setCurrentDevices (void)
+void audio_setCurrentDevices (t_devices *p)
 {
     /*
     int m, n;

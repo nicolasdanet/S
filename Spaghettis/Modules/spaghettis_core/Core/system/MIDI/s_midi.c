@@ -14,7 +14,7 @@
 
 void midi_open (void)
 {
-    t_devices midi;
+    // t_devices midi;
     
     /* ??? */
      
@@ -40,7 +40,7 @@ void midi_poll (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void midi_setCurrentDevices (void)
+void midi_setCurrentDevices (t_devices *p)
 {
     /* ??? */
     /*
