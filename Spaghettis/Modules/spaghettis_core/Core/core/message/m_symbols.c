@@ -132,7 +132,6 @@ t_symbol *sym__include;
 t_symbol *sym__inlet2;
 t_symbol *sym__inlet3;
 t_symbol *sym__loadbang;
-t_symbol *sym__midiports;
 t_symbol *sym__midisystemin;
 t_symbol *sym__midisystemportin;
 t_symbol *sym__notein;
@@ -707,7 +706,6 @@ void symbols_initialize (void)
     sym__inlet2                                 = gensym ("_inlet2");
     sym__inlet3                                 = gensym ("_inlet3");
     sym__loadbang                               = gensym ("_loadbang");
-    sym__midiports                              = gensym ("_midiports");
     sym__midisystemin                           = gensym ("_midisystemin");
     sym__midisystemportin                       = gensym ("_midisystemportin");
     sym__notein                                 = gensym ("_notein");

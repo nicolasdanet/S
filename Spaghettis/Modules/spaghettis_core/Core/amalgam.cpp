@@ -324,7 +324,6 @@ namespace spaghettis::core {
 #include "control/network/x_oscstream.c"
 #include "control/network/x_timestamp.c"
 
-#include "control/midi/x_midiports.c"
 #include "control/midi/x_makenote.c"
 #include "control/midi/x_stripnote.c"
 #include "control/midi/x_bag.c"

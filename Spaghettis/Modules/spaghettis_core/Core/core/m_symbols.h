@@ -133,7 +133,6 @@ extern t_symbol *sym__include;
 extern t_symbol *sym__inlet2;
 extern t_symbol *sym__inlet3;
 extern t_symbol *sym__loadbang;
-extern t_symbol *sym__midiports;
 extern t_symbol *sym__midisystemin;
 extern t_symbol *sym__midisystemportin;
 extern t_symbol *sym__notein;

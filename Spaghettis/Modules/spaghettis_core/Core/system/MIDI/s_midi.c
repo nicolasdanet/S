@@ -42,17 +42,13 @@ void midi_poll (void)
 
 void midi_setCurrentDevices (void)
 {
+    /* ??? */
     /*
     t_mididevices old; mididevices_copy (&old, &midi_devices);
     
     deviceslist_setDevices (&midi_devices, p, setParameters);
-    
-    if (!deviceslist_areEquals (&old, &midi_devices) && symbol_hasThingQuiet (sym__midiports)) {
-    //
-    pd_message (symbol_getThing (sym__midiports), sym__midiports, 0, NULL);
-    //
-    }
     */
+    
     // outputs_reportCurrentMidiDevices (&midi_devices);
 }
 
