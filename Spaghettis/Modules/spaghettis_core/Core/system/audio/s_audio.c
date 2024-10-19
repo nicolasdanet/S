@@ -36,12 +36,6 @@ pthread_mutex_t         audio_mutex;                /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void audio_vectorInitialize (t_float, int, int);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 t_error audio_start (void)
 {
     if (!audio_isOpened()) { return audio_open(); } else { return PD_ERROR_NONE; }
@@ -144,61 +138,6 @@ void audio_vectorShrinkOut (int totalOfChannelsOut)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Check maximum device channels (if defined) before to open stream. */
-
-static t_error audio_check (t_devices *p)
-{
-    t_error err = PD_ERROR_NONE;
-    
-    // t_audiodevices l; t_error err = audio_getListOfDevices (&l, 0);
-    
-    /* ??? */
-    
-    /*
-    devices_check (p);
-
-    if (!err) {
-    //
-    int i;
-    
-    for (i = 0; i < devices_getInSize (p); i++) {
-    //
-    int m = devices_getInChannelsAtIndex (p, i);
-    int n = deviceslist_getInChannelsAtIndex (&l, devices_getInAtIndex (p, i));
-    if (n > 0 && m > n) {
-        err = PD_ERROR; break;
-    }
-    //
-    }
-    //
-    }
-    
-    if (!err) {
-    //
-    int i;
-    
-    for (i = 0; i < devices_getOutSize (p); i++) {
-    //
-    int m = devices_getOutChannelsAtIndex (p, i);
-    int n = deviceslist_getOutChannelsAtIndex (&l, devices_getOutAtIndex (p, i));
-    if (n > 0 && m > n) {
-        err = PD_ERROR; break;
-    }
-    //
-    }
-    //
-    }
-    */
-    
-    if (err) { error_mismatch (NULL, sym_audio, sym_channels); }
-    
-    return err;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 t_error audio_open (void)
 {
     t_error err = PD_ERROR;
@@ -251,18 +190,7 @@ int audio_isOpened (void)
 
 void audio_setCurrentDevices (t_devices *p)
 {
-    int m, n;
-    
-    devices_setAudio (&audio_devices, p);
-    
-    /* ??? */
-    
-    // m = deviceslist_getTotalOfChannelsIn (&audio_devices);
-    // n = deviceslist_getTotalOfChannelsOut (&audio_devices);
-    
-    // audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
-    
-    // outputs_reportCurrentAudioDevices (&audio_devices);
+    devices_copy (&audio_devices, p);
 }
 
 // -----------------------------------------------------------------------------------------------------------

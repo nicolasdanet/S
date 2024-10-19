@@ -28,26 +28,15 @@ void devices_initialize (t_devices *d)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Check that devices still exist. */
-
-void devices_setAudio (t_devices *d, t_devices *from)
+void devices_copy (t_devices *d, t_devices *from)
 {
-    t_audiodevices l; audio_getListOfDevices (&l);
-    
-    int i, k;
+    int i;
 
-    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
-        t_symbol *s = from->d_in[i];
-        if (audiodevices_hasAudioIn (&l, s)) {
-            d->d_in[k++] = s;
-        }
-    }
-    
-    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
-        t_symbol *s = from->d_out[i];
-        if (audiodevices_hasAudioOut (&l, s)) {
-            d->d_out[k++] = s;
-        }
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
+    //
+    d->d_in[i]  = from->d_in[i];
+    d->d_out[i] = from->d_out[i];
+    //
     }
 }
 
