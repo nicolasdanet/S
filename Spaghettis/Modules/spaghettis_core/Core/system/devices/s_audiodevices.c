@@ -118,6 +118,36 @@ int audiodevices_hasAudioOut (t_audiodevices *p, t_symbol *device)
     return 0;
 }
 
+int audiodevices_getNumberOfChannelsIn (t_audiodevices *p, t_symbol *device)
+{
+    if (device != NULL) {
+    //
+    int i;
+            
+    for (i = 0; i < p->d_inSize; i++)  {
+        if (p->d_inNames[i] == device) { return p->d_inChannels[i]; }
+    }
+    //
+    }
+    
+    return 0;
+}
+
+int audiodevices_getNumberOfChannelsOut (t_audiodevices *p, t_symbol *device)
+{
+    if (device != NULL) {
+    //
+    int i;
+            
+    for (i = 0; i < p->d_outSize; i++)  {
+        if (p->d_outNames[i] == device) { return p->d_outChannels[i]; }
+    }
+    //
+    }
+    
+    return 0;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

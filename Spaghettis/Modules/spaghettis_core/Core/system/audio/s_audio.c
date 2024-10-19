@@ -144,20 +144,18 @@ t_error audio_open (void)
     
     if (devices_checkAudio (&audio_devices) == PD_ERROR_NONE) {
     //
-    /*
     pthread_mutex_lock (&audio_mutex);
     
-        if (devices_getInSize (&audio) || devices_getOutSize (&audio)) {
-            int m = audio_getTotalOfChannelsIn();
-            int n = audio_getTotalOfChannelsOut();
+        {
+            int m = devices_getTotalOfChannelsIn (&audio_devices);
+            int n = devices_getTotalOfChannelsOut (&audio_devices);
             audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
-            err = audio_openNative (&audio);
+            err = audio_openNative (&audio_devices);
         }
 
         audio_state = err ? 0 : 1;
     
     pthread_mutex_unlock (&audio_mutex);
-    */
     //
     }
     
