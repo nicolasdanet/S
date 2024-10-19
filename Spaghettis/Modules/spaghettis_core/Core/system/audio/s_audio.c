@@ -11,26 +11,26 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_devices audio_devices;                            /* Static. */
+t_devices audio_devices;                                /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-t_sample *audio_soundIn;                            /* Static. */
-t_sample *audio_soundOut;                           /* Static. */
+t_sample *audio_soundIn;                                /* Static. */
+t_sample *audio_soundOut;                               /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static int              audio_totalOfChannelsIn;    /* Static. */
-static int              audio_totalOfChannelsOut;   /* Static. */
-static t_float64Atomic  audio_sampleRate;           /* Static. */
+static int              audio_totalOfChannelsIn;        /* Static. */
+static int              audio_totalOfChannelsOut;       /* Static. */
+static t_float64Atomic  audio_sampleRate;               /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static int              audio_state;                /* Static. */
-pthread_mutex_t         audio_mutex;                /* Static. */
+static int              audio_state;                    /* Static. */
+pthread_mutex_t         audio_mutex;                    /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -142,9 +142,7 @@ t_error audio_open (void)
 {
     t_error err = PD_ERROR;
     
-    /* ??? */
-    
-    // if (audio_check (&audio) == PD_ERROR_NONE) {
+    if (devices_checkAudio (&audio_devices) == PD_ERROR_NONE) {
     //
     /*
     pthread_mutex_lock (&audio_mutex);
@@ -161,7 +159,7 @@ t_error audio_open (void)
     pthread_mutex_unlock (&audio_mutex);
     */
     //
-    //}
+    }
     
     return err;
 }

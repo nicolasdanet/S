@@ -54,7 +54,7 @@ t_error audiodevices_addAudioIn (t_audiodevices *p, t_symbol *device, int channe
 {
     if (p->d_inSize < DEVICES_MAXIMUM_IO) {
     //
-    int t = PD_CLAMP (channels, -DEVICES_MAXIMUM_CHANNELS, DEVICES_MAXIMUM_CHANNELS);
+    int t = PD_CLAMP (channels, 0, DEVICES_MAXIMUM_CHANNELS);
     p->d_inNames[p->d_inSize]    = device;
     p->d_inChannels[p->d_inSize] = t;
     p->d_inSize++;
@@ -69,7 +69,7 @@ t_error audiodevices_addAudioOut (t_audiodevices *p, t_symbol *device, int chann
 {
     if (p->d_outSize < DEVICES_MAXIMUM_IO) {
     //
-    int t = PD_CLAMP (channels, -DEVICES_MAXIMUM_CHANNELS, DEVICES_MAXIMUM_CHANNELS);
+    int t = PD_CLAMP (channels, 0, DEVICES_MAXIMUM_CHANNELS);
     p->d_outNames[p->d_outSize]    = device;
     p->d_outChannels[p->d_outSize] = t;
     p->d_outSize++;
