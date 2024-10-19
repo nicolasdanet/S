@@ -39,6 +39,10 @@ void midi_poll (void)
 
 void midi_setCurrentDevices (t_devices *p)
 {
+    // midi_close();
+
+    // midi_open();
+    
     /* ??? */
     /*
     t_mididevices old; mididevices_copy (&old, &midi_devices);
