@@ -30,21 +30,31 @@ typedef struct _devices {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    devices_initialize              (t_devices *);
+void        devices_initialize                  (t_devices *d);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    devices_copy                    (t_devices *d, t_devices *from);
+void        devices_copy                        (t_devices *d, t_devices *from);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error devices_checkAudio              (t_devices *d);
-int     devices_getTotalOfChannelsIn    (t_devices *d);
-int     devices_getTotalOfChannelsOut   (t_devices *d);
+t_error     devices_checkAudio                  (t_devices *d);
+int         devices_getTotalOfChannelsIn        (t_devices *d);
+int         devices_getTotalOfChannelsOut       (t_devices *d);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_symbol    *devices_getInName                  (t_devices *d, int n);
+t_symbol    *devices_getOutName                 (t_devices *d, int n);
+
+int         devices_getInChannels               (t_devices *d, int n);
+int         devices_getOutChannels              (t_devices *d, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -178,13 +178,14 @@ void audio_releaseNative (void)
 
 t_error audio_openNative (t_devices *p)
 {
-    int numberOfChannelsIn  = devices_getInSize (p)  ? devices_getInChannelsAtIndex (p, 0)  : 0;
-    int numberOfChannelsOut = devices_getOutSize (p) ? devices_getOutChannelsAtIndex (p, 0) : 0;
+    int numberOfChannelsIn  = devices_getInChannels (p, 0);
+    int numberOfChannelsOut = devices_getOutChannels (p, 0);
     int sampleRate          = AUDIO_DEFAULT_SAMPLERATE;
         
     static_assert (sizeof (t_sample) == sizeof (jack_default_audio_sample_t));
     
-    if (numberOfChannelsIn) {   /* For now audio in is required to synchronize properly the callback. */
+    if (numberOfChannelsIn)  {  /* For now audio in is required to synchronize properly the callback. */
+    if (numberOfChannelsOut) {
     //
     jack_status_t status;
     
@@ -250,6 +251,7 @@ t_error audio_openNative (t_devices *p)
     //
     }
     //
+    }
     }
         
     return PD_ERROR;

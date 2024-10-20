@@ -196,31 +196,33 @@ void audio_releaseNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* For now audio in is required to synchronize properly the callback. */
+/* Audio in is required to synchronize properly the callback. */
+
+/* Only first device is opened. */
 
 t_error audio_openNative (t_devices *p)
 {
-    t_error err = PD_ERROR; /* ??? */
-    /*
-    t_symbol *deviceIn  = devices_getInSize (p)  ? devices_getInAtIndexAsSymbol (p, 0)  : NULL;
-    t_symbol *deviceOut = devices_getOutSize (p) ? devices_getOutAtIndexAsSymbol (p, 0) : NULL;
-    int channelsIn      = devices_getInSize (p)  ? devices_getInChannelsAtIndex (p, 0)  : 0;
-    int channelsOut     = devices_getOutSize (p) ? devices_getOutChannelsAtIndex (p, 0) : 0;
-    int sampleRate      = AUDIO_DEFAULT_SAMPLERATE;
-    int vectorSize      = INTERNAL_BLOCKSIZE;
+    t_error err = PD_ERROR;
+    t_symbol *i = devices_getInName (p, 0);
+    t_symbol *o = devices_getOutName (p, 0);
+    int m       = devices_getInChannels (p, 0);
+    int n       = devices_getOutChannels (p, 0);
     
     static_assert (sizeof (t_sample) == sizeof (Float32), "");
     
-    if (deviceIn && channelsIn) {
+    if (i && o) {
     //
-    core_buffersAllocate (channelsIn, channelsOut);
+    PD_ASSERT (m > 0);
+    PD_ASSERT (n > 0);
     
-    err = audiograph_open (&core_graph, deviceIn, deviceOut, channelsIn, channelsOut, sampleRate, vectorSize);
+    core_buffersAllocate (m, n);
+    
+    err = audiograph_open (&core_graph, i, o, m, n, AUDIO_DEFAULT_SAMPLERATE, INTERNAL_BLOCKSIZE);
     
     if (err) { audiograph_close (&core_graph); }
     //
     }
-    */
+
     return err;
 }
 
