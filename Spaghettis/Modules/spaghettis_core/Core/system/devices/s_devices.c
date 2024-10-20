@@ -61,6 +61,10 @@ static void devices_logAudio (t_error err, t_devices *p)
     (f) (NULL, PD_TRANSLATE ("dsp: %d Hz"), AUDIO_DEFAULT_SAMPLERATE);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_error devices_checkAudio (t_devices *d)
 {
     t_error err = PD_ERROR;
@@ -92,6 +96,35 @@ t_error devices_checkAudio (t_devices *d)
     devices_logAudio (err, d);
     
     return err;
+}
+
+t_error devices_checkMidi (t_devices *d)
+{
+    t_mididevices l; midi_getListOfDevices (&l);
+    
+    t_devices t; devices_initialize (&t);
+    
+    int i, k;
+
+    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
+        t_symbol *s = d->d_in[i];
+        if (mididevices_hasMidiIn (&l, s)) {
+            t.d_in[k++] = s;
+        }
+    }
+    
+    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
+        t_symbol *s = d->d_out[i];
+        if (mididevices_hasMidiOut (&l, s)) {
+            t.d_out[k++] = s;
+        }
+    }
+    
+    devices_copy (d, &t);
+    
+    if (d->d_in[0] != NULL || d->d_out[0] != NULL) { return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------------------------

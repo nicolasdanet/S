@@ -76,6 +76,44 @@ t_error mididevices_addMidiOut (t_mididevices *p, t_symbol *device)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int mididevices_hasMidiIn (t_mididevices *p, t_symbol *device)
+{
+    if (device != NULL) {
+    //
+    int i;
+            
+    for (i = 0; i < p->d_inSize; i++) {
+        if (p->d_inNames[i] == device) {
+            return 1;
+        }
+    }
+    //
+    }
+    
+    return 0;
+}
+
+int mididevices_hasMidiOut (t_mididevices *p, t_symbol *device)
+{
+    if (device != NULL) {
+    //
+    int i;
+    
+    for (i = 0; i < p->d_outSize; i++) {
+        if (p->d_outNames[i] == device) {
+            return 1;
+        }
+    }
+    //
+    }
+    
+    return 0;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void mididevices_report (t_mididevices *p)
 {
     int i;

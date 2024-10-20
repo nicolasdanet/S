@@ -25,21 +25,28 @@ typedef struct _mididevices {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    mididevices_initialize  (t_mididevices *p);
-void    mididevices_copy        (t_mididevices *dest, t_mididevices *src);
+void    mididevices_initialize      (t_mididevices *p);
+void    mididevices_copy            (t_mididevices *dest, t_mididevices *src);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error mididevices_addMidiIn   (t_mididevices *p, t_symbol *device);
-t_error mididevices_addMidiOut  (t_mididevices *p, t_symbol *device);
+t_error mididevices_addMidiIn       (t_mididevices *p, t_symbol *device);
+t_error mididevices_addMidiOut      (t_mididevices *p, t_symbol *device);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    mididevices_report      (t_mididevices *p);
+int     mididevices_hasMidiIn       (t_mididevices *p, t_symbol *device);
+int     mididevices_hasMidiOut      (t_mididevices *p, t_symbol *device);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void    mididevices_report          (t_mididevices *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

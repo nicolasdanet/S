@@ -43,6 +43,12 @@ void        devices_copy                        (t_devices *d, t_devices *from);
 // MARK: -
 
 t_error     devices_checkAudio                  (t_devices *d);
+t_error     devices_checkMidi                   (t_devices *d);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 int         devices_getTotalOfChannelsIn        (t_devices *d);
 int         devices_getTotalOfChannelsOut       (t_devices *d);
 

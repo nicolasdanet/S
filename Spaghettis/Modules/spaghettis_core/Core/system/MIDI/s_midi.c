@@ -19,7 +19,7 @@ static t_devices midi_devices;     /* Static. */
 
 void midi_open (void)
 {
-    midi_openNative (&midi_devices);
+    if (devices_checkMidi (&midi_devices) == PD_ERROR_NONE) { midi_openNative (&midi_devices); }
 }
 
 void midi_close (void)
