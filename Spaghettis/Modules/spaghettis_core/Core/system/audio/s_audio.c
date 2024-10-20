@@ -144,6 +144,8 @@ t_error audio_open (void)
     
     if (devices_checkAudio (&audio_devices) == PD_ERROR_NONE) {
     //
+    /* ??? */
+    /*
     pthread_mutex_lock (&audio_mutex);
     
         {
@@ -156,6 +158,7 @@ t_error audio_open (void)
         audio_state = err ? 0 : 1;
     
     pthread_mutex_unlock (&audio_mutex);
+    */
     //
     }
     
