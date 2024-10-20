@@ -10,13 +10,16 @@
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+t_devices midi_devices;     /* Static. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 void midi_open (void)
 {
-    /* ??? */
-     
-    // midi_openNative (&midi);
+    midi_openNative (&midi_devices);
 }
 
 void midi_close (void)
@@ -39,18 +42,11 @@ void midi_poll (void)
 
 void midi_setCurrentDevices (t_devices *p)
 {
-    // midi_close();
+    midi_close();
 
-    // midi_open();
+    devices_copy (&midi_devices, p);
     
-    /* ??? */
-    /*
-    t_mididevices old; mididevices_copy (&old, &midi_devices);
-    
-    deviceslist_setDevices (&midi_devices, p, setParameters);
-    */
-    
-    // outputs_reportCurrentMidiDevices (&midi_devices);
+    midi_open();
 }
 
 // -----------------------------------------------------------------------------------------------------------
