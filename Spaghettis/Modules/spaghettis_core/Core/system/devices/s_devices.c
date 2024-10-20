@@ -134,22 +134,38 @@ int devices_getTotalOfChannelsOut (t_devices *d)
 
 t_symbol *devices_getInName (t_devices *d, int n)
 {
-    return NULL;
+    PD_ASSERT (n < DEVICES_MAXIMUM_IO);
+    
+    return d->d_in[n];
 }
 
 t_symbol *devices_getOutName (t_devices *d, int n)
 {
-    return NULL;
+    PD_ASSERT (n < DEVICES_MAXIMUM_IO);
+    
+    return d->d_out[n];
 }
 
 int devices_getInChannels (t_devices *d, int n)
 {
-    return 0;
+    t_audiodevices l; audio_getListOfDevices (&l);
+    
+    int k = audiodevices_getNumberOfChannelsIn (&l, d->d_in[n]);
+
+    PD_ASSERT (k);
+    
+    return k;
 }
 
 int devices_getOutChannels (t_devices *d, int n)
 {
-    return 0;
+    t_audiodevices l; audio_getListOfDevices (&l);
+    
+    int k = audiodevices_getNumberOfChannelsOut (&l, d->d_out[n]);
+
+    PD_ASSERT (k);
+    
+    return k;
 }
 
 // -----------------------------------------------------------------------------------------------------------
