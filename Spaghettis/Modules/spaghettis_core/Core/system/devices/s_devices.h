@@ -59,6 +59,8 @@ int         devices_getTotalOfChannelsOut       (t_devices *d);
 t_symbol    *devices_getInName                  (t_devices *d, int n);
 t_symbol    *devices_getOutName                 (t_devices *d, int n);
 
+int         devices_getInSize                   (t_devices *d);
+int         devices_getOutSize                  (t_devices *d);
 int         devices_getInChannels               (t_devices *d, int n);
 int         devices_getOutChannels              (t_devices *d, int n);
 

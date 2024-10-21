@@ -65,36 +65,32 @@ static t_error midi_openNativeDestination (t_symbol *name)
 
 void midi_openNative (t_devices *p)
 {
-    /* ??? */
-    
-    /*
-    int numberOfDevicesIn  = devices_getInSize (p);
-    int numberOfDevicesOut = devices_getOutSize (p);
+    int m = devices_getInSize (p);
+    int n = devices_getOutSize (p);
     
     core_numberOfPortIn  = 0;
     core_numberOfPortOut = 0;
 
-    PD_ASSERT (numberOfDevicesIn  < DEVICES_MAXIMUM_IO);
-    PD_ASSERT (numberOfDevicesOut < DEVICES_MAXIMUM_IO);
+    PD_ASSERT (m < DEVICES_MAXIMUM_IO);
+    PD_ASSERT (n < DEVICES_MAXIMUM_IO);
     
-    if (numberOfDevicesOut || numberOfDevicesIn) {
+    if (m || n) {
     //
     int i;
     
-    for (i = 0; i < numberOfDevicesIn; i++)  {
-        t_symbol *s = devices_getInAtIndexAsSymbol (p, i);
+    for (i = 0; i < m; i++)  {
+        t_symbol *s = devices_getInName (p, i);
         t_error err = midi_openNativeSource (s);
         if (err) { error_canNotOpen (NULL, s); }
     }
     
-    for (i = 0; i < numberOfDevicesOut; i++) {
-        t_symbol *s = devices_getOutAtIndexAsSymbol (p, i);
+    for (i = 0; i < n; i++) {
+        t_symbol *s = devices_getOutName (p, i);
         t_error err = midi_openNativeDestination (s);
         if (err) { error_canNotOpen (NULL, s); }
     }
     //
     }
-    */
 }
 
 void midi_closeNative (void)

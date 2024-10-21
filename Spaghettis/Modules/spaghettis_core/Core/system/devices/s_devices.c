@@ -179,6 +179,38 @@ t_symbol *devices_getOutName (t_devices *d, int n)
     return d->d_out[n];
 }
 
+int devices_getInSize (t_devices *d)
+{
+    int i, k = 0;
+
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
+    //
+    if (d->d_in[i] != NULL) { k++; }
+    else {
+        break;
+    }
+    //
+    }
+    
+    return k;
+}
+
+int devices_getOutSize (t_devices *d)
+{
+    int i, k = 0;
+
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
+    //
+    if (d->d_out[i] != NULL) { k++; }
+    else {
+        break;
+    }
+    //
+    }
+    
+    return k;
+}
+
 int devices_getInChannels (t_devices *d, int n)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
