@@ -375,6 +375,7 @@ t_symbol *sym_netreceive;
 t_symbol *sym_netsend;
 t_symbol *sym_next;
 t_symbol *sym_noise__tilde__;
+t_symbol *sym_none;
 t_symbol *sym_nonzero;
 t_symbol *sym_normalize;
 t_symbol *sym_note;
@@ -948,6 +949,7 @@ void symbols_initialize (void)
     sym_netsend                                 = gensym ("netsend");
     sym_next                                    = gensym ("next");
     sym_noise__tilde__                          = gensym ("noise~");
+    sym_none                                    = gensym ("none");
     sym_nonzero                                 = gensym ("nonzero");
     sym_normalize                               = gensym ("normalize");
     sym_note                                    = gensym ("note");

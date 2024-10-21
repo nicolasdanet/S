@@ -376,6 +376,7 @@ extern t_symbol *sym_netreceive;
 extern t_symbol *sym_netsend;
 extern t_symbol *sym_next;
 extern t_symbol *sym_noise__tilde__;
+extern t_symbol *sym_none;
 extern t_symbol *sym_nonzero;
 extern t_symbol *sym_normalize;
 extern t_symbol *sym_note;

@@ -138,11 +138,32 @@ void audio_vectorShrinkOut (int totalOfChannelsOut)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void audio_log (t_error err, t_devices *p)
+{
+    t_symbol *i = devices_getInName (p, 0);
+    t_symbol *o = devices_getOutName (p, 0);
+    int m       = devices_getInChannels (p, 0);
+    int n       = devices_getOutChannels (p, 0);
+    
+    void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
+    
+    if (i == NULL) { i = sym_none; }
+    if (o == NULL) { o = sym_none; }
+    
+    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), symbol_getName (i), m);
+    (f) (NULL, PD_TRANSLATE ("dsp: %s / %d channels"), symbol_getName (o), n);
+    (f) (NULL, PD_TRANSLATE ("dsp: %d Hz"), AUDIO_DEFAULT_SAMPLERATE);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_error audio_open (void)
 {
-    t_error err = PD_ERROR;
+    t_error err = devices_checkAudio (&audio_devices);
     
-    if (devices_checkAudio (&audio_devices) == PD_ERROR_NONE) {
+    if (err == PD_ERROR_NONE) {
     //
     /* ??? */
     /*
@@ -161,6 +182,8 @@ t_error audio_open (void)
     */
     //
     }
+    
+    audio_log (err, &audio_devices);
     
     return err;
 }

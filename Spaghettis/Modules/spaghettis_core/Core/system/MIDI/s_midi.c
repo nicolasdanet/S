@@ -17,11 +17,30 @@ static t_devices midi_devices;     /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void midi_log (t_error err, t_devices *p)
+{
+    int m = devices_getInSize (p);
+    int n = devices_getOutSize (p);
+    
+    void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
+    
+    int i;
+    
+    for (i = 0; i < m; i++) { (f) (NULL, PD_TRANSLATE ("midi: %s"), devices_getInName (p, i));  }
+    for (i = 0; i < n; i++) { (f) (NULL, PD_TRANSLATE ("midi: %s"), devices_getOutName (p, i)); }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void midi_open (void)
 {
-    /* ??? */
+    t_error err = devices_checkMidi (&midi_devices);
     
-    if (devices_checkMidi (&midi_devices) == PD_ERROR_NONE) { /* midi_openNative (&midi_devices); */ }
+    if (err == PD_ERROR_NONE) { /* ??? */ /* midi_openNative (&midi_devices); */ }
+    
+    midi_log (err, &midi_devices);
 }
 
 void midi_close (void)
