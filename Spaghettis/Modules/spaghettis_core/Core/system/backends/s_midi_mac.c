@@ -63,8 +63,10 @@ static t_error midi_openNativeDestination (t_symbol *name)
     return err;
 }
 
-void midi_openNative (t_devices *p)
+t_error midi_openNative (t_devices *p)
 {
+    t_error err = PD_ERROR_NONE;
+    
     int m = devices_getInSize (p);
     int n = devices_getOutSize (p);
     
@@ -80,17 +82,25 @@ void midi_openNative (t_devices *p)
     
     for (i = 0; i < m; i++)  {
         t_symbol *s = devices_getInName (p, i);
-        t_error err = midi_openNativeSource (s);
-        if (err) { error_canNotOpen (NULL, s); }
+        t_error e   = midi_openNativeSource (s);
+        if (e) {
+            err |= PD_ERROR;
+            error_canNotOpen (NULL, s);
+        }
     }
     
     for (i = 0; i < n; i++) {
         t_symbol *s = devices_getOutName (p, i);
-        t_error err = midi_openNativeDestination (s);
-        if (err) { error_canNotOpen (NULL, s); }
+        t_error e   = midi_openNativeDestination (s);
+        if (e) {
+            err |= PD_ERROR;
+            error_canNotOpen (NULL, s);
+        }
     }
     //
     }
+    
+    return err;
 }
 
 void midi_closeNative (void)

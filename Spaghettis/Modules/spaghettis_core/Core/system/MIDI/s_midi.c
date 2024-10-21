@@ -38,7 +38,7 @@ void midi_open (void)
 {
     t_error err = devices_checkMidi (&midi_devices);
     
-    if (err == PD_ERROR_NONE) { /* ??? */ /* midi_openNative (&midi_devices); */ }
+    if (err == PD_ERROR_NONE) { /* ??? */ /* err = midi_openNative (&midi_devices); */ }
     
     midi_log (err, &midi_devices);
 }

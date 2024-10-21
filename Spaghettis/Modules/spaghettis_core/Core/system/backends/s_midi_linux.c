@@ -90,7 +90,7 @@ void midi_releaseNative (void)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void midi_openNative (t_devices *p)
+t_error midi_openNative (t_devices *p)
 {
     int numberOfDevicesIn  = devices_getInSize (p);
     int numberOfDevicesOut = devices_getOutSize (p);
@@ -158,8 +158,12 @@ void midi_openNative (t_devices *p)
     }
     //
     }
+    
+    return err;
     //
     }
+    
+    return PD_ERROR_NONE;
 }
 
 void midi_closeNative()
