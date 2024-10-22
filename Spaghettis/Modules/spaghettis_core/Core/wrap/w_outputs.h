@@ -33,32 +33,38 @@ void outputs_patchOpened                   (t_symbol *, t_symbol *);
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void outputs_classNew          (t_symbol *s);
+void outputs_classNew               (t_symbol *s);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void outputs_objectAdded       (t_object *x);
-void outputs_objectChanged     (t_object *x, const Tags& t);
-void outputs_objectUpdated     (t_object *x, const Tags& t);       /* Set dirty flag also. */
+void outputs_objectAdded            (t_object *x);
+void outputs_objectChanged          (t_object *x, const Tags& t);
+void outputs_objectUpdated          (t_object *x, const Tags& t);       /* Set dirty flag also. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void outputs_objectRemoved     (t_object *x);
-void outputs_objectRenamed     (t_object *x, t_id t);
+void outputs_objectRemoved          (t_object *x);
+void outputs_objectRenamed          (t_object *x, t_id t);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void outputs_patchOrder        (t_glist *g, std::vector<UniqueId>&&);
+void outputs_patchOrder             (t_glist *g, std::vector<UniqueId>&&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void outputs_lineAdded     (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
-void outputs_lineChanged   (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
-void outputs_lineRemoved   (t_id u, t_glist *g);
+void outputs_lineAdded              (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
+void outputs_lineChanged            (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *g);
+void outputs_lineRemoved            (t_id u, t_glist *g);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void outputs_reportAudioDevices     (t_audiodevices *d);
+void outputs_reportMidiDevices      (t_mididevices *d);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

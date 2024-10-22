@@ -25,7 +25,12 @@ static t_error audio_getListOfDevicesCached (t_audiodevices *l, int reload)
     //
     audiodevices_initialize (&cache);
     err = audio_getListOfDevicesNative (&cache);
-    if (!err) { cacheLoaded = 1; /* outputs_reportAvailableAudioDevices (&cache); */ }
+    if (!err) {
+        cacheLoaded = 1;
+        #if defined ( PD_BUILDING_APPLICATION )
+            outputs_reportAudioDevices (&cache);
+        #endif
+    }
     //
     }
     

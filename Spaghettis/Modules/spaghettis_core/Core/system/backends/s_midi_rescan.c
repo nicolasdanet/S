@@ -25,7 +25,12 @@ static t_error midi_getListOfDevicesCached (t_mididevices *l, int reload)
     //
     mididevices_initialize (&cache);
     err = midi_getListOfDevicesNative (&cache);
-    if (!err) { cacheLoaded = 1; /* outputs_reportAvailableMidiDevices (&cache); */ }
+    if (!err) {
+        cacheLoaded = 1;
+        #if defined ( PD_BUILDING_APPLICATION )
+            outputs_reportMidiDevices (&cache);
+        #endif
+    }
     //
     }
     

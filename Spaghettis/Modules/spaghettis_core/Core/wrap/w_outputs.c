@@ -119,6 +119,16 @@ void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
     wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g)), std::move (ids)));
 }
 
+void outputs_reportAudioDevices (t_audiodevices *d)
+{
+
+}
+
+void outputs_reportMidiDevices (t_mididevices *d)
+{
+
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
