@@ -24,7 +24,7 @@ JUCE ( 7.0.12 ) is required at `~/JUCE`.
 
 Next features planed:
 
-- Improve compatibility with [Pure Data](http://msp.ucsd.edu/) (e.g. the clone object).
+- Improve compatibility with [Pure Data](http://msp.ucsd.edu/) (e.g. the [clone] object).
 - Make the application embeddable (ala [libpd](https://github.com/libpd/libpd) and [plugdata](https://github.com/plugdata-team/plugdata)).
 - Support plainly dynamic patching with scripts (Lua / Python...).
 - Add something like [Gem](https://gem.iem.at/) based on a portable framework (OF / Cinder...).
