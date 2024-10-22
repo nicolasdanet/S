@@ -43,7 +43,9 @@ static void global_quit (void *dummy)
 
 static void global_clear (void *dummy)
 {
-    outputs_clearConsole();
+    #if defined ( PD_BUILDING_APPLICATION )
+        outputs_clearConsole();
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------

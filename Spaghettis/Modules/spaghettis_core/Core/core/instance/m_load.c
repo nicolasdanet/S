@@ -149,9 +149,13 @@ static void instance_loadPatchLoadbang (void)
 {
     if (instance_get()->pd_stack.s_contextPopped) {
         t_glist *g = instance_get()->pd_stack.s_contextPopped;
-        outputs_patchLoadbangBegin (g);
+        #if defined ( PD_BUILDING_APPLICATION )
+            outputs_patchLoadbangBegin (g);
+        #endif
         glist_loadbang (g);
-        outputs_patchLoadbangEnd (g);
+        #if defined ( PD_BUILDING_APPLICATION )
+            outputs_patchLoadbangEnd (g);
+        #endif
         instance_get()->pd_stack.s_contextPopped = NULL;
     }
 }
@@ -235,7 +239,11 @@ void instance_patchOpen (t_symbol *name, t_symbol *directory)
     
     dsp_resume (state);
     
-    if (done) { outputs_patchOpened (name, directory); }
+    if (done) {
+        #if defined ( PD_BUILDING_APPLICATION )
+            outputs_patchOpened (name, directory);
+        #endif
+    }
     //
     }
 }

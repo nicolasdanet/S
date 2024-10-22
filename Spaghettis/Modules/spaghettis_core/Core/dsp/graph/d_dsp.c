@@ -27,7 +27,9 @@ static void dsp_report (void)
     //
     }
     
-    outputs_reportDsp (dsp_status);
+    #if defined ( PD_BUILDING_APPLICATION )
+        outputs_reportDsp (dsp_status);
+    #endif
 }
 
 // -----------------------------------------------------------------------------------------------------------
