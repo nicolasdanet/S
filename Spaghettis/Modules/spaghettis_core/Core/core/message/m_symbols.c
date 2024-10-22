@@ -392,7 +392,6 @@ t_symbol *sym_oscbundle;
 t_symbol *sym_oscformat;
 t_symbol *sym_oscparse;
 t_symbol *sym_oscstream;
-t_symbol *sym_out;
 t_symbol *sym_outlet;
 t_symbol *sym_outlet__tilde__;
 t_symbol *sym_pack;
@@ -966,7 +965,6 @@ void symbols_initialize (void)
     sym_oscformat                               = gensym ("oscformat");
     sym_oscparse                                = gensym ("oscparse");
     sym_oscstream                               = gensym ("oscstream");
-    sym_out                                     = gensym ("out");
     sym_outlet                                  = gensym ("outlet");
     sym_outlet__tilde__                         = gensym ("outlet~");
     sym_pack                                    = gensym ("pack");
