@@ -22,42 +22,9 @@ void outputs_quit (void)
     wrapper_send (Outputs::quit());
 }
 
-void outputs_clearConsole (void)
+void outputs_clear (void)
 {
     wrapper_send (Outputs::clearConsole());
-}
-
-void outputs_reportDsp (int n)
-{
-    wrapper_send (Outputs::reportDsp (n ? true : false));
-}
-
-void outputs_patchLoadbangBegin (t_glist *g)
-{
-    wrapper_send (Outputs::patchLoadbangBegin (UniquePath (cast_object (g))));
-}
-
-void outputs_patchLoadbangEnd (t_glist *g)
-{
-    wrapper_send (Outputs::patchLoadbangEnd (UniquePath (cast_object (g))));
-}
-
-void outputs_patchOpened (t_symbol *name, t_symbol *directory)
-{
-    jassert (name && directory);
-    
-    juce::File f (makeString (symbol_getName (directory)) + "/" + makeString (symbol_getName (name)));
-    
-    wrapper_send (Outputs::patchOpened (f));
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void outputs_classNew (t_symbol *s)
-{
-    wrapper_send (Outputs::classNew (makeString (symbol_getName (s))));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -95,6 +62,10 @@ void outputs_objectRenamed (t_object *x, t_id t)
     wrapper_send (Outputs::renamed (UniquePath (x), t));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void outputs_lineAdded (t_id u, t_object *src, int m, t_object *dest, int n, t_glist *owner)
 {
     const UniquePath p (u, owner);
@@ -114,9 +85,47 @@ void outputs_lineRemoved (t_id u, t_glist *owner)
     wrapper_send (Outputs::removed (UniquePath (u, owner)));
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void outputs_patchOpened (t_symbol *name, t_symbol *directory)
+{
+    jassert (name && directory);
+    
+    juce::File f (makeString (symbol_getName (directory)) + "/" + makeString (symbol_getName (name)));
+    
+    wrapper_send (Outputs::patchOpened (f));
+}
+
+
+void outputs_patchLoadbangBegin (t_glist *g)
+{
+    wrapper_send (Outputs::patchLoadbangBegin (UniquePath (cast_object (g))));
+}
+
+void outputs_patchLoadbangEnd (t_glist *g)
+{
+    wrapper_send (Outputs::patchLoadbangEnd (UniquePath (cast_object (g))));
+}
+
 void outputs_patchOrder (t_glist *g, std::vector<UniqueId>&& ids)
 {
     wrapper_send (Outputs::patchOrder (UniquePath (cast_object (g)), std::move (ids)));
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void outputs_reportDsp (int n)
+{
+    wrapper_send (Outputs::reportDsp (n ? true : false));
+}
+
+void outputs_reportClassNew (t_symbol *s)
+{
+    wrapper_send (Outputs::classNew (makeString (symbol_getName (s))));
 }
 
 void outputs_reportAudioDevices (t_audiodevices *d)

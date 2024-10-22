@@ -137,7 +137,7 @@ static void class_notify (t_symbol *s)
 {
     #if defined ( PD_BUILDING_APPLICATION )
     
-    if (s != sym_canvas) { outputs_classNew (s); }
+    if (s != sym_canvas) { outputs_reportClassNew (s); }
     
     #endif
 }
