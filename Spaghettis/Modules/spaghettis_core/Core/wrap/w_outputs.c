@@ -24,7 +24,7 @@ void outputs_quit (void)
 
 void outputs_clear (void)
 {
-    wrapper_send (Outputs::clearConsole());
+    wrapper_send (Outputs::clear());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ void outputs_reportDsp (int n)
 
 void outputs_reportClassNew (t_symbol *s)
 {
-    wrapper_send (Outputs::classNew (makeString (symbol_getName (s))));
+    wrapper_send (Outputs::reportClassNew (makeString (symbol_getName (s))));
 }
 
 void outputs_reportAudioDevices (t_audiodevices *d)

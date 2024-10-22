@@ -10,69 +10,16 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 Perform Outputs::quit()
 {
     return []() { juce::JUCEApplication::getInstance()->systemRequestedQuit(); };
 }
 
-Perform Outputs::clearConsole()
+Perform Outputs::clear()
 {
     return []() { Spaghettis()->clearConsole(); };
-}
-
-Perform Outputs::reportDsp (bool state)
-{
-    return [state]() { Spaghettis()->setDspState (state); };
-}
-
-Perform Outputs::patchOpened (juce::File file)
-{
-    return [f = std::move (file)]() { Spaghettis()->appendRecentFile (f); };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Perform Outputs::classNew (juce::String name)
-{
-    return [s = std::move (name)]()
-    {
-        Spaghettis()->getAutocomplete().addContent (s);
-    };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Perform Outputs::patchLoadbangBegin (core::UniquePath unique)
-{
-    return [u = std::move (unique)]()
-    {
-        Spaghettis()->getPatches().loadbangBegin (u);
-    };
-}
-
-Perform Outputs::patchLoadbangEnd (core::UniquePath unique)
-{
-    return [u = std::move (unique)]()
-    {
-        Spaghettis()->getPatches().loadbangEnd (u);
-    };
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-Perform Outputs::patchOrder (core::UniquePath unique, std::vector<core::UniqueId>&& ids)
-{
-    return [u = std::move (unique), v = std::move (ids)]()
-    {
-        Spaghettis()->getPatches().setOrder (u, v);
-    };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -108,6 +55,57 @@ Perform Outputs::renamed (core::UniquePath unique, core::UniqueId i)
     return [i, u = std::move (unique)]()
     {
         Spaghettis()->getPatches().rename (u, i);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Perform Outputs::patchOpened (juce::File file)
+{
+    return [f = std::move (file)]() { Spaghettis()->appendRecentFile (f); };
+}
+
+Perform Outputs::patchLoadbangBegin (core::UniquePath unique)
+{
+    return [u = std::move (unique)]()
+    {
+        Spaghettis()->getPatches().loadbangBegin (u);
+    };
+}
+
+Perform Outputs::patchLoadbangEnd (core::UniquePath unique)
+{
+    return [u = std::move (unique)]()
+    {
+        Spaghettis()->getPatches().loadbangEnd (u);
+    };
+}
+
+
+Perform Outputs::patchOrder (core::UniquePath unique, std::vector<core::UniqueId>&& ids)
+{
+    return [u = std::move (unique), v = std::move (ids)]()
+    {
+        Spaghettis()->getPatches().setOrder (u, v);
+    };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Perform Outputs::reportDsp (bool state)
+{
+    return [state]() { Spaghettis()->setDspState (state); };
+}
+
+Perform Outputs::reportClassNew (juce::String name)
+{
+    return [s = std::move (name)]()
+    {
+        Spaghettis()->getAutocomplete().addContent (s);
     };
 }
 
