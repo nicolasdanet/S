@@ -30,15 +30,15 @@ void inputs_devicesRescan               (int logged);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_undo                        (core::UniqueId);
-void inputs_redo                        (core::UniqueId);
-void inputs_cut                         (core::UniqueId);
-void inputs_copy                        (core::UniqueId);
-void inputs_paste                       (core::UniqueId, Point::Real pt);
-void inputs_duplicate                   (core::UniqueId);
-void inputs_remove                      (core::UniqueId);
-void inputs_encapsulate                 (core::UniqueId);
-void inputs_deencapsulate               (core::UniqueId);
+void inputs_patchUndo                   (core::UniqueId);
+void inputs_patchRedo                   (core::UniqueId);
+void inputs_patchCut                    (core::UniqueId);
+void inputs_patchCopy                   (core::UniqueId);
+void inputs_patchPaste                  (core::UniqueId, Point::Real pt);
+void inputs_patchDuplicate              (core::UniqueId);
+void inputs_patchRemove                 (core::UniqueId);
+void inputs_patchEncapsulate            (core::UniqueId);
+void inputs_patchDeencapsulate          (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

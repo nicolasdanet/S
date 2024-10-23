@@ -52,51 +52,50 @@ void inputs_devicesRescan (int logged)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_undo (core::UniqueId u)
+void inputs_patchUndo (core::UniqueId u)
 {
     unique_patchUndo (u);
 }
 
-void inputs_redo (core::UniqueId u)
+void inputs_patchRedo (core::UniqueId u)
 {
     unique_patchRedo (u);
 }
 
-void inputs_cut (core::UniqueId u)
+void inputs_patchCut (core::UniqueId u)
 {
     unique_patchCut (u);
 }
 
-void inputs_copy (core::UniqueId u)
+void inputs_patchCopy (core::UniqueId u)
 {
     unique_patchCopy (u);
 }
 
-void inputs_paste (core::UniqueId u, Point::Real pt)
+void inputs_patchPaste (core::UniqueId u, Point::Real pt)
 {
     t_point m = point_make (pt.getPoint().getX(), pt.getPoint().getY()); unique_patchPaste (u, &m);
 }
 
-void inputs_duplicate (core::UniqueId u)
+void inputs_patchDuplicate (core::UniqueId u)
 {
     unique_patchDuplicate (u);
 }
 
-void inputs_remove (core::UniqueId u)
+void inputs_patchRemove (core::UniqueId u)
 {
     unique_patchRemove (u);
 }
 
-void inputs_encapsulate (core::UniqueId u)
+void inputs_patchEncapsulate (core::UniqueId u)
 {
     unique_patchEncapsulate (u);
 }
 
-void inputs_deencapsulate (core::UniqueId u)
+void inputs_patchDeencapsulate (core::UniqueId u)
 {
     unique_patchDeencapsulate (u);
 }
-
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
