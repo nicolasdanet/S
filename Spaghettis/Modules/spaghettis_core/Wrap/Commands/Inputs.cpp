@@ -12,49 +12,44 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::ping()
-{
-    return []() { core::inputs_ping(); };
-}
-
 Perform Inputs::newPatch (juce::File file)
 {
-    return [f = std::move (file)]() { core::inputs_newPatch (f); };
+    return [f = std::move (file)]() { core::inputs_patchNew (f); };
 }
 
 Perform Inputs::openPatch (juce::File file)
 {
-    return [f = std::move (file)]() { core::inputs_openPatch (f); };
+    return [f = std::move (file)]() { core::inputs_patchOpen (f); };
 }
 
 Perform Inputs::rescanSearchPaths (Logged type)
 {
-    return [logged = loggedAsInteger (type)]() { core::inputs_rescanSearchPaths (logged); };
+    return [logged = loggedAsInteger (type)]() { core::inputs_searchPathsRescan (logged); };
 }
 
 Perform Inputs::switchDsp()
 {
-    return []() { core::inputs_switchDsp(); };
+    return []() { core::inputs_dspSwitch(); };
 }
 
 Perform Inputs::setSearchPaths (juce::StringArray paths)
 {
-    return [p = std::move (paths)]() { core::inputs_setSearchPaths (p); };
+    return [p = std::move (paths)]() { core::inputs_searchPathsSet (p); };
 }
 
 Perform Inputs::setSnapToGrid (bool isSet)
 {
-    return [isSet]() { core::inputs_setSnap (isSet); };
+    return [isSet]() { core::inputs_snapSet (isSet); };
 }
 
 Perform Inputs::setSnapToGridSize (int size)
 {
-    return [size]() { core::inputs_setSnapSize (size); };
+    return [size]() { core::inputs_snapSetGrid (size); };
 }
 
 Perform Inputs::rescanDevices (Logged type)
 {
-    return [logged = loggedAsInteger (type)]() { core::inputs_rescanDevices (logged); };
+    return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescan (logged); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -63,17 +58,17 @@ Perform Inputs::rescanDevices (Logged type)
 
 Perform Inputs::closePatch (core::UniqueId u)
 {
-    return [u]() { core::inputs_closePatch (u); };
+    return [u]() { core::inputs_patchClose (u); };
 }
 
 Perform Inputs::savePatch (core::UniqueId u)
 {
-    return [u]() { core::inputs_savePatch (u); };
+    return [u]() { core::inputs_patchSave (u); };
 }
 
 Perform Inputs::setDirty (core::UniqueId u)
 {
-    return [u]() { core::inputs_setDirty (u); };
+    return [u]() { core::inputs_patchSetDirty (u); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -82,12 +77,12 @@ Perform Inputs::setDirty (core::UniqueId u)
 
 Perform Inputs::setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
-    return [u, bounds]() { core::inputs_setEditView (u, bounds); };
+    return [u, bounds]() { core::inputs_patchSetEditView (u, bounds); };
 }
 
 Perform Inputs::setEditViewProperties (core::UniqueId u, core::Point::Real pt, int z, bool inspector, int w)
 {
-    return [u, pt, z, inspector, w]() { core::inputs_setEditViewProperties (u, pt, z, inspector, w); };
+    return [u, pt, z, inspector, w]() { core::inputs_patchSetEditViewProperties (u, pt, z, inspector, w); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -145,32 +140,32 @@ Perform Inputs::deencapsulate (core::UniqueId u)
 
 Perform Inputs::selectObject (core::UniqueId u)
 {
-    return [u]() { core::inputs_selectObject (u); };
+    return [u]() { core::inputs_objectSelect (u); };
 }
 
 Perform Inputs::deselectObject (core::UniqueId u)
 {
-    return [u]() { core::inputs_deselectObject (u); };
+    return [u]() { core::inputs_objectDeselect (u); };
 }
 
 Perform Inputs::moveBackObject (core::UniqueId u)
 {
-    return [u]() { core::inputs_moveBackObject (u); };
+    return [u]() { core::inputs_objectMoveBack (u); };
 }
 
 Perform Inputs::moveFrontObject (core::UniqueId u)
 {
-    return [u]() { core::inputs_moveFrontObject (u); };
+    return [u]() { core::inputs_objectMoveFront (u); };
 }
 
 Perform Inputs::snapObject (core::UniqueId u)
 {
-    return [u]() { core::inputs_snapObject (u); };
+    return [u]() { core::inputs_objectSnap (u); };
 }
 
 Perform Inputs::positionObject (core::UniqueId u, core::Point::Real pt)
 {
-    return [u, pt]() { core::inputs_positionObject (u, pt); };
+    return [u, pt]() { core::inputs_objectPosition (u, pt); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -179,12 +174,12 @@ Perform Inputs::positionObject (core::UniqueId u, core::Point::Real pt)
 
 Perform Inputs::sendObjectBang (core::UniqueId u)
 {
-    return [u]() { core::inputs_sendObjectBang (u); };
+    return [u]() { core::inputs_objectSendBang (u); };
 }
 
 Perform Inputs::sendObjectFloat (core::UniqueId u, double f)
 {
-    return [u, f]() { core::inputs_sendObjectFloat (u, f); };
+    return [u, f]() { core::inputs_objectSendFloat (u, f); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -193,7 +188,7 @@ Perform Inputs::sendObjectFloat (core::UniqueId u, double f)
 
 Perform Inputs::openHelp (core::UniqueId u)
 {
-    return [u]() { core::inputs_openHelp (u); };
+    return [u]() { core::inputs_objectOpenHelp (u); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -202,12 +197,12 @@ Perform Inputs::openHelp (core::UniqueId u)
 
 Perform Inputs::createObject (core::UniqueId u, core::Point::Real pt, juce::String s)
 {
-    return [u, pt, s]() { core::inputs_createObject (u, pt, s); };
+    return [u, pt, s]() { core::inputs_patchCreateObject (u, pt, s); };
 }
 
 Perform Inputs::parametersObject (core::UniqueId u, data::Group group)
 {
-    return [u, g = std::move (group)]() { core::inputs_parametersObject (u, g); };
+    return [u, g = std::move (group)]() { core::inputs_objectSetParameters (u, g); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -216,12 +211,12 @@ Perform Inputs::parametersObject (core::UniqueId u, data::Group group)
 
 Perform Inputs::disconnectLine (core::UniqueId u, int m, core::UniqueId v, int n)
 {
-    return [u, m, v, n]() { core::inputs_disconnectLine (u, m, v, n); };
+    return [u, m, v, n]() { core::inputs_lineDisconnect (u, m, v, n); };
 }
 
 Perform Inputs::connectLine (core::UniqueId u, int m, core::UniqueId v, int n)
 {
-    return [u, m, v, n]() { core::inputs_connectLine (u, m, v, n); };
+    return [u, m, v, n]() { core::inputs_lineConnect (u, m, v, n); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

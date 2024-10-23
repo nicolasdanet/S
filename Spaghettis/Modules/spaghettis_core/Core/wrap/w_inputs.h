@@ -19,78 +19,61 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_ping               (void);
-void inputs_newPatch           (const juce::File&);
-void inputs_openPatch          (const juce::File&);
-void inputs_switchDsp          (void);
-void inputs_rescanSearchPaths  (int logged);
-void inputs_setSearchPaths     (const juce::StringArray&);
-void inputs_setSnap            (bool);
-void inputs_setSnapSize        (int);
-void inputs_rescanDevices      (int logged);
+void inputs_dspSwitch                   (void);
+void inputs_searchPathsRescan           (int logged);
+void inputs_searchPathsSet              (const juce::StringArray&);
+void inputs_snapSet                     (bool);
+void inputs_snapSetGrid                 (int);
+void inputs_devicesRescan               (int logged);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_closePatch              (core::UniqueId);
-void inputs_savePatch               (core::UniqueId);
-void inputs_setDirty                (core::UniqueId);
-void inputs_setEditView             (core::UniqueId, juce::Rectangle<int>);
-void inputs_setEditViewProperties   (core::UniqueId, core::Point::Real, int, bool, int);
+void inputs_undo                        (core::UniqueId);
+void inputs_redo                        (core::UniqueId);
+void inputs_cut                         (core::UniqueId);
+void inputs_copy                        (core::UniqueId);
+void inputs_paste                       (core::UniqueId, Point::Real pt);
+void inputs_duplicate                   (core::UniqueId);
+void inputs_remove                      (core::UniqueId);
+void inputs_encapsulate                 (core::UniqueId);
+void inputs_deencapsulate               (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_undo               (core::UniqueId);
-void inputs_redo               (core::UniqueId);
-void inputs_cut                (core::UniqueId);
-void inputs_copy               (core::UniqueId);
-void inputs_paste              (core::UniqueId, Point::Real pt);
-void inputs_duplicate          (core::UniqueId);
-void inputs_remove             (core::UniqueId);
-void inputs_encapsulate        (core::UniqueId);
-void inputs_deencapsulate      (core::UniqueId);
+void inputs_patchNew                    (const juce::File&);
+void inputs_patchOpen                   (const juce::File&);
+void inputs_patchClose                  (core::UniqueId);
+void inputs_patchSave                   (core::UniqueId);
+void inputs_patchSetDirty               (core::UniqueId);
+void inputs_patchSetEditView            (core::UniqueId, juce::Rectangle<int>);
+void inputs_patchSetEditViewProperties  (core::UniqueId, core::Point::Real, int, bool, int);
+void inputs_patchCreateObject           (core::UniqueId, Point::Real pt, juce::String);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_selectObject       (core::UniqueId);
-void inputs_deselectObject     (core::UniqueId);
-void inputs_moveBackObject     (core::UniqueId);
-void inputs_moveFrontObject    (core::UniqueId);
-void inputs_snapObject         (core::UniqueId);
-void inputs_positionObject     (core::UniqueId, Point::Real pt);
+void inputs_objectSelect                (core::UniqueId);
+void inputs_objectDeselect              (core::UniqueId);
+void inputs_objectMoveBack              (core::UniqueId);
+void inputs_objectMoveFront             (core::UniqueId);
+void inputs_objectSnap                  (core::UniqueId);
+void inputs_objectPosition              (core::UniqueId, Point::Real pt);
+void inputs_objectSendBang              (core::UniqueId);
+void inputs_objectSendFloat             (core::UniqueId, double);
+void inputs_objectOpenHelp              (core::UniqueId);
+void inputs_objectSetParameters         (core::UniqueId, const data::Group&);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_sendObjectBang     (core::UniqueId);
-void inputs_sendObjectFloat    (core::UniqueId, double);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void inputs_openHelp           (core::UniqueId);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void inputs_createObject       (core::UniqueId, Point::Real pt, juce::String);
-
-void inputs_parametersObject   (core::UniqueId, const data::Group&);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void inputs_disconnectLine     (core::UniqueId u, int m, core::UniqueId v, int n);
-void inputs_connectLine        (core::UniqueId u, int m, core::UniqueId v, int n);
+void inputs_lineDisconnect              (core::UniqueId u, int m, core::UniqueId v, int n);
+void inputs_lineConnect                 (core::UniqueId u, int m, core::UniqueId v, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

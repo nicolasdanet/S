@@ -28,7 +28,7 @@ enum class Logged {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int loggedAsInteger (Logged type)
+static inline int loggedAsInteger (Logged type)
 {
     return (type == Logged::base) ? 0 : ((type == Logged::full) ? 1 : -1);
 }
@@ -37,7 +37,6 @@ static int loggedAsInteger (Logged type)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform ping();
 static Perform newPatch (juce::File);
 static Perform openPatch (juce::File);
 static Perform rescanSearchPaths (Logged type);
