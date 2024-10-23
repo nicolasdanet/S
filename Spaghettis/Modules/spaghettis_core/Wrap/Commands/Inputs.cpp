@@ -93,47 +93,47 @@ Perform Inputs::patchSetEditViewProperties (core::UniqueId u,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::undo (core::UniqueId u)
+Perform Inputs::patchUndo (core::UniqueId u)
 {
     return [u]() { core::inputs_patchUndo (u); };
 }
 
-Perform Inputs::redo (core::UniqueId u)
+Perform Inputs::patchRedo (core::UniqueId u)
 {
     return [u]() { core::inputs_patchRedo (u); };
 }
 
-Perform Inputs::cut (core::UniqueId u)
+Perform Inputs::patchCut (core::UniqueId u)
 {
     return [u]() { core::inputs_patchCut (u); };
 }
 
-Perform Inputs::copy (core::UniqueId u)
+Perform Inputs::patchCopy (core::UniqueId u)
 {
     return [u]() { core::inputs_patchCopy (u); };
 }
 
-Perform Inputs::paste (core::UniqueId u, core::Point::Real pt)
+Perform Inputs::patchPaste (core::UniqueId u, core::Point::Real pt)
 {
     return [u, pt]() { core::inputs_patchPaste (u, pt); };
 }
 
-Perform Inputs::duplicate (core::UniqueId u)
+Perform Inputs::patchDuplicate (core::UniqueId u)
 {
     return [u]() { core::inputs_patchDuplicate (u); };
 }
 
-Perform Inputs::remove (core::UniqueId u)
+Perform Inputs::patchRemove (core::UniqueId u)
 {
     return [u]() { core::inputs_patchRemove (u); };
 }
 
-Perform Inputs::encapsulate (core::UniqueId u)
+Perform Inputs::patchEncapsulate (core::UniqueId u)
 {
     return [u]() { core::inputs_patchEncapsulate (u); };
 }
 
-Perform Inputs::deencapsulate (core::UniqueId u)
+Perform Inputs::patchDeencapsulate (core::UniqueId u)
 {
     return [u]() { core::inputs_patchDeencapsulate (u); };
 }

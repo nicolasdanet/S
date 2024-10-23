@@ -64,15 +64,15 @@ static Perform patchSetEditViewProperties (core::UniqueId, core::Point::Real, in
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform undo (core::UniqueId);
-static Perform redo (core::UniqueId);
-static Perform cut (core::UniqueId);
-static Perform copy (core::UniqueId);
-static Perform paste (core::UniqueId, core::Point::Real);
-static Perform duplicate (core::UniqueId);
-static Perform remove (core::UniqueId);
-static Perform encapsulate (core::UniqueId);
-static Perform deencapsulate (core::UniqueId);
+static Perform patchUndo (core::UniqueId);
+static Perform patchRedo (core::UniqueId);
+static Perform patchCut (core::UniqueId);
+static Perform patchCopy (core::UniqueId);
+static Perform patchPaste (core::UniqueId, core::Point::Real);
+static Perform patchDuplicate (core::UniqueId);
+static Perform patchRemove (core::UniqueId);
+static Perform patchEncapsulate (core::UniqueId);
+static Perform patchDeencapsulate (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

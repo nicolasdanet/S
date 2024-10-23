@@ -20,12 +20,12 @@ struct Broadcast {
 
 static void undo (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::undo (i));
+    Spaghettis()->handle (Inputs::patchUndo (i));
 }
 
 static void redo (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::redo (i));
+    Spaghettis()->handle (Inputs::patchRedo (i));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -44,27 +44,27 @@ static void deselect (core::UniqueId i)
 
 static void cut (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::cut (i));
+    Spaghettis()->handle (Inputs::patchCut (i));
 }
 
 static void copy (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::copy (i));
+    Spaghettis()->handle (Inputs::patchCopy (i));
 }
 
 static void paste (core::UniqueId i, core::Point::Real pt)
 {
-    Spaghettis()->handle (Inputs::paste (i, pt));
+    Spaghettis()->handle (Inputs::patchPaste (i, pt));
 }
 
 static void duplicate (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::duplicate (i));
+    Spaghettis()->handle (Inputs::patchDuplicate (i));
 }
 
 static void remove (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::remove (i));
+    Spaghettis()->handle (Inputs::patchRemove (i));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -87,12 +87,12 @@ static void connect (core::UniqueId u, int m, core::UniqueId v, int n)
 
 static void encapsulate (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::encapsulate (i));
+    Spaghettis()->handle (Inputs::patchEncapsulate (i));
 }
 
 static void deencapsulate (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::deencapsulate (i));
+    Spaghettis()->handle (Inputs::patchDeencapsulate (i));
 }
 
 // -----------------------------------------------------------------------------------------------------------
