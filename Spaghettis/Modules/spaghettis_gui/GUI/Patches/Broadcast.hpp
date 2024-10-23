@@ -34,12 +34,12 @@ static void redo (core::UniqueId i)
 
 static void select (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::selectObject (i));
+    Spaghettis()->handle (Inputs::objectSelect (i));
 }
 
 static void deselect (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::deselectObject (i));
+    Spaghettis()->handle (Inputs::objectDeselect (i));
 }
 
 static void cut (core::UniqueId i)
@@ -71,14 +71,14 @@ static void remove (core::UniqueId i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void disconnect (core::UniqueId u, int m, core::UniqueId v, int n)
-{
-    Spaghettis()->handle (Inputs::disconnectLine (u, m, v, n));
-}
-
 static void connect (core::UniqueId u, int m, core::UniqueId v, int n)
 {
-    Spaghettis()->handle (Inputs::connectLine (u, m, v, n));
+    Spaghettis()->handle (Inputs::lineConnect (u, m, v, n));
+}
+
+static void disconnect (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    Spaghettis()->handle (Inputs::lineDisconnect (u, m, v, n));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -101,22 +101,22 @@ static void deencapsulate (core::UniqueId i)
 
 static void moveBack (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::moveBackObject (i));
+    Spaghettis()->handle (Inputs::objectMoveBack (i));
 }
 
 static void moveFront (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::moveFrontObject (i));
+    Spaghettis()->handle (Inputs::objectMoveFront (i));
 }
 
 static void snap (core::UniqueId i)
 {
-    Spaghettis()->handle (Inputs::snapObject (i));
+    Spaghettis()->handle (Inputs::objectSnap (i));
 }
 
 static void position (core::UniqueId i, core::Point::Real pt)
 {
-    Spaghettis()->handle (Inputs::positionObject (i, pt));
+    Spaghettis()->handle (Inputs::objectPosition (i, pt));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -127,12 +127,12 @@ static void parameters (core::UniqueId i, const data::Group& copy)
 {
     jassert (copy.hasUniqueOwnership());    /* Parameters MUST be a deep copy. */
     
-    Spaghettis()->handle (Inputs::parametersObject (i, copy));
+    Spaghettis()->handle (Inputs::objectSetParameters (i, copy));
 }
 
 static void create (core::UniqueId u, core::Point::Real pt, const juce::String& s)
 {
-    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::createObject (u, pt, s)); }
+    if (s.isNotEmpty()) { Spaghettis()->handle (Inputs::patchCreateObject (u, pt, s)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -166,7 +166,7 @@ static void closePatch (core::UniqueId u)
 
 static void openHelp (core::UniqueId u)
 {
-    Spaghettis()->handle (Inputs::openHelp (u));
+    Spaghettis()->handle (Inputs::objectOpenHelp (u));
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -175,12 +175,12 @@ static void openHelp (core::UniqueId u)
 
 static void sendBang (core::UniqueId u)
 {
-    Spaghettis()->handle (Inputs::sendObjectBang (u));
+    Spaghettis()->handle (Inputs::objectSendBang (u));
 }
 
 static void sendFloat (core::UniqueId u, double f)
 {
-    Spaghettis()->handle (Inputs::sendObjectFloat (u, f));
+    Spaghettis()->handle (Inputs::objectSendFloat (u, f));
 }
 
 // -----------------------------------------------------------------------------------------------------------

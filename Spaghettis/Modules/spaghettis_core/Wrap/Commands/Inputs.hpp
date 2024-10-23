@@ -78,40 +78,44 @@ static Perform patchDeencapsulate (core::UniqueId);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform selectObject (core::UniqueId);
-static Perform deselectObject (core::UniqueId);
-static Perform moveBackObject (core::UniqueId);
-static Perform moveFrontObject (core::UniqueId);
-static Perform snapObject (core::UniqueId);
-static Perform positionObject (core::UniqueId, core::Point::Real);
+static Perform patchCreateObject (core::UniqueId, core::Point::Real, juce::String);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform sendObjectBang (core::UniqueId);
-static Perform sendObjectFloat (core::UniqueId, double);
+static Perform objectSelect (core::UniqueId);
+static Perform objectDeselect (core::UniqueId);
+static Perform objectMoveBack (core::UniqueId);
+static Perform objectMoveFront (core::UniqueId);
+static Perform objectSnap (core::UniqueId);
+static Perform objectPosition (core::UniqueId, core::Point::Real);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform openHelp (core::UniqueId);
+static Perform objectSendBang (core::UniqueId);
+static Perform objectSendFloat (core::UniqueId, double);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform createObject (core::UniqueId, core::Point::Real, juce::String);
-
-static Perform parametersObject (core::UniqueId, data::Group);
+static Perform objectOpenHelp (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform disconnectLine (core::UniqueId, int, core::UniqueId, int);
-static Perform connectLine (core::UniqueId, int, core::UniqueId, int);
+static Perform objectSetParameters (core::UniqueId, data::Group);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+static Perform lineConnect (core::UniqueId, int, core::UniqueId, int);
+static Perform lineDisconnect (core::UniqueId, int, core::UniqueId, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
