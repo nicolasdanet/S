@@ -37,28 +37,28 @@ static inline int loggedAsInteger (Logged type)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform newPatch (juce::File);
-static Perform openPatch (juce::File);
-static Perform rescanSearchPaths (Logged type);
-static Perform switchDsp();
-static Perform setSearchPaths (juce::StringArray);
-static Perform setSnapToGrid (bool);
-static Perform setSnapToGridSize (int);
-static Perform rescanDevices (Logged type);
+static Perform dspSwitch();
+static Perform searchPathsRescan (Logged type);
+static Perform searchPathsSet (juce::StringArray);
+static Perform snapToGridSet (bool);
+static Perform snapToGridSetSize (int);
+static Perform devicesRescan (Logged type);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static Perform closePatch (core::UniqueId);
-static Perform savePatch (core::UniqueId);
-static Perform setDirty (core::UniqueId);
+static Perform patchNew (juce::File);
+static Perform patchOpen (juce::File);
+static Perform patchClose (core::UniqueId);
+static Perform patchSave (core::UniqueId);
+static Perform patchSetDirty (core::UniqueId);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static Perform setEditView (core::UniqueId, juce::Rectangle<int>);
-static Perform setEditViewProperties (core::UniqueId, core::Point::Real, int, bool, int);
+static Perform patchSetEditView (core::UniqueId, juce::Rectangle<int>);
+static Perform patchSetEditViewProperties (core::UniqueId, core::Point::Real, int, bool, int);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

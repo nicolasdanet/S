@@ -12,42 +12,32 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::newPatch (juce::File file)
-{
-    return [f = std::move (file)]() { core::inputs_patchNew (f); };
-}
-
-Perform Inputs::openPatch (juce::File file)
-{
-    return [f = std::move (file)]() { core::inputs_patchOpen (f); };
-}
-
-Perform Inputs::rescanSearchPaths (Logged type)
-{
-    return [logged = loggedAsInteger (type)]() { core::inputs_searchPathsRescan (logged); };
-}
-
-Perform Inputs::switchDsp()
+Perform Inputs::dspSwitch()
 {
     return []() { core::inputs_dspSwitch(); };
 }
 
-Perform Inputs::setSearchPaths (juce::StringArray paths)
+Perform Inputs::searchPathsRescan (Logged type)
+{
+    return [logged = loggedAsInteger (type)]() { core::inputs_searchPathsRescan (logged); };
+}
+
+Perform Inputs::searchPathsSet (juce::StringArray paths)
 {
     return [p = std::move (paths)]() { core::inputs_searchPathsSet (p); };
 }
 
-Perform Inputs::setSnapToGrid (bool isSet)
+Perform Inputs::snapToGridSet (bool isSet)
 {
     return [isSet]() { core::inputs_snapSet (isSet); };
 }
 
-Perform Inputs::setSnapToGridSize (int size)
+Perform Inputs::snapToGridSetSize (int size)
 {
     return [size]() { core::inputs_snapSetGrid (size); };
 }
 
-Perform Inputs::rescanDevices (Logged type)
+Perform Inputs::devicesRescan (Logged type)
 {
     return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescan (logged); };
 }
@@ -56,17 +46,27 @@ Perform Inputs::rescanDevices (Logged type)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::closePatch (core::UniqueId u)
+Perform Inputs::patchNew (juce::File file)
+{
+    return [f = std::move (file)]() { core::inputs_patchNew (f); };
+}
+
+Perform Inputs::patchOpen (juce::File file)
+{
+    return [f = std::move (file)]() { core::inputs_patchOpen (f); };
+}
+
+Perform Inputs::patchClose (core::UniqueId u)
 {
     return [u]() { core::inputs_patchClose (u); };
 }
 
-Perform Inputs::savePatch (core::UniqueId u)
+Perform Inputs::patchSave (core::UniqueId u)
 {
     return [u]() { core::inputs_patchSave (u); };
 }
 
-Perform Inputs::setDirty (core::UniqueId u)
+Perform Inputs::patchSetDirty (core::UniqueId u)
 {
     return [u]() { core::inputs_patchSetDirty (u); };
 }
@@ -75,12 +75,16 @@ Perform Inputs::setDirty (core::UniqueId u)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Perform Inputs::setEditView (core::UniqueId u, juce::Rectangle<int> bounds)
+Perform Inputs::patchSetEditView (core::UniqueId u, juce::Rectangle<int> bounds)
 {
     return [u, bounds]() { core::inputs_patchSetEditView (u, bounds); };
 }
 
-Perform Inputs::setEditViewProperties (core::UniqueId u, core::Point::Real pt, int z, bool inspector, int w)
+Perform Inputs::patchSetEditViewProperties (core::UniqueId u,
+    core::Point::Real pt,
+    int z,
+    bool inspector,
+    int w)
 {
     return [u, pt, z, inspector, w]() { core::inputs_patchSetEditViewProperties (u, pt, z, inspector, w); };
 }

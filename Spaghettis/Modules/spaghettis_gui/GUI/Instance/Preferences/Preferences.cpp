@@ -338,11 +338,11 @@ Preferences::Preferences (const juce::File& file) :
     isReading_ (false)
 {
     addParameterHandler (Tag::SnapToGrid, [] (const data::Parameter& p) {
-            Spaghettis()->handle (Inputs::setSnapToGrid (p.getValue()));
+            Spaghettis()->handle (Inputs::snapToGridSet (p.getValue()));
         });
         
     addParameterHandler (Tag::GridSize,   [] (const data::Parameter& p) {
-            Spaghettis()->handle (Inputs::setSnapToGridSize (p.getValue()));
+            Spaghettis()->handle (Inputs::snapToGridSetSize (p.getValue()));
         });
     
     auto f = [] (const data::Parameter& p)

@@ -121,7 +121,7 @@ public:
         const juce::File open (Directories::getInstance()->getDefaultOpen());
         const juce::File file (open.getNonexistentChildFile (name, suffix, false));
         
-        handle (Inputs::newPatch (file));
+        handle (Inputs::patchNew (file));
     }
     
     void openPatch (const juce::File& file)
@@ -130,7 +130,7 @@ public:
                 
         Directories::getInstance()->setDefaultOpen (file.getParentDirectory());
         
-        handle (Inputs::openPatch (file));
+        handle (Inputs::patchOpen (file));
     }
     
     void openPatch();

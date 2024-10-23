@@ -149,20 +149,20 @@ void SpaghettisInstance::updateSearchPaths (Inputs::Logged type)
 {
     if (!preferences_->isReading()) {
     //
-    handle (Inputs::setSearchPaths (preferences_->getSearchPaths()));
-    handle (Inputs::rescanSearchPaths (type));
+    handle (Inputs::searchPathsSet (preferences_->getSearchPaths()));
+    handle (Inputs::searchPathsRescan (type));
     //
     }
 }
 
 void SpaghettisInstance::rescanSearchPaths (Inputs::Logged type)
 {
-    Spaghettis()->handle (Inputs::rescanSearchPaths (type));
+    Spaghettis()->handle (Inputs::searchPathsRescan (type));
 }
 
 void SpaghettisInstance::rescanDevices (Inputs::Logged type)
 {
-    Spaghettis()->handle (Inputs::rescanDevices (type));
+    Spaghettis()->handle (Inputs::devicesRescan (type));
 }
 
 // -----------------------------------------------------------------------------------------------------------

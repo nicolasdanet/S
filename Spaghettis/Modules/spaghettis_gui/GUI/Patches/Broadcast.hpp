@@ -141,27 +141,27 @@ static void create (core::UniqueId u, core::Point::Real pt, const juce::String& 
 
 static void dirty (core::UniqueId u)
 {
-    Spaghettis()->handle (Inputs::setDirty (u));
+    Spaghettis()->handle (Inputs::patchSetDirty (u));
 }
 
 static void editView (core::UniqueId u, const juce::Rectangle<int>& bounds)
 {
-    Spaghettis()->handle (Inputs::setEditView (u, bounds));
+    Spaghettis()->handle (Inputs::patchSetEditView (u, bounds));
 }
 
-static void editViewProperties (core::UniqueId u, core::Point::Real pt, int zoom, bool hasInspector, int width)
+static void editViewProperties (core::UniqueId u, core::Point::Real pt, int zoom, bool inspector, int width)
 {
-    Spaghettis()->handle (Inputs::setEditViewProperties (u, pt, zoom, hasInspector, width));
+    Spaghettis()->handle (Inputs::patchSetEditViewProperties (u, pt, zoom, inspector, width));
 }
 
 static void savePatch (core::UniqueId u)
 {
-    Spaghettis()->handle (Inputs::savePatch (u));
+    Spaghettis()->handle (Inputs::patchSave (u));
 }
 
 static void closePatch (core::UniqueId u)
 {
-    Spaghettis()->handle (Inputs::closePatch (u));
+    Spaghettis()->handle (Inputs::patchClose (u));
 }
 
 static void openHelp (core::UniqueId u)

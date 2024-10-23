@@ -336,7 +336,7 @@ bool CommandsHandler::performCommand (const juce::ApplicationCommandTarget::Invo
                                       return true;
     case Commands::clearConsole     : Spaghettis()->clearConsole();
                                       return true;
-    case Commands::dspSwitch        : Spaghettis()->handle (Inputs::switchDsp());
+    case Commands::dspSwitch        : Spaghettis()->handle (Inputs::dspSwitch());
                                       return true;
     default : break;
     //
