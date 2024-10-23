@@ -564,7 +564,7 @@ static void encapsulate_encapsulateConnectInletsAndOutlets (t_glist *parent,
     
         while (t) {
         //
-        t_error err = unique_objectLineConnect (t->x_srcId, t->x_srcOutlet, subpatchId, t->x_assigned);
+        t_error err = unique_lineConnect (t->x_srcId, t->x_srcOutlet, subpatchId, t->x_assigned);
         
         PD_ASSERT (!err); PD_UNUSED (err);
         
@@ -580,7 +580,7 @@ static void encapsulate_encapsulateConnectInletsAndOutlets (t_glist *parent,
     
         while (t) {
         //
-        t_error err = unique_objectLineConnect (subpatchId, t->x_assigned, t->x_destId, t->x_destInlet);
+        t_error err = unique_lineConnect (subpatchId, t->x_assigned, t->x_destId, t->x_destInlet);
         
         PD_ASSERT (!err); PD_UNUSED (err);
         

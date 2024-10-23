@@ -218,14 +218,14 @@ void inputs_objectSetParameters (core::UniqueId u, const data::Group& group)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_lineDisconnect (core::UniqueId u, int m, core::UniqueId v, int n)
-{
-    unique_objectLineDisconnect (u, m, v, n);
-}
-
 void inputs_lineConnect (core::UniqueId u, int m, core::UniqueId v, int n)
 {
-    unique_objectLineConnect (u, m, v, n);
+    unique_lineConnect (u, m, v, n);
+}
+
+void inputs_lineDisconnect (core::UniqueId u, int m, core::UniqueId v, int n)
+{
+    unique_lineDisconnect (u, m, v, n);
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -12,6 +12,184 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static t_glist *unique_getPatch (t_id u)
+{
+    t_object *o = instance_registerGetObject (u);
+    
+    if (object_isCanvas (o)) { return cast_glist (o); }
+    
+    return NULL;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_error unique_patchUndo (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_undo (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchRedo (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_redo (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchCut (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_cut (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchCopy (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_copy (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchPaste (t_id u, t_point *m)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_paste (g, m); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchDuplicate (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_duplicate (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchRemove (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_objectRemoveSelected (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchEncapsulate (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { encapsulate_encapsulate (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchDeencapsulate (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { encapsulate_deencapsulate (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+t_error unique_patchClose (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g && glist_isRoot (g)) { glist_close (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchSave (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g && glist_isRoot (g)) { glist_save (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchSetDirty (t_id u)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_setDirty (g, 1); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchSetEditView (t_id u, t_rectangle *r)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { glist_setEditView (g, r, 1); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+t_error unique_patchSetEditViewProperties (t_id u, int x, int y, int z, int inspector, int w)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) {
+    //
+    glist_setOffset (g, x, y, 1);
+    glist_setZoom (g, z, 1);
+    glist_setInspector (g, inspector, w, 1);
+
+    return PD_ERROR_NONE;
+    //
+    }
+    
+    return PD_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+t_error unique_patchCreateObject (t_id u, Point::Real pt, const juce::String& s)
+{
+    t_glist *g = unique_getPatch (u);
+    
+    if (g) { Creator (pt, s).execute (g); return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_error unique_objectSelect (t_id u)
 {
     t_object *object = instance_registerGetObject (u);
@@ -39,10 +217,6 @@ t_error unique_objectDeselect (t_id u)
 
     return PD_ERROR;
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 t_error unique_objectRemove (t_id u)
 {
@@ -249,7 +423,6 @@ t_error unique_objectMessage (t_id u, t_symbol *s, int argc, t_atom *argv)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-// MARK: -
 
 #if defined ( PD_BUILDING_APPLICATION )
 
@@ -314,7 +487,7 @@ t_error unique_objectGetIndexOf (t_id u, int *n)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error unique_objectLineConnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
+t_error unique_lineConnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
 {
     t_object *src  = instance_registerGetObject (u);
     t_object *dest = instance_registerGetObject (v);
@@ -333,7 +506,7 @@ t_error unique_objectLineConnect (t_id u, int indexOfOutlet, t_id v, int indexOf
     return PD_ERROR;
 }
 
-t_error unique_objectLineDisconnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
+t_error unique_lineDisconnect (t_id u, int indexOfOutlet, t_id v, int indexOfInlet)
 {
     t_glist *srcOwner  = instance_registerGetOwner (u);
     t_glist *destOwner = instance_registerGetOwner (v);
@@ -369,180 +542,6 @@ t_error unique_objectLineDisconnect (t_id u, int indexOfOutlet, t_id v, int inde
     
     return PD_ERROR;
 }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static t_glist *unique_getPatch (t_id u)
-{
-    t_object *o = instance_registerGetObject (u);
-    
-    if (object_isCanvas (o)) { return cast_glist (o); }
-    
-    return NULL;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-t_error unique_patchClose (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g && glist_isRoot (g)) { glist_close (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchSave (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g && glist_isRoot (g)) { glist_save (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchSetDirty (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_setDirty (g, 1); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchSetEditView (t_id u, t_rectangle *r)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_setEditView (g, r, 1); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchSetEditViewProperties (t_id u, int x, int y, int z, int inspector, int w)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) {
-    //
-    glist_setOffset (g, x, y, 1);
-    glist_setZoom (g, z, 1);
-    glist_setInspector (g, inspector, w, 1);
-
-    return PD_ERROR_NONE;
-    //
-    }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchUndo (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_undo (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchRedo (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_redo (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchCut (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_cut (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchCopy (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_copy (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchPaste (t_id u, t_point *m)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_paste (g, m); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchDuplicate (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_duplicate (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchRemove (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { glist_objectRemoveSelected (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchEncapsulate (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { encapsulate_encapsulate (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-t_error unique_patchDeencapsulate (t_id u)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { encapsulate_deencapsulate (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-#if defined ( PD_BUILDING_APPLICATION )
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-t_error unique_patchCreateObject (t_id u, Point::Real pt, const juce::String& s)
-{
-    t_glist *g = unique_getPatch (u);
-    
-    if (g) { Creator (pt, s).execute (g); return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

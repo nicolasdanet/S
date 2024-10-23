@@ -72,8 +72,8 @@ void inputs_objectSetParameters         (core::UniqueId, const data::Group&);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void inputs_lineDisconnect              (core::UniqueId u, int m, core::UniqueId v, int n);
 void inputs_lineConnect                 (core::UniqueId u, int m, core::UniqueId v, int n);
+void inputs_lineDisconnect              (core::UniqueId u, int m, core::UniqueId v, int n);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

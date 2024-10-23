@@ -1230,12 +1230,12 @@
 			isa = PBXGroup;
 			children = (
 				177202092621811C0075D798 /* w_wrapper.h */,
-				174429AC26359F8500AD6E16 /* w_inputs.h */,
 				174429B22635A35800AD6E16 /* w_outputs.h */,
+				174429AC26359F8500AD6E16 /* w_inputs.h */,
 				17AE9214261C5AD2001B0FB6 /* w_unique.h */,
 				177202082621811C0075D798 /* w_wrapper.c */,
-				174429AD26359F8500AD6E16 /* w_inputs.c */,
 				174429B32635A35800AD6E16 /* w_outputs.c */,
+				174429AD26359F8500AD6E16 /* w_inputs.c */,
 				17AE9213261C5AD2001B0FB6 /* w_unique.c */,
 			);
 			path = wrap;
