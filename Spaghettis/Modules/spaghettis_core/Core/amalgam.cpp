@@ -170,8 +170,6 @@ namespace spaghettis::core {
 #include "system/backends/s_midi_rescan.c"
 #include "system/backends/s_audio_rescan.c"
 
-#include "system/plugins/s_loader.c"
-
 /* Graphic. */
 
 #include "graphic/patch/g_base.c"
@@ -488,8 +486,9 @@ namespace spaghettis::core {
     #include "system/backends/s_audio_linux.c"
 #endif
 
-/* Exported for externals. */
+/* Externals. */
 
+#include "libs/externals/spaghettis_loader.c"
 #include "libs/externals/spaghettis_externals.c"
 #include "libs/externals/spaghettis_space.c"
 

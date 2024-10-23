@@ -16,6 +16,7 @@
 		171E6B8F2485362700722B71 /* m_extend.c in Sources */ = {isa = PBXBuildFile; fileRef = 171E6B8E2485362700722B71 /* m_extend.c */; };
 		171E6B912485379E00722B71 /* m_slot.c in Sources */ = {isa = PBXBuildFile; fileRef = 171E6B902485379E00722B71 /* m_slot.c */; };
 		171F2EA61FCC70DB00E3E53E /* d_mag.c in Sources */ = {isa = PBXBuildFile; fileRef = 171F2EA51FCC70DB00E3E53E /* d_mag.c */; };
+		17214D2E2CC8C8720028DE7F /* spaghettis_loader.c in Sources */ = {isa = PBXBuildFile; fileRef = 17214D2D2CC8C8720028DE7F /* spaghettis_loader.c */; };
 		1723FBCD2302F20C00C0F975 /* s_audio_mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 1723FBCC2302F20C00C0F975 /* s_audio_mac.c */; };
 		1723FBCE2302F23600C0F975 /* core_audiodevice.c in Sources */ = {isa = PBXBuildFile; fileRef = 1723FBCA2302F1E000C0F975 /* core_audiodevice.c */; };
 		1723FBCF2302F23600C0F975 /* core_audiodevicelist.c in Sources */ = {isa = PBXBuildFile; fileRef = 1723FBC92302F1E000C0F975 /* core_audiodevicelist.c */; };
@@ -147,7 +148,6 @@
 		17D74F3A2132E01A00D12F8B /* m_undodeencapsulate.c in Sources */ = {isa = PBXBuildFile; fileRef = 17D74F382132E01A00D12F8B /* m_undodeencapsulate.c */; };
 		17D74F3B2132E01A00D12F8B /* m_undoencapsulate.c in Sources */ = {isa = PBXBuildFile; fileRef = 17D74F392132E01A00D12F8B /* m_undoencapsulate.c */; };
 		17D7FAE922993BBD003DF4E4 /* x_listsum.c in Sources */ = {isa = PBXBuildFile; fileRef = 17D7FAE822993BBD003DF4E4 /* x_listsum.c */; };
-		17D95A762CBCED9C00A8F069 /* s_loader.c in Sources */ = {isa = PBXBuildFile; fileRef = 17D95A752CBCED5900A8F069 /* s_loader.c */; };
 		17D95A792CBCF2AD00A8F069 /* s_devices.c in Sources */ = {isa = PBXBuildFile; fileRef = 17D95A782CBCF2AD00A8F069 /* s_devices.c */; };
 		17DDB369232E798400D6D7AF /* core_midiport.c in Sources */ = {isa = PBXBuildFile; fileRef = 17DDB368232E798400D6D7AF /* core_midiport.c */; };
 		17E9CE3F238A7CDA00751166 /* s_denormal.c in Sources */ = {isa = PBXBuildFile; fileRef = 17E9CE3E238A7CDA00751166 /* s_denormal.c */; };
@@ -413,6 +413,7 @@
 		171E6B8E2485362700722B71 /* m_extend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_extend.c; sourceTree = "<group>"; };
 		171E6B902485379E00722B71 /* m_slot.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_slot.c; sourceTree = "<group>"; };
 		171F2EA51FCC70DB00E3E53E /* d_mag.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = d_mag.c; sourceTree = "<group>"; };
+		17214D2D2CC8C8720028DE7F /* spaghettis_loader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = spaghettis_loader.c; sourceTree = "<group>"; };
 		1723FBC72302F1E000C0F975 /* core_audiograph.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = core_audiograph.c; sourceTree = "<group>"; };
 		1723FBC82302F1E000C0F975 /* core_audiostream.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = core_audiostream.c; sourceTree = "<group>"; };
 		1723FBC92302F1E000C0F975 /* core_audiodevicelist.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = core_audiodevicelist.c; sourceTree = "<group>"; };
@@ -625,7 +626,6 @@
 		17D74F382132E01A00D12F8B /* m_undodeencapsulate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_undodeencapsulate.c; sourceTree = "<group>"; };
 		17D74F392132E01A00D12F8B /* m_undoencapsulate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = m_undoencapsulate.c; sourceTree = "<group>"; };
 		17D7FAE822993BBD003DF4E4 /* x_listsum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = x_listsum.c; sourceTree = "<group>"; };
-		17D95A752CBCED5900A8F069 /* s_loader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = s_loader.c; sourceTree = "<group>"; };
 		17D95A772CBCF2AD00A8F069 /* s_devices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s_devices.h; sourceTree = "<group>"; };
 		17D95A782CBCF2AD00A8F069 /* s_devices.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s_devices.c; sourceTree = "<group>"; };
 		17DB3FE51EFA766700D136DB /* m_inlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_inlet.h; sourceTree = "<group>"; };
@@ -1019,6 +1019,7 @@
 		172457DF260A314E008D5035 /* externals */ = {
 			isa = PBXGroup;
 			children = (
+				17214D2D2CC8C8720028DE7F /* spaghettis_loader.c */,
 				172457E0260A314E008D5035 /* spaghettis_externals.c */,
 				172457E1260A314E008D5035 /* spaghettis_space.c */,
 			);
@@ -1274,14 +1275,6 @@
 			path = punning;
 			sourceTree = "<group>";
 		};
-		17D95A742CBCED5900A8F069 /* plugins */ = {
-			isa = PBXGroup;
-			children = (
-				17D95A752CBCED5900A8F069 /* s_loader.c */,
-			);
-			path = plugins;
-			sourceTree = "<group>";
-		};
 		17EFE790248143BF003D3F13 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1436,7 +1429,6 @@
 				172BA9BA2486AA70002058E8 /* MIDI */,
 				17168A262486877C006DA0B4 /* devices */,
 				174C753A24864889007548BF /* backends */,
-				17D95A742CBCED5900A8F069 /* plugins */,
 			);
 			path = system;
 			sourceTree = "<group>";
@@ -2027,7 +2019,6 @@
 				3789722E1C4F716800263434 /* g_dial.c in Sources */,
 				174B465C2147FDE400B9A939 /* m_undosnippet.c in Sources */,
 				17AE9228261C9791001B0FB6 /* m_encapsulate.c in Sources */,
-				17D95A762CBCED9C00A8F069 /* s_loader.c in Sources */,
 				17C3797C202062F6009B00A6 /* x_blocksize.c in Sources */,
 				179873E31F01095100BB1B94 /* m_file.c in Sources */,
 				1778E0C12C4F649700D3BE4B /* m_void.c in Sources */,
@@ -2352,6 +2343,7 @@
 				375253051E23CE1E00863F79 /* d_lop.c in Sources */,
 				371196C41E2DF28F007214B2 /* d_framp.c in Sources */,
 				17B9EC582132725B004F6E50 /* m_undofront.c in Sources */,
+				17214D2E2CC8C8720028DE7F /* spaghettis_loader.c in Sources */,
 				17A8B540224FAE9D0091B6BC /* d_initializer.c in Sources */,
 				371196CB1E2DF324007214B2 /* d_rifft.c in Sources */,
 				371196D21E2DF3D2007214B2 /* d_rfft.c in Sources */,
