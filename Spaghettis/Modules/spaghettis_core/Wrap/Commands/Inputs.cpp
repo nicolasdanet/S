@@ -37,9 +37,14 @@ Perform Inputs::snapToGridSetSize (int size)
     return [size]() { core::inputs_snapSetGrid (size); };
 }
 
-Perform Inputs::devicesRescan (Logged type)
+Perform Inputs::devicesRescanAudio (Logged type)
 {
-    return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescan (logged); };
+    return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescanAudio (logged); };
+}
+
+Perform Inputs::devicesRescanMidi (Logged type)
+{
+    return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescanMidi (logged); };
 }
 
 // -----------------------------------------------------------------------------------------------------------

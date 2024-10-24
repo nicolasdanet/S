@@ -32,7 +32,7 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     
     updateSearchPaths (Inputs::Logged::none);
     
-    rescanDevices (Inputs::Logged::none);
+    rescanAudioDevices (Inputs::Logged::none);
 }
     
 void SpaghettisInstance::shutdown()
@@ -160,9 +160,14 @@ void SpaghettisInstance::rescanSearchPaths (Inputs::Logged type)
     Spaghettis()->handle (Inputs::searchPathsRescan (type));
 }
 
-void SpaghettisInstance::rescanDevices (Inputs::Logged type)
+void SpaghettisInstance::rescanAudioDevices (Inputs::Logged type)
 {
-    Spaghettis()->handle (Inputs::devicesRescan (type));
+    Spaghettis()->handle (Inputs::devicesRescanAudio (type));
+}
+
+void SpaghettisInstance::rescanMidiDevices (Inputs::Logged type)
+{
+    Spaghettis()->handle (Inputs::devicesRescanMidi (type));
 }
 
 // -----------------------------------------------------------------------------------------------------------

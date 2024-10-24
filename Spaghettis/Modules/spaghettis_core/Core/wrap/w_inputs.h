@@ -24,7 +24,8 @@ void inputs_searchPathsRescan           (int logged);
 void inputs_searchPathsSet              (const juce::StringArray&);
 void inputs_snapSet                     (bool);
 void inputs_snapSetGrid                 (int);
-void inputs_devicesRescan               (int logged);
+void inputs_devicesRescanAudio          (int logged);
+void inputs_devicesRescanMidi           (int logged);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
