@@ -163,6 +163,7 @@ static void initialize (juce::LookAndFeel* lf)
     lf->setColour (juce::TextEditor::highlightedTextColourId,           p->textHighlighted);
     
     lf->setColour (juce::CaretComponent::caretColourId,                 p->textMenu);
+    lf->setColour (juce::Label::backgroundColourId,                     p->backgroundAlternate);
     lf->setColour (juce::Label::backgroundWhenEditingColourId,          p->transparent);
     lf->setColour (juce::Label::textWhenEditingColourId,                p->textSystem);
     lf->setColour (juce::Label::outlineWhenEditingColourId,             p->transparent);
