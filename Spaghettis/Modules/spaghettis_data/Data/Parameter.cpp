@@ -47,6 +47,11 @@ bool Parameter::isDirectory() const
     return (getType() == ParameterType<Directory>::get());
 }
 
+bool Parameter::isDevice() const
+{
+    return (getType() == ParameterType<Device>::get());
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -250,6 +255,7 @@ juce::var Parameter::forceType (const juce::var& v) const
     else if (isColour())    { return Cast::force<juce::Colour> (v); }
     else if (isRectangle()) { return Cast::force<juce::Rectangle<int>> (v); }
     else if (isDirectory()) { return Cast::force<Directory> (v); }
+    else if (isDevice())    { return Cast::force<Device> (v); }
     else {
         return Cast::force<juce::String> (v);
     }
@@ -276,6 +282,7 @@ juce::Value Parameter::filtered (const juce::Value& v) const
     else if (isFloat())     { return data::Filter<double>::make (v); }
     else if (isRectangle()) { return data::Filter<juce::Rectangle<int>>::make (v); }
     else if (isDirectory()) { return data::Filter<Directory>::make (v); }
+    else if (isDevice())    { return data::Filter<Device>::make (v); }
     else {
         return data::Filter<juce::String>::make (v);
     }

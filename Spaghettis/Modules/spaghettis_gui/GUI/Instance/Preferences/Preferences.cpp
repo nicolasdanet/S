@@ -24,6 +24,7 @@ data::Data getDefaultPreferences()
     data::Group general (data.addGroup (Tag::General));
     data::Group editing (data.addGroup (Tag::Editing));
     data::Group paths   (data.addGroup (Tag::Paths));
+    data::Group devices (data.addGroup (Tag::Devices));
     data::Group colors  (data.addGroup (Tag::Colors));
     
     const Palette* p = Palette::getInstance();
@@ -71,6 +72,13 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Search Path"),
         NEEDS_TRANS ("Set directory to find patches"),
         Directory());
+    
+    /* */
+        
+    devices.addParameter (Tag::AudioDeviceIn0,
+        NEEDS_TRANS ("Audio In"),
+        NEEDS_TRANS ("Set audio device for input"),
+        Device());
         
     /* */
     

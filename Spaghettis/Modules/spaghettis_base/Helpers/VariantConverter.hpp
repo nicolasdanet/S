@@ -84,5 +84,23 @@ template<> struct VariantConverter<spaghettis::Directory> {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+template<> struct VariantConverter<spaghettis::Device> {
+
+    static spaghettis::Device fromVar (const var& v)
+    {
+        return spaghettis::Device (v.toString());
+    }
+        
+    static var toVar (const spaghettis::Device& d)
+    {
+        return var (d.toString());
+    }
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 } // namespace juce
