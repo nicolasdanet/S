@@ -46,7 +46,7 @@ void mididevices_copy (t_mididevices *dest, t_mididevices *src)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error mididevices_addMidiIn (t_mididevices *p, t_symbol *device)
+t_error mididevices_appendMidiIn (t_mididevices *p, t_symbol *device)
 {
     if (p->d_inSize < DEVICES_MAXIMUM_IO) {
     //
@@ -59,7 +59,7 @@ t_error mididevices_addMidiIn (t_mididevices *p, t_symbol *device)
     return PD_ERROR;
 }
 
-t_error mididevices_addMidiOut (t_mididevices *p, t_symbol *device)
+t_error mididevices_appendMidiOut (t_mididevices *p, t_symbol *device)
 {
     if (p->d_outSize < DEVICES_MAXIMUM_IO) {
     //
@@ -126,6 +126,40 @@ void mididevices_report (t_mididevices *p)
         post_system (NULL, PD_TRANSLATE ("rescan: midi out / %s"), symbol_getName (p->d_outNames[i]));
     }
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+juce::StringArray mididevices_getListIn (t_mididevices *p)
+{
+    juce::StringArray devices;
+    
+    int i;
+    
+    for (i = 0; i < p->d_inSize; i++) {
+        devices.add (juce::String (symbol_getName (p->d_inNames[i])));
+    }
+    
+    return devices;
+}
+
+juce::StringArray mididevices_getListOut (t_mididevices *p)
+{
+    juce::StringArray devices;
+    
+    int i;
+    
+    for (i = 0; i < p->d_outSize; i++) {
+        devices.add (juce::String (symbol_getName (p->d_outNames[i])));
+    }
+    
+    return devices;
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

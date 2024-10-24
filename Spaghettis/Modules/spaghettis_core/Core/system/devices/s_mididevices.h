@@ -32,8 +32,8 @@ void    mididevices_copy            (t_mididevices *dest, t_mididevices *src);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error mididevices_addMidiIn       (t_mididevices *p, t_symbol *device);
-t_error mididevices_addMidiOut      (t_mididevices *p, t_symbol *device);
+t_error mididevices_appendMidiIn    (t_mididevices *p, t_symbol *device);
+t_error mididevices_appendMidiOut   (t_mididevices *p, t_symbol *device);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -47,6 +47,17 @@ int     mididevices_hasMidiOut      (t_mididevices *p, t_symbol *device);
 // MARK: -
 
 void    mididevices_report          (t_mididevices *p);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+juce::StringArray mididevices_getListIn     (t_mididevices *p);
+juce::StringArray mididevices_getListOut    (t_mididevices *p);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

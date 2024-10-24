@@ -109,6 +109,30 @@ Perform Outputs::reportClassNew (juce::String name)
     };
 }
 
+Perform Outputs::reportAudioDevices (juce::StringArray i, juce::StringArray o)
+{
+    DBG ("### AUDIO");
+    DBG (juce::String ("I / ") + i.joinIntoString (" "));
+    DBG (juce::String ("O / ") + o.joinIntoString (" "));
+    
+    return []()
+    {
+        
+    };
+}
+
+Perform Outputs::reportMidiDevices (juce::StringArray i, juce::StringArray o)
+{
+    DBG ("### MIDI");
+    DBG (juce::String ("I / ") + i.joinIntoString (" "));
+    DBG (juce::String ("O / ") + o.joinIntoString (" "));
+    
+    return []()
+    {
+
+    };
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

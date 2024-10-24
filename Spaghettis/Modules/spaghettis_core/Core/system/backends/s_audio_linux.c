@@ -366,8 +366,8 @@ t_error audio_getListOfDevicesNative (t_audiodevices *p)
 {
     t_error err = PD_ERROR_NONE;
     
-    err |= audiodevices_addAudioIn (p,  gensym ("JACK ports"), 2);
-    err |= audiodevices_addAudioOut (p, gensym ("JACK ports"), 2);
+    err |= audiodevices_appendAudioIn (p,  gensym ("JACK ports"), 2);
+    err |= audiodevices_appendAudioOut (p, gensym ("JACK ports"), 2);
 
     return err;
 }

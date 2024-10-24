@@ -45,6 +45,8 @@ static Perform patchOrder                   (core::UniquePath, std::vector<core:
 
 static Perform reportDsp                    (bool);
 static Perform reportClassNew               (juce::String);
+static Perform reportAudioDevices           (juce::StringArray, juce::StringArray);
+static Perform reportMidiDevices            (juce::StringArray, juce::StringArray);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

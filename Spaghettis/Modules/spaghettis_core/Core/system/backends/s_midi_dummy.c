@@ -66,8 +66,8 @@ t_error midi_getListOfDevicesNative (t_mididevices *p)
 {
     t_error err = PD_ERROR_NONE;
     
-    err |= mididevices_addMidiIn (p, gensym ("Dummy Input"));
-    err |= mididevices_addMidiOut (p, gensym ("Dummy Output"));
+    err |= mididevices_appendMidiIn (p, gensym ("Dummy Input"));
+    err |= mididevices_appendMidiOut (p, gensym ("Dummy Output"));
   
     return err;
 }

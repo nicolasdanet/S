@@ -130,12 +130,12 @@ void outputs_reportClassNew (t_symbol *s)
 
 void outputs_reportAudioDevices (t_audiodevices *d)
 {
-
+    wrapper_send (Outputs::reportAudioDevices (audiodevices_getListIn (d), audiodevices_getListOut (d)));
 }
 
 void outputs_reportMidiDevices (t_mididevices *d)
 {
-
+    wrapper_send (Outputs::reportMidiDevices (mididevices_getListIn (d), mididevices_getListOut (d)));
 }
 
 // -----------------------------------------------------------------------------------------------------------

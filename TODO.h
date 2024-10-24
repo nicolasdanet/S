@@ -40,6 +40,8 @@ midi_setCurrentDevices
 
 // Add small number in inlet box?
 
+// NTP timestamps / gensym unique?
+
 // Options / @ attribute style
 
 // Add [list] object

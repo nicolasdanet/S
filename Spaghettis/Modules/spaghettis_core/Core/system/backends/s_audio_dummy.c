@@ -65,8 +65,8 @@ t_error audio_getListOfDevicesNative (t_audiodevices *p)
 {
     t_error err = PD_ERROR_NONE;
     
-    err |= audiodevices_addAudioIn (p,  gensym ("Dummy Input"),  0);
-    err |= audiodevices_addAudioOut (p, gensym ("Dummy Output"), 0);
+    err |= audiodevices_appendAudioIn (p,  gensym ("Dummy Input"),  0);
+    err |= audiodevices_appendAudioOut (p, gensym ("Dummy Output"), 0);
   
     return err;
 }

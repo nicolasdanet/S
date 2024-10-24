@@ -418,8 +418,8 @@ t_error midi_getListOfDevicesNative (t_mididevices *p)
     
     t_error err = PD_ERROR_NONE;
     
-    for (i = 0; i < m; i++) { err |= mididevices_addMidiIn (p, gensym ("ALSA virtual device"));  }
-    for (i = 0; i < n; i++) { err |= mididevices_addMidiOut (p, gensym ("ALSA virtual device")); }
+    for (i = 0; i < m; i++) { err |= mididevices_appendMidiIn (p, gensym ("ALSA virtual device"));  }
+    for (i = 0; i < n; i++) { err |= mididevices_appendMidiOut (p, gensym ("ALSA virtual device")); }
   
     return err;
 }

@@ -34,8 +34,8 @@ void    audiodevices_copy                       (t_audiodevices *dest, t_audiode
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audiodevices_addAudioIn                 (t_audiodevices *p, t_symbol *device, int channels);
-t_error audiodevices_addAudioOut                (t_audiodevices *p, t_symbol *device, int channels);
+t_error audiodevices_appendAudioIn              (t_audiodevices *p, t_symbol *device, int channels);
+t_error audiodevices_appendAudioOut             (t_audiodevices *p, t_symbol *device, int channels);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -52,6 +52,17 @@ int     audiodevices_getNumberOfChannelsOut     (t_audiodevices *p, t_symbol *de
 // MARK: -
 
 void    audiodevices_report                     (t_audiodevices *p);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+juce::StringArray audiodevices_getListIn        (t_audiodevices *p);
+juce::StringArray audiodevices_getListOut       (t_audiodevices *p);
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

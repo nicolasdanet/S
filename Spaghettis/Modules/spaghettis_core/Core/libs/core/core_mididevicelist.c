@@ -40,7 +40,7 @@ static t_error mididevicelist_getSources (t_mididevices *list)
         //
         t_symbol *name = midiname_get (MIDIGetSource (i));
         
-        if (name) { err |= mididevices_addMidiIn (list, name); }
+        if (name) { err |= mididevices_appendMidiIn (list, name); }
         //
         }
 
@@ -61,7 +61,7 @@ static t_error mididevicelist_getDestinations (t_mididevices *list)
         //
         t_symbol *name = midiname_get (MIDIGetDestination (i));
         
-        if (name) { err |= mididevices_addMidiOut (list, name); }
+        if (name) { err |= mididevices_appendMidiOut (list, name); }
         //
         }
 

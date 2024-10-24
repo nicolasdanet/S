@@ -50,7 +50,7 @@ void audiodevices_copy (t_audiodevices *dest, t_audiodevices *src)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error audiodevices_addAudioIn (t_audiodevices *p, t_symbol *device, int channels)
+t_error audiodevices_appendAudioIn (t_audiodevices *p, t_symbol *device, int channels)
 {
     if (p->d_inSize < DEVICES_MAXIMUM_IO) {
     //
@@ -65,7 +65,7 @@ t_error audiodevices_addAudioIn (t_audiodevices *p, t_symbol *device, int channe
     return PD_ERROR;
 }
 
-t_error audiodevices_addAudioOut (t_audiodevices *p, t_symbol *device, int channels)
+t_error audiodevices_appendAudioOut (t_audiodevices *p, t_symbol *device, int channels)
 {
     if (p->d_outSize < DEVICES_MAXIMUM_IO) {
     //
@@ -168,6 +168,46 @@ void audiodevices_report (t_audiodevices *p)
         post_system (NULL, PD_TRANSLATE ("rescan: audio out / %s / %d"), s, n);
     }
 }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_APPLICATION )
+
+juce::StringArray audiodevices_getListIn (t_audiodevices *p)
+{
+    juce::StringArray devices;
+    
+    int i;
+    
+    for (i = 0; i < p->d_inSize; i++) {
+        int n = p->d_inChannels[i];
+        if (n) {
+            devices.add (juce::String (symbol_getName (p->d_inNames[i])));
+        }
+    }
+    
+    return devices;
+}
+
+juce::StringArray audiodevices_getListOut (t_audiodevices *p)
+{
+    juce::StringArray devices;
+    
+    int i;
+    
+    for (i = 0; i < p->d_outSize; i++) {
+        int n = p->d_outChannels[i];
+        if (n) {
+            devices.add (juce::String (symbol_getName (p->d_outNames[i])));
+        }
+    }
+    
+    return devices;
+}
+
+#endif
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
