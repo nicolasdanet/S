@@ -74,11 +74,16 @@ data::Data getDefaultPreferences()
         Directory());
     
     /* */
-        
+    
+    auto foo = []()
+    {
+        return juce::StringArray ("chou", "joujou", "bijou", "genou", "caillou", "hibou", "pou");
+    };
+    
     devices.addParameter (Tag::AudioDeviceIn0,
         NEEDS_TRANS ("Audio In"),
         NEEDS_TRANS ("Set audio device for input"),
-        Device());
+        Device()).setChoicesSource (foo);
         
     /* */
     

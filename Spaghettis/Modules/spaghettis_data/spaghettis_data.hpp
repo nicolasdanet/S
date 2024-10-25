@@ -54,6 +54,7 @@
 #include "Data/Getters/Cast.hpp"
 #include "Data/Getters/Iterator.hpp"
 #include "Data/Getters/Filter.hpp"
+#include "Data/Delegate/ChoicesSource.hpp"
 #include "Data/Delegate/Invariant.hpp"
 #include "Data/Delegate/Delegate.hpp"
 #include "Data/Delegate/DelegateManager.hpp"

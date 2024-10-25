@@ -29,6 +29,25 @@ public:
     
     ~Delegate() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void setChoicesSource (ChoicesSource source)
+    {
+        choices_ = source;
+    }
+    
+    ChoicesSource getChoicesSource() const
+    {
+        return choices_;
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 public:
     juce::ValueTree getValueTree() const
     {
@@ -37,6 +56,9 @@ public:
     
 private:
     juce::ValueTree shared_;
+    
+private:
+    ChoicesSource choices_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Delegate)

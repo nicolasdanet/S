@@ -170,13 +170,18 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::ValueTree baseDelegate (const juce::ValueTree& tree)
+Delegate* fetchDelegate (const juce::ValueTree& tree)
 {
     auto p = dynamic_cast<Delegate*> (tree.getProperty (Id::DELEGATE).getObject());
     
     jassert (p);
     
-    return p->getValueTree();
+    return p;
+}
+
+juce::ValueTree baseDelegate (const juce::ValueTree& tree)
+{
+    return fetchDelegate (tree)->getValueTree();
 }
 
 juce::ValueTree baseForGetters (const juce::ValueTree& tree, const juce::Identifier& i)
@@ -202,6 +207,20 @@ juce::ValueTree baseForSetters (const juce::ValueTree& tree, const juce::Identif
 
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+Parameter& Parameter::setChoicesSource (ChoicesSource source)
+{
+    fetchDelegate (parameter_)->setChoicesSource (source); return *this;
+}
+    
+ChoicesSource Parameter::getChoicesSource() const
+{
+    return fetchDelegate (parameter_)->getChoicesSource();
+}
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
