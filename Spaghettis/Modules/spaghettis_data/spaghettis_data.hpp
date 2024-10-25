@@ -76,6 +76,7 @@
 #include "View/Parameters/Editors/HueSelector.hpp"
 #include "View/Parameters/Editors/ColourSelector.hpp"
 #include "View/Parameters/Editors/ColourEditor.hpp"
+#include "View/Parameters/Editors/DeviceSelector.hpp"
 #include "View/Parameters/Editors/DirectoryEditor.hpp"
 #include "View/Parameters/Editors/DirectorySelector.hpp"
 
@@ -85,6 +86,7 @@
 #include "View/Parameters/ParameterSlider.hpp"
 #include "View/Parameters/ParameterText.hpp"
 #include "View/Parameters/ParameterDirectory.hpp"
+#include "View/Parameters/ParameterDevice.hpp"
 #include "View/Parameters/PresetElement.hpp"
 #include "View/Parameters/ViewCommon.hpp"
 

@@ -1,44 +1,48 @@
 
-/* Copyright (c) 2023 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_data.hpp"
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class DeviceSelector : public juce::Component {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit DeviceSelector (const juce::Value&);
+
+    ~DeviceSelector() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
+    void resized() override;
+    
+private:
+    juce::Value value_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DeviceSelector)
+};
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/Delegate.cpp"
-#include "Data/Delegate/DelegateManager.cpp"
-#include "Data/Parameter.cpp"
-#include "Data/Group.cpp"
-#include "Data/Data.cpp"
-#include "Data/DataSerialize.cpp"
-#include "Data/Getters/Observer.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/Parameters/Editors/ColourSpace.cpp"
-#include "View/Parameters/Editors/HueSelector.cpp"
-#include "View/Parameters/Editors/ColourSelector.cpp"
-#include "View/Parameters/Editors/ColourEditor.cpp"
-#include "View/Parameters/Editors/DirectoryEditor.cpp"
-#include "View/Parameters/Editors/DirectorySelector.cpp"
-#include "View/Parameters/Editors/DeviceSelector.cpp"
-
-#include "View/Parameters/ViewCommon.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/ParametersViewHeader.cpp"
-#include "View/ParametersView.cpp"
-#include "View/PresetsViewHeader.cpp"
-#include "View/PresetsView.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
