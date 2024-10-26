@@ -12,58 +12,29 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterDirectory :  public PropertyLookAndFeel,
-                            public juce::PropertyComponent {
+class ChoicesView : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterDirectory (const data::Parameter& p,
-        const PropertyLookAndFeel& lnf,
-        const juce::String& s,
-        bool isEditable) :
-            PropertyLookAndFeel (lnf),
-            juce::PropertyComponent (s),
-            editor_ (p.getValueAsValue (false)),
-            selector_ (p.getValueAsValue (false))
-    {
-        addAndMakeVisible (editor_);
-        addAndMakeVisible (selector_);
-        setEnabled (isEditable);
-        editor_.setEnabled (isEditable);
-        selector_.setEnabled (isEditable);
-    }
+    explicit ChoicesView();
 
-    ~ParameterDirectory() = default;
+    ~ChoicesView() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void resized() override
-    {
-        juce::Rectangle<int> bounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
-        
-        selector_.setBounds (bounds.removeFromLeft (bounds.getHeight()));
-        
-        editor_.setBounds (bounds);
-    }
-
-    void refresh() override
-    {
-    }
-
+    void paint (juce::Graphics&) override;
+    void resized() override;
+    
 private:
-    DirectoryEditor editor_;
-    DirectorySelector selector_;
-
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterDirectory)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesView)
 };
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 

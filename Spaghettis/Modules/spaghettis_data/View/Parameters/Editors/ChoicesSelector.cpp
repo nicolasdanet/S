@@ -1,45 +1,41 @@
 
-/* Copyright (c) 2023 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_data.hpp"
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+ChoicesSelector::ChoicesSelector (const juce::Value& v) : value_ (v)
+{
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ChoicesSelector::paint (juce::Graphics& g)
+{
+    // g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
+    
+    g.fillAll (juce::Colours::orange);
+}
+
+void ChoicesSelector::resized()
+{
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/Delegate.cpp"
-#include "Data/Delegate/DelegateManager.cpp"
-#include "Data/Parameter.cpp"
-#include "Data/Group.cpp"
-#include "Data/Data.cpp"
-#include "Data/DataSerialize.cpp"
-#include "Data/Getters/Observer.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/Parameters/Editors/ColourSpace.cpp"
-#include "View/Parameters/Editors/HueSelector.cpp"
-#include "View/Parameters/Editors/ColourSelector.cpp"
-#include "View/Parameters/Editors/ColourEditor.cpp"
-#include "View/Parameters/Editors/DirectoryEditor.cpp"
-#include "View/Parameters/Editors/DirectorySelector.cpp"
-#include "View/Parameters/Editors/ChoicesSelector.cpp"
-#include "View/Parameters/Editors/ChoicesView.cpp"
-
-#include "View/Parameters/ViewCommon.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/ParametersViewHeader.cpp"
-#include "View/ParametersView.cpp"
-#include "View/PresetsViewHeader.cpp"
-#include "View/PresetsView.cpp"
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

@@ -30,8 +30,10 @@ public:
             juce::PropertyComponent (s, lnf.getRequiredHeight() * getChoices().size()),
             selector_ (p.getValueAsValue (false))
     {
+        addAndMakeVisible (view_);
         addAndMakeVisible (selector_);
         setEnabled (isEditable);
+        view_.setEnabled (false);
         selector_.setEnabled (isEditable);
     }
 
@@ -46,9 +48,9 @@ public:
     {
         juce::Rectangle<int> bounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
         
-        // selector_.setBounds (bounds.removeFromLeft ( ));
+        selector_.setBounds (bounds.removeFromLeft (getRequiredHeight()));
         
-        selector_.setBounds (bounds);
+        view_.setBounds (bounds);
     }
 
     void refresh() override
@@ -56,7 +58,8 @@ public:
     }
 
 private:
-    ChoiceSelector selector_;
+    ChoicesView view_;
+    ChoicesSelector selector_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterChoices)

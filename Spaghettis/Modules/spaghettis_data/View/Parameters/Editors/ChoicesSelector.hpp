@@ -12,16 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ChoiceSelector : public juce::Component {
+class ChoicesSelector : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ChoiceSelector (const juce::Value&);
+    explicit ChoicesSelector (const juce::Value&);
 
-    ~ChoiceSelector() = default;
+    ~ChoicesSelector() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ private:
     juce::Value value_;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoiceSelector)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesSelector)
 };
     
 // -----------------------------------------------------------------------------------------------------------
