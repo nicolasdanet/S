@@ -28,6 +28,7 @@ public:
             PropertyLookAndFeel (lnf),
             ChoicesList (p),
             juce::PropertyComponent (s, lnf.getRequiredHeight() * getChoices().size()),
+            view_ (lnf.getFont(), getChoices()),
             selector_ (p.getValueAsValue (false))
     {
         addAndMakeVisible (view_);

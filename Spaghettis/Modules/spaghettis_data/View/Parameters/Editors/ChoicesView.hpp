@@ -19,7 +19,7 @@ class ChoicesView : public juce::Component {
 // MARK: -
 
 public:
-    explicit ChoicesView();
+    explicit ChoicesView (const juce::Font&, juce::StringArray&);
 
     ~ChoicesView() = default;
 
@@ -30,6 +30,12 @@ public:
 public:
     void paint (juce::Graphics&) override;
     void resized() override;
+
+private:
+    juce::Font font_;
+    
+private:
+    juce::StringArray& choices_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesView)

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ChoicesView::ChoicesView()
+ChoicesView::ChoicesView (const juce::Font& f, juce::StringArray& choices) : font_ (f), choices_ (choices)
 {
 }
     
@@ -23,6 +23,10 @@ ChoicesView::ChoicesView()
 void ChoicesView::paint (juce::Graphics& g)
 {
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
+    
+    // g.setFont (font_);
+    // g.setColour (Colours::fetchColour (Colours::parametersColourText));
+    // g.drawText (text, r.reduced (4, 0), juce::Justification::centredLeft, true);
 }
 
 void ChoicesView::resized()
