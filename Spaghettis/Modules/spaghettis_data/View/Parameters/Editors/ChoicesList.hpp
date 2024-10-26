@@ -12,56 +12,37 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterChoices :    public PropertyLookAndFeel,
-                            public ChoicesList,
-                            public juce::PropertyComponent {
+class ChoicesList {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterChoices (const data::Parameter& p,
-        const PropertyLookAndFeel& lnf,
-        const juce::String& s,
-        bool isEditable) :
-            PropertyLookAndFeel (lnf),
-            ChoicesList (p),
-            juce::PropertyComponent (s, lnf.getRequiredHeight() * getChoices().size()),
-            selector_ (p.getValueAsValue (false))
+    explicit ChoicesList (const data::Parameter& p) : choices_ (p.getChoicesSource()())
     {
-        addAndMakeVisible (selector_);
-        setEnabled (isEditable);
-        selector_.setEnabled (isEditable);
+    
     }
 
-    ~ParameterChoices() = default;
+    ~ChoicesList() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void resized() override
+    juce::StringArray getChoices() const
     {
-        juce::Rectangle<int> bounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
-        
-        // selector_.setBounds (bounds.removeFromLeft ( ));
-        
-        selector_.setBounds (bounds);
+        return choices_;
     }
-
-    void refresh() override
-    {
-    }
-
-private:
-    ChoiceSelector selector_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterChoices)
-};
+    juce::StringArray choices_;
 
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesList)
+};
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
