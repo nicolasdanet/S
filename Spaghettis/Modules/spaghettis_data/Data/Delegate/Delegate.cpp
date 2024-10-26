@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto getEmptyChoicesSource()
+auto getDefaultChoicesSource()
 {
     return []() { return juce::StringArray ("Ga", "Bu", "Zo", "Meu"); };
 }
@@ -31,7 +31,7 @@ auto getEmptyChoicesSource()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Delegate::Delegate (const Invariant& i) : shared_ (Id::DELEGATE), choices_ (getEmptyChoicesSource())
+Delegate::Delegate (const Invariant& i) : shared_ (Id::DELEGATE), choices_ (getDefaultChoicesSource())
 {
     Invariant::setProperties (shared_, i);
 }

@@ -84,6 +84,11 @@ data::Data getDefaultPreferences()
         NEEDS_TRANS ("Audio In"),
         NEEDS_TRANS ("Set audio device for input"),
         Device()).setChoicesSource (foo);
+    
+    devices.addParameter (Tag::MidiDeviceIn0,
+        NEEDS_TRANS ("Midi In"),
+        NEEDS_TRANS ("Set midi device for input"),
+        Device());
         
     /* */
     

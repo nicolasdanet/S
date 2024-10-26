@@ -90,6 +90,7 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (MessageBackground);
     DECLARE_STRING (MessageText);
     DECLARE_STRING (MessageClicked);
+    DECLARE_STRING (MidiDeviceIn0);
     DECLARE_STRING (Multiple);
     DECLARE_STRING (Name);
     DECLARE_STRING (NonZero);
