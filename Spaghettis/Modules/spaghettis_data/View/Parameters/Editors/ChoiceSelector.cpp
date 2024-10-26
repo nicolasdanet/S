@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-DeviceSelector::DeviceSelector (const juce::Value& v) : value_ (v)
+ChoiceSelector::ChoiceSelector (const juce::Value& v) : value_ (v)
 {
 }
     
@@ -20,14 +20,14 @@ DeviceSelector::DeviceSelector (const juce::Value& v) : value_ (v)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void DeviceSelector::paint (juce::Graphics& g)
+void ChoiceSelector::paint (juce::Graphics& g)
 {
     // g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
     
     g.fillAll (juce::Colours::orange);
 }
 
-void DeviceSelector::resized()
+void ChoiceSelector::resized()
 {
 
 }

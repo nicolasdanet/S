@@ -28,7 +28,7 @@
 #include "View/Parameters/Editors/ColourEditor.cpp"
 #include "View/Parameters/Editors/DirectoryEditor.cpp"
 #include "View/Parameters/Editors/DirectorySelector.cpp"
-#include "View/Parameters/Editors/DeviceSelector.cpp"
+#include "View/Parameters/Editors/ChoiceSelector.cpp"
 
 #include "View/Parameters/ViewCommon.cpp"
 

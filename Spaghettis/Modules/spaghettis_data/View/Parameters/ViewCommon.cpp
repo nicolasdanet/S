@@ -78,7 +78,7 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Pa
     else if (p.isInteger())     { return std::make_unique<ParameterInteger> (p, lnf, label, isEditable);    }
     else if (p.isFloat())       { return std::make_unique<ParameterFloat> (p, lnf, label, isEditable);      }
     else if (p.isDirectory())   { return std::make_unique<ParameterDirectory> (p, lnf, label, isEditable);  }
-    else if (p.isDevice())      { return std::make_unique<ParameterDevice> (p, lnf, label, isEditable);     }
+    else if (p.isDevice())      { return std::make_unique<ParameterChoices> (p, lnf, label, isEditable);     }
     else {
         return std::make_unique<ParameterText> (p, lnf, label, isEditable);
     }

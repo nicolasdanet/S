@@ -12,32 +12,50 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class DeviceSelector : public juce::Component {
+class ParameterChoices :    public PropertyLookAndFeel,
+                            public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit DeviceSelector (const juce::Value&);
+    explicit ParameterChoices (const data::Parameter& p,
+        const PropertyLookAndFeel& lnf,
+        const juce::String& s,
+        bool isEditable) :
+            PropertyLookAndFeel (lnf),
+            juce::PropertyComponent (s),
+            selector_ (p.getValueAsValue (false))
+    {
+        addAndMakeVisible (selector_);
+        setEnabled (isEditable);
+        selector_.setEnabled (isEditable);
+    }
 
-    ~DeviceSelector() = default;
+    ~ParameterChoices() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
-    void resized() override;
+    void resized() override
+    {
+        selector_.setBounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
+    }
+
+    void refresh() override
+    {
+    }
+
+private:
+    ChoiceSelector selector_;
     
 private:
-    juce::Value value_;
-
-private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DeviceSelector)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterChoices)
 };
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
