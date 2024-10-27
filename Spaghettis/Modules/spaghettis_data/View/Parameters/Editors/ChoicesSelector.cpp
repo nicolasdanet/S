@@ -16,7 +16,15 @@ ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray&
 {
     for (const auto& s : choices)  { buttons_.push_back (std::make_unique<juce::ToggleButton> (s)); }
     
-    for (const auto& b : buttons_) { addAndMakeVisible (*b); }
+    const bool enabled = isEnabled();
+    
+    for (const auto& b : buttons_) {
+    //
+    b->setEnabled (enabled);
+    
+    addAndMakeVisible (*b);
+    //
+    }
 }
     
 // -----------------------------------------------------------------------------------------------------------

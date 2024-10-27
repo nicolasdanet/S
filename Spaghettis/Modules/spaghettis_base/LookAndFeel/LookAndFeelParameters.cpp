@@ -77,12 +77,16 @@ int LNF::getPropertyPanelSectionHeaderHeight (const juce::String& s)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void LNF::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool)
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void drawToggleButtonTick (juce::Graphics& g, juce::ToggleButton& b, int w)
 {
-    const int   h = b.getHeight();
-    const float t = h * 0.6f;
+    const float t = w * 0.6f;
     
-    const juce::Rectangle<float> r (juce::Rectangle<float> (h, h).withSizeKeepingCentre (t, t));
+    const juce::Rectangle<float> r (juce::Rectangle<float> (w, w).withSizeKeepingCentre (t, t));
 
     g.setColour (Colours::fetchColour (Colours::parametersBoolean));
     g.drawRoundedRectangle (r, 4.0f, 1.0f);
@@ -91,6 +95,38 @@ void LNF::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool
         g.setColour (Colours::fetchColour (Colours::parametersBooleanTick));
         LNF::drawTick (g, r.toNearestInt().reduced (4, 5));
     }
+}
+
+void drawToggleButtonText (juce::Graphics& g, juce::ToggleButton& b, int w)
+{
+    const juce::String text (b.getButtonText());
+    
+    if (text.isNotEmpty()) {
+    //
+    juce::Rectangle<int> r (b.getLocalBounds().withTrimmedLeft (w + 2).withTrimmedRight (2));
+    
+    g.setColour (Colours::fetchColour (Colours::parametersBooleanText));
+    g.setFont (Fonts::getFont());
+    g.drawText (b.getButtonText(), r, juce::Justification::centredLeft, true);
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void LNF::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool)
+{
+    const int w = b.getHeight();
+
+    drawToggleButtonTick (g, b, w);
+    drawToggleButtonText (g, b, w);
 }
 
 // -----------------------------------------------------------------------------------------------------------
