@@ -78,7 +78,6 @@
 #include "View/Parameters/Editors/ColourEditor.hpp"
 #include "View/Parameters/Editors/ChoicesSelector.hpp"
 #include "View/Parameters/Editors/ChoicesList.hpp"
-#include "View/Parameters/Editors/ChoicesView.hpp"
 #include "View/Parameters/Editors/DirectoryEditor.hpp"
 #include "View/Parameters/Editors/DirectorySelector.hpp"
 

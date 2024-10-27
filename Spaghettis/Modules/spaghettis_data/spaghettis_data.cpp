@@ -29,7 +29,6 @@
 #include "View/Parameters/Editors/DirectoryEditor.cpp"
 #include "View/Parameters/Editors/DirectorySelector.cpp"
 #include "View/Parameters/Editors/ChoicesSelector.cpp"
-#include "View/Parameters/Editors/ChoicesView.cpp"
 
 #include "View/Parameters/ViewCommon.cpp"
 
