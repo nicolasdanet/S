@@ -35,6 +35,9 @@ private:
     juce::Value value_;
 
 private:
+    juce::OwnedArray<juce::ToggleButton> buttons_;
+
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesSelector)
 };
     
