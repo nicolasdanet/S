@@ -14,7 +14,9 @@ namespace spaghettis {
 
 ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray& choices) : value_ (v)
 {
-    for (const auto& s : choices) { addAndMakeVisible (buttons_.add (new juce::ToggleButton (s))); }
+    for (const auto& s : choices)  { buttons_.push_back (std::make_unique<juce::ToggleButton> (s)); }
+    
+    for (const auto& b : buttons_) { addAndMakeVisible (*b); }
 }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -34,7 +36,7 @@ void ChoicesSelector::resized()
     
     const int h = bounds.getHeight() / buttons_.size();
     
-    for (auto* b : buttons_) { b->setBounds (bounds.removeFromTop (h)); }
+    for (const auto& b : buttons_) { b->setBounds (bounds.removeFromTop (h)); }
     //
     }
 }
