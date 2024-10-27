@@ -28,7 +28,7 @@ public:
             PropertyLookAndFeel (lnf),
             ChoicesList (p),
             juce::PropertyComponent (s, lnf.getRequiredHeight() * getChoices().size()),
-            selector_ (p.getValueAsValue (false))
+            selector_ (p.getValueAsValue (false), getChoices())
     {
         addAndMakeVisible (selector_);
         setEnabled (isEditable);

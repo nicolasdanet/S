@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ChoicesSelector::ChoicesSelector (const juce::Value& v) : value_ (v)
+ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray& choices) : value_ (v)
 {
 }
     
@@ -22,9 +22,7 @@ ChoicesSelector::ChoicesSelector (const juce::Value& v) : value_ (v)
 
 void ChoicesSelector::paint (juce::Graphics& g)
 {
-    // g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
-    
-    g.fillAll (juce::Colours::orange);
+    g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
 }
 
 void ChoicesSelector::resized()

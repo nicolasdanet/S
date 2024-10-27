@@ -19,7 +19,7 @@ class ChoicesSelector : public juce::Component {
 // MARK: -
 
 public:
-    explicit ChoicesSelector (const juce::Value&);
+    explicit ChoicesSelector (const juce::Value&, const juce::StringArray&);
 
     ~ChoicesSelector() = default;
 
