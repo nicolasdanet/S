@@ -18,15 +18,67 @@ ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray&
     
     const bool enabled = isEnabled();
     
+    int index = 0;
+    
     for (const auto& b : buttons_) {
     //
+    b->onClick = [this, n = index++]() { setValue (n); };
+    
     b->setEnabled (enabled);
     
     addAndMakeVisible (*b);
     //
     }
-}
     
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void resetAllExcluding (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons, int n)
+{
+    int index = 0;
+    
+    for (const auto& b : buttons) {
+        if (n != index++) {
+            b->setToggleState (false, juce::NotificationType::dontSendNotification);
+        }
+    }
+}
+
+juce::String getChoice (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons)
+{
+    for (const auto& b : buttons) { if (b->getToggleState()) { return b->getButtonText(); } }
+    
+    return juce::String();
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ChoicesSelector::setValue (int i)
+{
+    resetAllExcluding (buttons_, i);
+    
+    const juce::String t = getChoice (buttons_);
+    
+    DBG (t);
+    
+    value_.setValue (t);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
