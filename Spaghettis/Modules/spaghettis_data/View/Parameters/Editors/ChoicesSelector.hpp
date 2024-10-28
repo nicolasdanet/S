@@ -31,8 +31,8 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
-private:
-    void setValue (int);
+public:
+    void setChoiceAtIndex (int);
     
 private:
     juce::Value value_;

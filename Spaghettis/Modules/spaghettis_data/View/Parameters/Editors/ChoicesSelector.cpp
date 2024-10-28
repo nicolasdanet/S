@@ -17,6 +17,23 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+void initializeButtons (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons,
+    bool isEnabled,
+    ChoicesSelector* owner)
+{
+    int index = 0;
+    
+    for (const auto& b : buttons) {
+    //
+    b->onClick = [owner, n = index++]() { owner->setChoiceAtIndex (n); };
+    
+    b->setEnabled (isEnabled);
+    
+    owner->addAndMakeVisible (*b);
+    //
+    }
+}
+
 bool initializeChoice (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons, const juce::String& s)
 {
     for (const auto& b : buttons) {
@@ -42,18 +59,7 @@ ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray&
 {
     for (const auto& s : choices) { buttons_.push_back (std::make_unique<juce::ToggleButton> (s)); }
     
-    const bool enabled = isEnabled();
-    
-    int index = 0;
-    
-    for (const auto& b : buttons_) {
-    //
-    b->onClick = [this, n = index++]() { setValue (n); };
-    b->setEnabled (enabled);
-    
-    addAndMakeVisible (*b);
-    //
-    }
+    initializeButtons (buttons_, isEnabled(), this);
     
     // if (initializeChoice (buttons_, value_.toString()) == false) { value_.setValue (choices[0]); }
 }
@@ -92,7 +98,7 @@ juce::String getChoice (std::vector<std::unique_ptr<juce::ToggleButton>>& button
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ChoicesSelector::setValue (int i)
+void ChoicesSelector::setChoiceAtIndex (int i)
 {
     setChoiceExclusive (buttons_, i);
     
