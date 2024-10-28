@@ -12,9 +12,35 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+bool initializeChoice (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons, const juce::String& s)
+{
+    for (const auto& b : buttons) {
+        if (b->getButtonText() == s) {
+            b->setToggleState (true, juce::NotificationType::dontSendNotification);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray& choices) : value_ (v)
 {
-    for (const auto& s : choices)  { buttons_.push_back (std::make_unique<juce::ToggleButton> (s)); }
+    for (const auto& s : choices) { buttons_.push_back (std::make_unique<juce::ToggleButton> (s)); }
     
     const bool enabled = isEnabled();
     
@@ -23,13 +49,13 @@ ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray&
     for (const auto& b : buttons_) {
     //
     b->onClick = [this, n = index++]() { setValue (n); };
-    
     b->setEnabled (enabled);
     
     addAndMakeVisible (*b);
     //
     }
     
+    // if (initializeChoice (buttons_, value_.toString()) == false) { value_.setValue (choices[0]); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -41,14 +67,12 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void resetAllExcluding (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons, int n)
+void setChoiceExclusive (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons, int n)
 {
     int index = 0;
     
     for (const auto& b : buttons) {
-        if (n != index++) {
-            b->setToggleState (false, juce::NotificationType::dontSendNotification);
-        }
+        b->setToggleState ((n == index++), juce::NotificationType::dontSendNotification);
     }
 }
 
@@ -70,13 +94,9 @@ juce::String getChoice (std::vector<std::unique_ptr<juce::ToggleButton>>& button
 
 void ChoicesSelector::setValue (int i)
 {
-    resetAllExcluding (buttons_, i);
+    setChoiceExclusive (buttons_, i);
     
-    const juce::String t = getChoice (buttons_);
-    
-    DBG (t);
-    
-    value_.setValue (t);
+    value_.setValue (getChoice (buttons_));
 }
 
 // -----------------------------------------------------------------------------------------------------------
