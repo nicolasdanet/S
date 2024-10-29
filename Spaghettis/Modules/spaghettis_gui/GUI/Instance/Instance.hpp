@@ -39,6 +39,7 @@ public:
         core_ (std::make_unique<Wrapper>()),
         patches_ (std::make_unique<PatchesHolder>()),
         autocomplete_ (std::make_unique<Autocomplete>()),
+        devices_ (std::make_unique<AvailableDevices>()),
         dspIsRunning_ (false),
         quit_ (QuitStatus::quit)
     {
@@ -245,6 +246,11 @@ public:
         return *autocomplete_;
     }
     
+    AvailableDevices& getAvailableDevices()
+    {
+        return *devices_;
+    }
+    
     SnapshotsManager& getSnapshots()
     {
         return core_->getSnapshots();
@@ -270,6 +276,7 @@ private:
     const std::unique_ptr<Wrapper> core_;
     const std::unique_ptr<PatchesHolder> patches_;
     const std::unique_ptr<Autocomplete> autocomplete_;
+    const std::unique_ptr<AvailableDevices> devices_;
 
 private:
     bool dspIsRunning_;

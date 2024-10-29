@@ -30,6 +30,27 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+public:
+    void setAudioDevices (juce::StringArray i, juce::StringArray o)
+    {
+        DBG ("### AUDIO");
+        DBG (juce::String ("I / ") + i.joinIntoString (" "));
+        DBG (juce::String ("O / ") + o.joinIntoString (" "));
+    
+        audioIn_.swapWith (i);
+        audioOut_.swapWith (o);
+    }
+    
+    void setMidiDevices (juce::StringArray i, juce::StringArray o)
+    {
+        DBG ("### MIDI");
+        DBG (juce::String ("I / ") + i.joinIntoString (" "));
+        DBG (juce::String ("O / ") + o.joinIntoString (" "));
+    
+        midiIn_.swapWith (i);
+        midiOut_.swapWith (o);
+    }
+    
 private:
     juce::StringArray audioIn_;
     juce::StringArray audioOut_;

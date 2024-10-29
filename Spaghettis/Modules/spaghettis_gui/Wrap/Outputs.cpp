@@ -111,27 +111,17 @@ Perform Outputs::reportClassNew (juce::String name)
 
 Perform Outputs::reportAudioDevices (juce::StringArray i, juce::StringArray o)
 {
-    /* ??? */
-    DBG ("### AUDIO");
-    DBG (juce::String ("I / ") + i.joinIntoString (" "));
-    DBG (juce::String ("O / ") + o.joinIntoString (" "));
-    
-    return []()
+    return [i = std::move (i), o = std::move (o)]()
     {
-        
+        Spaghettis()->getAvailableDevices().setAudioDevices (i, o);
     };
 }
 
 Perform Outputs::reportMidiDevices (juce::StringArray i, juce::StringArray o)
 {
-    /* ??? */
-    DBG ("### MIDI");
-    DBG (juce::String ("I / ") + i.joinIntoString (" "));
-    DBG (juce::String ("O / ") + o.joinIntoString (" "));
-    
-    return []()
+    return [i = std::move (i), o = std::move (o)]()
     {
-
+        Spaghettis()->getAvailableDevices().setMidiDevices (i, o);
     };
 }
 
