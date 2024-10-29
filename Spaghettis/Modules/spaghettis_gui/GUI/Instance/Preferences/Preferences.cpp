@@ -89,22 +89,22 @@ data::Data getDefaultPreferences()
     /* */
         
     midi.addParameter (Tag::MidiDeviceIn0,
-        NEEDS_TRANS ("Input 0"),
+        NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select midi device for input"),
         Device());
     
     midi.addParameter (Tag::MidiDeviceIn1,
-        NEEDS_TRANS ("Input 1"),
+        NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select midi device for input"),
         Device());
     
     midi.addParameter (Tag::MidiDeviceOut0,
-        NEEDS_TRANS ("Output 0"),
+        NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select midi device for output"),
         Device());
     
     midi.addParameter (Tag::MidiDeviceOut1,
-        NEEDS_TRANS ("Output 1"),
+        NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select midi device for output"),
         Device());
         

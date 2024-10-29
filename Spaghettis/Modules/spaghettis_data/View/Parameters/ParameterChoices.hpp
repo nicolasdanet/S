@@ -27,7 +27,7 @@ public:
         bool isEditable) :
             PropertyLookAndFeel (lnf),
             ChoicesList (p),
-            juce::PropertyComponent (s, lnf.getRequiredHeight() * getChoices().size()),
+            juce::PropertyComponent (s, lnf.getRequiredHeight() * juce::jmax (getChoices().size(), 1)),
             selector_ (p.getValueAsValue (false), getChoices())
     {
         addAndMakeVisible (selector_);
