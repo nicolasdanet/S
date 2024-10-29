@@ -33,6 +33,7 @@ public:
 public:
     void setAudioDevices (juce::StringArray i, juce::StringArray o)
     {
+        /* ??? */
         DBG ("### AUDIO");
         DBG (juce::String ("I / ") + i.joinIntoString (" "));
         DBG (juce::String ("O / ") + o.joinIntoString (" "));
@@ -43,6 +44,7 @@ public:
     
     void setMidiDevices (juce::StringArray i, juce::StringArray o)
     {
+        /* ??? */
         DBG ("### MIDI");
         DBG (juce::String ("I / ") + i.joinIntoString (" "));
         DBG (juce::String ("O / ") + o.joinIntoString (" "));
