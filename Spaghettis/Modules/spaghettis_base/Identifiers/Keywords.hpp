@@ -38,7 +38,9 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (AtomText);
     DECLARE_STRING (AtomClicked);
     DECLARE_STRING (Attributes);
+    DECLARE_STRING (Audio);
     DECLARE_STRING (AudioDeviceIn0);
+    DECLARE_STRING (AudioDeviceOut0);
     DECLARE_STRING (BoxBackground);
     DECLARE_STRING (BoxPinsBackground);
     DECLARE_STRING (BoxSelected);
@@ -57,7 +59,6 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (Count);
     DECLARE_STRING (Cut);
     DECLARE_STRING (DefaultIsRunView);
-    DECLARE_STRING (Devices);
     DECLARE_STRING (DialBackground);
     DECLARE_STRING (DialForeground);
     DECLARE_STRING (DialNeedle);
@@ -90,7 +91,11 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (MessageBackground);
     DECLARE_STRING (MessageText);
     DECLARE_STRING (MessageClicked);
+    DECLARE_STRING (Midi);
     DECLARE_STRING (MidiDeviceIn0);
+    DECLARE_STRING (MidiDeviceIn1);
+    DECLARE_STRING (MidiDeviceOut0);
+    DECLARE_STRING (MidiDeviceOut1);
     DECLARE_STRING (Multiple);
     DECLARE_STRING (Name);
     DECLARE_STRING (NonZero);

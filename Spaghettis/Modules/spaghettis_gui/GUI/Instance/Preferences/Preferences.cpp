@@ -24,7 +24,8 @@ data::Data getDefaultPreferences()
     data::Group general (data.addGroup (Tag::General));
     data::Group editing (data.addGroup (Tag::Editing));
     data::Group paths   (data.addGroup (Tag::Paths));
-    data::Group devices (data.addGroup (Tag::Devices));
+    data::Group audio   (data.addGroup (Tag::Audio));
+    data::Group midi    (data.addGroup (Tag::Midi));
     data::Group colors  (data.addGroup (Tag::Colors));
     
     const Palette* p = Palette::getInstance();
@@ -75,19 +76,36 @@ data::Data getDefaultPreferences()
     
     /* */
     
-    auto foo = []()
-    {
-        return juce::StringArray ("chou", "joujou", "bijou", "genou", "caillou", "hibou", "pou");
-    };
+    audio.addParameter (Tag::AudioDeviceIn0,
+        NEEDS_TRANS ("Input Device"),
+        NEEDS_TRANS ("Select audio device for input"),
+        Device());
     
-    devices.addParameter (Tag::AudioDeviceIn0,
-        NEEDS_TRANS ("Audio In"),
-        NEEDS_TRANS ("Set audio device for input"),
-        Device()).setChoicesSource (foo);
+    audio.addParameter (Tag::AudioDeviceOut0,
+        NEEDS_TRANS ("Output Device"),
+        NEEDS_TRANS ("Select audio device for output"),
+        Device());
     
-    devices.addParameter (Tag::MidiDeviceIn0,
-        NEEDS_TRANS ("Midi In"),
-        NEEDS_TRANS ("Set midi device for input"),
+    /* */
+        
+    midi.addParameter (Tag::MidiDeviceIn0,
+        NEEDS_TRANS ("Input 0"),
+        NEEDS_TRANS ("Select midi device for input"),
+        Device());
+    
+    midi.addParameter (Tag::MidiDeviceIn1,
+        NEEDS_TRANS ("Input 1"),
+        NEEDS_TRANS ("Select midi device for input"),
+        Device());
+    
+    midi.addParameter (Tag::MidiDeviceOut0,
+        NEEDS_TRANS ("Output 0"),
+        NEEDS_TRANS ("Select midi device for output"),
+        Device());
+    
+    midi.addParameter (Tag::MidiDeviceOut1,
+        NEEDS_TRANS ("Output 1"),
+        NEEDS_TRANS ("Select midi device for output"),
         Device());
         
     /* */
