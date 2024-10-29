@@ -34,16 +34,13 @@ void initializeButtons (std::vector<std::unique_ptr<juce::ToggleButton>>& button
     }
 }
 
-bool initializeChoice (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons, const juce::String& s)
+void initializeChoice (std::vector<std::unique_ptr<juce::ToggleButton>>& buttons, const juce::String& s)
 {
     for (const auto& b : buttons) {
         if (b->getButtonText() == s) {
             b->setToggleState (true, juce::NotificationType::dontSendNotification);
-            return true;
         }
     }
-
-    return false;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -61,7 +58,7 @@ ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray&
     
     initializeButtons (buttons_, isEnabled(), this);
     
-    // if (initializeChoice (buttons_, value_.toString()) == false) { value_.setValue (choices[0]); }
+    initializeChoice (buttons_, value_.toString());
 }
 
 // -----------------------------------------------------------------------------------------------------------
