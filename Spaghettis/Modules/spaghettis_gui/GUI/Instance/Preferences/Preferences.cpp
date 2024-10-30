@@ -17,6 +17,30 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+auto getDevicesForAudioIn()
+{
+    return []() { return Spaghettis()->getAvailableDevices().getAudioIn(); };
+}
+
+auto getDevicesForAudioOut()
+{
+    return []() { return Spaghettis()->getAvailableDevices().getAudioOut(); };
+}
+
+auto getDevicesForMidiIn()
+{
+    return []() { return Spaghettis()->getAvailableDevices().getMidiIn(); };
+}
+
+auto getDevicesForMidiOut()
+{
+    return []() { return Spaghettis()->getAvailableDevices().getMidiOut(); };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 data::Data getDefaultPreferences()
 {
     data::Data data (Id::PREFERENCES);
@@ -79,34 +103,34 @@ data::Data getDefaultPreferences()
     audio.addParameter (Tag::AudioDeviceIn0,
         NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select audio device for input"),
-        Device());
+        Device()).setChoicesSource (getDevicesForAudioIn());
     
     audio.addParameter (Tag::AudioDeviceOut0,
         NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select audio device for output"),
-        Device());
+        Device()).setChoicesSource (getDevicesForAudioOut());
     
     /* */
         
     midi.addParameter (Tag::MidiDeviceIn0,
         NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select midi device for input"),
-        Device());
+        Device()).setChoicesSource (getDevicesForMidiIn());
     
     midi.addParameter (Tag::MidiDeviceIn1,
         NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select midi device for input"),
-        Device());
+        Device()).setChoicesSource (getDevicesForMidiIn());
     
     midi.addParameter (Tag::MidiDeviceOut0,
         NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select midi device for output"),
-        Device());
+        Device()).setChoicesSource (getDevicesForMidiOut());
     
     midi.addParameter (Tag::MidiDeviceOut1,
         NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select midi device for output"),
-        Device());
+        Device()).setChoicesSource (getDevicesForMidiOut());
         
     /* */
     

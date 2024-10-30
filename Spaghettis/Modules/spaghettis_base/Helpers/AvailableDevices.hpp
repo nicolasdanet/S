@@ -58,7 +58,26 @@ public:
 // MARK: -
 
 public:
-
+    juce::StringArray getAudioIn() const
+    {
+        return audioIn_;
+    }
+    
+    juce::StringArray getAudioOut() const
+    {
+        return audioOut_;
+    }
+    
+    juce::StringArray getMidiIn() const
+    {
+        return midiIn_;
+    }
+    
+    juce::StringArray getMidiOut() const
+    {
+        return midiOut_;
+    }
+    
 private:
     juce::StringArray audioIn_;
     juce::StringArray audioOut_;
