@@ -40,6 +40,16 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+public:
+    juce::StringArray getAudioInDevices() const;
+    juce::StringArray getAudioOutDevices() const;
+    juce::StringArray getMidiInDevices() const;
+    juce::StringArray getMidiOutDevices() const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 private:
     data::Data getData()
     {

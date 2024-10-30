@@ -48,6 +48,7 @@ Next features planed:
 - Mersenne Twister by [T. Nishimura & M. Matsumoto](http://www.math.sci.hiroshima-u.ac.jp/~m-mat).
 - FFT by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/fft.html).
 - Icons by [Google](https://github.com/google/material-design-icons).
+- App icon by me and [IconKitchen](https://icon.kitchen).
 
 #### Licensed  under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
 
