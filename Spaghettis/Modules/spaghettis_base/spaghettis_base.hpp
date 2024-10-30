@@ -58,6 +58,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+#include "Helpers/ChoicesSource.hpp"
 #include "Helpers/AvailableDevices.hpp"
 #include "Helpers/Colour.hpp"
 #include "Helpers/Normalized.hpp"
