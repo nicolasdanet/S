@@ -75,7 +75,7 @@ void setChoiceExclusive (std::vector<std::unique_ptr<juce::ToggleButton>>& butto
     int index = 0;
     
     for (const auto& b : buttons) {
-        b->setToggleState ((n == index++), juce::NotificationType::dontSendNotification);
+        if (n != index++) { b->setToggleState (false, juce::NotificationType::dontSendNotification); }
     }
 }
 
