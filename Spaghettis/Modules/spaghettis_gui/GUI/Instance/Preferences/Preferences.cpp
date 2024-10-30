@@ -41,6 +41,25 @@ auto getDevicesForMidiOut()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+auto getPathHandler()
+{
+    return [] (const data::Parameter& p) { Spaghettis()->updateSearchPaths();  };
+}
+
+auto getAudioHandler()
+{
+    return [] (const data::Parameter& p) { Spaghettis()->updateAudioDevices(); };
+}
+
+auto getMidiHandler()
+{
+    return [] (const data::Parameter& p) { Spaghettis()->updateMidiDevices();  };
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 data::Data getDefaultPreferences()
 {
     data::Data data (Id::PREFERENCES);
@@ -405,15 +424,18 @@ Preferences::Preferences (const juce::File& file) :
             Spaghettis()->handle (Inputs::snapToGridSetSize (p.getValue()));
         });
     
-    auto f = [] (const data::Parameter& p)
-    {
-        Spaghettis()->updateSearchPaths();
-    };
-        
-    addParameterHandler (Tag::Path0, f);
-    addParameterHandler (Tag::Path1, f);
-    addParameterHandler (Tag::Path2, f);
-    addParameterHandler (Tag::Path3, f);
+    addParameterHandler (Tag::Path0,            getPathHandler());
+    addParameterHandler (Tag::Path1,            getPathHandler());
+    addParameterHandler (Tag::Path2,            getPathHandler());
+    addParameterHandler (Tag::Path3,            getPathHandler());
+    
+    addParameterHandler (Tag::AudioDeviceIn0,   getAudioHandler());
+    addParameterHandler (Tag::AudioDeviceOut0,  getAudioHandler());
+    
+    addParameterHandler (Tag::MidiDeviceIn0,    getMidiHandler());
+    addParameterHandler (Tag::MidiDeviceIn1,    getMidiHandler());
+    addParameterHandler (Tag::MidiDeviceOut0,   getMidiHandler());
+    addParameterHandler (Tag::MidiDeviceOut1,   getMidiHandler());
     
     data_.addObserver (this);
 }

@@ -164,6 +164,14 @@ public:
 
 public:
     void updateSearchPaths  (Inputs::Logged type = Inputs::Logged::base);
+    void updateAudioDevices (Inputs::Logged type = Inputs::Logged::base);
+    void updateMidiDevices  (Inputs::Logged type = Inputs::Logged::base);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void rescanSearchPaths  (Inputs::Logged type = Inputs::Logged::base);
     void rescanMidiDevices  (Inputs::Logged type = Inputs::Logged::base);
     void rescanAudioDevices (Inputs::Logged type = Inputs::Logged::base);
