@@ -32,10 +32,10 @@ static void midi_log (t_error err, t_devices *p)
     }
     
     for (i = 0; i < m; i++) {
-        (f) (NULL, PD_TRANSLATE ("midi: %s"), symbol_getName (devices_getInName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("midi: %d / %s"), i, symbol_getName (devices_getInName (p, i)));
     }
     for (i = 0; i < n; i++) {
-        (f) (NULL, PD_TRANSLATE ("midi: %s"), symbol_getName (devices_getOutName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("midi: %d / %s"), i, symbol_getName (devices_getOutName (p, i)));
     }
 }
 
