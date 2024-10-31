@@ -42,6 +42,10 @@ void inputs_snapSetGrid (int gridSize)
     instance_snapSetGrid (gridSize);
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void inputs_devicesRescanAudio (int logged)
 {
     audio_rescanDevices (logged > 0);
@@ -50,6 +54,18 @@ void inputs_devicesRescanAudio (int logged)
 void inputs_devicesRescanMidi (int logged)
 {
     midi_rescanDevices (logged > 0);
+}
+
+void inputs_devicesSetAudio (const juce::StringArray& i, const juce::StringArray& o)
+{
+    DBG (i.joinIntoString (" "));
+    DBG (o.joinIntoString (" "));
+}
+
+void inputs_devicesSetMidi (const juce::StringArray& i, const juce::StringArray& o)
+{
+    DBG (i.joinIntoString (" "));
+    DBG (o.joinIntoString (" "));
 }
 
 // -----------------------------------------------------------------------------------------------------------

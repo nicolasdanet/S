@@ -51,20 +51,14 @@ Perform Inputs::devicesRescanMidi (Logged type)
     return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescanMidi (logged); };
 }
 
-Perform Inputs::devicesSetAudio (juce::StringArray i, juce::StringArray o)
+Perform Inputs::devicesSetAudio (juce::StringArray inputs, juce::StringArray outputs)
 {
-    DBG (i.joinIntoString (" "));
-    DBG (o.joinIntoString (" "));
-    
-    return []() { };
+    return [i = std::move (inputs), o = std::move (outputs)]() { core::inputs_devicesSetAudio (i, o); };
 }
 
-Perform Inputs::devicesSetMidi (juce::StringArray i, juce::StringArray o)
+Perform Inputs::devicesSetMidi (juce::StringArray inputs, juce::StringArray outputs)
 {
-    DBG (i.joinIntoString (" "));
-    DBG (o.joinIntoString (" "));
-    
-    return []() { };
+    return [i = std::move (inputs), o = std::move (outputs)]() { core::inputs_devicesSetMidi (i, o); };
 }
 
 // -----------------------------------------------------------------------------------------------------------
