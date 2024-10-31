@@ -26,7 +26,7 @@ static void midi_log (t_error err, t_devices *p)
     
     int i;
     
-    if (!m && !n) { (f) (NULL, PD_TRANSLATE ("midi: no devices")); }
+    if (!m && !n) { (f) (NULL, PD_TRANSLATE ("midi: no selected devices")); }
     else {
         (f) (NULL, PD_TRANSLATE ("midi: open"));
     }
