@@ -28,6 +28,35 @@ void devices_initialize (t_devices *d)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+#if defined ( PD_BUILDING_APPLICATION )
+
+void devices_set (t_devices *d, const juce::StringArray& inputs, const juce::StringArray& outputs)
+{
+    devices_initialize (d);
+    
+    {
+        int k = 0;
+        
+        for (const auto& i : inputs) {
+            if (i.isNotEmpty() && k < DEVICES_MAXIMUM_IO) { d->d_in[k++]  = gensym (i.toRawUTF8()); }
+        }
+    }
+    
+    {
+        int k = 0;
+        
+        for (const auto& o : outputs) {
+            if (o.isNotEmpty() && k < DEVICES_MAXIMUM_IO) { d->d_out[k++] = gensym (o.toRawUTF8()); }
+        }
+    }
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void devices_copy (t_devices *d, t_devices *from)
 {
     int i;

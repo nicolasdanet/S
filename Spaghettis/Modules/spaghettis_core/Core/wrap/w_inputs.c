@@ -58,14 +58,12 @@ void inputs_devicesRescanMidi (int logged)
 
 void inputs_devicesSetAudio (const juce::StringArray& i, const juce::StringArray& o)
 {
-    DBG (i.joinIntoString (" "));
-    DBG (o.joinIntoString (" "));
+    t_devices d; devices_set (&d, i, o); audio_setCurrentDevices (&d);
 }
 
 void inputs_devicesSetMidi (const juce::StringArray& i, const juce::StringArray& o)
 {
-    DBG (i.joinIntoString (" "));
-    DBG (o.joinIntoString (" "));
+    t_devices d; devices_set (&d, i, o); midi_setCurrentDevices (&d);
 }
 
 // -----------------------------------------------------------------------------------------------------------

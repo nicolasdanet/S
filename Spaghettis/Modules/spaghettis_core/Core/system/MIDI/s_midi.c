@@ -26,8 +26,17 @@ static void midi_log (t_error err, t_devices *p)
     
     int i;
     
-    for (i = 0; i < m; i++) { (f) (NULL, PD_TRANSLATE ("midi: %s"), devices_getInName (p, i));  }
-    for (i = 0; i < n; i++) { (f) (NULL, PD_TRANSLATE ("midi: %s"), devices_getOutName (p, i)); }
+    if (!m && !n) { (f) (NULL, PD_TRANSLATE ("midi: no devices")); }
+    else {
+        (f) (NULL, PD_TRANSLATE ("midi: open"));
+    }
+    
+    for (i = 0; i < m; i++) {
+        (f) (NULL, PD_TRANSLATE ("midi: %s"), symbol_getName (devices_getInName (p, i)));
+    }
+    for (i = 0; i < n; i++) {
+        (f) (NULL, PD_TRANSLATE ("midi: %s"), symbol_getName (devices_getOutName (p, i)));
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

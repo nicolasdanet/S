@@ -147,6 +147,11 @@ static void audio_log (t_error err, t_devices *p)
     
     void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
     
+    if (!i && !o) { (f) (NULL, PD_TRANSLATE ("dsp: no devices")); }
+    else {
+        (f) (NULL, PD_TRANSLATE ("dsp: open"));
+    }
+    
     if (i == NULL) { i = sym_none; }
     if (o == NULL) { o = sym_none; }
     
