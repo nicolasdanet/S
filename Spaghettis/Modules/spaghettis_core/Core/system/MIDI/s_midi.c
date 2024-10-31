@@ -26,16 +26,16 @@ static void midi_log (t_error err, t_devices *p)
     
     int i;
     
-    if (!m && !n) { (f) (NULL, PD_TRANSLATE ("midi: no selected devices")); }
+    if (!m && !n) { (f) (NULL, PD_TRANSLATE ("MIDI: no selected devices")); }
     else {
-        (f) (NULL, PD_TRANSLATE ("midi: open"));
+        (f) (NULL, PD_TRANSLATE ("MIDI: open"));
     }
     
     for (i = 0; i < m; i++) {
-        (f) (NULL, PD_TRANSLATE ("midi: %d / %s"), i, symbol_getName (devices_getInName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getInName (p, i)));
     }
     for (i = 0; i < n; i++) {
-        (f) (NULL, PD_TRANSLATE ("midi: %d / %s"), i, symbol_getName (devices_getOutName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getOutName (p, i)));
     }
 }
 
