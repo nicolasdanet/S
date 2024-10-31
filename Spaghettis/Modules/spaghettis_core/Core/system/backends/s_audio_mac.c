@@ -205,13 +205,14 @@ t_error audio_openNative (t_devices *p)
     t_error err = PD_ERROR;
     t_symbol *i = devices_getInName (p, 0);
     t_symbol *o = devices_getOutName (p, 0);
-    int m       = devices_getInChannels (p, 0);
-    int n       = devices_getOutChannels (p, 0);
     
     static_assert (sizeof (t_sample) == sizeof (Float32), "");
     
     if (i && o) {
     //
+    int m = devices_getInChannels (p, 0);
+    int n = devices_getOutChannels (p, 0);
+    
     PD_ASSERT (m > 0);
     PD_ASSERT (n > 0);
     

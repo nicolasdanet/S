@@ -164,8 +164,8 @@ public:
 
 public:
     void updateSearchPaths  (Inputs::Logged type = Inputs::Logged::base);
-    void updateAudioDevices (Inputs::Logged type = Inputs::Logged::base);
-    void updateMidiDevices  (Inputs::Logged type = Inputs::Logged::base);
+    void updateAudioDevices ();
+    void updateMidiDevices  ();
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

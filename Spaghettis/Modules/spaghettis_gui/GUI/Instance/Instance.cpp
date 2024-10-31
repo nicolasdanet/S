@@ -31,10 +31,9 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     preferences_->read();
     
     rescanAudioDevices (Inputs::Logged::none);
-    
     updateSearchPaths (Inputs::Logged::none);
-    updateAudioDevices (Inputs::Logged::none);
-    updateMidiDevices (Inputs::Logged::none);
+    updateAudioDevices();
+    updateMidiDevices();
 }
     
 void SpaghettisInstance::shutdown()
@@ -157,7 +156,7 @@ void SpaghettisInstance::updateSearchPaths (Inputs::Logged type)
     }
 }
 
-void SpaghettisInstance::updateAudioDevices (Inputs::Logged type)
+void SpaghettisInstance::updateAudioDevices()
 {
     if (!preferences_->isReading()) {
     //
@@ -166,7 +165,7 @@ void SpaghettisInstance::updateAudioDevices (Inputs::Logged type)
     }
 }
 
-void SpaghettisInstance::updateMidiDevices (Inputs::Logged type)
+void SpaghettisInstance::updateMidiDevices()
 {
     if (!preferences_->isReading()) {
     //

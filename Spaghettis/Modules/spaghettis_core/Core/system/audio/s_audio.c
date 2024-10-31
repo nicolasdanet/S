@@ -142,8 +142,8 @@ static void audio_log (t_error err, t_devices *p)
 {
     t_symbol *i = devices_getInName (p, 0);
     t_symbol *o = devices_getOutName (p, 0);
-    int m       = devices_getInChannels (p, 0);
-    int n       = devices_getOutChannels (p, 0);
+    int m       = i ? devices_getInChannels (p, 0)  : 0;
+    int n       = o ? devices_getOutChannels (p, 0) : 0;
     
     void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
     

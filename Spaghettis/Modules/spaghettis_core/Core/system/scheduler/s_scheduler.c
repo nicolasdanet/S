@@ -201,7 +201,7 @@ static void scheduler_mainLoop (void)
 
 t_error scheduler_main (void)
 {
-    midi_open();
+    // midi_open();
     
         instance_autoreleaseRun();
         instance_pollingRun();
