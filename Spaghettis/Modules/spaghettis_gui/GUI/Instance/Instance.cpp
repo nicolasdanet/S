@@ -161,7 +161,7 @@ void SpaghettisInstance::updateAudioDevices (Inputs::Logged type)
 {
     if (!preferences_->isReading()) {
     //
-    DBG ("? AUDIO");
+    handle (Inputs::devicesSetAudio (preferences_->getAudioInDevices(), preferences_->getAudioOutDevices()));
     //
     }
 }
@@ -170,7 +170,7 @@ void SpaghettisInstance::updateMidiDevices (Inputs::Logged type)
 {
     if (!preferences_->isReading()) {
     //
-    DBG ("? MIDI");
+    handle (Inputs::devicesSetMidi (preferences_->getMidiInDevices(), preferences_->getMidiOutDevices()));
     //
     }
 }

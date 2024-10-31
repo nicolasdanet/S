@@ -42,8 +42,15 @@ static Perform searchPathsRescan (Logged type);
 static Perform searchPathsSet (juce::StringArray);
 static Perform snapToGridSet (bool);
 static Perform snapToGridSetSize (int);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 static Perform devicesRescanAudio (Logged type);
 static Perform devicesRescanMidi (Logged type);
+static Perform devicesSetAudio (juce::StringArray, juce::StringArray);
+static Perform devicesSetMidi (juce::StringArray, juce::StringArray);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

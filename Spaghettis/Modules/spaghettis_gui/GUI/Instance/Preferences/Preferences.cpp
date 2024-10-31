@@ -469,6 +469,36 @@ juce::StringArray Preferences::getSearchPaths() const
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::StringArray Preferences::getAudioInDevices() const
+{
+    return juce::StringArray (get<Device> (Tag::Audio, Tag::AudioDeviceIn0).toString());
+}
+
+juce::StringArray Preferences::getAudioOutDevices() const
+{
+    return juce::StringArray (get<Device> (Tag::Audio, Tag::AudioDeviceOut0).toString());
+}
+
+juce::StringArray Preferences::getMidiInDevices() const
+{
+    const juce::String s0 (get<Device> (Tag::Midi, Tag::MidiDeviceIn0).toString());
+    const juce::String s1 (get<Device> (Tag::Midi, Tag::MidiDeviceIn1).toString());
+    
+    return juce::StringArray (s0, s1);
+}
+
+juce::StringArray Preferences::getMidiOutDevices() const
+{
+    const juce::String s0 (get<Device> (Tag::Midi, Tag::MidiDeviceOut0).toString());
+    const juce::String s1 (get<Device> (Tag::Midi, Tag::MidiDeviceOut1).toString());
+    
+    return juce::StringArray (s0, s1);
+}
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void Preferences::parameterHasChanged (const data::Group&, const data::Parameter&)
 {
     if (!isReading()) { const int primeInterval = 293; startTimer (primeInterval); }

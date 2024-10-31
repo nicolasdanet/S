@@ -37,6 +37,10 @@ Perform Inputs::snapToGridSetSize (int size)
     return [size]() { core::inputs_snapSetGrid (size); };
 }
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 Perform Inputs::devicesRescanAudio (Logged type)
 {
     return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescanAudio (logged); };
@@ -45,6 +49,22 @@ Perform Inputs::devicesRescanAudio (Logged type)
 Perform Inputs::devicesRescanMidi (Logged type)
 {
     return [logged = loggedAsInteger (type)]() { core::inputs_devicesRescanMidi (logged); };
+}
+
+Perform Inputs::devicesSetAudio (juce::StringArray i, juce::StringArray o)
+{
+    DBG (i.joinIntoString (" "));
+    DBG (o.joinIntoString (" "));
+    
+    return []() { };
+}
+
+Perform Inputs::devicesSetMidi (juce::StringArray i, juce::StringArray o)
+{
+    DBG (i.joinIntoString (" "));
+    DBG (o.joinIntoString (" "));
+    
+    return []() { };
 }
 
 // -----------------------------------------------------------------------------------------------------------
