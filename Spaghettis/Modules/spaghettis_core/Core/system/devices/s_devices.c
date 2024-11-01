@@ -249,22 +249,14 @@ int devices_getInChannels (t_devices *d, int n)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
     
-    int k = audiodevices_getNumberOfChannelsIn (&l, d->d_in[n]);
-
-    PD_ASSERT (k);
-    
-    return k;
+    return audiodevices_getNumberOfChannelsIn (&l, d->d_in[n]);
 }
 
 int devices_getOutChannels (t_devices *d, int n)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
     
-    int k = audiodevices_getNumberOfChannelsOut (&l, d->d_out[n]);
-
-    PD_ASSERT (k);
-    
-    return k;
+    return audiodevices_getNumberOfChannelsOut (&l, d->d_out[n]);
 }
 
 // -----------------------------------------------------------------------------------------------------------
