@@ -38,7 +38,9 @@ void devices_set (t_devices *d, const juce::StringArray& inputs, const juce::Str
         int k = 0;
         
         for (const auto& i : inputs) {
-            if (i.isNotEmpty() && k < DEVICES_MAXIMUM_IO) { d->d_in[k++]  = gensym (i.toRawUTF8()); }
+            if (k < DEVICES_MAXIMUM_IO) {
+                d->d_in[k++] = i.isNotEmpty()  ? gensym (i.toRawUTF8()) : sym_none;
+            }
         }
     }
     
@@ -46,7 +48,9 @@ void devices_set (t_devices *d, const juce::StringArray& inputs, const juce::Str
         int k = 0;
         
         for (const auto& o : outputs) {
-            if (o.isNotEmpty() && k < DEVICES_MAXIMUM_IO) { d->d_out[k++] = gensym (o.toRawUTF8()); }
+            if (k < DEVICES_MAXIMUM_IO) {
+                d->d_out[k++] = o.isNotEmpty() ? gensym (o.toRawUTF8()) : sym_none;
+            }
         }
     }
 }
@@ -110,7 +114,7 @@ t_error devices_checkMidi (t_devices *d)
         if (s && !mididevices_hasMidiOut (&l, s)) { return PD_ERROR; }
     }
     
-    if (d->d_in[0] != NULL || d->d_out[0] != NULL) { return PD_ERROR_NONE; }
+    if (d->d_in[0] != NULL && d->d_out[0] != NULL) { return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }
@@ -143,12 +147,11 @@ void devices_logMidi (t_devices *p, t_error err)
     int n = devices_getOutSize (p);
     
     void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
-    void (*w)(t_object *, const char *fmt, ...) = err ? post_error : post_warning;
     
     int i;
     
-    if (!m) { (w) (NULL, PD_TRANSLATE ("MIDI: no input"));  }
-    if (!n) { (w) (NULL, PD_TRANSLATE ("MIDI: no output")); }
+    if (!m) { (f) (NULL, PD_TRANSLATE ("MIDI: no input"));  }
+    if (!n) { (f) (NULL, PD_TRANSLATE ("MIDI: no output")); }
     
     for (i = 0; i < m; i++) {
         (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getInName (p, i)));
