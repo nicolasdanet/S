@@ -77,30 +77,44 @@ t_error devices_checkAudio (t_devices *d)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
     
-    t_devices t; devices_initialize (&t);
-    
-    int i, k;
+    int i;
 
-    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_in[i];
-        if (audiodevices_hasAudioIn (&l, s)) {
-            t.d_in[k++] = s;
-        }
+        if (s && !audiodevices_hasAudioIn (&l, s)) { return PD_ERROR; }
     }
     
-    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_out[i];
-        if (audiodevices_hasAudioOut (&l, s)) {
-            t.d_out[k++] = s;
-        }
+        if (s && audiodevices_hasAudioOut (&l, s)) { return PD_ERROR; }
     }
-    
-    devices_copy (d, &t);
     
     if (d->d_in[0] != NULL && d->d_out[0] != NULL) { return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }
+
+void devices_logAudio (t_devices *p, t_error err)
+{
+    t_symbol *i = devices_getInName (p, 0);
+    t_symbol *o = devices_getOutName (p, 0);
+    
+    void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
+    
+    if (!i) { (f) (NULL, PD_TRANSLATE ("DSP: no input"));  }
+    if (!o) { (f) (NULL, PD_TRANSLATE ("DSP: no output")); }
+    
+    if (i && o) {
+        (f) (NULL, PD_TRANSLATE ("DSP: %s / %d channels"), symbol_getName (o), devices_getOutChannels (p, 0));
+        (f) (NULL, PD_TRANSLATE ("DSP: %s / %d channels"), symbol_getName (i), devices_getInChannels (p, 0));
+    }
+    
+    (f) (NULL, PD_TRANSLATE ("DSP: %d Hz"), AUDIO_DEFAULT_SAMPLERATE);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 t_error devices_checkMidi (t_devices *d)
 {

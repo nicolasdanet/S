@@ -53,6 +53,8 @@ void        devices_copy                        (t_devices *d, t_devices *from);
 // MARK: -
 
 t_error     devices_checkAudio                  (t_devices *d);
+void        devices_logAudio                    (t_devices *p, t_error err);
+
 t_error     devices_checkMidi                   (t_devices *d);
 
 // -----------------------------------------------------------------------------------------------------------
