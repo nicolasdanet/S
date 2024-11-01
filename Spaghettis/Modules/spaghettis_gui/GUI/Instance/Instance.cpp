@@ -31,7 +31,10 @@ void SpaghettisInstance::start (const juce::StringArray& commandLine)
     preferences_->read();
     
     rescanAudioDevices (Inputs::Logged::none);
+    rescanMidiDevices (Inputs::Logged::none);
+    
     updateSearchPaths (Inputs::Logged::none);
+    
     updateAudioDevices();
     updateMidiDevices();
 }
