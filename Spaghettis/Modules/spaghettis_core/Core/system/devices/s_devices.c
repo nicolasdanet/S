@@ -143,11 +143,12 @@ void devices_logMidi (t_devices *p, t_error err)
     int n = devices_getOutSize (p);
     
     void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
+    void (*w)(t_object *, const char *fmt, ...) = err ? post_error : post_warning;
     
     int i;
     
-    if (!m) { (f) (NULL, PD_TRANSLATE ("MIDI: no input"));  }
-    if (!n) { (f) (NULL, PD_TRANSLATE ("MIDI: no output")); }
+    if (!m) { (w) (NULL, PD_TRANSLATE ("MIDI: no input"));  }
+    if (!n) { (w) (NULL, PD_TRANSLATE ("MIDI: no output")); }
     
     for (i = 0; i < m; i++) {
         (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getInName (p, i)));
