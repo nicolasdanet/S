@@ -154,10 +154,10 @@ void devices_logMidi (t_devices *p, t_error err)
     if (!n) { (f) (NULL, PD_TRANSLATE ("MIDI: no output")); }
     
     for (i = 0; i < m; i++) {
-        (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getInName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("MIDI: input %d / %s"), i, symbol_getName (devices_getInName (p, i)));
     }
     for (i = 0; i < n; i++) {
-        (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getOutName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("MIDI: output %d / %s"), i, symbol_getName (devices_getOutName (p, i)));
     }
 }
 
