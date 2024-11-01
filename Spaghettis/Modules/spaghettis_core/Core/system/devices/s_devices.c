@@ -81,18 +81,43 @@ t_error devices_checkAudio (t_devices *d)
 
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_in[i];
-        if (s && !audiodevices_hasAudioIn (&l, s)) { return PD_ERROR; }
+        if (s && !audiodevices_hasAudioIn (&l, s))  { return PD_ERROR; }
     }
     
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_out[i];
-        if (s && audiodevices_hasAudioOut (&l, s)) { return PD_ERROR; }
+        if (s && !audiodevices_hasAudioOut (&l, s)) { return PD_ERROR; }
     }
     
     if (d->d_in[0] != NULL && d->d_out[0] != NULL) { return PD_ERROR_NONE; }
     
     return PD_ERROR;
 }
+
+t_error devices_checkMidi (t_devices *d)
+{
+    t_mididevices l; midi_getListOfDevices (&l);
+    
+    int i;
+
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
+        t_symbol *s = d->d_in[i];
+        if (s && !mididevices_hasMidiIn (&l, s))  { return PD_ERROR; }
+    }
+    
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
+        t_symbol *s = d->d_out[i];
+        if (s && !mididevices_hasMidiOut (&l, s)) { return PD_ERROR; }
+    }
+    
+    if (d->d_in[0] != NULL || d->d_out[0] != NULL) { return PD_ERROR_NONE; }
+    
+    return PD_ERROR;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 void devices_logAudio (t_devices *p, t_error err)
 {
@@ -112,37 +137,24 @@ void devices_logAudio (t_devices *p, t_error err)
     (f) (NULL, PD_TRANSLATE ("DSP: %d Hz"), AUDIO_DEFAULT_SAMPLERATE);
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-t_error devices_checkMidi (t_devices *d)
+void devices_logMidi (t_devices *p, t_error err)
 {
-    t_mididevices l; midi_getListOfDevices (&l);
+    int m = devices_getInSize (p);
+    int n = devices_getOutSize (p);
     
-    t_devices t; devices_initialize (&t);
+    void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
     
-    int i, k;
-
-    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
-        t_symbol *s = d->d_in[i];
-        if (mididevices_hasMidiIn (&l, s)) {
-            t.d_in[k++] = s;
-        }
+    int i;
+    
+    if (!m) { (f) (NULL, PD_TRANSLATE ("MIDI: no input"));  }
+    if (!n) { (f) (NULL, PD_TRANSLATE ("MIDI: no output")); }
+    
+    for (i = 0; i < m; i++) {
+        (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getInName (p, i)));
     }
-    
-    for (i = 0, k = 0; i < DEVICES_MAXIMUM_IO; i++) {
-        t_symbol *s = d->d_out[i];
-        if (mididevices_hasMidiOut (&l, s)) {
-            t.d_out[k++] = s;
-        }
+    for (i = 0; i < n; i++) {
+        (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getOutName (p, i)));
     }
-    
-    devices_copy (d, &t);
-    
-    if (d->d_in[0] != NULL || d->d_out[0] != NULL) { return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------------------------
