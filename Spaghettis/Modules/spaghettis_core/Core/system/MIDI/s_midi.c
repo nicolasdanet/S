@@ -26,10 +26,8 @@ static void midi_log (t_error err, t_devices *p)
     
     int i;
     
-    if (!m && !n) { (f) (NULL, PD_TRANSLATE ("MIDI: no selected devices")); }
-    else {
-        (f) (NULL, PD_TRANSLATE ("MIDI: open"));
-    }
+    if (!m) { (f) (NULL, PD_TRANSLATE ("MIDI: no input"));  }
+    if (!n) { (f) (NULL, PD_TRANSLATE ("MIDI: no output")); }
     
     for (i = 0; i < m; i++) {
         (f) (NULL, PD_TRANSLATE ("MIDI: %d / %s"), i, symbol_getName (devices_getInName (p, i)));

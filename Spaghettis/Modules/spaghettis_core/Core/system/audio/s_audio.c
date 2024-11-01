@@ -142,20 +142,20 @@ static void audio_log (t_error err, t_devices *p)
 {
     t_symbol *i = devices_getInName (p, 0);
     t_symbol *o = devices_getOutName (p, 0);
-    int m       = i ? devices_getInChannels (p, 0)  : 0;
-    int n       = o ? devices_getOutChannels (p, 0) : 0;
     
     void (*f)(t_object *, const char *fmt, ...) = err ? post_error : post_system;
     
-    if (!i || !o) { (f) (NULL, PD_TRANSLATE ("DSP: no selected devices")); }
+    if (!i) { (f) (NULL, PD_TRANSLATE ("DSP: no input"));  }
     else {
-    //
-    (f) (NULL, PD_TRANSLATE ("DSP: open"));
-    (f) (NULL, PD_TRANSLATE ("DSP: %s / %d channels"), symbol_getName (i), m);
-    (f) (NULL, PD_TRANSLATE ("DSP: %s / %d channels"), symbol_getName (o), n);
-    (f) (NULL, PD_TRANSLATE ("DSP: %d Hz"), AUDIO_DEFAULT_SAMPLERATE);
-    //
+        (f) (NULL, PD_TRANSLATE ("DSP: %s / %d channels"), symbol_getName (i), devices_getInChannels (p, 0));
     }
+    
+    if (!o) { (f) (NULL, PD_TRANSLATE ("DSP: no output")); }
+    else {
+        (f) (NULL, PD_TRANSLATE ("DSP: %s / %d channels"), symbol_getName (o), devices_getOutChannels (p, 0));
+    }
+    
+    (f) (NULL, PD_TRANSLATE ("DSP: %d Hz"), AUDIO_DEFAULT_SAMPLERATE);
 }
 
 // -----------------------------------------------------------------------------------------------------------
