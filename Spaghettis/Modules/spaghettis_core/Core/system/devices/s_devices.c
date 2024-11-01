@@ -77,46 +77,74 @@ void devices_copy (t_devices *d, t_devices *from)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static void devices_setDefault (t_devices *d, t_symbol *input, t_symbol *output)
+{
+    if (input && output) {
+    //
+    if (d->d_in[0]  == sym_none) { d->d_in[0]  = input;  }
+    if (d->d_out[0] == sym_none) { d->d_out[0] = output; }
+    //
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_error devices_checkAudio (t_devices *d)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
     
+    devices_setDefault (d, audiodevices_getDefaultIn (&l), audiodevices_getDefaultOut (&l));
+    
     int i;
-
+    
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_in[i];
-        if (s && !audiodevices_hasAudioIn (&l, s))  { return PD_ERROR; }
+        if (s && !audiodevices_hasAudioIn (&l, s)) {
+            return PD_ERROR;
+        }
     }
     
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_out[i];
-        if (s && !audiodevices_hasAudioOut (&l, s)) { return PD_ERROR; }
+        if (s && !audiodevices_hasAudioOut (&l, s)) {
+            return PD_ERROR;
+        }
     }
     
     if (d->d_in[0] != NULL && d->d_out[0] != NULL) { return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
+    else {
+        return PD_ERROR;
+    }
 }
 
 t_error devices_checkMidi (t_devices *d)
 {
     t_mididevices l; midi_getListOfDevices (&l);
     
+    devices_setDefault (d, mididevices_getDefaultIn (&l), mididevices_getDefaultOut (&l));
+    
     int i;
 
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_in[i];
-        if (s && !mididevices_hasMidiIn (&l, s))  { return PD_ERROR; }
+        if (s && !mididevices_hasMidiIn (&l, s))  {
+            return PD_ERROR;
+        }
     }
     
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
         t_symbol *s = d->d_out[i];
-        if (s && !mididevices_hasMidiOut (&l, s)) { return PD_ERROR; }
+        if (s && !mididevices_hasMidiOut (&l, s)) {
+            return PD_ERROR;
+        }
     }
     
     if (d->d_in[0] != NULL && d->d_out[0] != NULL) { return PD_ERROR_NONE; }
-    
-    return PD_ERROR;
+    else {
+        return PD_ERROR;
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

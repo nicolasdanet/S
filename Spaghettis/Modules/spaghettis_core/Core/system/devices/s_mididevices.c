@@ -114,6 +114,20 @@ int mididevices_hasMidiOut (t_mididevices *p, t_symbol *device)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+t_symbol *mididevices_getDefaultIn (t_mididevices *p)
+{
+    return NULL;
+}
+
+t_symbol *mididevices_getDefaultOut (t_mididevices *p)
+{
+    return NULL;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void mididevices_report (t_mididevices *p)
 {
     int i;

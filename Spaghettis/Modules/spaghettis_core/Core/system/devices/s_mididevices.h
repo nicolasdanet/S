@@ -25,28 +25,35 @@ typedef struct _mididevices {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    mididevices_initialize      (t_mididevices *p);
-void    mididevices_copy            (t_mididevices *dest, t_mididevices *src);
+void        mididevices_initialize      (t_mididevices *p);
+void        mididevices_copy            (t_mididevices *dest, t_mididevices *src);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-t_error mididevices_appendMidiIn    (t_mididevices *p, t_symbol *device);
-t_error mididevices_appendMidiOut   (t_mididevices *p, t_symbol *device);
+t_error     mididevices_appendMidiIn    (t_mididevices *p, t_symbol *device);
+t_error     mididevices_appendMidiOut   (t_mididevices *p, t_symbol *device);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int     mididevices_hasMidiIn       (t_mididevices *p, t_symbol *device);
-int     mididevices_hasMidiOut      (t_mididevices *p, t_symbol *device);
+int         mididevices_hasMidiIn       (t_mididevices *p, t_symbol *device);
+int         mididevices_hasMidiOut      (t_mididevices *p, t_symbol *device);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void    mididevices_report          (t_mididevices *p);
+t_symbol    *mididevices_getDefaultIn   (t_mididevices *p);
+t_symbol    *mididevices_getDefaultOut  (t_mididevices *p);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void        mididevices_report          (t_mididevices *p);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

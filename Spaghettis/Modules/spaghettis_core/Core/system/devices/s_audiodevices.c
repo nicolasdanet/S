@@ -152,6 +152,20 @@ int audiodevices_getNumberOfChannelsOut (t_audiodevices *p, t_symbol *device)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+t_symbol *audiodevices_getDefaultIn (t_audiodevices *p)
+{
+    return NULL;
+}
+
+t_symbol *audiodevices_getDefaultOut (t_audiodevices *p)
+{
+    return NULL;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void audiodevices_report (t_audiodevices *p)
 {
     int i;
