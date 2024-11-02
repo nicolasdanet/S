@@ -154,12 +154,12 @@ int audiodevices_getNumberOfChannelsOut (t_audiodevices *p, t_symbol *device)
 
 t_symbol *audiodevices_getDefaultIn (t_audiodevices *p)
 {
-    return NULL;
+    return p->d_inNames[0];
 }
 
 t_symbol *audiodevices_getDefaultOut (t_audiodevices *p)
 {
-    return NULL;
+    return p->d_outNames[0];
 }
 
 // -----------------------------------------------------------------------------------------------------------

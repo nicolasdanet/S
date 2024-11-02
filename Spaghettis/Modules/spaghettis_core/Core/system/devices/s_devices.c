@@ -81,8 +81,12 @@ static void devices_setDefault (t_devices *d, t_symbol *input, t_symbol *output)
 {
     if (input && output) {
     //
-    if (d->d_in[0]  == sym_none) { d->d_in[0]  = input;  }
-    if (d->d_out[0] == sym_none) { d->d_out[0] = output; }
+    int i;
+    
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
+        if (d->d_in[i]  == sym_none) { d->d_in[i]  = input;  }
+        if (d->d_out[i] == sym_none) { d->d_out[i] = output; }
+    }
     //
     }
 }
@@ -182,10 +186,10 @@ void devices_logMidi (t_devices *p, t_error err)
     if (!n) { (f) (NULL, PD_TRANSLATE ("MIDI: no output")); }
     
     for (i = 0; i < m; i++) {
-        (f) (NULL, PD_TRANSLATE ("MIDI: input %d / %s"), i, symbol_getName (devices_getInName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("MIDI: %s"), symbol_getName (devices_getInName (p, i)));
     }
     for (i = 0; i < n; i++) {
-        (f) (NULL, PD_TRANSLATE ("MIDI: output %d / %s"), i, symbol_getName (devices_getOutName (p, i)));
+        (f) (NULL, PD_TRANSLATE ("MIDI: %s"), symbol_getName (devices_getOutName (p, i)));
     }
 }
 

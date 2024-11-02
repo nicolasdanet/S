@@ -116,12 +116,12 @@ int mididevices_hasMidiOut (t_mididevices *p, t_symbol *device)
 
 t_symbol *mididevices_getDefaultIn (t_mididevices *p)
 {
-    return NULL;
+    return p->d_inNames[0];
 }
 
 t_symbol *mididevices_getDefaultOut (t_mididevices *p)
 {
-    return NULL;
+    return p->d_outNames[0];
 }
 
 // -----------------------------------------------------------------------------------------------------------
