@@ -140,9 +140,7 @@ void audio_vectorShrinkOut (int totalOfChannelsOut)
 
 t_error audio_open (void)
 {
-    t_devices t; devices_copy (&t, &audio_devices);
-    
-    t_error err = devices_checkAudio (&t);
+    t_error err = devices_checkAudio (&audio_devices);
     
     if (err == PD_ERROR_NONE) {
     //
@@ -151,10 +149,10 @@ t_error audio_open (void)
     pthread_mutex_lock (&audio_mutex);
     
         {
-            int m = devices_getTotalOfChannelsIn (&t);
-            int n = devices_getTotalOfChannelsOut (&t);
+            int m = devices_getTotalOfChannelsIn (&audio_devices);
+            int n = devices_getTotalOfChannelsOut (&audio_devices);
             audio_vectorInitialize (AUDIO_DEFAULT_SAMPLERATE, m, n);
-            err = audio_openNative (&t);
+            err = audio_openNative (&audio_devices);
         }
 
         audio_state = err ? 0 : 1;
@@ -164,7 +162,7 @@ t_error audio_open (void)
     //
     }
     
-    devices_logAudio (&t, err);
+    devices_logAudio (&audio_devices, err);
     
     return err;
 }

@@ -117,8 +117,6 @@ t_error devices_checkAudio (t_devices *d)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
     
-    devices_checkDefaultAudio (d, &l);
-    
     int i;
     
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
@@ -144,8 +142,6 @@ t_error devices_checkAudio (t_devices *d)
 t_error devices_checkMidi (t_devices *d)
 {
     t_mididevices l; midi_getListOfDevices (&l);
-    
-    devices_checkDefaultMidi (d, &l);
     
     int i;
 

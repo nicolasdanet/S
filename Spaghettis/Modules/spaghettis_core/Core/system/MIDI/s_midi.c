@@ -11,7 +11,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-static t_devices midi_devices;     /* Static. */
+t_devices midi_devices;     /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -19,13 +19,11 @@ static t_devices midi_devices;     /* Static. */
 
 void midi_open (void)
 {
-    t_devices t; devices_copy (&t, &midi_devices);
+    t_error err = devices_checkMidi (&midi_devices);
     
-    t_error err = devices_checkMidi (&t);
+    if (err == PD_ERROR_NONE) { /* ??? */ /* err = midi_openNative (&midi_devices); */ }
     
-    if (err == PD_ERROR_NONE) { /* ??? */ /* err = midi_openNative (&t); */ }
-    
-    devices_logMidi (&t, err);
+    devices_logMidi (&midi_devices, err);
 }
 
 void midi_close (void)
