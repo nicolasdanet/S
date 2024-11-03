@@ -191,6 +191,8 @@ int audio_isOpened (void)
 
 void audio_setCurrentDevices (t_devices *p)
 {
+    devices_setDefaultAudio (p);
+    
     devices_copy (&audio_devices, p);
 }
 

@@ -24,6 +24,7 @@
 typedef struct _devices {
     t_symbol *d_in [DEVICES_MAXIMUM_IO];
     t_symbol *d_out[DEVICES_MAXIMUM_IO];
+    int d_default;
     } t_devices;
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,11 +53,20 @@ void        devices_copy                        (t_devices *d, t_devices *from);
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+int         devices_setDefaultAudio             (t_devices *d);
+int         devices_setDefaultMidi              (t_devices *d);
+
 t_error     devices_checkAudio                  (t_devices *d);
 t_error     devices_checkMidi                   (t_devices *d);
 
 void        devices_logAudio                    (t_devices *p, t_error err);
 void        devices_logMidi                     (t_devices *p, t_error err);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int         devices_hasDefault                  (t_devices *d);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

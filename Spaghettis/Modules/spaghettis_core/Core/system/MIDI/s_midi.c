@@ -46,6 +46,8 @@ void midi_poll (void)
 
 void midi_setCurrentDevices (t_devices *p)
 {
+    devices_setDefaultMidi (p);
+    
     midi_close();
 
     devices_copy (&midi_devices, p);
