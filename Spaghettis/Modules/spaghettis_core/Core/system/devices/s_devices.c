@@ -77,17 +77,35 @@ void devices_copy (t_devices *d, t_devices *from)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void devices_setDefault (t_devices *d, t_symbol *input, t_symbol *output)
+static int devices_checkDefault (t_devices *d, t_symbol *input, t_symbol *output)
 {
+    int k = 0;
+    
     if (input && output) {
     //
     int i;
     
     for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
-        if (d->d_in[i]  == sym_none) { d->d_in[i]  = input;  }
-        if (d->d_out[i] == sym_none) { d->d_out[i] = output; }
+        if (d->d_in[i]  == sym_none) { d->d_in[i]  = input;  k = 1; }
+        if (d->d_out[i] == sym_none) { d->d_out[i] = output; k = 1; }
     }
     //
+    }
+    
+    return k;
+}
+
+static void devices_checkDefaultAudio (t_devices *d, t_audiodevices *l)
+{
+    if (devices_checkDefault (d, audiodevices_getDefaultIn (l), audiodevices_getDefaultOut (l))) {
+        
+    }
+}
+
+static void devices_checkDefaultMidi (t_devices *d, t_mididevices *l)
+{
+    if (devices_checkDefault (d, mididevices_getDefaultIn (l), mididevices_getDefaultOut (l))) {
+        
     }
 }
 
@@ -99,7 +117,7 @@ t_error devices_checkAudio (t_devices *d)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
     
-    devices_setDefault (d, audiodevices_getDefaultIn (&l), audiodevices_getDefaultOut (&l));
+    devices_checkDefaultAudio (d, &l);
     
     int i;
     
@@ -127,7 +145,7 @@ t_error devices_checkMidi (t_devices *d)
 {
     t_mididevices l; midi_getListOfDevices (&l);
     
-    devices_setDefault (d, mididevices_getDefaultIn (&l), mididevices_getDefaultOut (&l));
+    devices_checkDefaultMidi (d, &l);
     
     int i;
 
