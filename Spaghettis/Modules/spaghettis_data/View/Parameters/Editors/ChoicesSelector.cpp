@@ -70,12 +70,16 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+/* Only zero or one choice allowed at the same time. */
+
 void setChoiceExclusive (std::vector<std::unique_ptr<RadioButton>>& buttons, int n)
 {
     int index = 0;
     
     for (const auto& b : buttons) {
-        b->setToggleState (n == index++, juce::NotificationType::dontSendNotification);
+        if (n != index++) {
+            b->setToggleState (false, juce::NotificationType::dontSendNotification);
+        }
     }
 }
 
