@@ -82,6 +82,23 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+void drawToggleButtonRadio (juce::Graphics& g, juce::ToggleButton& b, int w)
+{
+    /*
+    const float t = w * 0.6f;
+    
+    const juce::Rectangle<float> r (juce::Rectangle<float> (w, w).withSizeKeepingCentre (t, t));
+
+    g.setColour (Colours::fetchColour (Colours::parametersBoolean));
+    g.drawRoundedRectangle (r, 4.0f, 1.0f);
+    
+    if (b.getToggleState()) {
+        g.setColour (Colours::fetchColour (Colours::parametersBooleanTick));
+        LNF::drawTick (g, r.toNearestInt().reduced (4, 5));
+    }
+    */
+}
+
 void drawToggleButtonTick (juce::Graphics& g, juce::ToggleButton& b, int w)
 {
     const float t = w * 0.6f;
@@ -123,13 +140,15 @@ void drawToggleButtonText (juce::Graphics& g, juce::ToggleButton& b, int w)
 
 void LNF::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool)
 {
+    const bool radio = (dynamic_cast<RadioButton*> (&b) != nullptr);
+    
     const int w = b.getHeight();
-
-    ChoicesButton* d = dynamic_cast<ChoicesButton*> (&b);
     
-    if (d) { DBG ("CHOICES BUTTON"); }
+    if (radio) { drawToggleButtonRadio (g, b, w); }
+    else {
+        drawToggleButtonTick (g, b, w);
+    }
     
-    drawToggleButtonTick (g, b, w);
     drawToggleButtonText (g, b, w);
 }
 

@@ -12,21 +12,21 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ChoicesButton : public juce::ToggleButton {
+class RadioButton : public juce::ToggleButton {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ChoicesButton (const juce::String& text) : juce::ToggleButton (text)
+    explicit RadioButton (const juce::String& text) : juce::ToggleButton (text)
     {
     }
 
-    ~ChoicesButton() = default;
+    ~RadioButton() = default;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesButton)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RadioButton)
 };
 
 // -----------------------------------------------------------------------------------------------------------

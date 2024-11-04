@@ -17,7 +17,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void initializeButtons (std::vector<std::unique_ptr<ChoicesButton>>& buttons,
+void initializeButtons (std::vector<std::unique_ptr<RadioButton>>& buttons,
     bool isEnabled,
     ChoicesSelector* owner)
 {
@@ -34,7 +34,7 @@ void initializeButtons (std::vector<std::unique_ptr<ChoicesButton>>& buttons,
     }
 }
 
-void initializeChoice (std::vector<std::unique_ptr<ChoicesButton>>& buttons, const juce::String& s)
+void initializeChoice (std::vector<std::unique_ptr<RadioButton>>& buttons, const juce::String& s)
 {
     for (const auto& b : buttons) {
         if (b->getButtonText() == s) {
@@ -54,7 +54,7 @@ void initializeChoice (std::vector<std::unique_ptr<ChoicesButton>>& buttons, con
 
 ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray& choices) : value_ (v)
 {
-    for (const auto& s : choices) { buttons_.push_back (std::make_unique<ChoicesButton> (s)); }
+    for (const auto& s : choices) { buttons_.push_back (std::make_unique<RadioButton> (s)); }
     
     initializeButtons (buttons_, isEnabled(), this);
     
@@ -70,7 +70,7 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void setChoiceExclusive (std::vector<std::unique_ptr<ChoicesButton>>& buttons, int n)
+void setChoiceExclusive (std::vector<std::unique_ptr<RadioButton>>& buttons, int n)
 {
     int index = 0;
     
@@ -79,7 +79,7 @@ void setChoiceExclusive (std::vector<std::unique_ptr<ChoicesButton>>& buttons, i
     }
 }
 
-juce::String getChoice (std::vector<std::unique_ptr<ChoicesButton>>& buttons)
+juce::String getChoice (std::vector<std::unique_ptr<RadioButton>>& buttons)
 {
     for (const auto& b : buttons) { if (b->getToggleState()) { return b->getButtonText(); } }
     
