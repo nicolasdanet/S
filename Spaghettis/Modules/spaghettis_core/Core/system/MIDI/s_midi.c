@@ -48,11 +48,17 @@ void midi_setCurrentDevices (t_devices *p)
 {
     devices_setDefaultMidi (p);
     
+    /* Close/open only if devices has changed. */
+    
+    if (!devices_areEquals (&midi_devices, p)) {
+    //
     midi_close();
 
     devices_copy (&midi_devices, p);
     
     midi_open();
+    //
+    } else { devices_setDefault (&midi_devices, devices_hasDefault (p)); }
 }
 
 // -----------------------------------------------------------------------------------------------------------

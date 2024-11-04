@@ -77,9 +77,28 @@ void devices_copy (t_devices *d, t_devices *from)
     }
 }
 
+int devices_areEquals (t_devices *d, t_devices *from)
+{
+    int i;
+    
+    for (i = 0; i < DEVICES_MAXIMUM_IO; i++) {
+    //
+    if (d->d_in[i]  != from->d_in[i])  { return 0; }
+    if (d->d_out[i] != from->d_out[i]) { return 0; }
+    //
+    }
+    
+    return 1;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
+
+void devices_setDefault (t_devices *d, int n)
+{
+    d->d_default = n;
+}
 
 int devices_hasDefault (t_devices *d)
 {
@@ -90,7 +109,7 @@ int devices_hasDefault (t_devices *d)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static int devices_setDefault (t_devices *d, t_symbol *input, t_symbol *output)
+static int devices_setDefaultDevices (t_devices *d, t_symbol *input, t_symbol *output)
 {
     int k = 0;
     
@@ -118,14 +137,14 @@ int devices_setDefaultAudio (t_devices *d)
 {
     t_audiodevices l; audio_getListOfDevices (&l);
     
-    return devices_setDefault (d, audiodevices_getDefaultIn (&l), audiodevices_getDefaultOut (&l));
+    return devices_setDefaultDevices (d, audiodevices_getDefaultIn (&l), audiodevices_getDefaultOut (&l));
 }
 
 int devices_setDefaultMidi (t_devices *d)
 {
     t_mididevices l; midi_getListOfDevices (&l);
     
-    return devices_setDefault (d, mididevices_getDefaultIn (&l), mididevices_getDefaultOut (&l));
+    return devices_setDefaultDevices (d, mididevices_getDefaultIn (&l), mididevices_getDefaultOut (&l));
 }
 
 // -----------------------------------------------------------------------------------------------------------
