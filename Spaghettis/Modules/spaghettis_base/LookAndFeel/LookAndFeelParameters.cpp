@@ -84,19 +84,18 @@ namespace {
 
 void drawToggleButtonRadio (juce::Graphics& g, juce::ToggleButton& b, int w)
 {
-    /*
-    const float t = w * 0.6f;
-    
-    const juce::Rectangle<float> r (juce::Rectangle<float> (w, w).withSizeKeepingCentre (t, t));
-
-    g.setColour (Colours::fetchColour (Colours::parametersBoolean));
-    g.drawRoundedRectangle (r, 4.0f, 1.0f);
+    const juce::Rectangle<float> r = juce::Rectangle<float> (w, w);
+    const float o = w * 0.5f;
+    const float i = w * 0.25f;
     
     if (b.getToggleState()) {
-        g.setColour (Colours::fetchColour (Colours::parametersBooleanTick));
-        LNF::drawTick (g, r.toNearestInt().reduced (4, 5));
+        g.setColour (Colours::fetchColour (Colours::parametersRadioOn));
+        g.drawEllipse (r.withSizeKeepingCentre (o, o), 1.0f);
+        g.fillEllipse (r.withSizeKeepingCentre (i, i));
+    } else {
+        g.setColour (Colours::fetchColour (Colours::parametersRadioOff));
+        g.drawEllipse (r.withSizeKeepingCentre (o, o), 1.0f);
     }
-    */
 }
 
 void drawToggleButtonTick (juce::Graphics& g, juce::ToggleButton& b, int w)
@@ -124,7 +123,7 @@ void drawToggleButtonText (juce::Graphics& g, juce::ToggleButton& b, int w)
     
     g.setColour (Colours::fetchColour (Colours::parametersBooleanText));
     g.setFont (Fonts::getFont());
-    g.drawText (b.getButtonText(), r, juce::Justification::centredLeft, true);
+    g.drawText (b.getButtonText(), r.withTrimmedBottom (1), juce::Justification::centredLeft, true);
     //
     }
 }

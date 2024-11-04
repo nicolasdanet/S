@@ -69,6 +69,8 @@ enum ColourIds : int {
     parametersBoolean,
     parametersBooleanText,
     parametersBooleanTick,
+    parametersRadioOn,
+    parametersRadioOff,
     makerBackground,
     listBoxBackgroundAlternate,
     listBoxText,
@@ -134,6 +136,8 @@ static juce::Colour fetchColour (ColourIds i)
         case parametersBoolean :                                    return p->textSystem;
         case parametersBooleanText :                                return p->textSystem;
         case parametersBooleanTick :                                return p->textMenu;
+        case parametersRadioOn :                                    return p->textMenu;
+        case parametersRadioOff :                                   return p->textSystem;
         case makerBackground :                                      return p->background;
         case listBoxBackgroundAlternate :                           return p->backgroundAlternate;
         case listBoxText :                                          return p->textSystem;
