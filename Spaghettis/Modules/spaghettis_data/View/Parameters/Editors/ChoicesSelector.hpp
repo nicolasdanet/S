@@ -38,7 +38,7 @@ private:
     juce::Value value_;
 
 private:
-    std::vector<std::unique_ptr<juce::ToggleButton>> buttons_;
+    std::vector<std::unique_ptr<ChoicesButton>> buttons_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesSelector)

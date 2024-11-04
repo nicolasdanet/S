@@ -125,6 +125,10 @@ void LNF::drawToggleButton (juce::Graphics& g, juce::ToggleButton& b, bool, bool
 {
     const int w = b.getHeight();
 
+    ChoicesButton* d = dynamic_cast<ChoicesButton*> (&b);
+    
+    if (d) { DBG ("CHOICES BUTTON"); }
+    
     drawToggleButtonTick (g, b, w);
     drawToggleButtonText (g, b, w);
 }
