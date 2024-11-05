@@ -33,6 +33,9 @@ public:
 
 public:
     void setChoiceAtIndex (int);
+
+private:
+    void initialize (const juce::StringArray&);
     
 private:
     juce::Value value_;

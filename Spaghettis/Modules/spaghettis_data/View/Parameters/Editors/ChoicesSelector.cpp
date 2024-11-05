@@ -17,24 +17,25 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void initializeButtons (std::vector<std::unique_ptr<RadioButton>>& buttons,
+void initializeCreate (std::vector<std::unique_ptr<RadioButton>>& buttons, const juce::StringArray& choices)
+{
+    for (const auto& s : choices) { buttons.push_back (std::make_unique<RadioButton> (s)); }
+}
+
+void initializeAdd (std::vector<std::unique_ptr<RadioButton>>& buttons,
     bool isEnabled,
     ChoicesSelector* owner)
 {
     int index = 0;
     
     for (const auto& b : buttons) {
-    //
-    b->onClick = [owner, n = index++]() { owner->setChoiceAtIndex (n); };
-    
-    b->setEnabled (isEnabled);
-    
-    owner->addAndMakeVisible (*b);
-    //
+        b->onClick = [owner, n = index++]() { owner->setChoiceAtIndex (n); };
+        b->setEnabled (isEnabled);
+        owner->addAndMakeVisible (*b);
     }
 }
 
-void initializeChoice (std::vector<std::unique_ptr<RadioButton>>& buttons, const juce::String& s)
+void initializeStatus (std::vector<std::unique_ptr<RadioButton>>& buttons, const juce::String& s)
 {
     for (const auto& b : buttons) {
         if (b->getButtonText() == s) {
@@ -45,30 +46,7 @@ void initializeChoice (std::vector<std::unique_ptr<RadioButton>>& buttons, const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
-
-ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray& choices) : value_ (v)
-{
-    for (const auto& s : choices) { buttons_.push_back (std::make_unique<RadioButton> (s)); }
-    
-    initializeButtons (buttons_, isEnabled(), this);
-    
-    initializeChoice (buttons_, value_.toString());
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 
 /* Only zero or one choice allowed at the same time. */
 
@@ -93,6 +71,26 @@ juce::String getChoice (std::vector<std::unique_ptr<RadioButton>>& buttons)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray& choices) : value_ (v)
+{
+    initialize (choices);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void ChoicesSelector::initialize (const juce::StringArray& choices)
+{
+    initializeCreate (buttons_, choices);
+    initializeAdd (buttons_, isEnabled(), this);
+    initializeStatus (buttons_, value_.toString());
 }
 
 // -----------------------------------------------------------------------------------------------------------
