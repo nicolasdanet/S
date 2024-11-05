@@ -19,7 +19,7 @@ class ChoicesList {
 // MARK: -
 
 public:
-    explicit ChoicesList (const data::Parameter& p) : choices_ (p.getChoicesSource()())
+    explicit ChoicesList (const data::Parameter& p) : choices_ (p.getChoicesSource())
     {
     
     }
@@ -31,13 +31,13 @@ public:
 // MARK: -
 
 public:
-    juce::StringArray& getChoices()
+    juce::StringArray getChoices()
     {
-        return choices_;
+        return choices_();
     }
-    
+
 private:
-    juce::StringArray choices_;
+    ChoicesSource choices_;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChoicesList)
