@@ -27,7 +27,7 @@ public:
         bool isEditable) :
             PropertyLookAndFeel (lnf),
             ChoicesList (p),
-            juce::PropertyComponent (s, lnf.getRequiredHeight() * juce::jmax (getChoices().size(), 1)),
+            juce::PropertyComponent (s, getPropertyComponentHeight()),
             selector_ (p.getValueAsValue (false), getChoices())
     {
         addAndMakeVisible (selector_);
@@ -37,6 +37,16 @@ public:
 
     ~ParameterChoices() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    int getPropertyComponentHeight() const
+    {
+        return getRequiredHeight() * juce::jmax (getChoices().size(), 1);
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

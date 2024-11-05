@@ -31,7 +31,7 @@ public:
 // MARK: -
 
 public:
-    juce::StringArray getChoices()
+    juce::StringArray getChoices() const
     {
         return choices_();
     }
