@@ -34,16 +34,6 @@ public:
 // MARK: -
 
 public:
-    void changeListenerCallback (juce::ChangeBroadcaster*) override
-    {
-        DBG ("?");
-    }
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
     juce::StringArray getChoices() const
     {
         return choices_();
