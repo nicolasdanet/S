@@ -17,24 +17,32 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-auto getDevicesForAudioIn()
+ChoicesSource getDevicesForAudioIn()
 {
-    return []() { return Spaghettis()->getAvailableDevices().getAudioIn(); };
+    auto f = []() { return Spaghettis()->getAvailableDevices().getAudioIn(); };
+    
+    return ChoicesSource (f);
 }
 
-auto getDevicesForAudioOut()
+ChoicesSource getDevicesForAudioOut()
 {
-    return []() { return Spaghettis()->getAvailableDevices().getAudioOut(); };
+    auto f = []() { return Spaghettis()->getAvailableDevices().getAudioOut(); };
+    
+    return ChoicesSource (f);
 }
 
-auto getDevicesForMidiIn()
+ChoicesSource getDevicesForMidiIn()
 {
-    return []() { return Spaghettis()->getAvailableDevices().getMidiIn(); };
+    auto f = []() { return Spaghettis()->getAvailableDevices().getMidiIn(); };
+    
+    return ChoicesSource (f);
 }
 
-auto getDevicesForMidiOut()
+ChoicesSource getDevicesForMidiOut()
 {
-    return []() { return Spaghettis()->getAvailableDevices().getMidiOut(); };
+    auto f = []() { return Spaghettis()->getAvailableDevices().getMidiOut(); };
+    
+    return ChoicesSource (f);
 }
 
 // -----------------------------------------------------------------------------------------------------------
