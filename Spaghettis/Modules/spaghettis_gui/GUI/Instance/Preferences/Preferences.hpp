@@ -25,7 +25,7 @@ friend class PreferencesComponent;
 // MARK: -
 
 public:
-    explicit Preferences (const juce::File&);
+    explicit Preferences (const juce::File&, AvailableDevices& devices);
     
     ~Preferences();
 

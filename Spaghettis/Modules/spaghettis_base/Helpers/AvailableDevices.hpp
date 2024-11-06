@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class AvailableDevices {
+class AvailableDevices : public juce::ChangeBroadcaster {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -21,11 +21,6 @@ class AvailableDevices {
 public:
     AvailableDevices()  = default;
     ~AvailableDevices() = default;
-
-    AvailableDevices (const AvailableDevices&) = default;
-    AvailableDevices (AvailableDevices&&) = default;
-    AvailableDevices& operator = (const AvailableDevices&) = default;
-    AvailableDevices& operator = (AvailableDevices&&) = default;
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -33,14 +28,28 @@ public:
 public:
     void setAudioDevices (juce::StringArray i, juce::StringArray o)
     {
+        /* ??? */
+        // if (audioIn_ != i || audioOut_ != o) {
+        //
         audioIn_.swapWith (i);
         audioOut_.swapWith (o);
+        
+        sendChangeMessage();
+        //
+        // }
     }
     
     void setMidiDevices (juce::StringArray i, juce::StringArray o)
     {
+        /* ??? */
+        // if (midiIn_ != i || midiOut_ != o) {
+        //
         midiIn_.swapWith (i);
         midiOut_.swapWith (o);
+        
+        sendChangeMessage();
+        //
+        // }
     }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -73,6 +82,9 @@ private:
     juce::StringArray audioOut_;
     juce::StringArray midiIn_;
     juce::StringArray midiOut_;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AvailableDevices)
 };
     
 // -----------------------------------------------------------------------------------------------------------

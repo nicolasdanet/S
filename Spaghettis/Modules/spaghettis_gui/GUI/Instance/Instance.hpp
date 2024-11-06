@@ -61,7 +61,7 @@ public:
         const juce::File preferences = file.getChildFile ("Preferences.settings");
         
         properties_  = std::make_unique<juce::PropertiesFile> (properties, options);
-        preferences_ = std::make_unique<Preferences> (preferences);
+        preferences_ = std::make_unique<Preferences> (preferences, getAvailableDevices());
         
         loadRecentFiles();  /* MUST be at end. */
     }

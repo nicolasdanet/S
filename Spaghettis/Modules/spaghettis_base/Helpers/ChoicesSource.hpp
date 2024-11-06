@@ -23,6 +23,8 @@ using Generator = std::function<juce::StringArray()>;
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* The broadcaster if provided MUST overpass the source lifetime. */
+
 public:
     explicit ChoicesSource (Generator f, juce::ChangeBroadcaster* p = nullptr) : f_ (f), broadcaster_ (p)
     {
@@ -35,6 +37,31 @@ public:
     ChoicesSource& operator = (const ChoicesSource&) = default;
     ChoicesSource& operator = (ChoicesSource&&) = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    bool hasBroadcaster() const
+    {
+        return (broadcaster_ != nullptr);
+    }
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void addListener (juce::ChangeListener* listener)
+    {
+        if (broadcaster_) { broadcaster_->addChangeListener (listener); }
+    }
+
+    void removeListener (juce::ChangeListener* listener)
+    {
+        if (broadcaster_) { broadcaster_->removeChangeListener (listener); }
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

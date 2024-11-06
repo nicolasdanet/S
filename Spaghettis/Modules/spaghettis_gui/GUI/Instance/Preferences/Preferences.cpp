@@ -17,32 +17,32 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-ChoicesSource getDevicesForAudioIn()
+ChoicesSource getDevicesForAudioIn (AvailableDevices& devices)
 {
     auto f = []() { return Spaghettis()->getAvailableDevices().getAudioIn(); };
     
-    return ChoicesSource (f);
+    return ChoicesSource (f, &devices);
 }
 
-ChoicesSource getDevicesForAudioOut()
+ChoicesSource getDevicesForAudioOut (AvailableDevices& devices)
 {
     auto f = []() { return Spaghettis()->getAvailableDevices().getAudioOut(); };
     
-    return ChoicesSource (f);
+    return ChoicesSource (f, &devices);
 }
 
-ChoicesSource getDevicesForMidiIn()
+ChoicesSource getDevicesForMidiIn (AvailableDevices& devices)
 {
     auto f = []() { return Spaghettis()->getAvailableDevices().getMidiIn(); };
     
-    return ChoicesSource (f);
+    return ChoicesSource (f, &devices);
 }
 
-ChoicesSource getDevicesForMidiOut()
+ChoicesSource getDevicesForMidiOut (AvailableDevices& devices)
 {
     auto f = []() { return Spaghettis()->getAvailableDevices().getMidiOut(); };
     
-    return ChoicesSource (f);
+    return ChoicesSource (f, &devices);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ auto getMidiHandler()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-data::Data getDefaultPreferences()
+data::Data getDefaultPreferences (AvailableDevices& devices)
 {
     data::Data data (Id::PREFERENCES);
     
@@ -130,34 +130,34 @@ data::Data getDefaultPreferences()
     audio.addParameter (Tag::AudioDeviceIn0,
         NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select audio device for input"),
-        Device()).setChoicesSource (getDevicesForAudioIn());
+        Device()).setChoicesSource (getDevicesForAudioIn (devices));
     
     audio.addParameter (Tag::AudioDeviceOut0,
         NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select audio device for output"),
-        Device()).setChoicesSource (getDevicesForAudioOut());
+        Device()).setChoicesSource (getDevicesForAudioOut (devices));
     
     /* */
         
     midi.addParameter (Tag::MidiDeviceIn0,
         NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select midi device for input"),
-        Device()).setChoicesSource (getDevicesForMidiIn());
+        Device()).setChoicesSource (getDevicesForMidiIn (devices));
     
     midi.addParameter (Tag::MidiDeviceIn1,
         NEEDS_TRANS ("Input Device"),
         NEEDS_TRANS ("Select midi device for input"),
-        Device()).setChoicesSource (getDevicesForMidiIn());
+        Device()).setChoicesSource (getDevicesForMidiIn (devices));
     
     midi.addParameter (Tag::MidiDeviceOut0,
         NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select midi device for output"),
-        Device()).setChoicesSource (getDevicesForMidiOut());
+        Device()).setChoicesSource (getDevicesForMidiOut (devices));
     
     midi.addParameter (Tag::MidiDeviceOut1,
         NEEDS_TRANS ("Output Device"),
         NEEDS_TRANS ("Select midi device for output"),
-        Device()).setChoicesSource (getDevicesForMidiOut());
+        Device()).setChoicesSource (getDevicesForMidiOut (devices));
         
     /* */
     
@@ -419,9 +419,9 @@ data::Data getDefaultPreferences()
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-Preferences::Preferences (const juce::File& file) :
+Preferences::Preferences (const juce::File& file, AvailableDevices& devices) :
     file_ (file),
-    data_ (getDefaultPreferences()),
+    data_ (getDefaultPreferences (devices)),
     isReading_ (false)
 {
     addParameterHandler (Tag::SnapToGrid, [] (const data::Parameter& p) {
