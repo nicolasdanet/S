@@ -17,6 +17,13 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+void initializeDestroy (std::vector<std::unique_ptr<RadioButton>>& buttons, ChoicesSelector* owner)
+{
+    for (const auto& b : buttons) { owner->removeChildComponent (b.get()); }
+    
+    buttons.clear();
+}
+
 void initializeCreate (std::vector<std::unique_ptr<RadioButton>>& buttons, const juce::StringArray& choices)
 {
     for (const auto& s : choices) { buttons.push_back (std::make_unique<RadioButton> (s)); }
@@ -31,7 +38,7 @@ void initializeAdd (std::vector<std::unique_ptr<RadioButton>>& buttons,
     for (const auto& b : buttons) {
         b->onClick = [owner, n = index++]() { owner->setChoiceAtIndex (n); };
         b->setEnabled (isEnabled);
-        owner->addAndMakeVisible (*b);
+        owner->addAndMakeVisible (b.get());
     }
 }
 
@@ -64,9 +71,15 @@ ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray&
 
 void ChoicesSelector::initialize (const juce::StringArray& choices)
 {
+    initializeDestroy (buttons_, this);
     initializeCreate (buttons_, choices);
     initializeAdd (buttons_, isEnabled(), this);
     initializeStatus (buttons_, value_.toString());
+}
+
+void ChoicesSelector::update (const juce::StringArray& choices)
+{
+
 }
 
 // -----------------------------------------------------------------------------------------------------------

@@ -28,14 +28,25 @@ public:
 // MARK: -
 
 public:
-    void paint (juce::Graphics&) override;
-    void resized() override;
-
-public:
     void setChoiceAtIndex (int);
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void update (const juce::StringArray&);
+    
 private:
     void initialize (const juce::StringArray&);
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
+    void resized() override;
     
 private:
     juce::Value value_;

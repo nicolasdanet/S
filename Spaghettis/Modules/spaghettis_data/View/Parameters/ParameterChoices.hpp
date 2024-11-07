@@ -65,10 +65,13 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    void update();
+    
 public:
     void changeListenerCallback (juce::ChangeBroadcaster*) override
     {
-        DBG ("?");
+        update();
     }
     
 private:
