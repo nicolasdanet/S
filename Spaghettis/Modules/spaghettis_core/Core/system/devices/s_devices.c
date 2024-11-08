@@ -218,7 +218,7 @@ void devices_logAudio (t_devices *p, t_error err)
     if (!o) { (f) (NULL, PD_TRANSLATE ("DSP: no output")); }
     
     if (devices_hasDefault (p)) {
-        (f) (NULL, PD_TRANSLATE ("DSP: using default devices"));
+        post_warning (NULL, PD_TRANSLATE ("DSP: using default devices"));
     }
     
     if (i && o) {
@@ -242,7 +242,7 @@ void devices_logMidi (t_devices *p, t_error err)
     if (!n) { (f) (NULL, PD_TRANSLATE ("MIDI: no output")); }
     
     if (devices_hasDefault (p)) {
-        (f) (NULL, PD_TRANSLATE ("MIDI: using default devices"));
+        post_warning (NULL, PD_TRANSLATE ("MIDI: using default devices"));
     }
     
     for (i = 0; i < m; i++) {

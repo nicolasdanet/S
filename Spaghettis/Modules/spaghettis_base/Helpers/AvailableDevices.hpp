@@ -28,28 +28,26 @@ public:
 public:
     void setAudioDevices (juce::StringArray i, juce::StringArray o)
     {
-        /* ??? */
-        // if (audioIn_ != i || audioOut_ != o) {
+        if (audioIn_ != i || audioOut_ != o) {
         //
         audioIn_.swapWith (i);
         audioOut_.swapWith (o);
         
         sendChangeMessage();
         //
-        // }
+        }
     }
     
     void setMidiDevices (juce::StringArray i, juce::StringArray o)
     {
-        /* ??? */
-        // if (midiIn_ != i || midiOut_ != o) {
+        if (midiIn_ != i || midiOut_ != o) {
         //
         midiIn_.swapWith (i);
         midiOut_.swapWith (o);
         
         sendChangeMessage();
         //
-        // }
+        }
     }
 
 // -----------------------------------------------------------------------------------------------------------
