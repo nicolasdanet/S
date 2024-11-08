@@ -33,13 +33,18 @@ void initializeAdd (std::vector<std::unique_ptr<RadioButton>>& buttons,
     bool isEnabled,
     ChoicesSelector* owner)
 {
-    int index = 0;
+    int i = 0;
     
     for (const auto& b : buttons) {
-        b->onClick = [owner, n = index++]() { owner->setChoiceAtIndex (n); };
+        b->onClick = [owner, n = i++]() { owner->setChoiceAtIndex (n); };
         b->setEnabled (isEnabled);
         owner->addAndMakeVisible (b.get());
     }
+}
+
+void initializeReplace (std::vector<std::unique_ptr<RadioButton>>& buttons, const juce::StringArray& choices)
+{
+    int i = 0; for (const auto& b : buttons) { b->setButtonText (choices[i++]); }
 }
 
 void initializeStatus (std::vector<std::unique_ptr<RadioButton>>& buttons, const juce::String& s)
@@ -62,24 +67,25 @@ void initializeStatus (std::vector<std::unique_ptr<RadioButton>>& buttons, const
 
 ChoicesSelector::ChoicesSelector (const juce::Value& v, const juce::StringArray& choices) : value_ (v)
 {
-    initialize (choices);
+    initializeCreate (buttons_, choices);
+    initializeAdd (buttons_, isEnabled(), this);
+    initializeStatus (buttons_, value_.toString());
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void ChoicesSelector::initialize (const juce::StringArray& choices)
-{
-    initializeDestroy (buttons_, this);
-    initializeCreate (buttons_, choices);
-    initializeAdd (buttons_, isEnabled(), this);
-    initializeStatus (buttons_, value_.toString());
-}
-
 void ChoicesSelector::update (const juce::StringArray& choices)
 {
-
+    if (choices.size() == static_cast<int> (buttons_.size())) { initializeReplace (buttons_, choices); }
+    else {
+        initializeDestroy (buttons_, this);
+        initializeCreate (buttons_, choices);
+        initializeAdd (buttons_, isEnabled(), this);
+    }
+    
+    initializeStatus (buttons_, value_.toString());
 }
 
 // -----------------------------------------------------------------------------------------------------------
