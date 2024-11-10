@@ -30,6 +30,13 @@ static t_float64Atomic  audio_sampleRate;               /* Static. */
 // -----------------------------------------------------------------------------------------------------------
 
 static int              audio_state;                    /* Static. */
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+/* Contention could occurs on this mutex only when audio is switch on or off. */
+/* Assume that pthread trylock is as good (fast) as an homemade (spin) lock. */
+
 static pthread_mutex_t  audio_mutex;                    /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
@@ -144,8 +151,6 @@ t_error audio_open (void)
     
     if (err == PD_ERROR_NONE) {
     //
-    /* ??? */
-    /*
     pthread_mutex_lock (&audio_mutex);
     
         {
@@ -158,7 +163,6 @@ t_error audio_open (void)
         audio_state = err ? 0 : 1;
     
     pthread_mutex_unlock (&audio_mutex);
-    */
     //
     }
     
