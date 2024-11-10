@@ -19,7 +19,7 @@ class RadioButton : public juce::ToggleButton {
 // MARK: -
 
 public:
-    explicit RadioButton (const juce::String& text) : juce::ToggleButton (text)
+    explicit RadioButton (const juce::String& s) : juce::ToggleButton (s)
     {
     }
 
