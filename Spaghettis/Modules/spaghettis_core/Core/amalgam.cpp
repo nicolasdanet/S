@@ -460,37 +460,38 @@ namespace spaghettis::core {
 
     #include "system/backends/s_midi_dummy.c"
     #include "system/backends/s_audio_dummy.c"
-
+    #include "libs/externals/spaghettis_loader.c"
+    
 #else
 
-#if PD_APPLE
+    #if PD_APPLE
 
-    #include "system/backends/s_midi_mac.c"
-    #include "system/backends/s_audio_mac.c"
+        #include "system/backends/s_midi_mac.c"
+        #include "system/backends/s_audio_mac.c"
 
-    #include "libs/core/core_audiodevice.c"
-    #include "libs/core/core_audiodevicelist.c"
-    #include "libs/core/core_audiocallbacks.c"
-    #include "libs/core/core_audiostream.c"
-    #include "libs/core/core_audiograph.c"
-    
-    #include "libs/core/core_midiname.c"
-    #include "libs/core/core_mididevicelist.c"
-    #include "libs/core/core_midiclient.c"
-    #include "libs/core/core_midiport.c"
+        #include "libs/core/core_audiodevice.c"
+        #include "libs/core/core_audiodevicelist.c"
+        #include "libs/core/core_audiocallbacks.c"
+        #include "libs/core/core_audiostream.c"
+        #include "libs/core/core_audiograph.c"
+        
+        #include "libs/core/core_midiname.c"
+        #include "libs/core/core_mididevicelist.c"
+        #include "libs/core/core_midiclient.c"
+        #include "libs/core/core_midiport.c"
 
-#endif
+    #endif
 
-#if PD_LINUX
-    #include "system/backends/s_midi_linux.c"
-    #include "system/backends/s_audio_linux.c"
-#endif
+    #if PD_LINUX
+        #include "system/backends/s_midi_linux.c"
+        #include "system/backends/s_audio_linux.c"
+    #endif
 
-/* Externals. */
+    /* Externals. */
 
-#include "libs/externals/spaghettis_loader.c"
-#include "libs/externals/spaghettis_externals.c"
-#include "libs/externals/spaghettis_space.c"
+    #include "libs/externals/spaghettis_loader.c"
+    #include "libs/externals/spaghettis_externals.c"
+    #include "libs/externals/spaghettis_space.c"
 
 #endif
 
