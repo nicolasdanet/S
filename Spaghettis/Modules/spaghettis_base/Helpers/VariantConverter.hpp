@@ -102,5 +102,23 @@ template<> struct VariantConverter<spaghettis::Device> {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+template<> struct VariantConverter<spaghettis::TextBlock> {
+
+    static spaghettis::TextBlock fromVar (const var& v)
+    {
+        return spaghettis::TextBlock (v.toString());
+    }
+        
+    static var toVar (const spaghettis::TextBlock& b)
+    {
+        return var (b.toString());
+    }
+
+};
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 
 } // namespace juce

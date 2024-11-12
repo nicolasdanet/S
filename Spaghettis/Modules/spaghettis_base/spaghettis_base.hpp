@@ -73,6 +73,7 @@
 #include "Helpers/EditDistance.hpp"
 #include "Helpers/Device.hpp"
 #include "Helpers/Directory.hpp"
+#include "Helpers/TextBlock.hpp"
 #include "Helpers/Autocomplete.hpp"
 #include "Helpers/WindowsProperties.hpp"
 #include "Helpers/Mouse.hpp"

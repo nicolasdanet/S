@@ -6,63 +6,44 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-namespace spaghettis::data {
+namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template <class T> struct ParameterType { };
+class TextBlock {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template<> struct ParameterType<bool>
-{
-    static const char* get() { return "boolean"; }
-};
+public:
+    explicit TextBlock (juce::String s = juce::String()) : text_ (s)
+    {
+    }
+    
+    ~TextBlock() = default;
 
-template<> struct ParameterType<juce::Colour>
-{
-    static const char* get() { return "color"; }
-};
+    TextBlock (const TextBlock&) = default;
+    TextBlock (TextBlock&&) = default;
+    TextBlock& operator = (const TextBlock&) = default;
+    TextBlock& operator = (TextBlock&&) = default;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
-template<> struct ParameterType<juce::Rectangle<int>>
-{
-    static const char* get() { return "rectangle"; }
+public:
+    juce::String toString() const
+    {
+        return text_;
+    }
+    
+private:
+    juce::String text_;
 };
-
-template<> struct ParameterType<int>
-{
-    static const char* get() { return "integer"; }
-};
-
-template<> struct ParameterType<double>
-{
-    static const char* get() { return "float"; }
-};
-
-template<> struct ParameterType<juce::String>
-{
-    static const char* get() { return "string"; }
-};
-
-template<> struct ParameterType<TextBlock>
-{
-    static const char* get() { return "text"; }
-};
-
-template<> struct ParameterType<Directory>
-{
-    static const char* get() { return "directory"; }
-};
-
-template<> struct ParameterType<Device>
-{
-    static const char* get() { return "device"; }
-};
-
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -70,3 +51,4 @@ template<> struct ParameterType<Device>
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
