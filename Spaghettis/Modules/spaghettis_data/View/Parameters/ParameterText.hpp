@@ -26,6 +26,9 @@ public:
             PropertyLookAndFeel (lnf),
             juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
     {
+        if (p.isText())     { DBG ("TEXT"); }
+        if (p.isString())   { DBG ("STRING"); }
+        
         setEnabled (isEditable);
         setInterestedInFileDrag (false);
     }

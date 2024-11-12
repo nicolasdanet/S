@@ -131,7 +131,7 @@ void addParameterFrom (Group group, const juce::ValueTree& other)
     if (label.isEmpty()) { label = key;   }
     if (info.isEmpty())  { info  = label; }
     
-    group.addParameter (key, label, info, value).setEditable (false);
+    group.addParameter (key, label, info, TextBlock (value)).setEditable (false);
     //
     }
     //

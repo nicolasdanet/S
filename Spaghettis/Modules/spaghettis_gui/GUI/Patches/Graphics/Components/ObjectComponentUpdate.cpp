@@ -45,13 +45,14 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
     return bounds.expanded (Painter::pinGripX (f), Painter::pinGripY (f));
 }
 
-juce::String getPinTooltip (const data::Data& documentation, const juce::String& type, bool isOutlet, int i)
+juce::String getPinTooltip (const data::Data& d, const juce::String& type, bool isOutlet, int i)
 {
     const juce::String t = Strings::firstLetterCapitalized (type);
     const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
     
-    if (documentation.hasParameter (Tag::Documentation, k)) {
-        return t + ": " + documentation.getParameter (Tag::Documentation, k).getValueTyped<juce::String>();
+    if (d.hasParameter (Tag::Documentation, k)) {
+        const juce::String s (d.getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString());
+        return t + ": " + s;
     }
     
     return t;
