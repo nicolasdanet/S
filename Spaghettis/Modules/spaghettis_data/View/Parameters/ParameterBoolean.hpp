@@ -27,6 +27,7 @@ public:
             PropertyLookAndFeel (lnf),
             juce::BooleanPropertyComponent (p.getValueAsValue (false), s, "")
     {
+        setPreferredHeight (lnf.getRequiredHeight());
         setEnabled (isEditable);
     }
     

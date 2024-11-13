@@ -28,6 +28,8 @@ public:
             juce::PropertyComponent (s),
             editor_ (p.getValueAsValue (false), lnf.getMonospacedFont())
     {
+        setPreferredHeight (lnf.getRequiredHeight());
+        
         addAndMakeVisible (editor_);
         setEnabled (isEditable);
         editor_.setEnabled (isEditable);

@@ -29,6 +29,7 @@ public:
             v_(),
             range_ (p)
     {
+        setPreferredHeight (lnf.getRequiredHeight());
         setEnabled (isEditable);
     }
 

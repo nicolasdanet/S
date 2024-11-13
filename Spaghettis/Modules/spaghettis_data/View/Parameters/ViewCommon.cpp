@@ -93,8 +93,6 @@ void addPropertyComponent (const data::Parameter& p,
 {
     std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, lnf, label, isEditable));
     
-    if (!p.isDevice()) { t->setPreferredHeight (lnf.getRequiredHeight()); }
-    
     t->setTooltip (info);
     
     c.add (t.release());

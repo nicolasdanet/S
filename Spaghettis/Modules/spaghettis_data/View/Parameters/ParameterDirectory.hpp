@@ -29,6 +29,8 @@ public:
             editor_ (p.getValueAsValue (false)),
             selector_ (p.getValueAsValue (false))
     {
+        setPreferredHeight (lnf.getRequiredHeight());
+        
         addAndMakeVisible (editor_);
         addAndMakeVisible (selector_);
         setEnabled (isEditable);

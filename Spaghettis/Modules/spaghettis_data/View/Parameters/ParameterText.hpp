@@ -24,11 +24,9 @@ public:
         const juce::String& s,
         bool isEditable) :
             PropertyLookAndFeel (lnf),
-            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false)
+            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, p.isText(), isEditable)
     {
-        if (p.isText())     { DBG ("TEXT"); }
-        if (p.isString())   { DBG ("STRING"); }
-        
+        setPreferredHeight (lnf.getRequiredHeight());
         setEnabled (isEditable);
         setInterestedInFileDrag (false);
     }

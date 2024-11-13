@@ -31,6 +31,8 @@ public:
                 p.getMaximumAsDouble(),
                 p.getStep())
     {
+        setPreferredHeight (lnf.getRequiredHeight());
+        
         slider.valueFromTextFunction = [this] (const juce::String& text)
         {
             return ParameterNumber<double>::parsedWithDefault (text, slider.getValue());
