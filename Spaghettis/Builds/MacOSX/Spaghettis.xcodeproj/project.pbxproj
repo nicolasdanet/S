@@ -71,7 +71,6 @@
 		AC891E19FCEE3DEDF86A04CE /* include_spaghettis_data.mm */ /* include_spaghettis_data.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_data.mm; path = ../../JuceLibraryCode/include_spaghettis_data.mm; sourceTree = SOURCE_ROOT; };
 		B4DAE1C42FD0579475CBE2CD /* spaghettis_core */ /* spaghettis_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_core; path = ../../Modules/spaghettis_core; sourceTree = SOURCE_ROOT; };
 		B7A6D4B166AFD6C1609FE05A /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
-		B97135F37554C1EE94757757 /* bng.pdinfo */ /* bng.pdinfo */ = {isa = PBXFileReference; lastKnownFileType = file.pdinfo; name = bng.pdinfo; path = ../../Resources/XML/bng.pdinfo; sourceTree = SOURCE_ROOT; };
 		C7BA1A487C5355537E9C89DE /* spaghettis_data */ /* spaghettis_data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_data; path = ../../Modules/spaghettis_data; sourceTree = SOURCE_ROOT; };
 		C8EF61C49D8FEC1206D15795 /* icon_mail.svg */ /* icon_mail.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_mail.svg; path = ../../Resources/Icons/SVG/icon_mail.svg; sourceTree = SOURCE_ROOT; };
 		C9C6B2655C8D889351519A5B /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
@@ -140,14 +139,6 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		5421A5024BD52D9592B31AAE /* XML */ = {
-			isa = PBXGroup;
-			children = (
-				B97135F37554C1EE94757757,
-			);
-			name = XML;
-			sourceTree = "<group>";
-		};
 		5BC47495E9B251C60B2117AC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				A1056AE48F0DFF9EC3445D0E,
-				5421A5024BD52D9592B31AAE,
 				314772287FD7DA2C4DAD0866,
 			);
 			name = Source;

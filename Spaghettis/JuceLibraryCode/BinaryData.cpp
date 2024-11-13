@@ -9,30 +9,8 @@
 namespace BinaryData
 {
 
-//================== bng.pdinfo ==================
-static const unsigned char temp_binary_data_0[] =
-"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
-"\r\n"
-"<DOCUMENTATION>\r\n"
-"  <GROUP name=\"Documentation\">\r\n"
-"    <PARAMETER key=\"Description\"    value=\"Output a bang with any interaction\"/>\r\n"
-"    <PARAMETER key=\"Category\"       value=\"Graphic\"/>\r\n"
-"    <PARAMETER key=\"Arguments\"      value=\"\"/>\r\n"
-"    <PARAMETER key=\"Options\"        value=\"\"/>\r\n"
-"    <PARAMETER key=\"Inlet0\"         label=\"Inlet (Hot)\"\r\n"
-"                                    value=\"Anything - Trigger a bang out for any entry\"/>\r\n"
-"    <PARAMETER key=\"Outlet0\"        label=\"Outlet\"\r\n"
-"                                    value=\"Bang - Bang!\"/>\r\n"
-"    <PARAMETER key=\"Details\"        value=\"\"/>\r\n"
-"    <PARAMETER key=\"SeeAlso\"        label=\"See Also\"\r\n"
-"                                    value=\"\"/>\r\n"
-"  </GROUP>\r\n"
-"</DOCUMENTATION>\r\n";
-
-const char* bng_pdinfo = (const char*) temp_binary_data_0;
-
 //================== spaghettis_icon.png ==================
-static const unsigned char temp_binary_data_1[] =
+static const unsigned char temp_binary_data_0[] =
 { 137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82,0,0,2,0,0,0,2,0,8,6,0,0,0,244,120,212,250,0,0,32,0,73,68,65,84,120,156,236,157,7,120,20,87,154,181,107,119,255,217,217,56,59,59,59,179,147,60,179,51,182,199,99,155,104,114,206,25,99,130,73,38,153,100,108,
 108,48,193,152,96,130,133,200,201,216,216,6,131,49,54,57,231,156,51,8,17,133,16,65,4,73,40,231,156,195,247,127,183,171,91,234,46,164,86,183,80,215,173,238,62,231,121,206,131,3,160,238,219,213,245,190,85,117,235,150,162,32,8,130,32,8,130,32,8,130,32,8,
 130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,8,130,32,
@@ -492,99 +470,99 @@ static const unsigned char temp_binary_data_1[] =
 4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,
 65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,4,65,16,36,104,242,255,175,141,86,252,33,64,223,61,0,0,0,0,73,69,78,68,174,66,96,130,0,0 };
 
-const char* spaghettis_icon_png = (const char*) temp_binary_data_1;
+const char* spaghettis_icon_png = (const char*) temp_binary_data_0;
 
 //================== icon_construction.svg ==================
-static const unsigned char temp_binary_data_2[] =
+static const unsigned char temp_binary_data_1[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 "
 "9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z\"/></svg>";
 
-const char* icon_construction_svg = (const char*) temp_binary_data_2;
+const char* icon_construction_svg = (const char*) temp_binary_data_1;
 
 //================== icon_delete.svg ==================
-static const unsigned char temp_binary_data_3[] =
+static const unsigned char temp_binary_data_2[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M292.309-140.001q-29.923 0-51.115-21.193-21.193-21.192-21.193-51.115V-720h-40v-59.999H360v-35.384h240v35.384h179.999V-720h-40v507.691q0 30.308-2"
 "1 51.308t-51.308 21H292.309ZM680-720H280v507.691q0 5.385 3.462 8.847 3.462 3.462 8.847 3.462h375.382q4.616 0 8.463-3.846 3.846-3.847 3.846-8.463V-720ZM376.155-280h59.999v-360h-59.999v360Zm147.691 0h59.999v-360h-59.999v360ZM280-720v520-520Z\"/></svg>";
 
-const char* icon_delete_svg = (const char*) temp_binary_data_3;
+const char* icon_delete_svg = (const char*) temp_binary_data_2;
 
 //================== icon_error.svg ==================
-static const unsigned char temp_binary_data_4[] =
+static const unsigned char temp_binary_data_3[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156"
 "-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 "
 "227t227 93Zm0-320Z\"/></svg>";
 
-const char* icon_error_svg = (const char*) temp_binary_data_4;
+const char* icon_error_svg = (const char*) temp_binary_data_3;
 
 //================== icon_folder.svg ==================
-static const unsigned char temp_binary_data_5[] =
+static const unsigned char temp_binary_data_4[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H4"
 "47l-80-80H160v480Zm0 0v-480 480Z\"/></svg>\n";
 
-const char* icon_folder_svg = (const char*) temp_binary_data_5;
+const char* icon_folder_svg = (const char*) temp_binary_data_4;
 
 //================== icon_history.svg ==================
-static const unsigned char temp_binary_data_6[] =
+static const unsigned char temp_binary_data_5[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-120q-138 0-240.5-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v"
 "-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z\"/></svg>";
 
-const char* icon_history_svg = (const char*) temp_binary_data_6;
+const char* icon_history_svg = (const char*) temp_binary_data_5;
 
 //================== icon_info.svg ==================
-static const unsigned char temp_binary_data_7[] =
+static const unsigned char temp_binary_data_6[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-3"
 "1.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 22"
 "7t227 93Zm0-320Z\"/></svg>";
 
-const char* icon_info_svg = (const char*) temp_binary_data_7;
+const char* icon_info_svg = (const char*) temp_binary_data_6;
 
 //================== icon_location_on.svg ==================
-static const unsigned char temp_binary_data_8[] =
+static const unsigned char temp_binary_data_7[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69."
 "5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z\"/></svg>";
 
-const char* icon_location_on_svg = (const char*) temp_binary_data_8;
+const char* icon_location_on_svg = (const char*) temp_binary_data_7;
 
 //================== icon_lock.svg ==================
-static const unsigned char temp_binary_data_9[] =
+static const unsigned char temp_binary_data_8[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v"
 "400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z\"/></svg>";
 
-const char* icon_lock_svg = (const char*) temp_binary_data_9;
+const char* icon_lock_svg = (const char*) temp_binary_data_8;
 
 //================== icon_mail.svg ==================
-static const unsigned char temp_binary_data_10[] =
+static const unsigned char temp_binary_data_9[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-"
 "400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z\"/></svg>";
 
-const char* icon_mail_svg = (const char*) temp_binary_data_10;
+const char* icon_mail_svg = (const char*) temp_binary_data_9;
 
 //================== icon_tune.svg ==================
-static const unsigned char temp_binary_data_11[] =
+static const unsigned char temp_binary_data_10[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80"
 "h160v80H680v80h-80Zm-480-80v-80h400v80H120Z\"/></svg>";
 
-const char* icon_tune_svg = (const char*) temp_binary_data_11;
+const char* icon_tune_svg = (const char*) temp_binary_data_10;
 
 //================== icon_upload.svg ==================
-static const unsigned char temp_binary_data_12[] =
+static const unsigned char temp_binary_data_11[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-80v-80h640v80H160Zm200-160v-280H200l280-360 280 360H600v280H360Zm80-80h80v-280h76L480-750 364-600h76v280Zm40-280Z\"/></svg>";
 
-const char* icon_upload_svg = (const char*) temp_binary_data_12;
+const char* icon_upload_svg = (const char*) temp_binary_data_11;
 
 //================== icon_vertical_align_bottom.svg ==================
-static const unsigned char temp_binary_data_13[] =
+static const unsigned char temp_binary_data_12[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M160-120v-80h640v80H160Zm320-160L280-480l56-56 104 104v-408h80v408l104-104 56 56-200 200Z\"/></svg>";
 
-const char* icon_vertical_align_bottom_svg = (const char*) temp_binary_data_13;
+const char* icon_vertical_align_bottom_svg = (const char*) temp_binary_data_12;
 
 //================== icon_visibility.svg ==================
-static const unsigned char temp_binary_data_14[] =
+static const unsigned char temp_binary_data_13[] =
 "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31."
 "5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T"
 "128-500q50 101 144.5 160.5T480-280Z\"/></svg>";
 
-const char* icon_visibility_svg = (const char*) temp_binary_data_14;
+const char* icon_visibility_svg = (const char*) temp_binary_data_13;
 
 
 const char* getNamedResource (const char* resourceNameUTF8, int& numBytes);
@@ -598,7 +576,6 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x6b5f63c6:  numBytes = 764; return bng_pdinfo;
         case 0x8b255ed8:  numBytes = 32745; return spaghettis_icon_png;
         case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;
@@ -622,7 +599,6 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
 const char* namedResourceList[] =
 {
-    "bng_pdinfo",
     "spaghettis_icon_png",
     "icon_construction_svg",
     "icon_delete_svg",
@@ -641,7 +617,6 @@ const char* namedResourceList[] =
 
 const char* originalFilenames[] =
 {
-    "bng.pdinfo",
     "spaghettis_icon.png",
     "icon_construction.svg",
     "icon_delete.svg",

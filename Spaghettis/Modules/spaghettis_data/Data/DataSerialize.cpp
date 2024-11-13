@@ -107,71 +107,11 @@ void Data::writeValues (const juce::File& file) const
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-namespace {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* Note that for now only XML from documentation is handled. */
-
-void addParameterFrom (Group group, const juce::ValueTree& other)
+void Data::setValuesFromDocumentation (const juce::String& s)
 {
-    const juce::String key (other.getProperty (Id::key).toString());
-    const juce::String value (other.getProperty (Id::value).toString());
-    
-    if (key.isNotEmpty() && value.isNotEmpty()) {
-    //
-    if (!group.hasParameter (key)) {
-    //
-    juce::String label (other.getProperty (Id::label).toString());
-    juce::String info (other.getProperty (Id::info).toString());
-    
-    if (label.isEmpty()) { label = key;   }
-    if (info.isEmpty())  { info  = label; }
-    
-    group.addParameter (key, label, info, TextBlock (value)).setEditable (false);
-    //
-    }
-    //
-    }
-}
 
-void addFrom (Data& data, const juce::ValueTree& other)
-{
-    if (other.hasType (Id::PARAMETER)) {
-    //
-    const juce::String group (other.getParent().getProperty (Id::name).toString());
-    
-    if (group.isNotEmpty()) {
-    //
-    if (!data.hasGroup (group)) { data.addGroup (group); }
-    
-    addParameterFrom (data.getGroup (group), other);
-    //
-    }
-    //
-    }
-    
-    for (auto child : other) { addFrom (data, child); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void Data::setValuesFromXmlDocumentation (const juce::String& s)
-{
-    std::unique_ptr<juce::XmlElement> xml (juce::XmlDocument::parse (s));
-    if (xml) {
-        addFrom (*this, juce::ValueTree::fromXml (*xml));
-    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

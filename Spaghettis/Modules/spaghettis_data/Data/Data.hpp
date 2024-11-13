@@ -120,7 +120,7 @@ public:
     void writeValues (const juce::File&) const;
 
 public:
-    void setValuesFromXmlDocumentation (const juce::String&);
+    void setValuesFromDocumentation (const juce::String&);
     
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
