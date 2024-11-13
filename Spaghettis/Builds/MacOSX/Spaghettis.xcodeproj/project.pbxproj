@@ -51,6 +51,7 @@
 		4BD2FF29EDDE1ABAC27A7822 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
 		50ED0DDFBD78181A13A37290 /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5D54858FA1893DF53C9DB594 /* icon_tune.svg */ /* icon_tune.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_tune.svg; path = ../../Resources/Icons/SVG/icon_tune.svg; sourceTree = SOURCE_ROOT; };
+		5FEF97D704B2CE2259136DC7 /* bng.pdinfo */ /* bng.pdinfo */ = {isa = PBXFileReference; lastKnownFileType = file.pdinfo; name = bng.pdinfo; path = ../../Resources/Documentation/bng.pdinfo; sourceTree = SOURCE_ROOT; };
 		603D9BC5E29B7AD838C35321 /* Icon.icns */ /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = file.icns; name = Icon.icns; path = Icon.icns; sourceTree = SOURCE_ROOT; };
 		60D8A2DF65E5C0796EA99CB1 /* App */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaghettis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62D25DF0140BED0D98A22473 /* include_spaghettis_base.mm */ /* include_spaghettis_base.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_base.mm; path = ../../JuceLibraryCode/include_spaghettis_base.mm; sourceTree = SOURCE_ROOT; };
@@ -71,7 +72,6 @@
 		AC891E19FCEE3DEDF86A04CE /* include_spaghettis_data.mm */ /* include_spaghettis_data.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_data.mm; path = ../../JuceLibraryCode/include_spaghettis_data.mm; sourceTree = SOURCE_ROOT; };
 		B4DAE1C42FD0579475CBE2CD /* spaghettis_core */ /* spaghettis_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_core; path = ../../Modules/spaghettis_core; sourceTree = SOURCE_ROOT; };
 		B7A6D4B166AFD6C1609FE05A /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
-		B97135F37554C1EE94757757 /* bng.pdinfo */ /* bng.pdinfo */ = {isa = PBXFileReference; lastKnownFileType = file.pdinfo; name = bng.pdinfo; path = ../../Resources/XML/bng.pdinfo; sourceTree = SOURCE_ROOT; };
 		C7BA1A487C5355537E9C89DE /* spaghettis_data */ /* spaghettis_data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spaghettis_data; path = ../../Modules/spaghettis_data; sourceTree = SOURCE_ROOT; };
 		C8EF61C49D8FEC1206D15795 /* icon_mail.svg */ /* icon_mail.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_mail.svg; path = ../../Resources/Icons/SVG/icon_mail.svg; sourceTree = SOURCE_ROOT; };
 		C9C6B2655C8D889351519A5B /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
@@ -140,12 +140,12 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		5421A5024BD52D9592B31AAE /* XML */ = {
+		5421A5024BD52D9592B31AAE /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
-				B97135F37554C1EE94757757,
+				5FEF97D704B2CE2259136DC7,
 			);
-			name = XML;
+			name = Documentation;
 			sourceTree = "<group>";
 		};
 		5BC47495E9B251C60B2117AC /* Resources */ = {

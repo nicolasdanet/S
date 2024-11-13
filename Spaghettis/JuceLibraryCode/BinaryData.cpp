@@ -15,17 +15,18 @@ static const unsigned char temp_binary_data_0[] =
 "\r\n"
 "<DOCUMENTATION>\r\n"
 "  <GROUP name=\"Documentation\">\r\n"
-"    <PARAMETER key=\"Description\"\r\n"
-"        value=\"Output a bang with any interaction\"/>\r\n"
-"    <PARAMETER key=\"Category\"\r\n"
-"        value=\"Graphic\"/>\r\n"
-"    <PARAMETER key=\"Inlet0\"\r\n"
-"        label=\"Inlet\"\r\n"
-"        value=\"Trigger a bang out for any entry\"/>\r\n"
-"    <PARAMETER key=\"Outlet0\"\r\n"
-"        label=\"Outlet\"\r\n"
-"        info=\"My baby shot me down\"\r\n"
-"        value=\"Bang Bang!\"/>\r\n"
+"    <PARAMETER key=\"Description\"    value=\"Output a bang with any interaction\"/>\r\n"
+"    <PARAMETER key=\"Category\"       value=\"Graphic\"/>\r\n"
+"    <PARAMETER key=\"Arguments\"      value=\"\"/>\r\n"
+"    <PARAMETER key=\"Options\"        value=\"\"/>\r\n"
+"    <PARAMETER key=\"Inlet0\"         label=\"Inlet\"\r\n"
+"                                    info=\"Hot\"\r\n"
+"                                    value=\"Anything - Trigger a bang out for any entry\"/>\r\n"
+"    <PARAMETER key=\"Outlet0\"        label=\"Outlet\"\r\n"
+"                                    value=\"Bang - Bang!\"/>\r\n"
+"    <PARAMETER key=\"Details\"        value=\"\"/>\r\n"
+"    <PARAMETER key=\"SeeAlso\"        label=\"See Also\"\r\n"
+"                                    value=\"\"/>\r\n"
 "  </GROUP>\r\n"
 "</DOCUMENTATION>\r\n";
 
@@ -598,7 +599,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x6b5f63c6:  numBytes = 492; return bng_pdinfo;
+        case 0x6b5f63c6:  numBytes = 806; return bng_pdinfo;
         case 0x8b255ed8:  numBytes = 32745; return spaghettis_icon_png;
         case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;
