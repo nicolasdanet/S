@@ -8,8 +8,8 @@
   <MAINGROUP id="FJGwhe" name="Spaghettis">
     <GROUP id="{2CB25DBA-D987-3F32-EEE6-6B67653E37F3}" name="Source">
       <FILE id="LekPt7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <GROUP id="{97821FCF-D921-B07E-10E9-2F772798D050}" name="Documentation">
-        <FILE id="x8H1wq" name="bng.pdinfo" compile="0" resource="1" file="Resources/Documentation/bng.pdinfo"/>
+      <GROUP id="{97821FCF-D921-B07E-10E9-2F772798D050}" name="XML">
+        <FILE id="pfHrlx" name="bng.pdinfo" compile="0" resource="1" file="Resources/XML/bng.pdinfo"/>
       </GROUP>
       <GROUP id="{5D995D32-88D8-F3E6-9FA3-2BFFDA508EC0}" name="Icons">
         <FILE id="X7gpdv" name="spaghettis_icon.png" compile="0" resource="1"
