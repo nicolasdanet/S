@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   bng_pdinfo;
-    const int            bng_pdinfoSize = 806;
+    const int            bng_pdinfoSize = 764;
 
     extern const char*   spaghettis_icon_png;
     const int            spaghettis_icon_pngSize = 32745;
