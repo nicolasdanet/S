@@ -47,15 +47,13 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
 
 juce::String getPinTooltip (const data::Data& d, const juce::String& type, bool isOutlet, int i)
 {
-    const juce::String t = Strings::firstLetterCapitalized (type);
     const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
     
     if (d.hasParameter (Tag::Documentation, k)) {
-        const juce::String s (d.getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString());
-        return t + ": " + s;
+        return d.getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString();
     }
     
-    return t;
+    return Strings::firstLetterCapitalized (type);
 }
 
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
