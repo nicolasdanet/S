@@ -44,7 +44,7 @@ void findDocumentationForClass (data::Data& data, const juce::String& c)
     
     if (n && p) {
     //
-    data.setValuesFromDocumentation (juce::String::createStringFromData (p, n));
+    // data.setValuesFromDocumentation (juce::String::createStringFromData (p, n));
     //
     }
     //

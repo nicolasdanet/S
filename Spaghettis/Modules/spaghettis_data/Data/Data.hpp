@@ -119,9 +119,6 @@ public:
     bool readValues (const juce::File&);
     void writeValues (const juce::File&) const;
 
-public:
-    void setValuesFromDocumentation (const juce::String&);
-    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

@@ -48,10 +48,6 @@ juce::ValueTree getCopyPruned (const juce::ValueTree& tree)
     return t;
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 void changeValuesFrom (Data& data, const juce::ValueTree& other)
 {
     if (other.hasType (Id::PARAMETER)) {
@@ -103,15 +99,6 @@ void Data::writeValues (const juce::File& file) const
     std::unique_ptr<juce::XmlElement> xml (getCopyPruned (tree_).createXml());
     
     if (xml) { xml->writeTo (file); }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void Data::setValuesFromDocumentation (const juce::String& s)
-{
-
 }
 
 // -----------------------------------------------------------------------------------------------------------
