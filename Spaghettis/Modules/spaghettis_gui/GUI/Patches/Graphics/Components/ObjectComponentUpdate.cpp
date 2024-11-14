@@ -50,7 +50,9 @@ juce::String getPinTooltip (const data::Data& d, const juce::String& type, bool 
     const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
     
     if (d.hasParameter (Tag::Documentation, k)) {
-        return d.getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString();
+    //
+    return d.getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString();
+    //
     }
     
     return Strings::firstLetterCapitalized (type);
