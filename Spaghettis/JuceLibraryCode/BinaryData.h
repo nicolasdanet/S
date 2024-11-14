@@ -8,6 +8,12 @@
 
 namespace BinaryData
 {
+    extern const char*   bng_pdinfo;
+    const int            bng_pdinfoSize = 450;
+
+    extern const char*   metro_pdinfo;
+    const int            metro_pdinfoSize = 912;
+
     extern const char*   spaghettis_icon_png;
     const int            spaghettis_icon_pngSize = 32745;
 
@@ -51,7 +57,7 @@ namespace BinaryData
     const int            icon_visibility_svgSize = 535;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 14;
+    const int namedResourceListSize = 16;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
