@@ -11,7 +11,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-class ParameterText :   public PropertyLookAndFeel,
+class ParameterString : public PropertyLookAndFeel,
                         public juce::TextPropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -19,22 +19,22 @@ class ParameterText :   public PropertyLookAndFeel,
 // MARK: -
 
 public:
-    explicit ParameterText (const data::Parameter& p,
+    explicit ParameterString (const data::Parameter& p,
         const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
             PropertyLookAndFeel (lnf),
-            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, true, isEditable)
+            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, false, isEditable)
     {
         setPreferredHeight (lnf.getRequiredHeight());
         setEnabled (isEditable);
         setInterestedInFileDrag (false);
     }
     
-    ~ParameterText() = default;
+    ~ParameterString() = default;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterText)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterString)
 };
 
 // -----------------------------------------------------------------------------------------------------------
