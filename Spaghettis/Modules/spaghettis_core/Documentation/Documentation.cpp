@@ -36,7 +36,11 @@ bool hasResource (const juce::String& c)
     auto [n, p] = findResource (c); return (n && p);
 }
 
-void findDocumentationForClass (data::Data& data, const juce::String& c)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+void addDocumentation (data::Data& data, const juce::String& c)
 {
     if (c.isNotEmpty()) {
     //
@@ -49,11 +53,6 @@ void findDocumentationForClass (data::Data& data, const juce::String& c)
     }
     //
     }
-}
-
-void addDocumentation (data::Data& data, const juce::String& c)
-{
-    findDocumentationForClass (data, c);
 }
 
 void addDocumentation (data::Data& data, const core::Item& i)
