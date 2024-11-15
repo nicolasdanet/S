@@ -7,12 +7,6 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-// TODO: Cache documentation for efficiency?
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
 namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
@@ -104,7 +98,7 @@ data::Data Documentation::get (const core::Item& item)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-data::Data Documentation::makeCopyWithDocumentation (const core::Item& item)
+data::Data Documentation::makeCopyWithDocumentationAppended (const core::Item& item)
 {
     data::Data data (data::Data::makeCopy (item.getData()));
 

@@ -40,8 +40,10 @@ public:
         patches_ (std::make_unique<PatchesHolder>()),
         autocomplete_ (std::make_unique<Autocomplete>()),
         devices_ (std::make_unique<AvailableDevices>()),
+        documentation_ (std::make_unique<Documentation>()),
         dspIsRunning_ (false),
-        quit_ (QuitStatus::quit)
+        quit_ (QuitStatus::quit),
+        recentFiles_()
     {
         const juce::File home = juce::File::getSpecialLocation (juce::File::userHomeDirectory);
 
@@ -239,9 +241,9 @@ public:
         return *menu_;
     }
     
-    Preferences& getPreferences()
+    SnapshotsManager& getSnapshots()
     {
-        return *preferences_;
+        return core_->getSnapshots();
     }
     
     PatchesHolder& getPatches()
@@ -259,9 +261,14 @@ public:
         return *devices_;
     }
     
-    SnapshotsManager& getSnapshots()
+    Documentation& getDocumentation()
     {
-        return core_->getSnapshots();
+        return *documentation_;
+    }
+    
+    Preferences& getPreferences()
+    {
+        jassert (preferences_.get()); return *preferences_;
     }
     
 // -----------------------------------------------------------------------------------------------------------
@@ -285,6 +292,7 @@ private:
     const std::unique_ptr<PatchesHolder> patches_;
     const std::unique_ptr<Autocomplete> autocomplete_;
     const std::unique_ptr<AvailableDevices> devices_;
+    const std::unique_ptr<Documentation> documentation_;
 
 private:
     bool dspIsRunning_;

@@ -100,7 +100,7 @@ void ObjectComponent::createInletsAndOutlets()
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    const data::Data documentation (Documentation::get (object_));
+    const data::Data documentation (Spaghettis()->getDocumentation().get (object_));
     
     if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation, getView(), scale, false); }
     if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation, getView(), scale, true);  }
