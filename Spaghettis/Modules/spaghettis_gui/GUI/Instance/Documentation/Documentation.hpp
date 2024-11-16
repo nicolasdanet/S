@@ -29,13 +29,6 @@ public:
     std::optional<data::Data> get (const juce::String&);
     std::optional<data::Data> get (const core::Item&);
     
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-public:
-    data::Data makeCopyWithDocumentation (const core::Item&);
-
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Documentation)
 

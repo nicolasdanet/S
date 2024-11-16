@@ -12,9 +12,11 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+/* ??? */
+
 Synchronizer::Synchronizer (const core::Item& item) :
     source_ (item),
-    data_ (Spaghettis()->getDocumentation().makeCopyWithDocumentation (item))
+    data_ (data::Data::makeCopy (item.getData()))
 {
     observer_ = nullptr;
 }
