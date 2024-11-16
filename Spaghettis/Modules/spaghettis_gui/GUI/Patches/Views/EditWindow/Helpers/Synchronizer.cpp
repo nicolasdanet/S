@@ -14,7 +14,7 @@ namespace spaghettis {
 
 Synchronizer::Synchronizer (const core::Item& item) :
     source_ (item),
-    data_ (Spaghettis()->getDocumentation().makeCopyWithDocumentationAppended (item))
+    data_ (Spaghettis()->getDocumentation().makeCopyWithDocumentation (item))
 {
     observer_ = nullptr;
 }

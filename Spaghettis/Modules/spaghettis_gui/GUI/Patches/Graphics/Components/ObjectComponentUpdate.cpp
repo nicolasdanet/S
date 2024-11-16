@@ -45,14 +45,16 @@ juce::Rectangle<int> getPinBounds (juce::Rectangle<int> bounds, int index, float
     return bounds.expanded (Painter::pinGripX (f), Painter::pinGripY (f));
 }
 
-juce::String getPinTooltip (const data::Data& d, const juce::String& type, bool isOutlet, int i)
+juce::String getPinTooltip (const std::optional<data::Data>& documentation,
+    const juce::String& type,
+    bool isOutlet,
+    int i)
 {
-    const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
-    
-    if (d.hasParameter (Tag::Documentation, k)) {
-    //
-    return d.getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString();
-    //
+    if (documentation.has_value()) {
+        const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
+        if (documentation->hasParameter (Tag::Documentation, k)) {
+            return documentation->getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString();
+        }
     }
     
     return Strings::firstLetterCapitalized (type);
@@ -61,7 +63,7 @@ juce::String getPinTooltip (const data::Data& d, const juce::String& type, bool 
 std::vector<std::unique_ptr<PinComponent>> createPins (const juce::StringArray& a,
     const juce::Rectangle<int>& bounds,
     const core::Object& object,
-    const data::Data& documentation,
+    const std::optional<data::Data>& documentation,
     PatchView* view,
     float scale,
     bool isOutlet)
@@ -100,7 +102,7 @@ void ObjectComponent::createInletsAndOutlets()
     
     const juce::Rectangle<int> bounds (getBounds());
     
-    const data::Data documentation (Spaghettis()->getDocumentation().get (object_));
+    const std::optional<data::Data> documentation (Spaghettis()->getDocumentation().get (object_));
     
     if (!i.isEmpty()) { iPins_ = createPins (i, bounds, object_, documentation, getView(), scale, false); }
     if (!o.isEmpty()) { oPins_ = createPins (o, bounds, object_, documentation, getView(), scale, true);  }

@@ -25,11 +25,6 @@ auto findResource (const juce::String& c)
     return std::tuple<int, const char*> (n, p);
 }
 
-bool hasResource (const juce::String& c)
-{
-    auto [n, p] = findResource (c); return (n && p);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -49,33 +44,7 @@ void addDocumentation (data::Data& data, const juce::String& c)
     }
 }
 
-void addDocumentation (data::Data& data, const core::Item& i)
-{
-    if (i.hasParameter (Tag::Attributes, Tag::Class)) {
-    //
-    addDocumentation (data, i.get<juce::String> (Tag::Attributes, Tag::Class));
-    //
-    }
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-bool Documentation::has (const juce::String& c)
-{
-    return hasResource (c);
-}
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
+/*
 data::Data Documentation::get (const juce::String& c)
 {
     data::Data data (Id::DOCUMENTATION);
@@ -84,25 +53,38 @@ data::Data Documentation::get (const juce::String& c)
     
     return data;
 }
+*/
 
-data::Data Documentation::get (const core::Item& item)
-{
-    data::Data data (Id::DOCUMENTATION);
-    
-    addDocumentation (data, item);
-    
-    return data;
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-data::Data Documentation::makeCopyWithDocumentationAppended (const core::Item& item)
+std::optional<data::Data> Documentation::get (const juce::String& c)
+{
+    return std::nullopt;
+}
+
+std::optional<data::Data> Documentation::get (const core::Item& i)
+{
+    if (i.hasParameter (Tag::Attributes, Tag::Class)) {
+        return get (i.get<juce::String> (Tag::Attributes, Tag::Class));
+    }
+    
+    return std::nullopt;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+data::Data Documentation::makeCopyWithDocumentation (const core::Item& item)
 {
     data::Data data (data::Data::makeCopy (item.getData()));
-
-    addDocumentation (data, item);
     
     return data;
 }
