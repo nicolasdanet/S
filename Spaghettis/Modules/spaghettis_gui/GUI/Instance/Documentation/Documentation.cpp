@@ -17,43 +17,63 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-auto findResource (const juce::String& c)
+auto findResource (const juce::String& key)
 {
-    const juce::String name  = c + juce::String ("_pdinfo");
+    const juce::String name  = key + juce::String ("_pdinfo");
     int n = 0; const char* p = BinaryData::getNamedResource (name.toRawUTF8(), n);
     
     return std::tuple<int, const char*> (n, p);
 }
 
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void addDocumentation (data::Data& data, const juce::String& c)
+auto hasSameKey (const juce::String& key)
 {
-    if (c.isNotEmpty()) {
-    //
-    auto [n, p] = findResource (c);
+    return [s = key](const DocumentationElement& e)
+    {
+        return (e.getKey() == s);
+    };
+}
+
+std::optional<data::Data> findCached (std::vector<DocumentationElement>& v, const juce::String& key)
+{
+    auto r = std::find_if (v.cbegin(), v.cend(), hasSameKey (key));
+        
+    if (r != v.cend()) { return r->getData(); }
+    else {
+        return std::nullopt;
+    }
+}
+
+std::optional<data::Data> addDocumentation (std::vector<DocumentationElement>& v, const juce::String& key)
+{
+    auto [n, p] = findResource (key);
     
     if (n && p) {
     //
     // data.setValuesFromDocumentation (juce::String::createStringFromData (p, n));
     //
     }
-    //
-    }
+    
+    return std::nullopt;
 }
 
-/*
-data::Data Documentation::get (const juce::String& c)
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+std::optional<data::Data> fetchDocumentation (std::vector<DocumentationElement>& v, const juce::String& key)
 {
-    data::Data data (Id::DOCUMENTATION);
+    if (key.isNotEmpty()) {
+
+        std::optional<data::Data> documentation (findCached (v, key));
+        
+        if (documentation.has_value()) { return documentation; }
+        else {
+            return addDocumentation (v, key);
+        }
+    }
     
-    addDocumentation (data, c);
-    
-    return data;
+    return std::nullopt;
 }
-*/
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -64,9 +84,9 @@ data::Data Documentation::get (const juce::String& c)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-std::optional<data::Data> Documentation::get (const juce::String& c)
+std::optional<data::Data> Documentation::get (const juce::String& s)
 {
-    return std::nullopt;
+    return fetchDocumentation (cache_, s);
 }
 
 std::optional<data::Data> Documentation::get (const core::Item& i)

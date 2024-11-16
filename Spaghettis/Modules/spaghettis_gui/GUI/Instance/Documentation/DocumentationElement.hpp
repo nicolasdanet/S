@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2022 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
@@ -12,32 +12,34 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class Documentation {
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-public:
-    Documentation()  = default;
-    ~Documentation() = default;
+class DocumentationElement {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    std::optional<data::Data> get (const juce::String&);
-    std::optional<data::Data> get (const core::Item&);
+    explicit DocumentationElement (const juce::String& key) :
+        key_ (key),
+        data_ (Id::DOCUMENTATION)
+    {
+        static_assert (std::is_nothrow_move_constructible_v<DocumentationElement> == true);
+    }
 
-private:
-    std::vector<DocumentationElement> cache_;
+public:
+    juce::String getKey() const
+    {
+        return key_;
+    }
+    
+    data::Data getData() const
+    {
+        return data_;
+    }
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Documentation)
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
+    juce::String key_;
+    data::Data data_;
 };
 
 // -----------------------------------------------------------------------------------------------------------
