@@ -105,13 +105,13 @@
 
 // Improve Maker (category, abstractions...)
 
-// Handle documentation for abstractions (i.e. inlets/outlets and inspector view)
+// Handle documentation for abstractions (i.e. inlets/outlets and published in Inspector)
 
-// Fast connect / fast editing / fast...
+// Fast connect / fast editing / fast everything...
 
 // DSP analyzers in Inspector
 
-// Allow sub patch navigation without opening new window
+// Allow sub patch navigation in place (without opening new window)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
