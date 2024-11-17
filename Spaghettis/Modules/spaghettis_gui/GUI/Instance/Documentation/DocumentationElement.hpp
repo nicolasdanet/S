@@ -19,11 +19,13 @@ class DocumentationElement {
 // MARK: -
 
 public:
-    explicit DocumentationElement (const juce::String& key) :
+    explicit DocumentationElement (const juce::String& key, const juce::String& data) :
         key_ (key),
         data_ (Id::DOCUMENTATION)
     {
         static_assert (std::is_nothrow_move_constructible_v<DocumentationElement> == true);
+        
+        DBG (key);
     }
 
 public:

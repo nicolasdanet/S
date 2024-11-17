@@ -37,23 +37,17 @@ std::optional<data::Data> findCached (std::vector<DocumentationElement>& v, cons
 {
     auto r = std::find_if (v.cbegin(), v.cend(), hasSameKey (key));
         
-    if (r != v.cend()) { return r->getData(); }
+    if (r != v.cend()) { DBG ("FOUND"); return r->getData(); }
     else {
         return std::nullopt;
     }
 }
 
-std::optional<data::Data> addDocumentation (std::vector<DocumentationElement>& v, const juce::String& key)
+std::optional<data::Data> addDocumentation (std::vector<DocumentationElement>& v,
+    const juce::String& key,
+    const juce::String& data)
 {
-    auto [n, p] = findResource (key);
-    
-    if (n && p) {
-    //
-    // data.setValuesFromDocumentation (juce::String::createStringFromData (p, n));
-    //
-    }
-    
-    return std::nullopt;
+    v.emplace_back (key, data); return v.back().getData();
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -63,13 +57,20 @@ std::optional<data::Data> addDocumentation (std::vector<DocumentationElement>& v
 std::optional<data::Data> fetchDocumentation (std::vector<DocumentationElement>& v, const juce::String& key)
 {
     if (key.isNotEmpty()) {
+    //
+    auto [n, p] = findResource (key);
+    
+    if (n && p) {
+    //
+    std::optional<data::Data> documentation (findCached (v, key));
 
-        std::optional<data::Data> documentation (findCached (v, key));
-        
-        if (documentation.has_value()) { return documentation; }
-        else {
-            return addDocumentation (v, key);
-        }
+    if (documentation.has_value()) { return documentation; }
+    else {
+        return addDocumentation (v, key, juce::String::createStringFromData (p, n));
+    }
+    //
+    }
+    //
     }
     
     return std::nullopt;
