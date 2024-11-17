@@ -37,7 +37,7 @@ std::optional<data::Data> findCached (std::vector<DocumentationElement>& v, cons
 {
     auto r = std::find_if (v.cbegin(), v.cend(), hasSameKey (key));
         
-    if (r != v.cend()) { DBG ("FOUND"); return r->getData(); }
+    if (r != v.cend()) { return r->getData(); }
     else {
         return std::nullopt;
     }
