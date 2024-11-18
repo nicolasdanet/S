@@ -12,9 +12,50 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void fetchContent (data::Group& group, const juce::StringArray& table, int i)
+{
+    DBG (Strings::removeWhitespace (table[i]));
+}
+
+void fetchParameters (data::Group& group, const juce::StringArray& table)
+{
+    const int size = table.size();
+    
+    for (int i = 0; i < size; ++i) {
+        if (!Strings::startsWithWhitespace (table[i])) {
+            fetchContent (group, table, i);
+        }
+    }
+}
+
+void parseResources (data::Group& group, const juce::String& data)
+{
+    juce::StringArray table (juce::StringArray::fromLines (data));
+    
+    table.removeEmptyStrings (false);
+    
+    fetchParameters (group, table);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void DocumentationElement::build (const juce::String& data)
 {
-    DBG (data);
+    data::Group group (data_.addGroup (Tag::Documentation));
+    
+    parseResources (group, data);
 }
 
 // -----------------------------------------------------------------------------------------------------------

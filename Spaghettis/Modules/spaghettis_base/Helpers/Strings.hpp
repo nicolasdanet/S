@@ -28,6 +28,11 @@ static juce::String upToWhitespace (const juce::String& s)
     return s.upToFirstOccurrenceOf (" ", false, false);
 }
 
+static juce::String removeWhitespace (const juce::String& s)
+{
+    return s.removeCharacters (" ");
+}
+
 static juce::String withoutFileExtension (const juce::String& s)
 {
     int k = s.lastIndexOfChar ('.');
@@ -35,6 +40,11 @@ static juce::String withoutFileExtension (const juce::String& s)
     if (k >= 0) { return s.substring (0, k); }
 
     return s;
+}
+
+static bool startsWithWhitespace (const juce::String& s)
+{
+    return s.startsWith (" ");
 }
 
 // -----------------------------------------------------------------------------------------------------------
