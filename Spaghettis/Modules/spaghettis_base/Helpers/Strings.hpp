@@ -28,7 +28,7 @@ static juce::String upToWhitespace (const juce::String& s)
     return s.upToFirstOccurrenceOf (" ", false, false);
 }
 
-static juce::String removeWhitespace (const juce::String& s)
+static juce::String removeWhitespaces (const juce::String& s)
 {
     return s.removeCharacters (" ");
 }

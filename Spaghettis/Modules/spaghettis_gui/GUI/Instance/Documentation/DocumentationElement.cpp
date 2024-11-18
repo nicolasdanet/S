@@ -17,16 +17,27 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+juce::String trimLeadingWhitespaces (const juce::String& s)
+{
+    if (s.startsWith ("    "))      { jassert (s.length() >= 4); return s.substring (4); }
+    else if (s.startsWith ("  "))   { jassert (s.length() >= 2); return s.substring (2); }
+    else {
+        return s.trimStart();
+    }
+}
+
 int fetchContent (data::Group& group, const juce::StringArray& table, int i, int size)
 {
-    const juce::String parameter (Strings::removeWhitespace (table[i]));
+    const juce::String parameter (Strings::removeWhitespaces (table[i]));
     
     DBG (parameter);
     
     int k = 0;
     
     for (int j = i + 1; j < size; ++j) {
-        if (Strings::startsWithWhitespace (table[j])) {
+        const juce::String s (table[j]);
+        if (Strings::startsWithWhitespace (s)) {
+            DBG (trimLeadingWhitespaces (s));
             k++;
         } else {
             break;
