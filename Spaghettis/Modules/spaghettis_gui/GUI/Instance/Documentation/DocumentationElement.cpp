@@ -17,9 +17,23 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-void fetchContent (data::Group& group, const juce::StringArray& table, int i)
+int fetchContent (data::Group& group, const juce::StringArray& table, int i, int size)
 {
-    DBG (Strings::removeWhitespace (table[i]));
+    const juce::String parameter (Strings::removeWhitespace (table[i]));
+    
+    DBG (parameter);
+    
+    int k = 0;
+    
+    for (int j = i + 1; j < size; ++j) {
+        if (Strings::startsWithWhitespace (table[j])) {
+            k++;
+        } else {
+            break;
+        }
+    }
+    
+    return k;
 }
 
 void fetchParameters (data::Group& group, const juce::StringArray& table)
@@ -28,7 +42,7 @@ void fetchParameters (data::Group& group, const juce::StringArray& table)
     
     for (int i = 0; i < size; ++i) {
         if (!Strings::startsWithWhitespace (table[i])) {
-            fetchContent (group, table, i);
+            i += fetchContent (group, table, i, size);
         }
     }
 }
