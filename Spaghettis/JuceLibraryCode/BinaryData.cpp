@@ -44,12 +44,11 @@ static const unsigned char temp_binary_data_1[] =
 "Category\r\n"
 "    Time\r\n"
 "\r\n"
-"Arguments 1\r\n"
+"Arguments\r\n"
 "    Float - Period value (default 1)\r\n"
-"\r\n"
-"Arguments 2 / 3\r\n"
-"    Float / Symbol - Time base (default '1 millisecond')\r\n"
-"\r\n"
+"    Float - Time base (default 1)\r\n"
+"    Symbol - Time unit (default 'millisecond')\r\n"
+"    \r\n"
 "Options\r\n"
 "\r\n"
 "Inlet 1\r\n"
@@ -654,7 +653,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
     switch (hash)
     {
         case 0x6b5f63c6:  numBytes = 450; return bng_pdinfo;
-        case 0x2d826a88:  numBytes = 912; return metro_pdinfo;
+        case 0x2d826a88:  numBytes = 920; return metro_pdinfo;
         case 0x8b255ed8:  numBytes = 32745; return spaghettis_icon_png;
         case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;

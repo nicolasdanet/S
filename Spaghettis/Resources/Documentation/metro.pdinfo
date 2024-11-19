@@ -5,12 +5,11 @@ Description
 Category
     Time
 
-Arguments 1
+Arguments
     Float - Period value (default 1)
-
-Arguments 2 / 3
-    Float / Symbol - Time base (default '1 millisecond')
-
+    Float - Time base (default 1)
+    Symbol - Time unit (default 'millisecond')
+    
 Options
 
 Inlet 1

@@ -33,7 +33,7 @@ public:
         
         addAndMakeVisible (&getConcertinaPanel());
         
-        setOpaque (true); setSize (600, 400);
+        setOpaque (true); setSize (800, 400);
     }
     
     ~PreferencesComponent() = default;

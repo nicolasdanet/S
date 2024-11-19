@@ -29,7 +29,7 @@ ConsoleComponent::ConsoleComponent (juce::ApplicationCommandManager& command,
         
     loadToolbarButtonsStates();
 
-    setOpaque (true); setSize (600, 300);
+    setOpaque (true); setSize (700, 300);
 }
     
 ConsoleComponent::~ConsoleComponent()
