@@ -9,10 +9,10 @@ Arguments
 
 Options
 
-Inlet 0
+Inlet 1
     Anything - Trigger a bang out for any entry
 
-Outlet 0
+Outlet 1
     Bang - Bang!
 
 Details

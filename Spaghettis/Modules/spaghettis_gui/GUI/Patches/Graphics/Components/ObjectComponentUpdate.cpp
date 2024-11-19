@@ -51,7 +51,7 @@ juce::String getPinTooltip (const std::optional<data::Data>& documentation,
     int i)
 {
     if (documentation.has_value()) {
-        const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i);
+        const juce::String k = (isOutlet ? Tag::Outlet : Tag::Inlet) + juce::String (i + 1);
         if (documentation->hasParameter (Tag::Documentation, k)) {
             return documentation->getParameter (Tag::Documentation, k).getValueTyped<TextBlock>().toString();
         }

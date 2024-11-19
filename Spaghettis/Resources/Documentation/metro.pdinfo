@@ -5,24 +5,24 @@ Description
 Category
     Time
 
-Arguments 0
+Arguments 1
     Float - Period value (default 1)
 
-Arguments 1 / 2
+Arguments 2 / 3
     Float / Symbol - Time base (default '1 millisecond')
 
 Options
 
-Inlet 0
+Inlet 1
     Bang - Start the metronome
     Float - Nonzero starts and zero stops the metronome
     Stop - Stop the metronome
     Unit <Float, Symbol> - Set the time base
 
-Inlet 1
+Inlet 2
     Float - Set the period value
 
-Outlet 0
+Outlet 1
     Bang - Bang at a periodic time
 
 Details
