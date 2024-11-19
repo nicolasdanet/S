@@ -116,6 +116,13 @@ public:
 // MARK: -
 
 public:
+    void copyGroup (const Data&, const juce::String&);
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     bool readValues (const juce::File&);
     void writeValues (const juce::File&) const;
 

@@ -103,11 +103,17 @@ std::optional<data::Data> Documentation::get (const core::Item& i)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-/* ??? */
-
 data::Data Documentation::makeCopyWithDocumentation (const core::Item& item)
 {
-    return data::Data::makeCopy (item.getData());
+    data::Data data (data::Data::makeCopy (item.getData()));
+    
+    const std::optional<data::Data> documentation (Spaghettis()->getDocumentation().get (item));
+    
+    if (documentation.has_value()) {
+        data.copyGroup (documentation.value(), Tag::Documentation);
+    }
+    
+    return data;
 }
 
 // -----------------------------------------------------------------------------------------------------------

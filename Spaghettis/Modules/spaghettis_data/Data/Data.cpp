@@ -47,6 +47,14 @@ Group Data::addGroup (const juce::String& name, bool isHidden)
     return Group (group);
 }
 
+void Data::copyGroup (const Data& other, const juce::String& name)
+{
+    jassert (!hasGroup (name));
+    jassert (other.hasGroup (name));
+    
+    tree_.appendChild (Group::makeCopy (other.getGroup (name)).asValueTree(), nullptr);
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
