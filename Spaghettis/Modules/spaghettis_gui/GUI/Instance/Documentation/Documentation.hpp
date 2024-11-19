@@ -29,6 +29,9 @@ public:
     std::optional<data::Data> get (const juce::String&);
     std::optional<data::Data> get (const core::Item&);
 
+public:
+    static data::Data makeCopyWithDocumentation (const core::Item&);
+    
 private:
     std::vector<DocumentationElement> cache_;
     
