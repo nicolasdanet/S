@@ -65,7 +65,7 @@ void MakerComponent::resized()
     juce::Rectangle<int> area (getLocalBounds().reduced (margin_));
     
     entry_.setBounds (area.removeFromTop (getMakerEntryHeight()).reduced (space_));
-    list_.setBounds (area.removeFromLeft (area.getWidth() / 3).reduced (space_));
+    list_.setBounds (area.removeFromLeft (area.getWidth() / 4).reduced (space_));
     documentation_.setBounds (area);
 }
 
