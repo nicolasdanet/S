@@ -28,21 +28,25 @@ juce::String trimLeadingWhitespaces (const juce::String& s)
 
 int fetchContent (data::Group& group, const juce::StringArray& table, int i, int size)
 {
-    const juce::String parameter (Strings::removeWhitespaces (table[i]));
+    const juce::String key (Strings::removeWhitespaces (table[i]));
+    const juce::String label (table[i]);
     
-    DBG (parameter);
+    TextBlock text;
     
     int k = 0;
     
     for (int j = i + 1; j < size; ++j) {
         const juce::String s (table[j]);
         if (Strings::startsWithWhitespace (s)) {
-            DBG (trimLeadingWhitespaces (s));
+            if (k) { text.append (juce::newLine); }
+            text.append (trimLeadingWhitespaces (s));
             k++;
         } else {
             break;
         }
     }
+
+    group.addParameter (key, label, label, text).setEditable (false);
     
     return k;
 }
