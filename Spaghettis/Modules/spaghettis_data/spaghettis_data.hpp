@@ -79,6 +79,7 @@
 #include "View/Parameters/Editors/ChoicesList.hpp"
 #include "View/Parameters/Editors/DirectoryEditor.hpp"
 #include "View/Parameters/Editors/DirectorySelector.hpp"
+#include "View/Parameters/Editors/TextBlockEditor.hpp"
 
 #include "View/Parameters/ParameterBoolean.hpp"
 #include "View/Parameters/ParameterColour.hpp"

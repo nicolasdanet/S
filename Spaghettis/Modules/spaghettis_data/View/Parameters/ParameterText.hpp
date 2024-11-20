@@ -1,5 +1,5 @@
 
-/* Copyright (c) 2021 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
@@ -10,9 +10,10 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
 
 class ParameterText :   public PropertyLookAndFeel,
-                        public juce::TextPropertyComponent {
+                        public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -24,16 +25,50 @@ public:
         const juce::String& s,
         bool isEditable) :
             PropertyLookAndFeel (lnf),
-            juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, true, isEditable)
+            juce::PropertyComponent (s, getPropertyComponentHeight()),
+            editor_ (p)
+            
     {
-        DBG (p.getComment());
-        
-        setPreferredHeight (lnf.getRequiredHeight());
+        addAndMakeVisible (editor_);
         setEnabled (isEditable);
-        setInterestedInFileDrag (false);
+        editor_.setEnabled (isEditable);
+    }
+
+    ~ParameterText() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    int getPropertyComponentHeight() const
+    {
+        return getRequiredHeight();
     }
     
-    ~ParameterText() = default;
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void resized() override
+    {
+        editor_.setBounds (getLookAndFeel().getPropertyComponentContentPosition (*this));
+    }
+
+    void refresh() override
+    {
+    }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    void update();
+    
+private:
+    TextBlockEditor editor_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterText)
