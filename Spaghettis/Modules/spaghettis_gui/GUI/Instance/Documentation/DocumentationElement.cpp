@@ -46,7 +46,9 @@ int fetchContent (data::Group& group, const juce::StringArray& table, int i, int
         }
     }
 
-    if (k) { group.addParameter (key, label, label, text).setEditable (false); }
+    if (k) {
+        group.addParameter (key, label, label, text).setEditable (false).setComment (Tag::Documentation);
+    }
     
     return k;
 }

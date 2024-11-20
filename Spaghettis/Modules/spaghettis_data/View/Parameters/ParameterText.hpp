@@ -26,6 +26,8 @@ public:
             PropertyLookAndFeel (lnf),
             juce::TextPropertyComponent (p.getValueAsValue (false), s, 64, true, isEditable)
     {
+        DBG (p.getComment());
+        
         setPreferredHeight (lnf.getRequiredHeight());
         setEnabled (isEditable);
         setInterestedInFileDrag (false);
