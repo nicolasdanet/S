@@ -28,8 +28,7 @@ juce::String trimLeadingWhitespaces (const juce::String& s)
 
 int fetchContent (data::Group& group, const juce::StringArray& table, int i, int size)
 {
-    const juce::String key (Strings::removeWhitespaces (table[i]));
-    const juce::String label (table[i]);
+    static data::DelegateCache delegate;
     
     TextBlock text;
     
@@ -47,7 +46,15 @@ int fetchContent (data::Group& group, const juce::StringArray& table, int i, int
     }
 
     if (k) {
-        group.addParameter (key, label, label, text).setEditable (false).setComment (Tag::Documentation);
+    
+        const juce::String key (Strings::removeWhitespaces (table[i]));
+        const juce::String label (table[i]);
+    
+        group.addParameter (key,
+                label,
+                label,
+                text,
+                delegate).setEditable (false).setComment (Tag::Documentation);
     }
     
     return k;
