@@ -12,9 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-TextBlockEditor::TextBlockEditor (const data::Parameter& p)
+TextBlockEditor::TextBlockEditor (const data::Parameter& p) : value_ (p.getValueAsValue (false))
 {
-    DBG (p.getComment());
+    // DBG (p.getComment());
+    
+    // CodeDocument
+    // CodeEditorComponent
+    // setReadOnly
+    // setLineNumbersShown
+    // loadContent
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,9 +29,7 @@ TextBlockEditor::TextBlockEditor (const data::Parameter& p)
 
 void TextBlockEditor::paint (juce::Graphics& g)
 {
-    // g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
-    
-    g.fillAll (juce::Colours::orange);
+    g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
 }
 
 void TextBlockEditor::resized()

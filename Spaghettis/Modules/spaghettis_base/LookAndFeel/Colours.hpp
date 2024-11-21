@@ -183,6 +183,14 @@ static void initialize (juce::LookAndFeel* lf)
     
     lf->setColour (juce::Label::textColourId,                           p->textSystem);
     
+    /* Text paramaters. */
+    
+    lf->setColour (0x1004500, /* CodeEditorComponent::backgroundColourId */         p->backgroundAlternate);
+    lf->setColour (0x1004502, /* CodeEditorComponent::highlightColourId */          p->textHighlighted);
+    lf->setColour (0x1004503, /* CodeEditorComponent::defaultTextColourId */        p->textSystem);
+    lf->setColour (0x1004504, /* CodeEditorComponent::lineNumberBackgroundId */     p->background);
+    lf->setColour (0x1004505, /* CodeEditorComponent::lineNumberTextId */           p->textPopup);
+        
     /* Colour selector sliders. */
     
     lf->setColour (juce::Slider::backgroundColourId,                    p->backgroundWidget);
