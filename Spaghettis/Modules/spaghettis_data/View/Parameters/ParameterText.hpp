@@ -25,7 +25,7 @@ public:
         const juce::String& s,
         bool isEditable) :
             PropertyLookAndFeel (lnf),
-            juce::PropertyComponent (s, getRequiredHeight()),
+            juce::PropertyComponent (s, getPropertyComponentHeight (p, isEditable)),
             editor_ (p)
     {
         addAndMakeVisible (editor_);
@@ -35,6 +35,21 @@ public:
 
     ~ParameterText() = default;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    int getPropertyComponentHeight (const data::Parameter& p, bool isEditable) const
+    {
+        const int n = getRequiredHeight();
+        
+        if (!isEditable) { return n * p.getValueTyped<TextBlock>().getNumberOfLines(); }
+        else {
+            return n * 10;
+        }
+    }
+    
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -

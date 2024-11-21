@@ -47,6 +47,11 @@ static bool startsWithWhitespace (const juce::String& s)
     return s.startsWith (" ");
 }
 
+static int getNumberOfLines (const juce::String& s)
+{
+    return juce::StringArray::fromLines (s).size();
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
