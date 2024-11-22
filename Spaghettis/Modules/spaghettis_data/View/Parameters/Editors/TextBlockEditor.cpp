@@ -12,11 +12,13 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-TextBlockEditor::TextBlockEditor (const data::Parameter& p) :
+TextBlockEditor::TextBlockEditor (const data::Parameter& p, const juce::Font& font) :
     value_ (p.getValueAsValue (false)),
     document_(),
     editor_ (document_, getTokenizer (p))
 {
+    editor_.setFont (font);
+    editor_.setScrollbarThickness (0);
     editor_.setReadOnly (isEnabled());
     editor_.setLineNumbersShown (false);
     editor_.loadContent (value_.toString());

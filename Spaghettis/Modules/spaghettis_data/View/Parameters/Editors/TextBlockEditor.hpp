@@ -19,7 +19,7 @@ class TextBlockEditor : public juce::Component {
 // MARK: -
 
 public:
-    explicit TextBlockEditor (const data::Parameter& p);
+    explicit TextBlockEditor (const data::Parameter&, const juce::Font&);
 
     ~TextBlockEditor() = default;
 

@@ -55,9 +55,14 @@ public:
         return width_;
     }
 
+    int getFontHeight() const
+    {
+        return font_.getHeight();
+    }
+    
     int getRequiredHeight() const
     {
-        return font_.getHeight() * 1.5;
+        return getFontHeight() * 1.5;
     }
     
 // -----------------------------------------------------------------------------------------------------------
