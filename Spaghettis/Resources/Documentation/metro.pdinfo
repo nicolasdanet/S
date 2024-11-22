@@ -9,7 +9,7 @@ Arguments
     Float - Period value (default 1)
     Float - Time base (default 1)
     Symbol - Time unit (default 'millisecond')
-    
+
 Options
 
 Inlet 1
