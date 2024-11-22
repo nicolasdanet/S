@@ -59,6 +59,7 @@
         <MODULEPATH id="spaghettis_gui" path="Modules"/>
         <MODULEPATH id="spaghettis_data" path="Modules"/>
         <MODULEPATH id="spaghettis_core" path="Modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraCompilerFlags="-Wall&#10;-Wextra&#10;-Wshadow&#10;-Wno-unused-parameter&#10;-ffast-math&#10;-fvisibility=hidden"
@@ -77,6 +78,7 @@
         <MODULEPATH id="spaghettis_gui" path="Modules"/>
         <MODULEPATH id="spaghettis_data" path="Modules"/>
         <MODULEPATH id="spaghettis_core" path="Modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -86,6 +88,7 @@
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="spaghettis_base" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="spaghettis_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="spaghettis_data" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>

@@ -20,7 +20,7 @@
   website:            https://github.com/Spaghettis
   license:            AGPLv3
 
-  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics
+  dependencies:       juce_core juce_data_structures juce_events juce_graphics juce_gui_basics juce_gui_extra
   OSXFrameworks:
   OSXLibs:
   linuxLibs:
@@ -41,6 +41,7 @@
 #include "juce_data_structures/juce_data_structures.h"
 #include "juce_events/juce_events.h"
 #include "juce_gui_basics/juce_gui_basics.h"
+#include "juce_gui_extra/juce_gui_extra.h"
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

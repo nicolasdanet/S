@@ -23,6 +23,7 @@
 		5DD4C9BB6FFAD6F50A1F886B /* Icon.icns */ = {isa = PBXBuildFile; fileRef = 603D9BC5E29B7AD838C35321; };
 		6E1BA5A7EDAB97C5EA635131 /* include_juce_gui_basics.mm */ = {isa = PBXBuildFile; fileRef = A7D9C0FA0907BC5117638CCC; };
 		7CC4ED4FEF7FD5AAB4D63BFE /* Metal.framework */ = {isa = PBXBuildFile; fileRef = 3612AABF8EDFE0DC71327636; settings = { ATTRIBUTES = (Weak, ); }; };
+		85168D9E292D5C91BCEA6015 /* include_juce_gui_extra.mm */ = {isa = PBXBuildFile; fileRef = 59A63F6B0D83742014BD73FC; };
 		C752C8AC6CBFCA5001A6B596 /* include_spaghettis_base.mm */ = {isa = PBXBuildFile; fileRef = 62D25DF0140BED0D98A22473; };
 		D0B4049BC7214518D88FC403 /* include_juce_graphics.mm */ = {isa = PBXBuildFile; fileRef = 16458E769BBE629739926E6D; };
 		D1156CB53965143E57684B78 /* include_spaghettis_gui.mm */ = {isa = PBXBuildFile; fileRef = 872360D0C70C7B5CA52A5B1B; };
@@ -31,10 +32,12 @@
 		E056A29494362A6384E4D8CB /* include_juce_events.mm */ = {isa = PBXBuildFile; fileRef = 4BD2FF29EDDE1ABAC27A7822; };
 		E6EF992661E0BCC0594EF123 /* Carbon.framework */ = {isa = PBXBuildFile; fileRef = 275F8E522693FC248DD886E3; };
 		E8E93D5E1626F0A68486AAD9 /* include_spaghettis_core.mm */ = {isa = PBXBuildFile; fileRef = 051678F45F5E88F07EA77717; };
+		F44BD82F497F811331115CE1 /* WebKit.framework */ = {isa = PBXBuildFile; fileRef = 002ED5C1FCC14E985557D087; };
 		F49611C8B5492263E100A1D2 /* Foundation.framework */ = {isa = PBXBuildFile; fileRef = A3A861B41BD91C2AFB7F1175; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		002ED5C1FCC14E985557D087 /* WebKit.framework */ /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		051678F45F5E88F07EA77717 /* include_spaghettis_core.mm */ /* include_spaghettis_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_spaghettis_core.mm; path = ../../JuceLibraryCode/include_spaghettis_core.mm; sourceTree = SOURCE_ROOT; };
 		0527F576C3115F8457FDAC6E /* icon_visibility.svg */ /* icon_visibility.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_visibility.svg; path = ../../Resources/Icons/SVG/icon_visibility.svg; sourceTree = SOURCE_ROOT; };
 		119BE2259F904F5D7E463AD0 /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
@@ -49,8 +52,10 @@
 		389D7927151AD7F53D9F79C3 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
 		3AC6DAD528C440D39662FA49 /* BinaryData.cpp */ /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
 		47B902E51FA1D26D812A2D55 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
+		49B9B0CBE2367B091D494B92 /* juce_gui_extra */ /* juce_gui_extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_extra; path = "~/JUCE/modules/juce_gui_extra"; sourceTree = "<absolute>"; };
 		4BD2FF29EDDE1ABAC27A7822 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
 		50ED0DDFBD78181A13A37290 /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		59A63F6B0D83742014BD73FC /* include_juce_gui_extra.mm */ /* include_juce_gui_extra.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_extra.mm; path = ../../JuceLibraryCode/include_juce_gui_extra.mm; sourceTree = SOURCE_ROOT; };
 		5D54858FA1893DF53C9DB594 /* icon_tune.svg */ /* icon_tune.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = icon_tune.svg; path = ../../Resources/Icons/SVG/icon_tune.svg; sourceTree = SOURCE_ROOT; };
 		5FEF97D704B2CE2259136DC7 /* bng.pdinfo */ /* bng.pdinfo */ = {isa = PBXFileReference; lastKnownFileType = file.pdinfo; name = bng.pdinfo; path = ../../Resources/Documentation/bng.pdinfo; sourceTree = SOURCE_ROOT; };
 		603D9BC5E29B7AD838C35321 /* Icon.icns */ /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = file.icns; name = Icon.icns; path = Icon.icns; sourceTree = SOURCE_ROOT; };
@@ -104,6 +109,7 @@
 				5BFCA5F5B994AFE79CC658DD,
 				D8751DBF49BECD65C7A0923A,
 				3580A9AB24A210EF3E8D2D35,
+				F44BD82F497F811331115CE1,
 				7CC4ED4FEF7FD5AAB4D63BFE,
 				05ADAED8FAB54CD6C62362DB,
 			);
@@ -163,6 +169,7 @@
 				E256EE56D3F74E547832FB86,
 				A56CB13A5C065878D9CCD781,
 				50ED0DDFBD78181A13A37290,
+				002ED5C1FCC14E985557D087,
 				3612AABF8EDFE0DC71327636,
 				21B7DCFB3DCB4BF26118366C,
 			);
@@ -187,6 +194,7 @@
 				47B902E51FA1D26D812A2D55,
 				6BABF3016D73C66D88F37770,
 				DD376E055A3C1DAE5AD681FE,
+				49B9B0CBE2367B091D494B92,
 				A030B252319C2FD073FBCFBC,
 				B4DAE1C42FD0579475CBE2CD,
 				C7BA1A487C5355537E9C89DE,
@@ -205,6 +213,7 @@
 				4BD2FF29EDDE1ABAC27A7822,
 				16458E769BBE629739926E6D,
 				A7D9C0FA0907BC5117638CCC,
+				59A63F6B0D83742014BD73FC,
 				62D25DF0140BED0D98A22473,
 				051678F45F5E88F07EA77717,
 				AC891E19FCEE3DEDF86A04CE,
@@ -353,6 +362,7 @@
 				E056A29494362A6384E4D8CB,
 				D0B4049BC7214518D88FC403,
 				6E1BA5A7EDAB97C5EA635131,
+				85168D9E292D5C91BCEA6015,
 				C752C8AC6CBFCA5001A6B596,
 				E8E93D5E1626F0A68486AAD9,
 				51323ACC4795195E5DC6DFB4,
@@ -435,6 +445,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
+					"JUCE_MODULE_AVAILABLE_juce_gui_extra=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_base=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_data=1",
@@ -500,6 +511,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
 					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
+					"JUCE_MODULE_AVAILABLE_juce_gui_extra=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_base=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_core=1",
 					"JUCE_MODULE_AVAILABLE_spaghettis_data=1",
