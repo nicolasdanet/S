@@ -47,9 +47,16 @@ static bool startsWithWhitespace (const juce::String& s)
     return s.startsWith (" ");
 }
 
+/* https://forum.juce.com/t/juce-string-number-of-lines/64331/1 */
+
 static int getNumberOfLines (const juce::String& s)
 {
-    return juce::StringArray::fromLines (s).size();
+    if (s.isEmpty()) { return 0; }
+    else {
+        int n = 1;
+        for (auto c : s) { if (c == '\n') { ++n; } }
+        return n;
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------

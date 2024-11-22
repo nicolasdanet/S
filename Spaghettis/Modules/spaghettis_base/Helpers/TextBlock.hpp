@@ -53,13 +53,13 @@ public:
 public:
     int getNumberOfLines() const
     {
-        return Strings::getNumberOfLines (text_);
+        return juce::jmax (Strings::getNumberOfLines (text_), 1);
     }
     
 private:
     juce::String text_;
 };
-    
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
