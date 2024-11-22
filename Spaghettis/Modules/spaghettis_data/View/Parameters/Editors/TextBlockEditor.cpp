@@ -12,15 +12,22 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-TextBlockEditor::TextBlockEditor (const data::Parameter& p) : value_ (p.getValueAsValue (false))
+TextBlockEditor::TextBlockEditor (const data::Parameter& p) :
+    value_ (p.getValueAsValue (false)),
+    document_(),
+    editor_ (document_, getTokenizer (p))
+{
+    editor_.setReadOnly (isEnabled());
+    editor_.setLineNumbersShown (false);
+    editor_.loadContent (value_.toString());
+    addAndMakeVisible (editor_);
+}
+
+juce::CodeTokeniser* TextBlockEditor::getTokenizer (const data::Parameter& p)
 {
     // DBG (p.getComment());
-    
-    // CodeDocument
-    // CodeEditorComponent
-    // setReadOnly
-    // setLineNumbersShown
-    // loadContent
+
+    return nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -34,7 +41,7 @@ void TextBlockEditor::paint (juce::Graphics& g)
 
 void TextBlockEditor::resized()
 {
-
+    editor_.setBounds (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------

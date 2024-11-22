@@ -31,8 +31,17 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+private:
+    juce::CodeTokeniser* getTokenizer (const data::Parameter&);
+    
 private:
     juce::Value value_;
+    juce::CodeDocument document_;
+    juce::CodeEditorComponent editor_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TextBlockEditor)
