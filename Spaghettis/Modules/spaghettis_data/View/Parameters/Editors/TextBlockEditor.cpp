@@ -43,7 +43,7 @@ void TextBlockEditor::paint (juce::Graphics& g)
 
 void TextBlockEditor::resized()
 {
-    editor_.setBounds (getLocalBounds());
+    editor_.setBounds (getLocalBounds().withTrimmedTop (3));
 }
 
 // -----------------------------------------------------------------------------------------------------------

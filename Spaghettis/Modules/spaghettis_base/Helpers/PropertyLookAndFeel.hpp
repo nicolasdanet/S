@@ -49,17 +49,22 @@ public:
     {
         return fontMonospaced_;
     }
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    int getFontHeight() const
+    {
+        return font_.getHeight();
+    }
     
     int getRequiredWidth() const
     {
         return width_;
     }
 
-    int getFontHeight() const
-    {
-        return font_.getHeight();
-    }
-    
     int getRequiredHeight() const
     {
         return getFontHeight() * 1.5;
