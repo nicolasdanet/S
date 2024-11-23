@@ -55,11 +55,6 @@ public:
 // MARK: -
 
 public:
-    int getFontHeight() const
-    {
-        return font_.getHeight();
-    }
-    
     int getRequiredWidth() const
     {
         return width_;
@@ -67,7 +62,7 @@ public:
 
     int getRequiredHeight() const
     {
-        return getFontHeight() * 1.5;
+        return font_.getHeight() * 1.5;
     }
     
 // -----------------------------------------------------------------------------------------------------------

@@ -15,9 +15,6 @@ static const unsigned char temp_binary_data_0[] =
 "Description\r\n"
 "    Output a bang for any interaction\r\n"
 "\r\n"
-"Category\r\n"
-"    Graphic\r\n"
-"\r\n"
 "Arguments\r\n"
 "\r\n"
 "Options\r\n"
@@ -26,12 +23,7 @@ static const unsigned char temp_binary_data_0[] =
 "    Anything - Trigger a bang out for any entry\r\n"
 "\r\n"
 "Outlet 1\r\n"
-"    Bang - Bang!\r\n"
-"\r\n"
-"Details\r\n"
-"    A graphical object that outputs a bang whenever it is clicked on with the mouse.\r\n"
-"    It also converts anything it received in its inlet into a bang sent out its outlet.\r\n"
-"    It highlights itself with a brief flash whenever it is triggered.\r\n";
+"    Bang - Bang!\r\n";
 
 const char* bng_pdinfo = (const char*) temp_binary_data_0;
 
@@ -41,13 +33,10 @@ static const unsigned char temp_binary_data_1[] =
 "Description\r\n"
 "    Output a bang periodically\r\n"
 "\r\n"
-"Category\r\n"
-"    Time\r\n"
-"\r\n"
 "Arguments\r\n"
-"    Float - Period value (default 1)\r\n"
-"    Float - Time base (default 1)\r\n"
-"    Symbol - Time unit (default 'millisecond')\r\n"
+"    Float - Period value (1)\r\n"
+"    Float - Time quantum (1)\r\n"
+"    Symbol - Time unit ('millisecond')\r\n"
 "\r\n"
 "Options\r\n"
 "\r\n"
@@ -55,33 +44,13 @@ static const unsigned char temp_binary_data_1[] =
 "    Bang - Start the metronome\r\n"
 "    Float - Nonzero starts and zero stops the metronome\r\n"
 "    Stop - Stop the metronome\r\n"
-"    Unit <Float, Symbol> - Set the time base\r\n"
+"    Unit - Set the time base\r\n"
 "\r\n"
 "Inlet 2\r\n"
 "    Float - Set the period value\r\n"
 "\r\n"
 "Outlet 1\r\n"
-"    Bang - Bang at a periodic time\r\n"
-"\r\n"
-"Details\r\n"
-"    The [metro] object sends a series of bangs at regular time intervals.\r\n"
-"    \r\n"
-"    The default time base is 1 millisecond.\r\n"
-"    \r\n"
-"    Possible time units are:\r\n"
-"    \r\n"
-"        millisecond\r\n"
-"        second\r\n"
-"        minute\r\n"
-"        sample\r\n"
-"    \r\n"
-"    It an also be:\r\n"
-"    \r\n"
-"        permillisecond\r\n"
-"        persecond\r\n"
-"        perminute\r\n"
-"        \r\n"
-"    In this case, '60 perminute' means 1/60 minute (hence, the same as 'BPM').\r\n";
+"    Bang  - Bang at a periodic time\r\n";
 
 const char* metro_pdinfo = (const char*) temp_binary_data_1;
 
@@ -652,8 +621,8 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x6b5f63c6:  numBytes = 450; return bng_pdinfo;
-        case 0x2d826a88:  numBytes = 916; return metro_pdinfo;
+        case 0x6b5f63c6:  numBytes = 168; return bng_pdinfo;
+        case 0x2d826a88:  numBytes = 426; return metro_pdinfo;
         case 0x8b255ed8:  numBytes = 32745; return spaghettis_icon_png;
         case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;

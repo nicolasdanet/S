@@ -2,13 +2,10 @@
 Description
     Output a bang periodically
 
-Category
-    Time
-
 Arguments
-    Float - Period value (default 1)
-    Float - Time base (default 1)
-    Symbol - Time unit (default 'millisecond')
+    Float - Period value (1)
+    Float - Time quantum (1)
+    Symbol - Time unit ('millisecond')
 
 Options
 
@@ -16,30 +13,10 @@ Inlet 1
     Bang - Start the metronome
     Float - Nonzero starts and zero stops the metronome
     Stop - Stop the metronome
-    Unit <Float, Symbol> - Set the time base
+    Unit - Set the time base
 
 Inlet 2
     Float - Set the period value
 
 Outlet 1
-    Bang - Bang at a periodic time
-
-Details
-    The [metro] object sends a series of bangs at regular time intervals.
-    
-    The default time base is 1 millisecond.
-    
-    Possible time units are:
-    
-        millisecond
-        second
-        minute
-        sample
-    
-    It an also be:
-    
-        permillisecond
-        persecond
-        perminute
-        
-    In this case, '60 perminute' means 1/60 minute (hence, the same as 'BPM').
+    Bang  - Bang at a periodic time

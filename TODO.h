@@ -106,7 +106,7 @@
 
 // Improve Maker (category, abstractions...)
 
-// Handle documentation for abstractions (i.e. inlets/outlets and Inspector)
+// Manage documentation for abstractions
 
 // Fast connect / fast editing / fast everything...
 

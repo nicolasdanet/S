@@ -2,9 +2,6 @@
 Description
     Output a bang for any interaction
 
-Category
-    Graphic
-
 Arguments
 
 Options
@@ -14,8 +11,3 @@ Inlet 1
 
 Outlet 1
     Bang - Bang!
-
-Details
-    A graphical object that outputs a bang whenever it is clicked on with the mouse.
-    It also converts anything it received in its inlet into a bang sent out its outlet.
-    It highlights itself with a brief flash whenever it is triggered.

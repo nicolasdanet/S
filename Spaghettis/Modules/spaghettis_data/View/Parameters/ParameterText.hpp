@@ -48,7 +48,7 @@ private:
         else {
             int n = p.getValueTyped<TextBlock>().getNumberOfLines();
             if (n > 1) {
-                k += (n - 1) * getFontHeight();
+                k += (n - 1) * getFont().getHeight();
             }
             return k;
         }
