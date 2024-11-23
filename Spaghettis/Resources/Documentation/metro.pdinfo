@@ -2,21 +2,24 @@
 Description
     Output a bang periodically
 
+Category
+    Time
+
 Arguments
-    Float - Period value (1)
-    Float - Time quantum (1)
-    Symbol - Time unit ('millisecond')
+    Float: Period value (1)
+    Float: Time quantum (1)
+    Symbol: Time unit ('millisecond')
 
 Options
 
 Inlet 1
-    Bang - Start the metronome
-    Float - Nonzero starts and zero stops the metronome
-    Stop - Stop the metronome
-    Unit - Set the time base
+    Bang: Start metronome
+    Float: 1/0 start and stop metronome
+    Stop: Stop metronome
+    Unit: Set the time base
 
 Inlet 2
-    Float - Set the period value
+    Float: Set the period value
 
 Outlet 1
-    Bang  - Bang at a periodic time
+    Bang: Bang at a periodic time

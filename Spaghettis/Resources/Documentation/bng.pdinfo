@@ -2,12 +2,15 @@
 Description
     Output a bang for any interaction
 
+Category
+    Graphic
+
 Arguments
 
 Options
 
 Inlet 1
-    Anything - Trigger a bang out for any entry
+    Anything: Trigger a bang out for any entry
 
 Outlet 1
-    Bang - Bang!
+    Bang: Bang!

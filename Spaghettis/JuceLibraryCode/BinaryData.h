@@ -9,10 +9,10 @@
 namespace BinaryData
 {
     extern const char*   bng_pdinfo;
-    const int            bng_pdinfoSize = 168;
+    const int            bng_pdinfoSize = 191;
 
     extern const char*   metro_pdinfo;
-    const int            metro_pdinfoSize = 426;
+    const int            metro_pdinfoSize = 415;
 
     extern const char*   spaghettis_icon_png;
     const int            spaghettis_icon_pngSize = 32745;
