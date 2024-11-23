@@ -18,7 +18,7 @@ CodeEditor::CodeEditor (const data::Parameter& p, const juce::Font& font) :
     editor_ (document_, getTokenizer (p))
 {
     editor_.setFont (font);
-    editor_.setScrollbarThickness (0);
+    editor_.setScrollbarThickness (6);
     editor_.setReadOnly (isEnabled());
     editor_.setLineNumbersShown (false);
     editor_.loadContent (value_.toString());
@@ -43,7 +43,7 @@ void CodeEditor::paint (juce::Graphics& g)
 
 void CodeEditor::resized()
 {
-    editor_.setBounds (getLocalBounds().withTrimmedTop (3));
+    editor_.setBounds (getLocalBounds());
 }
 
 // -----------------------------------------------------------------------------------------------------------

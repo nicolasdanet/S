@@ -26,7 +26,7 @@ public:
         bool isEditable) :
             PropertyLookAndFeel (lnf),
             juce::PropertyComponent (s, getPropertyComponentHeight (p, isEditable)),
-            editor_ (p, getFont())
+            editor_ (p, getMonospacedFont())
     {
         addAndMakeVisible (editor_);
         setEnabled (isEditable);
@@ -48,7 +48,7 @@ private:
         else {
             int n = p.getValueTyped<TextBlock>().getNumberOfLines();
             if (n > 1) {
-                k += (n - 1) * (getFont().getHeight() + 3);
+                k += (n - 1) * getMonospacedFont().getHeight();
             }
             return k;
         }
