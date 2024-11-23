@@ -12,16 +12,16 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class TextBlockEditor : public juce::Component {
+class CodeEditor : public juce::Component {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit TextBlockEditor (const data::Parameter&, const juce::Font&);
+    explicit CodeEditor (const data::Parameter&, const juce::Font&);
 
-    ~TextBlockEditor() = default;
+    ~CodeEditor() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ private:
     juce::CodeEditorComponent editor_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TextBlockEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CodeEditor)
 };
     
 // -----------------------------------------------------------------------------------------------------------

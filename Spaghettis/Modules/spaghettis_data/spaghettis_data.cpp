@@ -29,7 +29,7 @@
 #include "View/Parameters/Editors/DirectoryEditor.cpp"
 #include "View/Parameters/Editors/DirectorySelector.cpp"
 #include "View/Parameters/Editors/ChoicesSelector.cpp"
-#include "View/Parameters/Editors/TextBlockEditor.cpp"
+#include "View/Parameters/Editors/CodeEditor.cpp"
 
 #include "View/Parameters/ParameterChoices.cpp"
 #include "View/Parameters/ViewCommon.cpp"

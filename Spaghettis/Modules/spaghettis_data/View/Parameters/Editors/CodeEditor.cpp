@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-TextBlockEditor::TextBlockEditor (const data::Parameter& p, const juce::Font& font) :
+CodeEditor::CodeEditor (const data::Parameter& p, const juce::Font& font) :
     value_ (p.getValueAsValue (false)),
     document_(),
     editor_ (document_, getTokenizer (p))
@@ -25,7 +25,7 @@ TextBlockEditor::TextBlockEditor (const data::Parameter& p, const juce::Font& fo
     addAndMakeVisible (editor_);
 }
 
-juce::CodeTokeniser* TextBlockEditor::getTokenizer (const data::Parameter& p)
+juce::CodeTokeniser* CodeEditor::getTokenizer (const data::Parameter& p)
 {
     // DBG (p.getComment());
 
@@ -36,12 +36,12 @@ juce::CodeTokeniser* TextBlockEditor::getTokenizer (const data::Parameter& p)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void TextBlockEditor::paint (juce::Graphics& g)
+void CodeEditor::paint (juce::Graphics& g)
 {
     g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
 }
 
-void TextBlockEditor::resized()
+void CodeEditor::resized()
 {
     editor_.setBounds (getLocalBounds().withTrimmedTop (3));
 }

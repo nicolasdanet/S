@@ -183,7 +183,7 @@ static void initialize (juce::LookAndFeel* lf)
     
     lf->setColour (juce::Label::textColourId,                           p->textSystem);
     
-    /* Text paramaters. */
+    /* Code paramaters. */
     
     lf->setColour (0x1004500, /* CodeEditorComponent::backgroundColourId */         p->backgroundAlternate);
     lf->setColour (0x1004502, /* CodeEditorComponent::highlightColourId */          p->textHighlighted);
