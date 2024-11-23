@@ -17,15 +17,6 @@ namespace {
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-juce::String trimLeadingWhitespaces (const juce::String& s)
-{
-    if (s.startsWith ("    "))      { jassert (s.length() >= 4); return s.substring (4); }
-    else if (s.startsWith ("  "))   { jassert (s.length() >= 2); return s.substring (2); }
-    else {
-        return s.trimStart();
-    }
-}
-
 int fetchContent (data::Group& group, const juce::StringArray& table, int i, int size)
 {
     static data::DelegateCache delegate;
@@ -38,7 +29,7 @@ int fetchContent (data::Group& group, const juce::StringArray& table, int i, int
         const juce::String s (table[j]);
         if (Strings::startsWithWhitespace (s)) {
             if (k) { text.append (juce::newLine); }
-            text.append (trimLeadingWhitespaces (s));
+            text.append (s.trimStart());
             k++;
         } else {
             break;
