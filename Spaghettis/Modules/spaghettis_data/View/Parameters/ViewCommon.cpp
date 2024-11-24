@@ -87,13 +87,13 @@ std::unique_ptr<juce::PropertyComponent> createPropertyComponent (const data::Pa
 void addPropertyComponent (const data::Parameter& p,
     const PropertyLookAndFeel& lnf,
     const juce::String& label,
-    const juce::String& info,
+    const juce::String& tips,
     bool isEditable,
     juce::Array<juce::PropertyComponent*>& c)
 {
     std::unique_ptr<juce::PropertyComponent> t (createPropertyComponent (p, lnf, label, isEditable));
     
-    t->setTooltip (info);
+    t->setTooltip (tips);
     
     c.add (t.release());
 }
@@ -121,7 +121,7 @@ void ViewCommon::buildPanel (const data::Data& data,
     
     for (const auto& p : group) {
         if (!p.isHidden()) {
-            addPropertyComponent (p, base, p.getLabel(), p.getInfo(), p.isEditable(), components);
+            addPropertyComponent (p, base, p.getLabel(), p.getTips(), p.isEditable(), components);
         }
     }
     

@@ -22,7 +22,6 @@ namespace spaghettis::Identifiers {
     DECLARE_ID (editable);
     DECLARE_ID (hidden);
     DECLARE_ID (identifier);
-    DECLARE_ID (info);
     DECLARE_ID (item);
     DECLARE_ID (key);
     DECLARE_ID (label);
@@ -33,6 +32,7 @@ namespace spaghettis::Identifiers {
     DECLARE_ID (path);
     DECLARE_ID (state);
     DECLARE_ID (source);
+    DECLARE_ID (tips);
     DECLARE_ID (type);
     DECLARE_ID (value);
     

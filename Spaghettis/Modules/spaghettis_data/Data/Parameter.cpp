@@ -76,9 +76,9 @@ juce::String Parameter::getLabel() const
     return get (Id::label).toString();
 }
 
-juce::String Parameter::getInfo() const
+juce::String Parameter::getTips() const
 {
-    return get (Id::info).toString();
+    return get (Id::tips).toString();
 }
 
 juce::var Parameter::getValue() const

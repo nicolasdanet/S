@@ -75,7 +75,7 @@ public:
     juce::String getKey() const;
     juce::String getType() const;
     juce::String getLabel() const;
-    juce::String getInfo() const;
+    juce::String getTips() const;
     juce::var getValue() const;
 
 // -----------------------------------------------------------------------------------------------------------

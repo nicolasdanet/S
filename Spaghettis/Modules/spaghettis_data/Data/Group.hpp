@@ -78,11 +78,11 @@ public:
 public:
     template <class T> Parameter addParameter (juce::StringRef key,
         juce::StringRef label,
-        juce::StringRef info,
+        juce::StringRef tips,
         T t,
         DelegateManager* p = nullptr)
     {
-        const Invariant i = { key, ParameterType<T>::get(), label, info };
+        const Invariant i = { key, ParameterType<T>::get(), label, tips };
 
         return add (p, i, Cast::toVar<T> (t));
     }
