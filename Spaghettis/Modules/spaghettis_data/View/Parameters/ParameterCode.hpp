@@ -42,11 +42,13 @@ public:
 private:
     int getPropertyComponentHeight (const data::Parameter& p, const bool isEditable) const
     {
+        const juce::String text (p.getValueTyped<TextBlock>().toString());
+        
         int k = getRequiredHeight();
         
         if (isEditable) { return k * 10; }
         else {
-            int n = p.getValueTyped<TextBlock>().getNumberOfLines();
+            int n = juce::jmax (Strings::getNumberOfLines (text), 1);
             if (n > 1) {
                 k += (n - 1) * getMonospacedFont().getHeight();
             }

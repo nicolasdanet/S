@@ -49,12 +49,6 @@ public:
     {
         text_ += s;
     }
-
-public:
-    int getNumberOfLines() const
-    {
-        return juce::jmax (Strings::getNumberOfLines (text_), 1);
-    }
     
 private:
     juce::String text_;
