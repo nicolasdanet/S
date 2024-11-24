@@ -1,47 +1,45 @@
 
-/* Copyright (c) 2023 Spaghettis and others. */
+/* Copyright (c) 2024 Spaghettis and others. */
 
 /* < https://www.gnu.org/licenses/agpl-3.0.en.html > */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "spaghettis_data.hpp"
+namespace spaghettis {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+class DocumentationEditor : public juce::Component {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    explicit DocumentationEditor (const juce::Font&);
+
+    ~DocumentationEditor() = default;
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
+    void paint (juce::Graphics&) override;
+    void resized() override;
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DocumentationEditor)
+};
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-#include "Data/Delegate/Delegate.cpp"
-#include "Data/Delegate/DelegateManager.cpp"
-#include "Data/Parameter.cpp"
-#include "Data/Group.cpp"
-#include "Data/Data.cpp"
-#include "Data/DataSerialize.cpp"
-#include "Data/Getters/Observer.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/Parameters/Editors/ColourSpace.cpp"
-#include "View/Parameters/Editors/HueSelector.cpp"
-#include "View/Parameters/Editors/ColourSelector.cpp"
-#include "View/Parameters/Editors/ColourEditor.cpp"
-#include "View/Parameters/Editors/DirectoryEditor.cpp"
-#include "View/Parameters/Editors/DirectorySelector.cpp"
-#include "View/Parameters/Editors/ChoicesSelector.cpp"
-#include "View/Parameters/Editors/CodeEditor.cpp"
-#include "View/Parameters/Editors/DocumentationEditor.cpp"
-
-#include "View/Parameters/ParameterChoices.cpp"
-#include "View/Parameters/ViewCommon.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-
-#include "View/ParametersViewHeader.cpp"
-#include "View/ParametersView.cpp"
-#include "View/PresetsViewHeader.cpp"
-#include "View/PresetsView.cpp"
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
