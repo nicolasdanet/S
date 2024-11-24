@@ -72,7 +72,7 @@
 #include "View/Parameters/Editors/DirectoryEditor.hpp"
 #include "View/Parameters/Editors/DirectorySelector.hpp"
 #include "View/Parameters/Editors/CodeEditor.hpp"
-#include "View/Parameters/Editors/DocumentationEditor.hpp"
+#include "View/Parameters/Editors/InfoEditor.hpp"
 
 #include "View/Parameters/ParameterBoolean.hpp"
 #include "View/Parameters/ParameterColour.hpp"
@@ -82,7 +82,7 @@
 #include "View/Parameters/ParameterCode.hpp"
 #include "View/Parameters/ParameterDirectory.hpp"
 #include "View/Parameters/ParameterChoices.hpp"
-#include "View/Parameters/ParameterDocumentation.hpp"
+#include "View/Parameters/ParameterInfo.hpp"
 #include "View/Parameters/PresetElement.hpp"
 #include "View/Parameters/ViewCommon.hpp"
 

@@ -12,15 +12,15 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class ParameterDocumentation :  public PropertyLookAndFeel,
-                                public juce::PropertyComponent {
+class ParameterInfo :   public PropertyLookAndFeel,
+                        public juce::PropertyComponent {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit ParameterDocumentation (const data::Parameter& p,
+    explicit ParameterInfo (const data::Parameter& p,
         const PropertyLookAndFeel& lnf,
         const juce::String& s,
         bool isEditable) :
@@ -33,7 +33,7 @@ public:
         editor_.setEnabled (isEditable);
     }
 
-    ~ParameterDocumentation() = default;
+    ~ParameterInfo() = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -50,10 +50,10 @@ public:
     }
 
 private:
-    DocumentationEditor editor_;
+    InfoEditor editor_;
     
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterDocumentation)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterInfo)
 };
 
 // -----------------------------------------------------------------------------------------------------------
