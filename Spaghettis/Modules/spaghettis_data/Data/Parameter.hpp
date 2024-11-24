@@ -64,6 +64,7 @@ public:
     bool isFloat() const;
     bool isString() const;
     bool isCode() const;
+    bool isInfo() const;
     bool isDirectory() const;
     bool isDevice() const;
 

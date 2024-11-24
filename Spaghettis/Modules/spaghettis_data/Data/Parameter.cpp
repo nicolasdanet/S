@@ -47,6 +47,11 @@ bool Parameter::isCode() const
     return (getType() == ParameterType<CodeBlock>::get());
 }
 
+bool Parameter::isInfo() const
+{
+    return (getType() == ParameterType<InfoBlock>::get());
+}
+
 bool Parameter::isDirectory() const
 {
     return (getType() == ParameterType<Directory>::get());
@@ -281,6 +286,7 @@ juce::var Parameter::forceType (const juce::var& v) const
     else if (isDirectory()) { return Cast::force<Directory> (v); }
     else if (isDevice())    { return Cast::force<Device> (v); }
     else if (isCode())      { return Cast::force<CodeBlock> (v); }
+    else if (isInfo())      { return Cast::force<InfoBlock> (v); }
     else {
         return Cast::force<juce::String> (v);
     }
@@ -309,6 +315,7 @@ juce::Value Parameter::filtered (const juce::Value& v) const
     else if (isDirectory()) { return data::Filter<Directory>::make (v); }
     else if (isDevice())    { return data::Filter<Device>::make (v); }
     else if (isCode())      { return data::Filter<CodeBlock>::make (v); }
+    else if (isInfo())      { return data::Filter<InfoBlock>::make (v); }
     else {
         return data::Filter<juce::String>::make (v);
     }

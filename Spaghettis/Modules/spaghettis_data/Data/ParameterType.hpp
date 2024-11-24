@@ -53,6 +53,11 @@ template<> struct ParameterType<CodeBlock>
     static const char* get() { return "code"; }
 };
 
+template<> struct ParameterType<InfoBlock>
+{
+    static const char* get() { return "info"; }
+};
+
 template<> struct ParameterType<Directory>
 {
     static const char* get() { return "directory"; }
