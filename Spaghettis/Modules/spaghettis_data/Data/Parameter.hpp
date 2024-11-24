@@ -114,12 +114,9 @@ public:
 public:
     Parameter& setHidden (bool,   ParameterScope scope = ParameterScope::delegate);
     Parameter& setEditable (bool, ParameterScope scope = ParameterScope::delegate);
-    Parameter& setComment (const juce::String&, ParameterScope scope = ParameterScope::delegate);
-
 
     bool isHidden() const;
     bool isEditable() const;
-    juce::String getComment() const;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

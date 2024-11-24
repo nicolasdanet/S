@@ -45,7 +45,7 @@ int fetchContent (data::Group& group, const juce::StringArray& table, int i, int
                 label,
                 label,
                 text,
-                delegate).setEditable (false).setComment (Tag::Documentation);
+                delegate).setEditable (false);
     }
     
     return k;

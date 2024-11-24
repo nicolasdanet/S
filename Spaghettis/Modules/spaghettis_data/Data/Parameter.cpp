@@ -118,11 +118,6 @@ Parameter& Parameter::setEditable (bool isEditable, ParameterScope scope)
     set (Id::editable, isEditable, scope); return *this;
 }
 
-Parameter& Parameter::setComment (const juce::String& s, ParameterScope scope)
-{
-    set (Id::comment, s, scope); return *this;
-}
-
 bool Parameter::isHidden() const
 {
     const juce::var v (get (Id::hidden));
@@ -139,15 +134,6 @@ bool Parameter::isEditable() const
     if (v.isBool()) { return static_cast<bool> (v); }
     
     return true;    /* Default is true. */
-}
-
-juce::String Parameter::getComment() const
-{
-    const juce::var v (get (Id::comment));
-    
-    if (v.isString()) { return static_cast<juce::String> (v); }
-    
-    return juce::String();    /* Default is empty string. */
 }
 
 // -----------------------------------------------------------------------------------------------------------

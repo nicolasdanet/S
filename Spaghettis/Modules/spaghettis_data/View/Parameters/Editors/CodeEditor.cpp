@@ -27,8 +27,6 @@ CodeEditor::CodeEditor (const data::Parameter& p, const juce::Font& font) :
 
 juce::CodeTokeniser* CodeEditor::getTokenizer (const data::Parameter& p)
 {
-    // DBG (p.getComment());
-
     return nullptr;
 }
 
