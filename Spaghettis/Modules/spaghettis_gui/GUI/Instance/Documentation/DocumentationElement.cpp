@@ -21,7 +21,7 @@ int fetchContent (data::Group& group, const juce::StringArray& table, int i, int
 {
     static data::DelegateCache delegate;
     
-    TextBlock text;
+    CodeBlock text;
     
     int k = 0;
     

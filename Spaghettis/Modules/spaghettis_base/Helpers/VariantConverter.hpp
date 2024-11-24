@@ -104,14 +104,14 @@ template<> struct VariantConverter<spaghettis::Device> {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-template<> struct VariantConverter<spaghettis::TextBlock> {
+template<> struct VariantConverter<spaghettis::CodeBlock> {
 
-    static spaghettis::TextBlock fromVar (const var& v)
+    static spaghettis::CodeBlock fromVar (const var& v)
     {
-        return spaghettis::TextBlock (v.toString());
+        return spaghettis::CodeBlock (v.toString());
     }
         
-    static var toVar (const spaghettis::TextBlock& b)
+    static var toVar (const spaghettis::CodeBlock& b)
     {
         return var (b.toString());
     }

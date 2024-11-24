@@ -63,7 +63,7 @@ public:
     bool isInteger() const;
     bool isFloat() const;
     bool isString() const;
-    bool isText() const;
+    bool isCode() const;
     bool isDirectory() const;
     bool isDevice() const;
 

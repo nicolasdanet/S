@@ -12,23 +12,23 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-class TextBlock {
+class CodeBlock {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 public:
-    explicit TextBlock (juce::String s = juce::String()) : text_ (s)
+    explicit CodeBlock (juce::String s = juce::String()) : text_ (s)
     {
     }
     
-    ~TextBlock() = default;
+    ~CodeBlock() = default;
 
-    TextBlock (const TextBlock&) = default;
-    TextBlock (TextBlock&&) = default;
-    TextBlock& operator = (const TextBlock&) = default;
-    TextBlock& operator = (TextBlock&&) = default;
+    CodeBlock (const CodeBlock&) = default;
+    CodeBlock (CodeBlock&&) = default;
+    CodeBlock& operator = (const CodeBlock&) = default;
+    CodeBlock& operator = (CodeBlock&&) = default;
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------

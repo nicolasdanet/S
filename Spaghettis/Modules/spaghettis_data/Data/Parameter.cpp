@@ -42,9 +42,9 @@ bool Parameter::isString() const
     return (getType() == ParameterType<juce::String>::get());
 }
 
-bool Parameter::isText() const
+bool Parameter::isCode() const
 {
-    return (getType() == ParameterType<TextBlock>::get());
+    return (getType() == ParameterType<CodeBlock>::get());
 }
 
 bool Parameter::isDirectory() const
@@ -280,7 +280,7 @@ juce::var Parameter::forceType (const juce::var& v) const
     else if (isRectangle()) { return Cast::force<juce::Rectangle<int>> (v); }
     else if (isDirectory()) { return Cast::force<Directory> (v); }
     else if (isDevice())    { return Cast::force<Device> (v); }
-    else if (isText())      { return Cast::force<TextBlock> (v); }
+    else if (isCode())      { return Cast::force<CodeBlock> (v); }
     else {
         return Cast::force<juce::String> (v);
     }
@@ -308,7 +308,7 @@ juce::Value Parameter::filtered (const juce::Value& v) const
     else if (isRectangle()) { return data::Filter<juce::Rectangle<int>>::make (v); }
     else if (isDirectory()) { return data::Filter<Directory>::make (v); }
     else if (isDevice())    { return data::Filter<Device>::make (v); }
-    else if (isText())      { return data::Filter<TextBlock>::make (v); }
+    else if (isCode())      { return data::Filter<CodeBlock>::make (v); }
     else {
         return data::Filter<juce::String>::make (v);
     }

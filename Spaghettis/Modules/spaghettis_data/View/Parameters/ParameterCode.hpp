@@ -42,7 +42,7 @@ public:
 private:
     int getPropertyComponentHeight (const data::Parameter& p, const bool isEditable) const
     {
-        const juce::String text (p.getValueTyped<TextBlock>().toString());
+        const juce::String text (p.getValueTyped<CodeBlock>().toString());
         
         int k = getRequiredHeight();
         
