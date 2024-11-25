@@ -42,17 +42,21 @@ public:
 private:
     int getPropertyComponentHeight (const data::Parameter& p, const bool isEditable) const
     {
-        const juce::String text (p.getValueTyped<CodeBlock>().toString());
-        
         int k = getRequiredHeight();
         
         if (isEditable) { return k * 10; }
         else {
-            int n = juce::jmax (Strings::getNumberOfLines (text), 1);
-            if (n > 1) {
-                k += (n - 1) * getMonospacedFont().getHeight();
-            }
-            return k;
+        //
+        const juce::String text (p.getValueTyped<CodeBlock>().toString());
+
+        int n = juce::jmax (Strings::getNumberOfLines (text), 1);
+        
+        if (n > 1) {
+            k += (n - 1) * getMonospacedFont().getHeight();
+        }
+        
+        return k;
+        //
         }
     }
     

@@ -17,6 +17,8 @@
 
 // Options / @ attribute style
 
+// Use option for [tabwrite~] / [snapshot~] autotrigger?
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
@@ -107,6 +109,8 @@
 // Improve Maker (category, abstractions...)
 
 // Manage documentation for abstractions
+
+// Handle detailed documentation (HTML...)
 
 // Fast connect / fast editing / fast everything...
 
