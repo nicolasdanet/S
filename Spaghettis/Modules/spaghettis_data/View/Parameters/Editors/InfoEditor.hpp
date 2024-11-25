@@ -19,7 +19,7 @@ class InfoEditor : public juce::Component {
 // MARK: -
 
 public:
-    explicit InfoEditor (const juce::Font&);
+    explicit InfoEditor (const data::Parameter&, const juce::Font&);
 
     ~InfoEditor() = default;
 
@@ -28,9 +28,19 @@ public:
 // MARK: -
 
 public:
+    int getNumberOfLines() const;
+    
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+private:
+    juce::StringArray infos_;
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InfoEditor)
 };

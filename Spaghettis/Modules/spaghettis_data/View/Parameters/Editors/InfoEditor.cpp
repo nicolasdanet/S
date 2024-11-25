@@ -12,9 +12,19 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InfoEditor::InfoEditor (const juce::Font& font)
+InfoEditor::InfoEditor (const data::Parameter& p, const juce::Font& font) :
+    infos_ (juce::StringArray::fromLines (p.getValueTyped<InfoBlock>().toString()))
 {
+    DBG (infos_.joinIntoString (" "));
+}
 
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+int InfoEditor::getNumberOfLines() const
+{
+    return infos_.size();
 }
 
 // -----------------------------------------------------------------------------------------------------------

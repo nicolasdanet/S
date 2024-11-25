@@ -25,9 +25,11 @@ public:
         const juce::String& s,
         bool isEditable) :
             PropertyLookAndFeel (lnf),
-            juce::PropertyComponent (s, getRequiredHeight()),
-            editor_ (getFont())
+            juce::PropertyComponent (s),
+            editor_ (p, getFont())
     {
+        setPreferredHeight (editor_.getNumberOfLines() * lnf.getRequiredHeight());
+        
         addAndMakeVisible (editor_);
         setEnabled (isEditable);
         editor_.setEnabled (isEditable);
