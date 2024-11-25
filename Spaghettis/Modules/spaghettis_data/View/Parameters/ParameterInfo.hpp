@@ -23,11 +23,13 @@ public:
     explicit ParameterInfo (const data::Parameter& p,
         const PropertyLookAndFeel& lnf,
         const juce::String& s,
-        bool isEditable) :
+        bool) :
             PropertyLookAndFeel (lnf),
             juce::PropertyComponent (s),
             editor_ (p, getFont())
     {
+        constexpr bool isEditable = false;
+        
         setPreferredHeight (editor_.getNumberOfLines() * lnf.getRequiredHeight());
         
         addAndMakeVisible (editor_);

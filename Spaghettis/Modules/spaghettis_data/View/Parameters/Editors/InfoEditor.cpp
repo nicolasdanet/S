@@ -33,9 +33,7 @@ int InfoEditor::getNumberOfLines() const
 
 void InfoEditor::paint (juce::Graphics& g)
 {
-    // g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
-    
-    g.fillAll (juce::Colours::orange);
+    g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
 }
 
 void InfoEditor::resized()
