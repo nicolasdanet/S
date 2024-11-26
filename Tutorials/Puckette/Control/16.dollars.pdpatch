@@ -1,8 +1,0 @@
-#N canvas 655 177 475 220 12;
-#X obj 36 108 dollars three 4;
-#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
-#X text 24 24 dollars;
-#X msg 36 156 \; pd-dollars open;
-#X text 12 72 There's various approaches to get the abstraction's arguments.;
-#X f 62;
-#X coords 0 0 1 1 250 175 0 0 0;

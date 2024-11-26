@@ -1,9 +1,0 @@
-#N canvas 633 176 376 216 12;
-#X obj 36 168 print;
-#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
-#X text 24 24 help;
-#X text 12 72 Right-click an object and select the help entry.;
-#X f 49;
-#X msg 36 108 That's all you need to know.;
-#X connect 4 0 0 0;
-#X coords 0 0 1 1 250 175 0 0 0;

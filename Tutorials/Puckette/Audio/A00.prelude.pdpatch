@@ -1,9 +1,0 @@
-#N canvas 581 177 500 156 12;
-#X obj 12 12 cnv 15 275 45 empty empty empty 0 -7 0 10 #ffd300 #000000;
-#X text 24 24 prelude;
-#X text 12 96 It is freely available at < http://msp.ucsd.edu/techniques.htm >.;
-#X f 66;
-#X text 12 120 Notice that examples has been largely renamed and modified.;
-#X text 12 72 These patches are based on a Miller Puckette's book.;
-#X f 52;
-#X coords 0 0 1 1 250 175 0 0 0;
