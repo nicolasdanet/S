@@ -72,6 +72,7 @@
 #include "View/Parameters/Editors/DirectoryEditor.hpp"
 #include "View/Parameters/Editors/DirectorySelector.hpp"
 #include "View/Parameters/Editors/CodeEditor.hpp"
+#include "View/Parameters/Editors/InfoLine.hpp"
 #include "View/Parameters/Editors/InfoEditor.hpp"
 
 #include "View/Parameters/ParameterBoolean.hpp"
