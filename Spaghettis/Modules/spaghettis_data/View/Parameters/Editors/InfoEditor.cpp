@@ -10,11 +10,38 @@ namespace spaghettis {
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void initializeLines (std::vector<std::unique_ptr<InfoLine>>& lines,
+    const data::Parameter& p,
+    const juce::Font& font,
+    InfoEditor* owner)
+{
+    const juce::StringArray a (juce::StringArray::fromLines (p.getValueTyped<InfoBlock>().toString()));
+    
+    for (const auto& s : a)     { lines.push_back (std::make_unique<InfoLine> (s, font)); }
+    for (const auto& l : lines) {
+        l->setEnabled (false);
+        owner->addAndMakeVisible (l.get());
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
 InfoEditor::InfoEditor (const data::Parameter& p, const juce::Font& font)
 {
-    // juce::StringArray::fromLines (p.getValueTyped<InfoBlock>().toString());
+    initializeLines (lines_, p, font, this);
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -23,9 +50,7 @@ InfoEditor::InfoEditor (const data::Parameter& p, const juce::Font& font)
 
 int InfoEditor::getNumberOfLines() const
 {
-    // return static_cast<int> (lines_.size());
-    
-    return 1;
+    return static_cast<int> (lines_.size());
 }
 
 // -----------------------------------------------------------------------------------------------------------

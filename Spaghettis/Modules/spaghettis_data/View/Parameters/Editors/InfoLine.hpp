@@ -19,7 +19,7 @@ class InfoLine : public juce::Component {
 // MARK: -
 
 public:
-    explicit InfoLine (const juce::String&);
+    explicit InfoLine (const juce::String&, const juce::Font&);
 
     ~InfoLine() = default;
     

@@ -12,7 +12,7 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InfoLine::InfoLine (const juce::String& s)
+InfoLine::InfoLine (const juce::String& s, const juce::Font& font)
 {
     DBG (s);
 }
