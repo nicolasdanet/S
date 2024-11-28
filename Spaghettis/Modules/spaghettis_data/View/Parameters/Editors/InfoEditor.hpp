@@ -39,7 +39,7 @@ public:
     void resized() override;
 
 private:
-    juce::StringArray infos_;
+    std::vector<std::unique_ptr<InfoLine>> lines_;
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InfoEditor)

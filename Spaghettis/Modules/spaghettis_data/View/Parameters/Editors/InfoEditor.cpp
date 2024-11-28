@@ -12,10 +12,9 @@ namespace spaghettis {
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-InfoEditor::InfoEditor (const data::Parameter& p, const juce::Font& font) :
-    infos_ (juce::StringArray::fromLines (p.getValueTyped<InfoBlock>().toString()))
+InfoEditor::InfoEditor (const data::Parameter& p, const juce::Font& font)
 {
-    DBG (infos_.joinIntoString (" "));
+    // juce::StringArray::fromLines (p.getValueTyped<InfoBlock>().toString());
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -24,7 +23,9 @@ InfoEditor::InfoEditor (const data::Parameter& p, const juce::Font& font) :
 
 int InfoEditor::getNumberOfLines() const
 {
-    return infos_.size();
+    // return static_cast<int> (lines_.size());
+    
+    return 1;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -38,7 +39,15 @@ void InfoEditor::paint (juce::Graphics& g)
 
 void InfoEditor::resized()
 {
-
+    if (lines_.size()) {
+    //
+    juce::Rectangle<int> bounds (getLocalBounds());
+    
+    const int h = bounds.getHeight() / lines_.size();
+    
+    for (const auto& l : lines_) { l->setBounds (bounds.removeFromTop (h)); }
+    //
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------
