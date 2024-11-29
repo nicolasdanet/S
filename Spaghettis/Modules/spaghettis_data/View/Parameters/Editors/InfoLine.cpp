@@ -43,7 +43,7 @@ InfoLine::InfoLine (const juce::String& s, const juce::Font& font) :
     tag_ (getLineTag (s)),
     text_ (tag_.isEmpty() ? s : getLineText (s))
 {
-    DBG (tag_ + " / " + text_) ;
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -52,9 +52,11 @@ InfoLine::InfoLine (const juce::String& s, const juce::Font& font) :
 
 void InfoLine::paint (juce::Graphics& g)
 {
-    // g.fillAll (Colours::fetchColour (Colours::parametersColourBackground));
+    g.fillAll (Colours::fetchColour (Colours::parametersInfoBackground));
     
-    g.fillAll (juce::Colours::orange);
+    // parametersInfoText
+    // parametersInfoTagBackground
+    // parametersInfoTagText
 }
 
 void InfoLine::resized()
