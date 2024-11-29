@@ -143,9 +143,9 @@ static juce::Colour fetchColour (ColourIds i)
         case parametersRadioOn :                                    return p->textMenu;
         case parametersRadioOff :                                   return p->textSystem;
         case parametersInfoBackground :                             return p->backgroundAlternate;
-        case parametersInfoText :                                   return p->textSystem;
+        case parametersInfoText :                                   return p->textBox;
         case parametersInfoTagBackground :                          return p->background;
-        case parametersInfoTagText :                                return p->textSystem;
+        case parametersInfoTagText :                                return p->textPopup;
         case makerBackground :                                      return p->background;
         case listBoxBackgroundAlternate :                           return p->backgroundAlternate;
         case listBoxText :                                          return p->textSystem;

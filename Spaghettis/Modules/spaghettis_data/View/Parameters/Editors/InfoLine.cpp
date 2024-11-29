@@ -50,13 +50,57 @@ InfoLine::InfoLine (const juce::String& s, const juce::Font& font) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+namespace {
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+void paintLineTag (juce::Graphics& g,
+    const juce::Rectangle<int>& bounds,
+    const juce::Font& font,
+    const juce::String& text)
+{
+    // parametersInfoTagBackground
+    
+    g.setColour (Colours::fetchColour (Colours::parametersInfoTagText));
+    g.setFont (font);
+    g.drawText (text, bounds, juce::Justification::centredLeft, true);
+}
+
+void paintLineText (juce::Graphics& g,
+    const juce::Rectangle<int>& bounds,
+    const juce::Font& font,
+    const juce::String& text)
+{
+    g.setColour (Colours::fetchColour (Colours::parametersInfoText));
+    g.setFont (font);
+    g.drawText (text, bounds, juce::Justification::centredLeft, true);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void InfoLine::paint (juce::Graphics& g)
 {
+    juce::Rectangle<int> bounds (getLocalBounds());
+    
     g.fillAll (Colours::fetchColour (Colours::parametersInfoBackground));
     
-    // parametersInfoText
-    // parametersInfoTagBackground
-    // parametersInfoTagText
+    if (tag_.isNotEmpty()) {
+    //
+    constexpr int w = 64;
+    
+    paintLineTag (g, bounds.removeFromLeft (w), font_, tag_);
+    //
+    }
+    
+    paintLineText (g, bounds, font_, text_);
 }
 
 void InfoLine::resized()
