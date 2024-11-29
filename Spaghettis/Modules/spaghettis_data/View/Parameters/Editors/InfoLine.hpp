@@ -32,6 +32,11 @@ public:
     void resized() override;
 
 private:
+    juce::Font font_;
+    juce::String tag_;
+    juce::String text_;
+
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InfoLine)
 };
     

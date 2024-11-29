@@ -28,6 +28,11 @@ static juce::String upToWhitespace (const juce::String& s)
     return s.upToFirstOccurrenceOf (" ", false, false);
 }
 
+static juce::String fromWhitespace (const juce::String& s)
+{
+    return s.fromFirstOccurrenceOf (" ", false, false);
+}
+
 static juce::String removeWhitespaces (const juce::String& s)
 {
     return s.removeCharacters (" ");
