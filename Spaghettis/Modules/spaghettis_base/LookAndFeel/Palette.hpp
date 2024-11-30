@@ -49,6 +49,7 @@ public:
         textPopup                       = juce::Colours::lightgrey;
         textBox                         = base1;
         textComment                     = base0;
+        textInfo                        = base1.withAlpha (0.50f);
         vuCold                          = green;
         vuWarm                          = yellow;
         vuHot                           = red;
@@ -89,6 +90,7 @@ public:
     juce::Colour textPopup;
     juce::Colour textBox;
     juce::Colour textComment;
+    juce::Colour textInfo;
     juce::Colour vuCold;
     juce::Colour vuWarm;
     juce::Colour vuHot;

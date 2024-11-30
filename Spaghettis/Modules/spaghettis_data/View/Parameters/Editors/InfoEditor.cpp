@@ -64,13 +64,21 @@ void InfoEditor::paint (juce::Graphics& g)
 
 void InfoEditor::resized()
 {
-    if (lines_.size()) {
+    const int size = static_cast<int> (lines_.size());
+    
+    if (size) {
     //
     juce::Rectangle<int> bounds (getLocalBounds());
+
+    const int h = bounds.getHeight() / size;
     
-    const int h = bounds.getHeight() / lines_.size();
+    /* Two step to avoid the pixel offset due to integer rounding error. */
     
-    for (const auto& l : lines_) { l->setBounds (bounds.removeFromTop (h)); }
+    if (size > 1) {
+        for (int i = 0; i < size - 1; ++i) { lines_[i]->setBounds (bounds.removeFromTop (h)); }
+    }
+    
+    lines_.back()->setBounds (bounds);
     //
     }
 }
