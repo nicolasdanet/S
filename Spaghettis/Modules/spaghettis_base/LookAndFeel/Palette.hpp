@@ -50,6 +50,7 @@ public:
         textBox                         = base1;
         textComment                     = base0;
         textInfo                        = base1.withAlpha (0.50f);
+        textTag                         = juce::Colours::grey;
         vuCold                          = green;
         vuWarm                          = yellow;
         vuHot                           = red;
@@ -91,6 +92,7 @@ public:
     juce::Colour textBox;
     juce::Colour textComment;
     juce::Colour textInfo;
+    juce::Colour textTag;
     juce::Colour vuCold;
     juce::Colour vuWarm;
     juce::Colour vuHot;

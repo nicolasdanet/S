@@ -13,7 +13,7 @@ namespace BinaryData
 static const unsigned char temp_binary_data_0[] =
 "\r\n"
 "Description\r\n"
-"    Output a bang for any interaction\r\n"
+"    Output a bang on click\r\n"
 "\r\n"
 "Category\r\n"
 "    Graphic\r\n"
@@ -23,10 +23,10 @@ static const unsigned char temp_binary_data_0[] =
 "Options\r\n"
 "\r\n"
 "Inlet 1\r\n"
-"    Anything: Trigger a bang out for any entry\r\n"
+"    Anything: trigger a bang\r\n"
 "\r\n"
 "Outlet 1\r\n"
-"    Bang: Bang!\r\n";
+"    Bang: bang!\r\n";
 
 const char* bng_pdinfo = (const char*) temp_binary_data_0;
 
@@ -34,29 +34,29 @@ const char* bng_pdinfo = (const char*) temp_binary_data_0;
 static const unsigned char temp_binary_data_1[] =
 "\r\n"
 "Description\r\n"
-"    Output a bang periodically\r\n"
+"    Output a bang as a metronome\r\n"
 "\r\n"
 "Category\r\n"
 "    Time\r\n"
 "\r\n"
 "Arguments\r\n"
-"    Float: Period value (1)\r\n"
-"    Float: Time quantum (1)\r\n"
-"    Symbol: Time unit ('millisecond')\r\n"
+"    Float: period (1000)\r\n"
+"    Float: quantum (1)\r\n"
+"    Symbol: unit ('millisecond')\r\n"
 "\r\n"
 "Options\r\n"
 "\r\n"
 "Inlet 1\r\n"
-"    Bang: Start metronome\r\n"
-"    Float: 1/0 start and stop metronome\r\n"
-"    Stop: Stop metronome\r\n"
-"    Unit: Set the time base\r\n"
+"    Bang: start metro\r\n"
+"    Stop: stop metro\r\n"
+"    Float: 1/0 start and stop\r\n"
+"    Unit: set time base\r\n"
 "\r\n"
 "Inlet 2\r\n"
-"    Float: Set the period value\r\n"
+"    Float: set period\r\n"
 "\r\n"
 "Outlet 1\r\n"
-"    Bang: Bang at a periodic time\r\n";
+"    Bang: bang at a periodic time\r\n";
 
 const char* metro_pdinfo = (const char*) temp_binary_data_1;
 
@@ -627,8 +627,8 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x6b5f63c6:  numBytes = 191; return bng_pdinfo;
-        case 0x2d826a88:  numBytes = 415; return metro_pdinfo;
+        case 0x6b5f63c6:  numBytes = 162; return bng_pdinfo;
+        case 0x2d826a88:  numBytes = 372; return metro_pdinfo;
         case 0x8b255ed8:  numBytes = 32745; return spaghettis_icon_png;
         case 0x0319b4fc:  numBytes = 441; return icon_construction_svg;
         case 0x96f96956:  numBytes = 489; return icon_delete_svg;

@@ -43,7 +43,7 @@ InfoLine::InfoLine (const juce::String& s, const juce::Font& font) :
     tag_ (getLineTag (s)),
     text_ (tag_.isEmpty() ? s : getLineText (s))
 {
-
+    
 }
 
 // -----------------------------------------------------------------------------------------------------------

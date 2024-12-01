@@ -145,7 +145,7 @@ static juce::Colour fetchColour (ColourIds i)
         case parametersInfoBackground :                             return p->backgroundAlternate;
         case parametersInfoText :                                   return p->textInfo;
         case parametersInfoTagBackground :                          return p->background;
-        case parametersInfoTagText :                                return p->textPopup;
+        case parametersInfoTagText :                                return p->textTag;
         case makerBackground :                                      return p->background;
         case listBoxBackgroundAlternate :                           return p->backgroundAlternate;
         case listBoxText :                                          return p->textSystem;

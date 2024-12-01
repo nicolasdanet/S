@@ -1,6 +1,6 @@
 
 Description
-    Output a bang for any interaction
+    Output a bang on click
 
 Category
     Graphic
@@ -10,7 +10,7 @@ Arguments
 Options
 
 Inlet 1
-    Anything: Trigger a bang out for any entry
+    Anything: trigger a bang
 
 Outlet 1
-    Bang: Bang!
+    Bang: bang!
