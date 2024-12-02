@@ -154,6 +154,18 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
             delegate);
     }
     
+    if (glist_isTop (g)) {
+    //
+    if (t.contains (Tag::Path)) {
+        group.addParameter (Tag::Path,
+            NEEDS_TRANS ("Path"),
+            NEEDS_TRANS ("File path"),
+            getPatchFile (g).getFullPathName(),
+            delegate);
+    }
+    //
+    }
+    
     if (t.contains (Tag::EditView)) {
         group.addParameter (Tag::EditView,
             NEEDS_TRANS ("Edit View"),
@@ -203,18 +215,7 @@ void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t
     }
     
     if (!glist_isRoot (g)) { setObjectAttributesForObject (group, o, t); }
-    else {
-    //
-    if (t.contains (Tag::Path)) {
-        group.addParameter (Tag::Path,
-            NEEDS_TRANS ("Path"),
-            NEEDS_TRANS ("File path"),
-            getPatchFile (g).getFullPathName(),
-            delegate);
-    }
-    //
-    }
-    
+
     if (t.contains (Tag::Abstraction)) {
         group.addParameter (Tag::Abstraction,
             NEEDS_TRANS ("Abstraction"),
