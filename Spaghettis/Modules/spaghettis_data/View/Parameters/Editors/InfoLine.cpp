@@ -58,7 +58,7 @@ namespace {
 int getLineTagWidth (const juce::Font& font, const juce::String& text)
 {
     const int w = font.getStringWidth (text);
-    const int a = 80;
+    const int a = 90;
     const int b = 120;
     
     if (w < a) { return a; } else { return b; }
