@@ -66,6 +66,20 @@ bool getVisible (t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+bool isGraphicInlet (t_object* o)
+{
+    return (pd_class (o) == vinlet_class);
+}
+
+bool isGraphicOutlet (t_object* o)
+{
+    return (pd_class (o) == voutlet_class);
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void setObjectAttributesClass (data::Group& group, t_object* o, const Tags& t)
 {
     static data::DelegateCache delegate;
@@ -138,6 +152,9 @@ void setObjectAttributesForObject (data::Group& group, t_object* o, const Tags& 
             getVisible (o),
             delegate).setHidden (true);
     }
+    
+    if (isGraphicInlet (o))  { DBG ("INLET"); }
+    if (isGraphicOutlet (o)) { DBG ("OUTLET"); }
 }
 
 void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t)
