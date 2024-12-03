@@ -99,6 +99,7 @@ namespace spaghettis::Keywords {
     DECLARE_STRING (Multiple);
     DECLARE_STRING (Name);
     DECLARE_STRING (NonZero);
+    DECLARE_STRING (Number);
     DECLARE_STRING (OffsetX);
     DECLARE_STRING (OffsetY);
     DECLARE_STRING (Outlet);

@@ -66,14 +66,14 @@ bool getVisible (t_object* o)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool isGraphicInlet (t_object* o)
+t_vinlet* castIfInlet (t_object* o)
 {
-    return (pd_class (o) == vinlet_class);
+    return (pd_class (o) == vinlet_class)  ? (t_vinlet *)o  : nullptr;
 }
 
-bool isGraphicOutlet (t_object* o)
+t_voutlet* castIfOutlet (t_object* o)
 {
-    return (pd_class (o) == voutlet_class);
+    return (pd_class (o) == voutlet_class) ? (t_voutlet *)o : nullptr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -90,6 +90,35 @@ void setObjectAttributesClass (data::Group& group, t_object* o, const Tags& t)
             NEEDS_TRANS ("Class of the object"),
             object_isDummy (o) ? juce::String() : makeString (class_getNameAsString (pd_class (o))),
             delegate);
+    }
+}
+
+void setObjectAttributesForInlets (data::Group& group, t_object* o, const Tags& t)
+{
+    static data::DelegateCache delegate;
+    
+    if (t_vinlet *y = castIfInlet (o); y)  {
+    //
+    if (t.contains (Tag::Number)) {
+        group.addParameter (Tag::Number,
+            NEEDS_TRANS ("Number"),
+            NEEDS_TRANS ("Inlet position"),
+            vinlet_getIndex (y) + 1,
+            delegate);
+    }
+    //
+    }
+    
+    if (t_voutlet *y = castIfOutlet (o); y) {
+    //
+    if (t.contains (Tag::Number)) {
+        group.addParameter (Tag::Number,
+            NEEDS_TRANS ("Number"),
+            NEEDS_TRANS ("Outlet position"),
+            voutlet_getIndex (y) + 1,
+            delegate);
+    }
+    //
     }
 }
 
@@ -153,8 +182,7 @@ void setObjectAttributesForObject (data::Group& group, t_object* o, const Tags& 
             delegate).setHidden (true);
     }
     
-    if (isGraphicInlet (o))  { DBG ("INLET"); }
-    if (isGraphicOutlet (o)) { DBG ("OUTLET"); }
+    setObjectAttributesForInlets (group, o, t);
 }
 
 void setObjectAttributesForPatch (data::Group& group, t_object* o, const Tags& t)
