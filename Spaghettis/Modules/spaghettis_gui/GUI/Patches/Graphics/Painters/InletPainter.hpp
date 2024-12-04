@@ -33,6 +33,7 @@ public:
 private:
     data::Cached<juce::Colour> boxBackgroundColour_;
     data::Cached<juce::Colour> arrowColour_;
+    data::Cached<int> number_;
     bool isOutlet_;
 
 private:

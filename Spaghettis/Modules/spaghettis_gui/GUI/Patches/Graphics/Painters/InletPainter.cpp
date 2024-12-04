@@ -42,6 +42,7 @@ InletPainter::InletPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
     boxBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxBackground), getOwner())),
     arrowColour_ (Painted (getContentColour (getObject()), getOwner())),
+    number_ (Painted (getObject().getCached<int> (Tag::Attributes, Tag::Number), getOwner())),
     isOutlet_ (isOutlet (getObject()))
 {
 }
@@ -57,6 +58,8 @@ void InletPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
     g.setColour (boxBackgroundColour_.get());
     g.fillRect (r);
     g.setColour (arrowColour_.get().withAlpha (0.75f));
+    
+    DBG (number_.get());
     
     if (f > 0.5) {
         if (isOutlet_) { LNF::drawArrowUp (g, r.reduced (2 * f)); }
