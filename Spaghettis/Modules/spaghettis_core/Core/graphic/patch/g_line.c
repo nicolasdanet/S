@@ -162,15 +162,15 @@ t_error glist_objectConnect (t_glist *glist, t_object *src, int m, t_object *des
 
 #if defined ( PD_BUILDING_APPLICATION )
 
-void glist_updateLinesForObject (t_glist *glist, t_object *o)
+void glist_updateLinesForObject (t_glist *g, t_object *o)
 {
-    if (glist) {
+    if (g) {
     //
     t_outconnect *c = NULL;
     
     t_traverser t;
 
-    traverser_start (&t, glist);
+    traverser_start (&t, g);
     
     while ((c = traverser_next (&t))) {
     //
@@ -180,7 +180,7 @@ void glist_updateLinesForObject (t_glist *glist, t_object *o)
             traverser_getIndexOfOutlet (&t),
             traverser_getDestination (&t),
             traverser_getIndexOfInlet (&t),
-            glist);
+            g);
     }
     //
     }
@@ -188,9 +188,45 @@ void glist_updateLinesForObject (t_glist *glist, t_object *o)
     }
 }
 
+void glist_updateGraphicInlets (t_glist *g)
+{
+    int i, n = glist_graphicsGetSize (g);
+    
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (g, i);
+
+    if (pd_class (y) == vinlet_class) { outputs_objectChanged (y, Tags::attributes (Tag::Number)); }
+    //
+    }
+}
+
+void glist_updateGraphicOutlets (t_glist *g)
+{
+    int i, n = glist_graphicsGetSize (g);
+    
+    for (i = 0; i < n; i++) {
+    //
+    t_object *y = glist_graphicsGetObjectAt (g, i);
+
+    if (pd_class (y) == voutlet_class) { outputs_objectChanged (y, Tags::attributes (Tag::Number)); }
+    //
+    }
+}
+
 #else
 
-void glist_updateLinesForObject (t_glist *glist, t_object *o)
+void glist_updateLinesForObject (t_glist *g, t_object *o)
+{
+
+}
+
+void glist_updateGraphicInlets (t_glist *g)
+{
+
+}
+
+void glist_updateGraphicOutlets (t_glist *g)
 {
 
 }

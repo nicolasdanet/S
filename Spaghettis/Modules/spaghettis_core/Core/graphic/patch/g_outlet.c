@@ -112,6 +112,7 @@ void glist_inletSort (t_glist *glist)
     PD_MEMORY_FREE (boxes);
     PD_MEMORY_FREE (inlets);
     
+    glist_updateGraphicInlets (glist);
     glist_updateLinesForObject (glist_getParent (glist), cast_object (glist));
     //
     }
@@ -199,6 +200,7 @@ void glist_outletSort (t_glist *glist)
     PD_MEMORY_FREE (boxes);
     PD_MEMORY_FREE (outlets);
     
+    glist_updateGraphicOutlets (glist);
     glist_updateLinesForObject (glist_getParent (glist), cast_object (glist));
     //
     }
