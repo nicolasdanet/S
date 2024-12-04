@@ -26,13 +26,17 @@ public:
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+private:
+    juce::Font getFont() const;
+    juce::String getText() const;
+    
 public:
     void paintWidget (juce::Rectangle<int>, juce::Graphics&) override;
     juce::Rectangle<int> getRequiredBoundsForWidget() override;
     
 private:
     data::Cached<juce::Colour> boxBackgroundColour_;
-    data::Cached<juce::Colour> arrowColour_;
+    data::Cached<juce::Colour> contentColour_;
     data::Cached<int> number_;
     bool isOutlet_;
 

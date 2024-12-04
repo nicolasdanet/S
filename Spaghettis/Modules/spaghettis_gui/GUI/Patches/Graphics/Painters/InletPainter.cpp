@@ -41,7 +41,7 @@ bool isOutlet (const core::Object& o)
 InletPainter::InletPainter (ObjectComponent* owner) :
     PainterStrategy (owner),
     boxBackgroundColour_ (Painted (Spaghettis()->getCachedColour (Tag::BoxBackground), getOwner())),
-    arrowColour_ (Painted (getContentColour (getObject()), getOwner())),
+    contentColour_ (Painted (getContentColour (getObject()), getOwner())),
     number_ (Painted (getObject().getCached<int> (Tag::Attributes, Tag::Number), getOwner())),
     isOutlet_ (isOutlet (getObject()))
 {
@@ -51,28 +51,41 @@ InletPainter::InletPainter (ObjectComponent* owner) :
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+juce::Font InletPainter::getFont() const
+{
+    return Fonts::getFontRescaled (getScale());
+}
+
+juce::String InletPainter::getText() const
+{
+    return juce::String (number_.get());
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 void InletPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
-    const float f = getScale();
-    
     g.setColour (boxBackgroundColour_.get());
     g.fillRect (r);
-    g.setColour (arrowColour_.get().withAlpha (0.75f));
+    g.setColour (contentColour_.get().withAlpha (0.75f));
     
-    DBG (number_.get());
+    const int h = r.getHeight() / 3.0f;
     
-    if (f > 0.5) {
-        if (isOutlet_) { LNF::drawArrowUp (g, r.reduced (2 * f)); }
-        else {
-            LNF::drawArrowDown (g, r.reduced (2 * f));
-        }
+    const juce::Rectangle<int> t = isOutlet_ ? r.withTrimmedTop (h) : r.withTrimmedBottom (h);
+    
+    if (PainterHelpers::paintText (*this, t, g, getText(), getFont(), juce::Justification::centred)) {
+    //
+    // LNF::drawArrowDown (g, r);
+    //
     }
 }
 
 juce::Rectangle<int> InletPainter::getRequiredBoundsForWidget()
 {
     const float f = getScale();
-    const int w   = Fonts::getFontRescaled (f).getHeight();
+    const int w   = Fonts::getFontRescaled (f).getHeight() * 1.5f;
     
     return PainterHelpers::getRequiredBoundsFromVector (*this, core::Vector::Scaled (w, w, f));
 }

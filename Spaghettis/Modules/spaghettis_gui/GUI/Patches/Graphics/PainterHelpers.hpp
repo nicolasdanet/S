@@ -35,7 +35,7 @@ static juce::Rectangle<int> getRequiredBoundsFromText (PainterStrategy&,
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void paintText (PainterStrategy& p,
+static bool paintText (PainterStrategy& p,
                 juce::Rectangle<int>,
                 juce::Graphics&,
                 const juce::String&,
