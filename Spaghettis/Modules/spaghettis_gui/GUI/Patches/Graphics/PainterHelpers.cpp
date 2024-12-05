@@ -89,7 +89,7 @@ void paintGlyphs (juce::Rectangle<float> r, juce::Graphics& g, const juce::Glyph
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-bool PainterHelpers::paintText (PainterStrategy& p,
+void PainterHelpers::paintText (PainterStrategy& p,
     juce::Rectangle<int> r,
     juce::Graphics& g,
     const juce::String& text,
@@ -105,12 +105,8 @@ bool PainterHelpers::paintText (PainterStrategy& p,
     g.setFont (font);
     
     g.drawText (text, t, justification, true);
-    
-    return true;
     //
     }
-    
-    return false;
 }
 
 /* Workaround to centre the digits without considering the minus sign. */

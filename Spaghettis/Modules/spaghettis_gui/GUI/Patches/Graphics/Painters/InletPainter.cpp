@@ -67,25 +67,24 @@ juce::String InletPainter::getText() const
 
 void InletPainter::paintWidget (juce::Rectangle<int> r, juce::Graphics& g)
 {
+    const int h = r.getHeight() / 5.0f;
+    
     g.setColour (boxBackgroundColour_.get());
     g.fillRect (r);
     g.setColour (contentColour_.get().withAlpha (0.75f));
     
-    const int h = r.getHeight() / 3.0f;
-    
-    const juce::Rectangle<int> t = isOutlet_ ? r.withTrimmedTop (h) : r.withTrimmedBottom (h);
-    
-    if (PainterHelpers::paintText (*this, t, g, getText(), getFont(), juce::Justification::centred)) {
-    //
-    // LNF::drawArrowDown (g, r);
-    //
-    }
+    PainterHelpers::paintText (*this,
+        (isOutlet_ ? r.withTrimmedTop (h).translated (0, -1) : r.withTrimmedBottom (h)),
+        g,
+        getText(),
+        getFont(),
+        juce::Justification::centred);
 }
 
 juce::Rectangle<int> InletPainter::getRequiredBoundsForWidget()
 {
     const float f = getScale();
-    const int w   = Fonts::getFontRescaled (f).getHeight() * 1.5f;
+    const int w   = Fonts::getFontRescaled (f).getHeight() * 1.25;
     
     return PainterHelpers::getRequiredBoundsFromVector (*this, core::Vector::Scaled (w, w, f));
 }
