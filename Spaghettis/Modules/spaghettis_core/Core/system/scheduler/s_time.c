@@ -241,17 +241,17 @@ t_error stamp_elapsedNanoseconds (const t_stamp *t0, const t_stamp *t1, t_nano *
 
 int stamp_isTagElement (t_symbol *s)
 {
-    return utils_uInt64IsElement (s);
+    return 0;
 }
 
 t_error stamp_setAsTags (int argc, t_atom *argv, t_stamp *stamp)
 {
-    return utils_uInt64Serialize (argc, argv, stamp);
+    return PD_ERROR;
 }
 
 t_error stamp_getWithTags (int argc, t_atom *argv, t_stamp *stamp)
 {
-    return utils_uInt64Deserialize (argc, argv, stamp);
+    return PD_ERROR;
 }
 
 // -----------------------------------------------------------------------------------------------------------
