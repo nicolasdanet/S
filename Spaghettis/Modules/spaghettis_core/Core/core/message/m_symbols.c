@@ -33,6 +33,7 @@ t_symbol s_         = { ""          , NULL, NULL };
 /* Static. */
 
 t_symbol *sym_JACK;
+t_symbol *sym_NTP;
 t_symbol *sym_Untitled;
 t_symbol *sym__VALUE_;
 t_symbol *sym___ampersand__;
@@ -606,6 +607,7 @@ t_symbol *sym_writesf__tilde__;
 void symbols_initialize (void)
 {
     sym_JACK                                    = gensym ("JACK");
+    sym_NTP                                     = gensym ("NTP");
     sym_Untitled                                = gensym ("Untitled");
     sym__VALUE_                                 = gensym ("_VALUE_");
     sym___ampersand__                           = gensym ("&");

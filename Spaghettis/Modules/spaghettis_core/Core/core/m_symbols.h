@@ -34,6 +34,7 @@ extern t_symbol s_;
 // -----------------------------------------------------------------------------------------------------------
 
 extern t_symbol *sym_JACK;
+extern t_symbol *sym_NTP;
 extern t_symbol *sym_Untitled;
 extern t_symbol *sym__VALUE_;
 extern t_symbol *sym___ampersand__;
