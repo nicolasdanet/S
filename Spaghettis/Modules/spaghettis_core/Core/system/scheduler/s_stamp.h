@@ -7,46 +7,38 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-#ifndef S_TIME_H_
-#define S_TIME_H_
+#ifndef S_STAMP_H_
+#define S_STAMP_H_
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-typedef uint64_t t_time;
-typedef uint64_t t_nano;
-typedef uint64_t t_stamp;
+#define STAMP_TAGS_SIZE     16
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       time_set                    (t_time *t);
-void       time_addNanoseconds         (t_time *t, t_nano ns);
-t_error    time_elapsedNanoseconds     (const t_time *t0, const t_time *t1, t_nano *elapsed);
-void       time_wait                   (t_time *t);
+static inline void stamp_setImmediately (t_stamp *stamp)
+{
+    (*stamp) = 1ULL;
+}
+
+static inline int stamp_isImmediately (t_stamp *stamp)
+{
+    return ((*stamp) == 1ULL);
+}
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-void       nano_sleep                  (t_nano ns);
+int        stamp_isTagElement          (t_symbol *s);
+t_error    stamp_setAsTags             (int argc, t_atom *argv, t_stamp *stamp);
+t_error    stamp_getWithTags           (int argc, t_atom *argv, t_stamp *stamp);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
-
-/* < https://en.wikipedia.org/wiki/Network_Time_Protocol > */
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-void       stamp_set                   (t_stamp *stamp);
-void       stamp_addNanoseconds        (t_stamp *stamp, t_nano ns);
-t_error    stamp_elapsedNanoseconds    (const t_stamp *t0, const t_stamp *t1, t_nano *elapsed);
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-#endif // S_TIME_H_
+#endif // S_STAMP_H_
 

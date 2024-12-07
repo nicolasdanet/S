@@ -23,6 +23,7 @@
 #include "system/scheduler/s_monitor.h"
 #include "system/scheduler/s_clock.h"
 #include "system/scheduler/s_time.h"
+#include "system/scheduler/s_stamp.h"
 #include "system/scheduler/s_scheduler.h"
 #include "system/log/s_debug.h"
 #include "system/log/s_logger.h"
