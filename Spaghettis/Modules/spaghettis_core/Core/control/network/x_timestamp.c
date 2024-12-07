@@ -37,7 +37,7 @@ typedef struct _timestamp {
 
 static void timestamp_float (t_timestamp *x, t_float f)
 {
-    t_atom a[STAMP_TAGS_SIZE]; t_stamp t;
+    t_atom a[STAMP_SIZE]; t_stamp t;
     
     t_nano ns = PD_MILLISECONDS_TO_NANOSECONDS (PD_MAX (0.0, f));
     
@@ -45,7 +45,7 @@ static void timestamp_float (t_timestamp *x, t_float f)
     
     if (ns) { stamp_addNanoseconds (&t, ns); }
     
-    if (!stamp_setAsTags (STAMP_TAGS_SIZE, a, &t)) { outlet_list (x->x_outlet, STAMP_TAGS_SIZE, a); }
+    if (!stamp_serialize (STAMP_SIZE, a, &t)) { outlet_list (x->x_outlet, STAMP_SIZE, a); }
 }
 
 static void timestamp_bang (t_timestamp *x)
@@ -55,7 +55,7 @@ static void timestamp_bang (t_timestamp *x)
 
 static void timestamp_list (t_timestamp *x, t_symbol *s, int argc, t_atom *argv)
 {
-    t_stamp t; t_error err = stamp_getWithTags (argc, argv, &t);
+    t_stamp t; t_error err = stamp_deserialize (argc, argv, &t);
     
     if (err) { error_invalid (cast_object (x), sym_timestamp, sym_stamp); }
     else {

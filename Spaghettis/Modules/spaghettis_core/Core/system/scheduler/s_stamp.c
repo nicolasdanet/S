@@ -12,18 +12,26 @@
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-int stamp_isTagElement (t_symbol *s)
+int stamp_isNTP (t_symbol *s)
 {
     return 0;
 }
 
-t_error stamp_setAsTags (int argc, t_atom *argv, t_stamp *stamp)
+t_error stamp_serialize (int argc, t_atom *argv, t_stamp *stamp)
 {
+    if (argc >= STAMP_SIZE) {
+    
+    }
+    
     return PD_ERROR;
 }
 
-t_error stamp_getWithTags (int argc, t_atom *argv, t_stamp *stamp)
+t_error stamp_deserialize (int argc, t_atom *argv, t_stamp *stamp)
 {
+    if (argc >= STAMP_SIZE) {
+    
+    }
+    
     return PD_ERROR;
 }
 

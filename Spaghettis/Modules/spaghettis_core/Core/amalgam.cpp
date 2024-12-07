@@ -139,6 +139,7 @@ namespace spaghettis::core {
 #include "system/scheduler/s_monitor.c"
 #include "system/scheduler/s_clock.c"
 #include "system/scheduler/s_time.c"
+#include "system/scheduler/s_stamp.c"
 #include "system/scheduler/s_scheduler.c"
 #include "system/scheduler/s_startup.c"
 #include "system/scheduler/s_main.c"

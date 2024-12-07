@@ -54,11 +54,11 @@ typedef struct _oscformat {
 
 static char oscformat_getTypeFromSymbol (t_symbol *s)
 {
-    if (stamp_isTagElement (s)) { return 't'; }
-    else if (s == sym_true)     { return 'T'; }
-    else if (s == sym_false)    { return 'F'; }
-    else if (s == sym_null)     { return 'N'; }
-    else if (s == &s_bang)      { return 'I'; }
+    if (stamp_isNTP (s))     { return 't'; }
+    else if (s == sym_true)  { return 'T'; }
+    else if (s == sym_false) { return 'F'; }
+    else if (s == sym_null)  { return 'N'; }
+    else if (s == &s_bang)   { return 'I'; }
     else {
         return 's';
     }
@@ -124,7 +124,7 @@ static int oscformat_proceedGetArgumentsSize (t_oscformat *x, int argc, t_atom *
     
     } else if (type == 't') {
         size += 8;
-        i += STAMP_TAGS_SIZE;
+        i += STAMP_SIZE;
         
     } else if (type == 'd') {
         size += 8;
@@ -221,14 +221,14 @@ static int oscformat_proceedFillStamp (t_oscformat *x, int argc, t_atom *argv, i
     t_stamp stamp;
     t_atom *start = argv + j;
     int available = argc - j;
-    t_error err = stamp_getWithTags (available, start, &stamp);
+    t_error err = stamp_deserialize (available, start, &stamp);
     
     if (err) { stamp_set (&stamp); error_invalid (cast_object (x), sym_oscformat, sym_stamp); }
     
     OSC_8WRITE (a + n, stamp);
     
     n += 8;
-    j += STAMP_TAGS_SIZE;
+    j += STAMP_SIZE;
     
     *m = n; return j;
 }

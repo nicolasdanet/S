@@ -305,12 +305,12 @@ static t_error oscparse_proceedArgumentsStamp (t_oscparse *x,
     int n = *atomOffset;
     
     err |= (k > argc - 8);
-    err |= (n + STAMP_TAGS_SIZE > size);
+    err |= (n + STAMP_SIZE > size);
     
     if (!err) {
         t_stamp t = OSC_8READ (argv + k);
-        err = stamp_setAsTags (STAMP_TAGS_SIZE, a + n, &t);
-        n += STAMP_TAGS_SIZE; k += 8;
+        err = stamp_serialize (STAMP_SIZE, a + n, &t);
+        n += STAMP_SIZE; k += 8;
     }
     
     *dataOffset = k;
@@ -618,7 +618,7 @@ static t_error oscparse_proceed (t_oscparse *x, int argc, t_atom *argv)
     /* Notice that the pessimistic maximum size is allocated. */
     
     size += hasBlob ? argc - typeOnset : numberOfTypeTags;
-    size += numberOfStamps * (STAMP_TAGS_SIZE - 1);
+    size += numberOfStamps * (STAMP_SIZE - 1);
     
     PD_ATOMS_ALLOCA (a, size);
     
