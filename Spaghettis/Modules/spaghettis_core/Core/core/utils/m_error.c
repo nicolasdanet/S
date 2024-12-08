@@ -74,12 +74,12 @@ void error_doesNotExist (t_object *x, const char *filepath)
 
 void error_dspLoop (t_object *x)
 {
-    post_error (x, PD_TRANSLATE ("%s: DSP loop"), PD_NAME_LOWERCASE);
+    post_error (x, PD_TRANSLATE ("%s: DSP loop"), PD_NAME);
 }
 
 void error_stackOverflow (t_object *x)
 {
-    post_error (x, PD_TRANSLATE ("%s: stack overflow"), PD_NAME_LOWERCASE);
+    post_error (x, PD_TRANSLATE ("%s: stack overflow"), PD_NAME);
 }
 
 void error_stubNotFound (t_object *x)
@@ -193,7 +193,7 @@ void error_canNotMake (t_object *x, int argc, t_atom *argv)
 {
     char *t = atom_atomsToString (argc, argv);
     
-    post_error (x, PD_TRANSLATE ("%s: can't make [ %s ]"), PD_NAME_LOWERCASE, t);
+    post_error (x, PD_TRANSLATE ("%s: can't make [ %s ]"), PD_NAME, t);
     
     PD_MEMORY_FREE (t);
 }
@@ -231,7 +231,7 @@ void warning_containsDuplicates (t_object *x)
 
 void warning_missingInSearchPath (t_object *x)
 {
-    post_warning (x, PD_TRANSLATE ("%s: missing in search path"), PD_NAME_LOWERCASE);
+    post_warning (x, PD_TRANSLATE ("%s: missing in search path"), PD_NAME);
 }
 
 // -----------------------------------------------------------------------------------------------------------

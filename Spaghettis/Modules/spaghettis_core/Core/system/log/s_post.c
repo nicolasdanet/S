@@ -36,11 +36,13 @@
 
 extern Wrapper *main_wrapper;
 
-static void post_toUpperCase (int k, char *s, LoggerType type)
+static void post_toUpperCase (t_object *o, int k, char *s, LoggerType type)
 {
+    if (o == NULL) {
     if (type != LoggerType::normal) {
     if (k) {
     if (char_isAlphabeticLowercase (*s)) { *s = toupper (*s); }
+    }
     }
     }
 }
@@ -52,7 +54,7 @@ static void post_console (t_object *o, int k, char *s, LoggerType type)
     if (k < 0 || k >= PD_STRING) { warning_tooManyCharacters (o, sym_console); }
     else {
     //
-    post_toUpperCase (k, s, type);
+    post_toUpperCase (o, k, s, type);
     
     UniquePath u = o ? UniquePath (o) : UniquePath::invalid();
     
