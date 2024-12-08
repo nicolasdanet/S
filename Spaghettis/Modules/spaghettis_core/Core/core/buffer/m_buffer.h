@@ -62,6 +62,7 @@ char        *buffer_toString                    (t_buffer *x);      /* Caller ac
 void        buffer_toStringUnzeroed             (t_buffer *x, char **s, int *size);
 void        buffer_withStringUnzeroed           (t_buffer *x, const char *s, int size);
 
+void        buffer_reparse                      (t_buffer *x);
 void        buffer_reparseIfContainsWhitespace  (t_buffer *x);
 
 int         buffer_messagesIsLastProperlyEnded  (t_buffer *x);

@@ -251,7 +251,7 @@ char *buffer_toString (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void buffer_reparseProceed (t_buffer *x)
+void buffer_reparse (t_buffer *x)
 {
     char *s = NULL;
     int size = 0;
@@ -277,7 +277,7 @@ void buffer_reparseIfContainsWhitespace (t_buffer *x)
     //
     }
     
-    if (reparse) { buffer_reparseProceed (x); }
+    if (reparse) { buffer_reparse (x); }
 }
 
 // -----------------------------------------------------------------------------------------------------------
