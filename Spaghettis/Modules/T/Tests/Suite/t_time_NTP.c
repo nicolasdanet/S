@@ -36,3 +36,36 @@ TTT_END
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+
+TTT_BEGIN (TimeSerialize, "Time - Serialize")
+
+    t_atom atoms[STAMP_SIZE];
+    
+    t_stamp stamp1, stamp2;
+    
+    int i;
+    
+    for (i = 0; i < TEST_LOOP; i++) {
+    //
+    stamp_setRandom (&stamp1);
+    stamp_setImmediately (&stamp2);
+    stamp_serialize (STAMP_SIZE, atoms, &stamp1);
+    stamp_deserialize (STAMP_SIZE, atoms, &stamp2);
+    
+    TTT_EXPECT (stamp_areEquals (&stamp1, &stamp2));
+    TTT_EXPECT (stamp_isImmediately (&stamp2) == 0);
+    
+    stamp_setRandom (&stamp1);
+    stamp_setImmediately (&stamp2);
+    stamp_serialize (STAMP_SIZE, atoms, &stamp2);
+    stamp_deserialize (STAMP_SIZE, atoms, &stamp1);
+    
+    TTT_EXPECT (stamp_areEquals (&stamp1, &stamp2));
+    TTT_EXPECT (stamp_isImmediately (&stamp1) == 1);
+    //
+    }
+    
+TTT_END
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------

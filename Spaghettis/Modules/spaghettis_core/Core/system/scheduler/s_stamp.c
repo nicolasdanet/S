@@ -53,3 +53,28 @@ t_error stamp_deserialize (int argc, t_atom *argv, t_stamp *stamp)
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
+#if defined ( PD_BUILDING_TESTS )
+
+void stamp_setRandom (t_stamp *stamp)
+{
+    static int once = 0; static t_rand48 seed = 0;
+    
+    if (!once) { once = 1; seed = PD_RAND48_SEED; }
+    
+    uint64_t hi = PD_RAND48_UINT32 (seed);
+    uint64_t lo = PD_RAND48_UINT32 (seed);
+    
+    (*stamp) = ((hi << 32) | lo);
+}
+
+int stamp_areEquals (t_stamp *stamp1, t_stamp *stamp2)
+{
+    return ((*stamp1) == (*stamp2));
+}
+
+#endif
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
