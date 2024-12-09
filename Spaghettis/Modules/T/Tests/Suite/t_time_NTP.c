@@ -76,22 +76,21 @@ TTT_BEGIN (TimeSerialize, "Time - NTP Serialize")
     
     t_stamp stamp1, stamp2;
     
+    int i;
+    
+    for (i = 0; i < TEST_LOOP; i++) {
+    //
     stamp_setRandom (&stamp1);
     stamp_setImmediately (&stamp2);
+    
     stamp_serialize (buffer_getSize (b), buffer_getAtoms (b), &stamp1);
-    ttt_stdout (TTT_COLOR_BLUE, "%s", buffer_toString (b));
-    ttt_stdout (TTT_COLOR_BLUE, "%lld", (stamp1 >> 32));
-    ttt_stdout (TTT_COLOR_BLUE, "%lld", (stamp1 & 0xffffffffULL));
-    
     buffer_reparse (b);
-    
     stamp_deserialize (buffer_getSize (b), buffer_getAtoms (b), &stamp2);
-    ttt_stdout (TTT_COLOR_BLUE, "%s", buffer_toString (b));
-    ttt_stdout (TTT_COLOR_BLUE, "%lld", (stamp2 >> 32));
-    ttt_stdout (TTT_COLOR_BLUE, "%lld", (stamp2 & 0xffffffffULL));
-    
+
     TTT_EXPECT (stamp_areEquals (&stamp1, &stamp2));
     TTT_EXPECT (stamp_isImmediately (&stamp2) == 0);
+    //
+    }
     
     buffer_free (b);
     
