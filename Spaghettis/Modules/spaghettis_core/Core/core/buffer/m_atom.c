@@ -241,7 +241,7 @@ t_error atom_toString (t_atom *a, char *dest, int size)
     
     switch (a->a_type) {
         case A_SYMBOL       : err = atom_symbolToBackslashedString (a, dest, size);                     break;
-        case A_FLOAT        : err = string_sprintf (dest, (size_t)size, "%.9g", GET_FLOAT (a));         break;
+        case A_FLOAT        : err = string_sprintf (dest, (size_t)size, "%.17g", GET_FLOAT (a));         break;
         case A_DOLLAR       : err = string_sprintf (dest, (size_t)size, "$%d", GET_DOLLAR (a));         break;
         case A_DOLLARSYMBOL : err = string_copy (dest, (size_t)size, symbol_getName (GET_SYMBOL (a)));  break;
         case A_SEMICOLON    : err = string_copy (dest, (size_t)size, ";");                              break;
