@@ -121,7 +121,9 @@ static void oscbundle_parseStampThenCloseBundle (t_oscbundle *x, t_symbol *s, in
     
     if (argc == STAMP_SIZE - 1) {
     //
-    t_stamp t; t_atom a[STAMP_SIZE];
+    t_stamp t; stamp_setImmediately (&t);
+    
+    t_atom a[STAMP_SIZE];
     
     SET_SYMBOL (a + 0, s); atom_copyAtoms (argv, argc, a + 1, argc);
     

@@ -37,7 +37,7 @@ typedef struct _timestamp {
 
 static void timestamp_float (t_timestamp *x, t_float f)
 {
-    t_atom a[STAMP_SIZE]; t_stamp t;
+    t_stamp t; t_atom a[STAMP_SIZE];
     
     t_nano ns = PD_MILLISECONDS_TO_NANOSECONDS (PD_MAX (0.0, f));
     
