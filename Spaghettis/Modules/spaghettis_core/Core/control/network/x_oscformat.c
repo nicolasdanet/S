@@ -218,12 +218,12 @@ static int oscformat_proceedFillStamp (t_oscformat *x, int argc, t_atom *argv, i
 {
     int n = *m;
     
-    t_stamp stamp;
+    t_stamp stamp; stamp_set (&stamp);
     t_atom *start = argv + j;
     int available = argc - j;
     t_error err = stamp_deserialize (available, start, &stamp);
     
-    if (err) { stamp_set (&stamp); error_invalid (cast_object (x), sym_oscformat, sym_stamp); }
+    if (err) { error_invalid (cast_object (x), sym_oscformat, sym_stamp); }
     
     OSC_8WRITE (a + n, stamp);
     
