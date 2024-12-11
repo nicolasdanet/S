@@ -104,6 +104,7 @@ void warning_deprecatedObject           (t_object *, t_symbol *);
 void warning_invalid                    (t_object *, t_symbol *, t_symbol *);
 void warning_empty                      (t_object *, t_symbol *, t_symbol *);
 void warning_badType                    (t_object *, t_symbol *, t_symbol *);
+void warning_invalidOption              (t_object *, t_symbol *, t_symbol *);
 void warning_unusedOption               (t_object *, t_symbol *, t_symbol *);
 
 // -----------------------------------------------------------------------------------------------------------
