@@ -58,6 +58,15 @@ t_error subchunk_readFileHeaderAIFF (int, t_headerhelper *, t_audioproperties *)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
+static t_symbol *soundfile_legacyConvert (t_symbol *t)
+{
+    return t;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// MARK: -
+
 t_error soundfile_readFileParse (t_glist *dummy,
     t_symbol *s,
     int *ac,
@@ -79,9 +88,7 @@ t_error soundfile_readFileParse (t_glist *dummy,
     
     while (argc > 0) {
     //
-    t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
-    
-    if (t == sym___arrobe__nextstep) { t = sym___arrobe__next; }
+    t_symbol *t = soundfile_legacyConvert (atom_getSymbolAtIndex (0, argc, argv));
     
     if (argc > 1 && t == sym___arrobe__skip) {
         onset = (int)atom_getFloat (argv + 1);
@@ -408,9 +415,7 @@ t_error soundfile_writeFileParse (t_glist *glist,
         
     while (argc > 0) {
     //
-    t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
-    
-    if (t == sym___arrobe__nextstep) { t = sym___arrobe__next; }
+    t_symbol *t = soundfile_legacyConvert (atom_getSymbolAtIndex (0, argc, argv));
     
     if (argc > 1 && t == sym___arrobe__skip) {
         onset = (int)atom_getFloat (argv + 1);

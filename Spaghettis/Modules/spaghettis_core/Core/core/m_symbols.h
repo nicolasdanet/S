@@ -72,7 +72,6 @@ extern t_symbol *sym___arrobe__hop;
 extern t_symbol *sym___arrobe__keep;
 extern t_symbol *sym___arrobe__little;
 extern t_symbol *sym___arrobe__next;
-extern t_symbol *sym___arrobe__nextstep;
 extern t_symbol *sym___arrobe__none;
 extern t_symbol *sym___arrobe__normalize;
 extern t_symbol *sym___arrobe__peaks;

@@ -71,7 +71,6 @@ t_symbol *sym___arrobe__hop;
 t_symbol *sym___arrobe__keep;
 t_symbol *sym___arrobe__little;
 t_symbol *sym___arrobe__next;
-t_symbol *sym___arrobe__nextstep;
 t_symbol *sym___arrobe__none;
 t_symbol *sym___arrobe__normalize;
 t_symbol *sym___arrobe__peaks;
@@ -673,7 +672,6 @@ void symbols_initialize (void)
     sym___arrobe__keep                          = gensym ("@keep");
     sym___arrobe__little                        = gensym ("@little");
     sym___arrobe__next                          = gensym ("@next");
-    sym___arrobe__nextstep                      = gensym ("@nextstep");
     sym___arrobe__none                          = gensym ("@none");
     sym___arrobe__normalize                     = gensym ("@normalize");
     sym___arrobe__peaks                         = gensym ("@peaks");
