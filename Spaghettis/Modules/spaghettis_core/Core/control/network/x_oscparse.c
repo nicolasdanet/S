@@ -715,7 +715,7 @@ static t_oscparse *oscparse_new (t_symbol *s, int argc, t_atom *argv)
     //
     t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
 
-    if (t == sym___dash__discard) {
+    if (t == sym___arrobe__discard) {
         oscparse_discard (x, 1.0);
         argc--;
         argv++;

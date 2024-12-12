@@ -81,36 +81,36 @@ t_error soundfile_readFileParse (t_glist *dummy,
     //
     t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
     
-    if (t == sym___dash__nextstep) { t = sym___dash__next; }
+    if (t == sym___arrobe__nextstep) { t = sym___arrobe__next; }
     
-    if (argc > 1 && t == sym___dash__skip) {
+    if (argc > 1 && t == sym___arrobe__skip) {
         onset = (int)atom_getFloat (argv + 1);
         onset = PD_MAX (0, onset);
         argc -= 2; argv += 2;
         
-    } else if (argc > 1 && t == sym___dash__frames) {
+    } else if (argc > 1 && t == sym___arrobe__frames) {
         numberOfFrames = (int)atom_getFloat (argv + 1);
         numberOfFrames = PD_MAX (0, numberOfFrames);
         needToResize = 1;     
         argc -= 2; argv += 2;
     
-    } else if (t == sym___dash__resize)   {
+    } else if (t == sym___arrobe__resize)   {
         needToResize = 1;
         argc--; argv++;
         
-    } else if (t == sym___dash__next)     {
+    } else if (t == sym___arrobe__next)     {
         fileExtension = sym___point__snd;
         argc--; argv++;
         
-    } else if (t == sym___dash__wave)     {
+    } else if (t == sym___arrobe__wave)     {
         fileExtension = sym___point__wav;
         argc--; argv++;
         
-    } else if (t == sym___dash__aiff)     {
+    } else if (t == sym___arrobe__aiff)     {
         fileExtension = sym___point__aiff;
         argc--; argv++;
     
-    } else if (t == sym___dash__aif)      {
+    } else if (t == sym___arrobe__aif)      {
         fileExtension = sym___point__aif;
         argc--; argv++;
         
@@ -410,53 +410,53 @@ t_error soundfile_writeFileParse (t_glist *glist,
     //
     t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
     
-    if (t == sym___dash__nextstep) { t = sym___dash__next; }
+    if (t == sym___arrobe__nextstep) { t = sym___arrobe__next; }
     
-    if (argc > 1 && t == sym___dash__skip) {
+    if (argc > 1 && t == sym___arrobe__skip) {
         onset = (int)atom_getFloat (argv + 1);
         onset = PD_MAX (0, onset);
         argc -= 2; argv += 2;
         
-    } else if (argc > 1 && t == sym___dash__frames) {
+    } else if (argc > 1 && t == sym___arrobe__frames) {
         numberOfFrames = (int)atom_getFloat (argv + 1);
         numberOfFrames = PD_MAX (0, numberOfFrames);
         argc -= 2; argv += 2;
         
-    } else if (argc > 1 && t == sym___dash__bytes) {
+    } else if (argc > 1 && t == sym___arrobe__bytes) {
         bytesPerSample = (int)atom_getFloat (argv + 1);
         bytesPerSample = PD_CLAMP (bytesPerSample, 2, 4);
         argc -= 2; argv += 2;
         
-    } else if (argc > 1 && t == sym___dash__samplerate) {
+    } else if (argc > 1 && t == sym___arrobe__samplerate) {
         sampleRate = atom_getFloat (argv + 1);
         sampleRate = (t_sample)PD_MAX (1.0, sampleRate);
         argc -= 2; argv += 2;
         
-    } else if (t == sym___dash__normalize) {
+    } else if (t == sym___arrobe__normalize) {
         needToNormalize = 1;
         argc--; argv++;
     
-    } else if (t == sym___dash__next)   {
+    } else if (t == sym___arrobe__next)   {
         fileType = SOUNDFILE_NEXT; fileExtension = sym___point__snd;
         argc--; argv++;
         
-    } else if (t == sym___dash__wave)   {
+    } else if (t == sym___arrobe__wave)   {
         fileType = SOUNDFILE_WAVE; fileExtension = sym___point__wav;
         argc--; argv++;
         
-    } else if (t == sym___dash__aiff)   {
+    } else if (t == sym___arrobe__aiff)   {
         fileType = SOUNDFILE_AIFF; fileExtension = sym___point__aiff;
         argc--; argv++;
     
-    } else if (t == sym___dash__aif)    {
+    } else if (t == sym___arrobe__aif)    {
         fileType = SOUNDFILE_AIFF; fileExtension = sym___point__aif;
         argc--; argv++;
         
-    } else if (t == sym___dash__big)    {
+    } else if (t == sym___arrobe__big)    {
         endianness = 1;
         argc--; argv++;
         
-    } else if (t == sym___dash__little) {
+    } else if (t == sym___arrobe__little) {
         endianness = 0;
         argc--; argv++;
         

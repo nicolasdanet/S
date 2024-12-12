@@ -121,7 +121,7 @@ static void *textdefine_new (t_symbol *s, int argc, t_atom *argv)
     
         t_symbol *t = GET_SYMBOL (argv);
         
-        if (t == sym___dash__keep) { x->x_keep = 1; argc--; argv++; }
+        if (t == sym___arrobe__keep) { x->x_keep = 1; argc--; argv++; }
         else {
             break;
         }

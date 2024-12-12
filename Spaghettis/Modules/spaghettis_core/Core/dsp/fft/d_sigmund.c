@@ -1078,43 +1078,43 @@ static void *sigmund_tilde_new (t_symbol *s, int argc, t_atom *argv)
     t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
     t_float f   = atom_getFloatAtIndex (1, argc, argv);
     
-    if (t == sym___dash__table) {
+    if (t == sym___arrobe__table) {
         x->x_mode = MODE_TABLE;
         argc--; argv++;
         
-    } else if (t == sym___dash__stream) {
+    } else if (t == sym___arrobe__stream) {
         x->x_mode = MODE_STREAM;
         argc--; argv++;
         
-    } else if (argc > 1 && t == sym___dash__points)     {
+    } else if (argc > 1 && t == sym___arrobe__points)     {
         x->x_points = (int)PD_NEXT_POWER_2 (PD_CLAMP (f, 128, FFT_MAXIMUM / 2));
         argc -= 2; argv += 2;
 
-    } else if (argc > 1 && t == sym___dash__hop)        {
+    } else if (argc > 1 && t == sym___arrobe__hop)        {
         x->x_hop    = (int)PD_NEXT_POWER_2 (PD_CLAMP (f, 64,  FFT_MAXIMUM / 2));
         argc -= 2; argv += 2;
 
-    } else if (argc > 1 && t == sym___dash__peaks)      {
+    } else if (argc > 1 && t == sym___arrobe__peaks)      {
         x->x_numberOfPeaks = PD_CLAMP ((int)f, 1, SIGMUND_PEAKS);
         argc -= 2; argv += 2;
         
-    } else if (argc > 1 && t == sym___dash__frequency)  {
+    } else if (argc > 1 && t == sym___arrobe__frequency)  {
         x->x_maximumFrequency = PD_MAX (0.0, f);
         argc -= 2; argv += 2;
 
-    } else if (argc > 1 && t == sym___dash__vibrato)    {
+    } else if (argc > 1 && t == sym___arrobe__vibrato)    {
         x->x_vibrato = PD_MAX (0.0, f);
         argc -= 2; argv += 2;
 
-    } else if (argc > 1 && t == sym___dash__time)       {
+    } else if (argc > 1 && t == sym___arrobe__time)       {
         x->x_stableTime = PD_MAX (0.0, f);
         argc -= 2; argv += 2;
 
-    } else if (argc > 1 && t == sym___dash__growth)     {
+    } else if (argc > 1 && t == sym___arrobe__growth)     {
         x->x_growth = PD_MAX (0.0, f);
         argc -= 2; argv += 2;
 
-    } else if (argc > 1 && t == sym___dash__power)      {
+    } else if (argc > 1 && t == sym___arrobe__power)      {
         x->x_minimumPower = PD_MAX (0.0, f);
         argc -= 2; argv += 2;
         

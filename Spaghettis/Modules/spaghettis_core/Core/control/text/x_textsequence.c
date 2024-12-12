@@ -423,10 +423,10 @@ void *textsequence_new (t_symbol *s, int argc, t_atom *argv)
         
             t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
         
-            if (t == sym___dash__global) {
+            if (t == sym___arrobe__global) {
                 useGlobal = 1; argc--; argv++; 
                 
-            } else if (argc >= 2 && t == sym___dash__wait) {
+            } else if (argc >= 2 && t == sym___arrobe__wait) {
                 if (!x->x_waitSymbol && !x->x_waitNumberOfLeading) {
                     if (IS_SYMBOL (argv + 1)) { x->x_waitSymbol = atom_getSymbol (argv + 1); }
                     else {
@@ -435,7 +435,7 @@ void *textsequence_new (t_symbol *s, int argc, t_atom *argv)
                     argc -= 2; argv += 2;
                 }
                 
-            } else if (argc >= 3 && t == sym___dash__unit) {
+            } else if (argc >= 3 && t == sym___arrobe__unit) {
                 textsequence_unit (x, atom_getSymbol (argv + 2), atom_getFloat (argv + 1));
                 argc -= 3; argv += 3;
                 

@@ -449,7 +449,7 @@ static void *oscformat_new (t_symbol *s, int argc, t_atom *argv)
     //
     t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
 
-    if (argc > 1 && IS_SYMBOL (argv + 1) && (t == sym___dash__format)) {
+    if (argc > 1 && IS_SYMBOL (argv + 1) && (t == sym___arrobe__format)) {
         oscformat_format (x, GET_SYMBOL (argv + 1));
         argc -= 2;
         argv += 2;

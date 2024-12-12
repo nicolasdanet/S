@@ -317,8 +317,8 @@ static void *netsend_new (t_symbol *s, int argc, t_atom *argv)
     //
     t_symbol *t = atom_getSymbolAtIndex (0, argc, argv);
 
-    if (t == sym___dash__binary)   { argc--; argv++; x->ns_isBinary = 1; }
-    else if (t == sym___dash__udp) { argc--; argv++; x->ns_protocol = SOCK_DGRAM; }
+    if (t == sym___arrobe__binary)   { argc--; argv++; x->ns_isBinary = 1; }
+    else if (t == sym___arrobe__udp) { argc--; argv++; x->ns_protocol = SOCK_DGRAM; }
     else {
         break;
     }
