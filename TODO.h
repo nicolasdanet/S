@@ -33,7 +33,7 @@
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
-/* CLion (Free?) */
+/* CLion */
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -88,17 +88,15 @@
 
 // Improve Maker (category, abstractions...)
 
-// Manage documentation for abstractions
+// Handle documentation for abstractions
 
-// Fast connect / fast editing / fast everything...
+// Fast connect / fast editing / fast fast fast everything...
 
-// DSP analyzers in Inspector
+// Add DSP analyzers in Inspector
 
-// Allow sub patch navigation in place (without opening new window)
+// Allow sub patch navigation in place (i.e. without opening new window)
 
-// Handle detailed documentation (HTML...)
-
-// HTML documentation linked to patch?
+// Handle detailed documentation (HTML...) hooked to sibling patch
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -109,9 +107,9 @@
 
 // GUI / Multislider
 
-// GUI / Menu list (without popup menu / ComboBox)
+// GUI / Menulist (WITHOUT popup menu ala ComboBox)
 
-// GUI / Keyboard
+// GUI / MIDI Keyboard
 
 // GUI / [gain~]
 
