@@ -2,15 +2,15 @@
 #X obj 84 252 netsend;
 #X obj 36 180 netreceive;
 #N canvas 521 174 557 334 more 0;
-#X obj 36 144 netreceive -udp;
+#X obj 36 144 netreceive -u;
 #X msg 36 72 listen 3001;
 #X msg 36 96 close;
 #X msg 36 240 close;
-#X obj 36 288 netreceive -binary;
+#X obj 36 288 netreceive -b;
 #X msg 36 216 listen 3002;
 #X msg 252 240 close;
 #X msg 252 216 listen 3003;
-#X obj 252 288 netreceive -udp -binary;
+#X obj 252 288 netreceive -u -b;
 #X text 12 180 By default the messages are ASCII text (but can be binary if required).;
 #X f 71;
 #X text 12 12 Opens a socket for TCP ("stream") or UDP ("datagram") on a specified port.;

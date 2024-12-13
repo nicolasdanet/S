@@ -85,6 +85,17 @@ static int legacy_convertArrayFetch (t_buffer *x,
     return found;
 }
 
+static void legacy_convertOptionsReplace (int argc, t_atom *argv, t_symbol *o, t_symbol *n)
+{
+    int i;
+    
+    for (i = 0; i < argc; i++) {
+    //
+    t_atom *a = argv + i; if (atom_getSymbol (a) == o) { atom_setSymbol (a, n); }
+    //
+    }
+}
+
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
@@ -146,11 +157,44 @@ static int legacy_convertArray (t_buffer *x)
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 
+static int legacy_convertOptions (t_buffer *x)
+{
+    t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
+    t_atom *atoms    = NULL;
+    int count        = 0;
+    
+    while ((count = iterator_next (iter, &atoms))) {
+    //
+    if (count > 4) {
+    if (atom_getSymbolAtIndex (0, count, atoms) == sym___hash__X) {
+    if (atom_getSymbolAtIndex (1, count, atoms) == sym_obj) {
+    //
+    t_symbol *s = atom_getSymbolAtIndex (4, count, atoms);
+    
+    if (s == sym_netsend || s == sym_netreceive) {
+        legacy_convertOptionsReplace (count - 4 , atoms + 4, sym___dash__u, sym___arrobe__udp);
+        legacy_convertOptionsReplace (count - 4 , atoms + 4, sym___dash__b, sym___arrobe__binary);
+    }
+    //
+    }
+    }
+    }
+    //
+    }
+
+    iterator_free (iter);
+    
+    return 0;
+}
+
+// -----------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+
 static int legacy_convertRename (t_buffer *x)
 {
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
-    int count;
+    int count        = 0;
     
     while ((count = iterator_next (iter, &atoms))) {
     //
@@ -198,7 +242,7 @@ static int legacy_convertRemove (t_buffer *x)
     
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
-    int count;
+    int count        = 0;
     
     while ((count = iterator_next (iter, &atoms))) {
     //
@@ -234,7 +278,7 @@ static int legacy_convertReify (t_buffer *x)
 
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
-    int count;
+    int count        = 0;
     
     while ((count = iterator_next (iter, &atoms))) {
     //
@@ -273,7 +317,7 @@ static int legacy_convertAtoms (t_buffer *x)
 
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
-    int count;
+    int count        = 0;
     
     while ((count = iterator_next (iter, &atoms))) {
     //
@@ -309,7 +353,7 @@ static int legacy_convertGUI (t_buffer *x, t_symbol *key, int length, int m, int
 
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
-    int count;
+    int count        = 0;
     
     while ((count = iterator_next (iter, &atoms))) {
     //
@@ -362,8 +406,7 @@ static int legacy_convertDummy (t_buffer *x)
     
     t_iterator *iter = iterator_new (buffer_getSize (x), buffer_getAtoms (x));
     t_atom *atoms    = NULL;
-    
-    int count = 0;
+    int count        = 0;
     
     while ((count = iterator_next (iter, &atoms))) {
     //
@@ -398,13 +441,14 @@ static int legacy_convertDummy (t_buffer *x)
 
 static void legacy_convertProceed (t_buffer *x)
 {
-    while (legacy_convertDummy (x))  { }
-    while (legacy_convertArray (x))  { }
-    while (legacy_convertAtoms (x))  { }
+    while (legacy_convertDummy (x))     { }
+    while (legacy_convertArray (x))     { }
+    while (legacy_convertAtoms (x))     { }
     
-    while (legacy_convertRename (x)) { }
-    while (legacy_convertRemove (x)) { }
-    while (legacy_convertReify (x))  { }
+    while (legacy_convertRename (x))    { }
+    while (legacy_convertRemove (x))    { }
+    while (legacy_convertReify (x))     { }
+    while (legacy_convertOptions (x))   { }
     
     while (legacy_convertGUI (x, sym_bng, 20, 0, 12))       { }
     while (legacy_convertGUI (x, sym_tgl, 20, 1, 12))       { }

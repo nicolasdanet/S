@@ -19,9 +19,9 @@
 #X msg 36 300 connect localhost 3002;
 #X msg 312 324 disconnect;
 #X msg 312 300 connect localhost 3003;
-#X obj 36 192 netsend -udp;
-#X obj 36 444 netsend -binary;
-#X obj 312 444 netsend -udp -binary;
+#X obj 36 192 netsend -u;
+#X obj 36 444 netsend -b;
+#X obj 312 444 netsend -u -b;
 #X msg 72 396 send \$1 \$1;
 #X floatatom 348 360 0 32 127 0 - - -;
 #X msg 348 396 send \$1 \$1;
