@@ -50,7 +50,7 @@ int error__options (t_object *x, t_symbol *s, int argc, t_atom *argv)
     /* Legacy options format. */
     
     if (t != sym___dash__ && string_startWith (symbol_getName (t), symbol_getName (sym___dash__))) {
-        warning_invalidOption (x, s, t);
+        warning_deprecatedOption (x, s, t);
         k = 1;
     }
     
@@ -286,9 +286,9 @@ void warning_badType (t_object *x, t_symbol *s1, t_symbol *s2)
     post_warning (x, PD_TRANSLATE ("%s: bad type %s"), symbol_getName (s1), error__empty (s2));
 }
 
-void warning_invalidOption (t_object *x, t_symbol *s1, t_symbol *s2)
+void warning_deprecatedOption (t_object *x, t_symbol *s1, t_symbol *s2)
 {
-    post_warning (x, PD_TRANSLATE ("%s: invalid option %s"), symbol_getName (s1), error__empty (s2));
+    post_warning (x, PD_TRANSLATE ("%s: deprecated option %s"), symbol_getName (s1), error__empty (s2));
 }
 
 void warning_unusedOption (t_object *x, t_symbol *s1, t_symbol *s2)

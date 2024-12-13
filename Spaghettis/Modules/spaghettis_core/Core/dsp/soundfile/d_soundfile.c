@@ -58,9 +58,30 @@ t_error subchunk_readFileHeaderAIFF (int, t_headerhelper *, t_audioproperties *)
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static t_symbol *soundfile_legacyConvert (t_symbol *t)
+static t_symbol *soundfile_legacyConvertProceed (t_symbol *t)
 {
+    if (t == sym___dash__aiff)              { return sym___arrobe__aiff;        }
+    else if (t == sym___dash__big)          { return sym___arrobe__big;         }
+    else if (t == sym___dash__bytes)        { return sym___arrobe__bytes;       }
+    else if (t == sym___dash__little)       { return sym___arrobe__little;      }
+    else if (t == sym___dash__next)         { return sym___arrobe__next;        }
+    else if (t == sym___dash__nframes)      { return sym___arrobe__frames;      }
+    else if (t == sym___dash__normalize)    { return sym___arrobe__normalize;   }
+    else if (t == sym___dash__resize)       { return sym___arrobe__resize;      }
+    else if (t == sym___dash__rate)         { return sym___arrobe__samplerate;  }
+    else if (t == sym___dash__skip)         { return sym___arrobe__skip;        }
+    else if (t == sym___dash__wave)         { return sym___arrobe__wave;        }
+    
     return t;
+}
+
+static t_symbol *soundfile_legacyConvert (t_object *owner, t_symbol *s, t_symbol *t)
+{
+    t_symbol *option = soundfile_legacyConvertProceed (t);
+    
+    if (option != t) { warning_deprecatedOption (owner, s, t); }
+    
+    return option;
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -88,7 +109,7 @@ t_error soundfile_readFileParse (t_glist *dummy,
     
     while (argc > 0) {
     //
-    t_symbol *t = soundfile_legacyConvert (atom_getSymbolAtIndex (0, argc, argv));
+    t_symbol *t = soundfile_legacyConvert (owner, s, atom_getSymbolAtIndex (0, argc, argv));
     
     if (argc > 1 && t == sym___arrobe__skip) {
         onset = (int)atom_getFloat (argv + 1);
@@ -415,7 +436,7 @@ t_error soundfile_writeFileParse (t_glist *glist,
         
     while (argc > 0) {
     //
-    t_symbol *t = soundfile_legacyConvert (atom_getSymbolAtIndex (0, argc, argv));
+    t_symbol *t = soundfile_legacyConvert (owner, s, atom_getSymbolAtIndex (0, argc, argv));
     
     if (argc > 1 && t == sym___arrobe__skip) {
         onset = (int)atom_getFloat (argv + 1);
