@@ -169,11 +169,16 @@ static int legacy_convertOptions (t_buffer *x)
     if (atom_getSymbolAtIndex (0, count, atoms) == sym___hash__X) {
     if (atom_getSymbolAtIndex (1, count, atoms) == sym_obj) {
     //
-    t_symbol *s = atom_getSymbolAtIndex (4, count, atoms);
+    t_symbol *s  = atom_getSymbolAtIndex (4, count, atoms);
+    int argc     = count - 4;
+    t_atom *argv = atoms + 4;
     
     if (s == sym_netsend || s == sym_netreceive) {
-        legacy_convertOptionsReplace (count - 4 , atoms + 4, sym___dash__u, sym___arrobe__udp);
-        legacy_convertOptionsReplace (count - 4 , atoms + 4, sym___dash__b, sym___arrobe__binary);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__u, sym___arrobe__udp);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__b, sym___arrobe__binary);
+    }
+    if (s == sym_oscformat) {
+        legacy_convertOptionsReplace (argc, argv, sym___dash__f, sym___arrobe__format);
     }
     //
     }

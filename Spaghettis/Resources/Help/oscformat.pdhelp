@@ -32,7 +32,7 @@
 #X obj 36 228 print;
 #X text 12 264 Blobs are given as an atom count followed by that number of elements.;
 #X f 69;
-#X obj 36 168 oscformat -format fiis wombat;
+#X obj 36 168 oscformat -f fiis wombat;
 #X msg 36 48 3.14 6 7 squirrel;
 #X msg 36 72 1 2 3.14 4;
 #X msg 36 96 a b c d;
@@ -77,7 +77,7 @@
 #X obj 204 144 oscparse;
 #X obj 204 180 print;
 #X msg 204 48 3.14 foo bar foo bar;
-#X obj 204 120 oscformat -format dFTNI cat;
+#X obj 204 120 oscformat -f dFTNI cat;
 #X connect 1 0 2 0;
 #X connect 2 0 5 0;
 #X connect 3 0 1 0;
