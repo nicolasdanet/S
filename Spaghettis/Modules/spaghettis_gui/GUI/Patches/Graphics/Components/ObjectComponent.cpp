@@ -151,6 +151,8 @@ juce::String ObjectComponent::getHelpName() const
     
     if (isAbstraction()) {
         s = Strings::withoutFileExtension (object_.get<juce::String> (Tag::Attributes, Tag::Title));
+    } else {
+        s = Strings::upToWhitespace (s);
     }
     
     return Strings::firstLetterCapitalized (s);
