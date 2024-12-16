@@ -120,7 +120,7 @@
 #X msg 36 336 8 9;
 #X msg 36 360 8 9 alligator;
 #X msg 36 312 8;
-#X obj 36 504 text define -keep \$0-list;
+#X obj 36 504 text define -k \$0-list;
 #A set 1 2 3 dog \; 7 8 9 cat \; 4 5 3 dog \; 7 8 9 alligator \; the line that won't match numbers \;;
 #X obj 36 216 text search \$0-list;
 #X f 19;
@@ -189,7 +189,7 @@
 #X obj 228 240 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
 #X msg 36 48 line 0 \, bang;
 #X msg 36 72 line 0;
-#X obj 264 204 text define -keep \$0-sequence;
+#X obj 264 204 text define -k \$0-sequence;
 #A set 1 2 3 \; 4 5 symbol 7 \; Jessie \$0 \; 8 \$1 \$2 \; 9 \$3 \$1-\$2-\$3 \;;
 #X obj 36 204 text sequence \$0-sequence;
 #X f 26;
@@ -201,9 +201,9 @@
 #X obj 324 108 r sid;
 #X obj 324 72 print jessie;
 #X obj 324 132 print sid;
-#X obj 324 228 text define -keep \$0-global;
+#X obj 324 228 text define -k \$0-global;
 #A set jessie 1 2 3 \; 1000 sid 6 7 8 \; jessie 9 10 \, 21 22 23 \, walk the dog \; 2000 sid \; sid 13 14 \;;
-#X obj 36 228 text sequence \$0-global -global;
+#X obj 36 228 text sequence \$0-global -g;
 #X f 32;
 #X msg 36 168 unit 2 permillisecond;
 #X msg 36 72 line 0;
@@ -230,9 +230,9 @@
 #X msg 36 144 stop;
 #X obj 168 240 print wait;
 #X msg 36 96 step;
-#X obj 312 204 text define -keep \$0-wait;
+#X obj 312 204 text define -k \$0-wait;
 #A set 1 2 3 \; fred 1000 \; 4 5 6 \; blanch 7 8 \; fred 500 \; 9 10 \;;
-#X obj 36 204 text sequence \$0-wait -wait fred;
+#X obj 36 204 text sequence \$0-wait -w fred;
 #X f 34;
 #X obj 36 240 print;
 #X obj 288 240 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
@@ -258,13 +258,13 @@
 #X obj 168 240 print wait;
 #X obj 36 240 print;
 #X obj 288 240 bng 15 250 50 0 empty empty empty 17 7 0 10 #ffffff #000000 #000000;
-#X obj 312 204 text define -keep \$0-leading;
+#X obj 312 204 text define -k \$0-leading;
 #A set 0 1 2 3 \; 1000 4 5 6 \; 500 7 8 9 \; 500 10 11 12 \;;
 #X msg 36 72 line 0;
 #X msg 36 48 line 0 \, automatic;
 #X text 12 12 Leading mode: a given number of leading floats are waiting points.;
 #X f 66;
-#X obj 36 204 text sequence \$0-leading -wait 1;
+#X obj 36 204 text sequence \$0-leading -w 1;
 #X f 34;
 #X connect 0 0 10 0;
 #X connect 1 0 10 0;
@@ -299,9 +299,9 @@
 #X text 204 252 Search pattern.;
 #X msg 204 420 clear;
 #X msg 204 372 read text.txt;
-#X obj 204 468 text define -keep \$0-ionesco;
+#X obj 204 468 text define -k \$0-ionesco;
 #A set Bérenger \, venant de la gauche \; Bonjour \, Jean. \; Jean \; Toujours en retard \, évidemment !;
-#X obj 204 492 text define -keep \$0-camus;
+#X obj 204 492 text define -k \$0-camus;
 #A set ANNENKOV \; Il a fallu changer d'appartement \, une fois de plus. \; STEPAN \; Je sais. \; DORA \; Et là-bas \, Stepan ? \; STEPAN \; Là-bas ? \; DORA \; Le bagne ? \; STEPAN \; On s'en évade. \;;
 #N canvas 681 307 300 164 define 0;
 #X obj 36 84 text;
@@ -339,7 +339,7 @@
 #X text 204 204 Delete a message.;
 #X text 204 228 Get the number of messages.;
 #X obj 300 540 metro;
-#X text 12 312 Below optional -keep flag to save contents with patch.;
+#X text 12 312 Below optional -k flag to save contents with patch.;
 #X msg 204 396 write /tmp/ionesco.txt;
 #X connect 20 0 22 0;
 #X connect 21 0 22 0;

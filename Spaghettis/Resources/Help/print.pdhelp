@@ -9,7 +9,7 @@
 #N canvas 786 227 300 206 more 0;
 #X floatatom 36 120 5 0 0 0 - - -;
 #X f 5;
-#X obj 36 156 print -none;
+#X obj 36 156 print -n;
 #X floatatom 36 48 5 0 0 1 - - -;
 #X f 5;
 #X obj 36 84 print luffy;

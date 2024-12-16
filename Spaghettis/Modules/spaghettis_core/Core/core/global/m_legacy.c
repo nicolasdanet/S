@@ -181,15 +181,24 @@ static int legacy_convertOptions (t_buffer *x)
         legacy_convertOptionsReplace (argc, argv, sym___dash__f, sym___arrobe__format);
     }
     if (s == sym_sigmund__tilde__) {
-        legacy_convertOptionsReplace (argc, argv, sym___dash__growth, sym___arrobe__growth);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__hop, sym___arrobe__hop);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__maxfreq, sym___arrobe__frequency);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__minpower, sym___arrobe__power);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__npeak, sym___arrobe__peaks);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__npts, sym___arrobe__points);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__stabletime, sym___arrobe__time);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__t, sym___arrobe__table);
-        legacy_convertOptionsReplace (argc, argv, sym___dash__vibrato, sym___arrobe__vibrato);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__growth,       sym___arrobe__growth);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__hop,          sym___arrobe__hop);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__maxfreq,      sym___arrobe__frequency);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__minpower,     sym___arrobe__power);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__npeak,        sym___arrobe__peaks);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__npts,         sym___arrobe__points);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__stabletime,   sym___arrobe__time);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__t,            sym___arrobe__table);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__vibrato,      sym___arrobe__vibrato);
+    }
+    if (s == sym_text) {
+        legacy_convertOptionsReplace (argc, argv, sym___dash__g, sym___arrobe__global);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__t, sym___arrobe__unit);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__w, sym___arrobe__wait);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__k, sym___arrobe__keep);
+    }
+    if (s == sym_print) {
+        legacy_convertOptionsReplace (argc, argv, sym___dash__n, sym___arrobe__none);
     }
     //
     }
