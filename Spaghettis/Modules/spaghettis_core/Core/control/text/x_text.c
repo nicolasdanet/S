@@ -170,8 +170,6 @@ static void *textdefine_makeObject (t_symbol *s, int argc, t_atom *argv)
     //
     }
     
-    if (newest) { warning_deprecatedObject (cast_object (newest), sym_text); }
-
     instance_objectSetNewest (newest);
     
     return newest;

@@ -323,8 +323,6 @@ static void *qlist_new (t_symbol *s, int argc, t_atom *argv)
 
     if (argc && !IS_FLOAT (argv)) { qlist_read (x, symbol_withAtoms (argc, argv)); }
     
-    warning_deprecatedObject (cast_object (x), sym_qlist);
-    
     return x;
 }
 

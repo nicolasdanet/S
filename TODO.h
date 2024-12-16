@@ -4,6 +4,8 @@
 
 // Use option for [tabwrite~] / [snapshot~] autotrigger?
 
+// Order of options?
+
 // Implement [seq] editor familiy in Inspector / Tokenize
 
 // Add [list] object
