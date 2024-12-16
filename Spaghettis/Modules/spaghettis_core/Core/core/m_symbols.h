@@ -111,7 +111,7 @@ extern t_symbol *sym___dash__n;
 extern t_symbol *sym___dash__next;
 extern t_symbol *sym___dash__nframes;
 extern t_symbol *sym___dash__normalize;
-extern t_symbol *sym___dash__npeaks;
+extern t_symbol *sym___dash__npeak;
 extern t_symbol *sym___dash__npts;
 extern t_symbol *sym___dash__resize;
 extern t_symbol *sym___dash__rate;

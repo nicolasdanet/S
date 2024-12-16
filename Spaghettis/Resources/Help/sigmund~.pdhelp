@@ -35,11 +35,11 @@
 #X text 264 408 Time (milliseconds) to wait to report notes.;
 #X obj 36 72 sigmund~ note;
 #X obj 36 96 sigmund~ envelope;
-#X obj 36 228 sigmund~ -points 1024;
-#X obj 36 276 sigmund~ -peaks 20;
-#X obj 36 360 sigmund~ -frequency 1000000;
-#X obj 36 408 sigmund~ -time 50;
-#X obj 36 432 sigmund~ -power 50;
+#X obj 36 228 sigmund~ -npts 1024;
+#X obj 36 276 sigmund~ -npeak 20;
+#X obj 36 360 sigmund~ -maxfreq 1000000;
+#X obj 36 408 sigmund~ -stabletime 50;
+#X obj 36 432 sigmund~ -minpower 50;
 #X text 264 384 Depth of vibrato to expect in 1/2 tones.;
 #X coords 0 0 1 1 250 175 0 0 0;
 #X restore 180 144 pd more;
@@ -71,7 +71,7 @@
 #X text 396 324 Cosine component.;
 #X text 396 372 Frequency (Hz).;
 #X text 396 348 Peak amplitude.;
-#X obj 36 180 sigmund~ -peaks 10 peaks;
+#X obj 36 180 sigmund~ -npeak 10 peaks;
 #X connect 0 0 1 0;
 #X connect 0 9 6 0;
 #X connect 1 0 2 0;
@@ -107,7 +107,7 @@
 #X text 192 276 Flag.;
 #X obj 36 204 route 0;
 #X obj 36 240 unpack 0 0 0;
-#X obj 36 168 sigmund~ -points 16384 -hop 8192 -peaks 1 tracks;
+#X obj 36 168 sigmund~ -npts 16384 -hop 8192 -npeak 1 tracks;
 #X connect 0 0 13 0;
 #X connect 5 0 0 0;
 #X connect 6 0 5 0;
@@ -138,9 +138,9 @@
 #X restore 120 96 pd more;
 #X obj 36 192 print;
 #X msg 36 48 \$0-signal 1024 0 44100;
-#X text 12 12 Analyzes waveforms in arrays with -table option.;
+#X text 12 12 Analyzes waveforms in arrays with -t option.;
 #X f 48;
-#X obj 36 144 sigmund~ -table -peaks 10 -frequency 5000 peaks;
+#X obj 36 144 sigmund~ -t -npeak 10 -maxfreq 5000 peaks;
 #X connect 1 0 6 0;
 #X connect 4 0 1 0;
 #X connect 6 0 3 0;

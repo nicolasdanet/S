@@ -180,6 +180,17 @@ static int legacy_convertOptions (t_buffer *x)
     if (s == sym_oscformat) {
         legacy_convertOptionsReplace (argc, argv, sym___dash__f, sym___arrobe__format);
     }
+    if (s == sym_sigmund__tilde__) {
+        legacy_convertOptionsReplace (argc, argv, sym___dash__growth, sym___arrobe__growth);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__hop, sym___arrobe__hop);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__maxfreq, sym___arrobe__frequency);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__minpower, sym___arrobe__power);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__npeak, sym___arrobe__peaks);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__npts, sym___arrobe__points);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__stabletime, sym___arrobe__time);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__t, sym___arrobe__table);
+        legacy_convertOptionsReplace (argc, argv, sym___dash__vibrato, sym___arrobe__vibrato);
+    }
     //
     }
     }

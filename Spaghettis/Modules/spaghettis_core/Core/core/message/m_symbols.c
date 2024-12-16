@@ -110,7 +110,7 @@ t_symbol *sym___dash__n;
 t_symbol *sym___dash__next;
 t_symbol *sym___dash__nframes;
 t_symbol *sym___dash__normalize;
-t_symbol *sym___dash__npeaks;
+t_symbol *sym___dash__npeak;
 t_symbol *sym___dash__npts;
 t_symbol *sym___dash__resize;
 t_symbol *sym___dash__rate;
@@ -711,7 +711,7 @@ void symbols_initialize (void)
     sym___dash__next                            = gensym ("-next");
     sym___dash__nframes                         = gensym ("-nframes");
     sym___dash__normalize                       = gensym ("-normalize");
-    sym___dash__npeaks                          = gensym ("-npeaks");
+    sym___dash__npeak                           = gensym ("-npeak");
     sym___dash__npts                            = gensym ("-npts");
     sym___dash__resize                          = gensym ("-resize");
     sym___dash__rate                            = gensym ("-rate");
