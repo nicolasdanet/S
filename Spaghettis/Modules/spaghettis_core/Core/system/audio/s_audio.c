@@ -37,6 +37,8 @@ static int              audio_state;                    /* Static. */
 /* Contention could occurs on this mutex only when audio is switch on or off. */
 /* Assume that pthread trylock is as good (fast) as an homemade (spin) lock. */
 
+/* < https://youtu.be/JG7lqt7V1uY?t=1276 > */
+
 static pthread_mutex_t  audio_mutex;                    /* Static. */
 
 // -----------------------------------------------------------------------------------------------------------
