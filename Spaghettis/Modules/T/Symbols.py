@@ -66,13 +66,6 @@ def findOrphans():
     else:
         print("WRONG")
         
-def sortSymbols():
-    global symbols
-    t = symbols[:]
-    symbols.sort()
-    if t != symbols:
-        print("WARNING: symbols not sorted!")
-    
 def fetchSymbols():
     global symbols
     global path
@@ -86,7 +79,6 @@ def fetchSymbols():
 
 if __name__ == "__main__":
     fetchSymbols()
-    sortSymbols()
     findOrphans()
     
 # ------------------------------------------------------------------------------------------------------------
