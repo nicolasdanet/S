@@ -25,22 +25,13 @@ static t_class *tabwrite_tilde_class;           /* Shared. */
 typedef struct _tabwrite_tilde {
     t_object            x_obj;                  /* Must be the first. */
     t_trylock           x_mutex;
-    int                 x_dismissed;
-    int                 x_time;
     int                 x_set;
     int                 x_phase;
     int                 x_size;
     int                 x_cached;
     t_word              *x_vector;
     t_symbol            *x_name;
-    t_clock             *x_clock;
     } t_tabwrite_tilde;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void tabwrite_tilde_dismiss (t_tabwrite_tilde *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -94,8 +85,6 @@ static void tabwrite_tilde_bang (t_tabwrite_tilde *x)
         x->x_set   |= TAB_PHASE;
     
     trylock_unlock (&x->x_mutex);
-    
-    if (!x->x_dismissed && x->x_time > 0.0) { clock_delay (x->x_clock, x->x_time); }
 }
 
 static void tabwrite_tilde_start (t_tabwrite_tilde *x, t_float f)
@@ -208,8 +197,6 @@ static void tabwrite_tilde_initialize (void *lhs, void *rhs)
 
 static void tabwrite_tilde_dsp (t_tabwrite_tilde *x, t_signal **sp)
 {
-    if (!x->x_dismissed && x->x_time > 0.0) { clock_delay (x->x_clock, x->x_time); }
-    
     if (object_dspNeedInitializer (cast_object (x))) {
     //
     t_tabwrite_tilde *old = (t_tabwrite_tilde *)garbage_fetch (cast_object (x));
@@ -266,40 +253,24 @@ static t_buffer *tabwrite_tilde_functionData (t_object *z, int flags)
     return NULL;
 }
 
-static void tabwrite_tilde_functionDismiss (t_object *z)
-{
-    tabwrite_tilde_dismiss ((t_tabwrite_tilde *)z);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void *tabwrite_tilde_new (t_symbol *s, t_float f)
+static void *tabwrite_tilde_new (t_symbol *s)
 {
     t_tabwrite_tilde *x = (t_tabwrite_tilde *)pd_new (tabwrite_tilde_class);
     
     trylock_init (&x->x_mutex);
     
-    x->x_time   = PD_MAX (0.0, f);
     x->x_cached = -1;
     x->x_name   = s;
-    x->x_clock  = clock_newSingle ((void *)x, (t_method)tabwrite_tilde_bang);
     
     return x;
 }
 
-static void tabwrite_tilde_dismiss (t_tabwrite_tilde *x)
-{
-    if (!x->x_dismissed) { x->x_dismissed = 1; }
-}
-
 static void tabwrite_tilde_free (t_tabwrite_tilde *x)
 {
-    tabwrite_tilde_dismiss (x);
-    
-    clock_free (x->x_clock);
-    
     trylock_destroy (&x->x_mutex);
 }
 
@@ -317,7 +288,6 @@ void tabwrite_tilde_setup (void)
             sizeof (t_tabwrite_tilde),
             CLASS_DEFAULT | CLASS_SIGNAL,
             A_DEFSYMBOL,
-            A_DEFFLOAT,
             A_NULL);
             
     class_addDsp (c, (t_method)tabwrite_tilde_dsp);
@@ -329,7 +299,6 @@ void tabwrite_tilde_setup (void)
     class_addMethod (c, (t_method)tabwrite_tilde_restore,   sym__restore,   A_SYMBOL, A_NULL);
 
     class_setDataFunction (c, tabwrite_tilde_functionData);
-    class_setDismissFunction (c, tabwrite_tilde_functionDismiss);
 
     tabwrite_tilde_class = c;
 }
