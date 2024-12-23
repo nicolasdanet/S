@@ -20,15 +20,8 @@ static t_class *snapshot_tilde_class;       /* Shared. */
 typedef struct _snapshot_tilde {
     t_object            x_obj;              /* Must be the first. */
     t_float64Atomic     x_value;
-    int                 x_hasPolling;
     t_outlet            *x_outlet;
     } t_snapshot_tilde;
-
-// -----------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------
-// MARK: -
-
-static void snapshot_tilde_dismiss (t_snapshot_tilde *);
 
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
@@ -37,11 +30,6 @@ static void snapshot_tilde_dismiss (t_snapshot_tilde *);
 static void snapshot_tilde_bang (t_snapshot_tilde *x)
 {
     outlet_float (x->x_outlet, atomic_float64Read (&x->x_value));
-}
-
-static void snapshot_tilde_polling (t_snapshot_tilde *x)
-{
-    if (dsp_getState()) { snapshot_tilde_bang (x); }
 }
 
 static void snapshot_tilde_set (t_snapshot_tilde *x, t_float f)
@@ -96,40 +84,22 @@ static t_buffer *snapshot_tilde_functionData (t_object *z, int flags)
     return NULL;
 }
 
-static void snapshot_tilde_functionDismiss (t_object *z)
-{
-    snapshot_tilde_dismiss ((t_snapshot_tilde *)z);
-}
-
 // -----------------------------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------------------
 // MARK: -
 
-static void *snapshot_tilde_new (t_symbol *s, int argc, t_atom *argv)
+static void *snapshot_tilde_new (t_symbol *s)
 {
     t_snapshot_tilde *x = (t_snapshot_tilde *)pd_new (snapshot_tilde_class);
-    
-    if (argc) {
-        instance_pollingRegister (cast_pd (x));
-        x->x_hasPolling = 1;
-        argc--; argv++;
-    }
-    
-    if (argc) { warning_unusedArguments (cast_object (x), s, argc, argv); }
     
     x->x_outlet = outlet_newFloat (cast_object (x));
 
     return x;
 }
 
-static void snapshot_tilde_dismiss (t_snapshot_tilde *x)
-{
-    if (x->x_hasPolling) { x->x_hasPolling = 0; instance_pollingUnregister (cast_pd (x)); }
-}
-
 static void snapshot_tilde_free (t_snapshot_tilde *x)
 {
-    snapshot_tilde_dismiss (x);
+
 }
 
 // -----------------------------------------------------------------------------------------------------------
@@ -145,17 +115,14 @@ void snapshot_tilde_setup (void)
             (t_method)snapshot_tilde_free,
             sizeof (t_snapshot_tilde),
             CLASS_DEFAULT | CLASS_SIGNAL,
-            A_GIMME,
             A_NULL);
     
     class_addDsp (c, (t_method)snapshot_tilde_dsp);
     class_addBang (c, (t_method)snapshot_tilde_bang);
-    class_addPolling (c, (t_method)snapshot_tilde_polling);
     
     class_addMethod (c, (t_method)snapshot_tilde_set, sym_set, A_FLOAT, A_NULL);
     
     class_setDataFunction (c, snapshot_tilde_functionData);
-    class_setDismissFunction (c, snapshot_tilde_functionDismiss);
 
     snapshot_tilde_class = c;
 }
